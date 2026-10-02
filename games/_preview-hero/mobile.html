@@ -1,0 +1,78 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hero mobile · opções</title>
+<style>
+body{margin:0;background:#0b0d10;color:#eaeef2;font:14px/1.5 system-ui,Segoe UI,Roboto,sans-serif;padding:20px}
+h1{font-size:19px;margin:0 0 2px} p.sub{margin:0 0 18px;color:#9aa4ae;font-size:12.5px}
+.wrap{display:flex;gap:26px;flex-wrap:wrap;align-items:flex-start}
+.col{width:390px;max-width:100%}
+h2{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#8b95a1;margin:0 0 8px}
+.rec{color:#7cf03a;font-weight:700}
+.phone{position:relative;width:390px;max-width:100%;border-radius:18px;overflow:hidden;background:#07060c;margin-bottom:8px}
+.a{aspect-ratio:1920/823}
+.b{height:70vh;min-height:520px}
+.c{aspect-ratio:1920/823}
+.phone img{position:absolute;inset:0;width:100%;height:100%}
+.a img,.c img{object-fit:cover}
+.b img{object-fit:contain}
+.blur{position:absolute;inset:-8%;background-size:cover;background-position:center;filter:blur(26px) saturate(1.15);opacity:.5}
+.veil{position:absolute;inset:0;background:linear-gradient(180deg,#07060c8c 0%,#07060c29 34%,#07060c0d 55%,#07060cb8 100%)}
+.info{position:absolute;left:6%;right:6%;bottom:6%;z-index:3}
+.chip{display:inline-block;background:#ffffff14;border:1px solid #ffffff2b;border-radius:999px;padding:4px 10px;font-size:10px;letter-spacing:.06em;text-transform:uppercase}
+.a h3,.b h3{margin:6px 0 4px;font-size:clamp(13px,4.4vw,26px);line-height:1.1}
+.a p,.b p{margin:0 0 8px;font-size:clamp(9px,2.6vw,13px);color:#d8dee6}
+.btns{display:flex;gap:6px;flex-wrap:wrap}
+.bt{background:#f2ff1f;color:#111;border:0;border-radius:999px;padding:6px 12px;font-weight:800;font-size:clamp(9px,2.4vw,12px);text-transform:uppercase}
+.bt.gh{background:#ffffff1a;color:#fff;border:1px solid #ffffff33}
+.card{background:#12161b;border:1px solid #222c35;border-radius:18px;overflow:hidden}
+.card .imgbox{position:relative;aspect-ratio:1920/823}
+.card .imgbox img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.card .txt{padding:14px 16px 18px}
+.card h3{margin:6px 0 4px;font-size:20px;line-height:1.15}
+.card p{margin:0 0 10px;font-size:12.5px;color:#c8d0d8}
+.note{color:#9aa4ae;font-size:12px;margin:0}
+</style></head><body>
+<h1>Hero no Android · 3 jeitos de deixar “igual ao PC”</h1>
+<p class="sub">Mesma imagem 21:9 do desktop (1920×823) em uma tela de 390px. Escolhe um e eu aplico.</p>
+<div class="wrap">
+
+<div class="col">
+  <h2>Opção A · <span class="rec">recomendada</span> — hero PC escalado</h2>
+  <div class="phone a">
+    <img src="hero-1.webp" alt=""><span class="veil"></span>
+    <div class="info"><span class="chip">Game Store · Novidades</span>
+      <h3>Mergulhe no próximo nível.</h3>
+      <p>Consoles, jogos e acessórios em destaque.</p>
+      <div class="btns"><button class="bt">Ver produtos →</button><button class="bt gh">Ver jogos</button></div>
+    </div>
+  </div>
+  <p class="note">Caixa com a mesma proporção do PC (<code>aspect-ratio:1920/823</code>), imagem inteira, layout idêntico. Texto reduzido com <code>clamp()</code>. Só baixa 1 arquivo (o 21:9).</p>
+</div>
+
+<div class="col">
+  <h2>Opção B — imagem inteira, caixa alta</h2>
+  <div class="phone b">
+    <span class="blur" style="background-image:url(hero-1.webp)"></span><img src="hero-1.webp" alt=""><span class="veil"></span>
+    <div class="info"><span class="chip">Game Store · Novidades</span>
+      <h3>Mergulhe no próximo nível.</h3>
+      <p>Consoles, jogos e acessórios em destaque.</p>
+      <div class="btns"><button class="bt">Ver produtos →</button></div>
+    </div>
+  </div>
+  <p class="note">Mantém o hero alto (70vh) e mostra a imagem 21:9 inteira no centro, com fundo desfocado preenchendo. Texto maior e mais legível.</p>
+</div>
+
+<div class="col">
+  <h2>Opção C — imagem em cima, texto embaixo</h2>
+  <div class="card">
+    <div class="imgbox"><img src="hero-1.webp" alt=""></div>
+    <div class="txt"><span class="chip">Game Store · Novidades</span>
+      <h3>Mergulhe no próximo nível.</h3>
+      <p>Consoles, jogos e acessórios em destaque. Qualidade de verdade, pronta pra retirada.</p>
+      <div class="btns"><button class="bt">Ver produtos →</button><button class="bt gh">Ver jogos</button></div>
+    </div>
+  </div>
+  <p class="note">Imagem inteira e sem sobreposição, texto com tamanho normal embaixo. Mais legível, muda um pouco a estrutura do hero.</p>
+</div>
+
+</div></body></html>

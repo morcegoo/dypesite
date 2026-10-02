@@ -1,0 +1,51 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Preview · Hero Games</title>
+<style>
+:root{--neon:#7cf03a}
+body{margin:0;background:#0b0d10;color:#eaeef2;font:15px/1.5 system-ui,Segoe UI,Roboto,sans-serif;padding:22px}
+h1{font-size:20px;margin:0 0 4px}
+p.sub{margin:0 0 18px;color:#9aa4ae;font-size:13px}
+.tabs{display:flex;gap:8px;margin:0 0 16px;flex-wrap:wrap}
+.tabs button{background:#14181d;color:#cfe;border:1px solid #263039;border-radius:999px;padding:7px 14px;cursor:pointer}
+.tabs button.on{background:var(--neon);color:#111;border-color:var(--neon);font-weight:700}
+h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#8b95a1;margin:26px 0 8px}
+.mh{position:relative;width:100%;height:min(78vh,620px);min-height:460px;border-radius:20px;overflow:hidden;background:#07060c}
+.mh img{position:absolute;inset:0;width:100%;height:100%}
+.blur{filter:blur(26px) saturate(1.2);inset:-8%!important;opacity:.5}
+.cur img.fit{object-fit:contain}
+.new img.fit{object-fit:cover}
+.tag{position:absolute;left:14px;top:14px;z-index:3;background:#000a;border:1px solid #ffffff22;border-radius:999px;padding:5px 12px;font-size:12px}
+.phone{width:390px;max-width:100%;height:70vh;min-height:520px;border-radius:18px}
+.note{color:#9aa4ae;font-size:12.5px;margin:6px 0 0}
+</style></head><body>
+<h1>Hero · antes e depois</h1>
+<p class="sub">Mesma caixa usada no site. Desktop: <code>height:min(78vh,620px)</code> · Mobile: <code>70vh / 390px</code>.</p>
+<div class="tabs" id="tabs"></div>
+<h2>1 · Hoje (object-fit: contain · imagem 736px vertical)</h2>
+<div class="mh cur"><span class="tag">atual</span><span class="blur" id="curBlur"></span><img class="fit" id="curImg" alt=""></div>
+<p class="note">É isso que gera a faixa desfocada nas laterais e a sensação de imagem “cortada/incompleta”.</p>
+<h2>2 · Proposta desktop (21:9 em object-fit: cover)</h2>
+<div class="mh new"><span class="tag">novo · 1920×823</span><img class="fit" id="newImg" alt=""></div>
+<h2>3 · Proposta mobile (picture · 9:16 em object-fit: cover)</h2>
+<div class="mh new phone"><span class="tag">novo · 1080×1920</span>
+ <picture><source media="(max-width:900px)" srcset="hero-1-m.webp"><img class="fit" id="mobImg" width="1080" height="1920" alt=""></picture>
+</div>
+<p class="note">No celular o navegador baixa só a versão <code>-m</code>; no desktop, só a panorâmica.</p>
+<script>
+var OLD=['../assets/inline/inline-707ad8292d.webp','../assets/inline/inline-7eee741194.webp','../assets/inline/inline-4a495eaac9.webp','../assets/inline/inline-bdf2ed5135.webp','../assets/inline/inline-8e32c702e6.webp'];
+var NEW=['hero-5.webp','hero-1.webp','hero-2.webp','hero-3.webp','hero-4.webp'];
+var MOB=['hero-5.webp','hero-1-m.webp','hero-2-m.webp','hero-3-m.webp','hero-4-m.webp'];
+var t=document.getElementById('tabs');
+function show(i){
+ document.getElementById('curImg').src=OLD[i];
+ document.getElementById('curBlur').style.backgroundImage='url('+OLD[i]+')';
+ document.getElementById('newImg').src=NEW[i];
+ var pic=document.querySelector('picture');
+ pic.querySelector('source').srcset=MOB[i];
+ document.getElementById('mobImg').src=MOB[i];
+ [].forEach.call(t.children,function(b,j){b.className=j===i?'on':''});
+}
+for(var i=0;i<5;i++){var b=document.createElement('button');b.textContent='Slide '+(i+1);b.onclick=show.bind(null,i);t.appendChild(b);}
+show(0);
+</script></body></html>

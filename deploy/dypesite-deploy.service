@@ -1,0 +1,10 @@
+[Unit]
+Description=Deploy automatico dos sites dypesite (git pull + publicacao)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+EnvironmentFile=-/etc/dypesite-deploy.env
+ExecStart=/usr/local/bin/dypesite-deploy
+Nice=10

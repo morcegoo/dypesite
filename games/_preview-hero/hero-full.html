@@ -1,0 +1,153 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hero fullscreen · opções de header</title>
+<style>
+body{margin:0;background:#0b0d10;color:#eaeef2;font:13px/1.5 system-ui,Segoe UI,Roboto,sans-serif;padding:18px}
+h1{font-size:18px;margin:0 0 4px} p.sub{margin:0 0 16px;color:#9aa4ae;font-size:12.5px}
+.wrap{display:flex;gap:22px;flex-wrap:wrap}
+.col{width:390px;max-width:100%}
+h2{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:#8b95a1;margin:0 0 8px}
+.rec{color:#7cf03a;font-weight:700}
+.frame{position:relative;width:390px;height:780px;overflow-y:auto;overflow-x:hidden;border-radius:22px;background:#07060c;scroll-behavior:smooth;overscroll-behavior:contain}
+.frame::-webkit-scrollbar{width:0}
+.note{color:#9aa4ae;font-size:12px;margin:8px 0 0}
+
+/* hero ocupa a tela inteira */
+.hero{position:relative;height:780px;overflow:hidden;background:#07060c}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.veil{position:absolute;inset:0;background:linear-gradient(180deg,#07060ccc 0%,#07060c22 32%,#07060c0d 52%,#07060cd9 100%)}
+.hinfo{position:absolute;left:6%;right:6%;bottom:9%;z-index:3}
+.chip{display:inline-block;background:#ffffff14;border:1px solid #ffffff2b;border-radius:999px;padding:4px 10px;font-size:9.5px;letter-spacing:.07em;text-transform:uppercase}
+.hinfo h3{margin:8px 0 6px;font-size:30px;line-height:1.03;text-transform:uppercase;font-weight:800}
+.hinfo p{margin:0 0 12px;font-size:13px;color:#cfd6de;max-width:92%}
+.btns{display:flex;gap:8px;flex-wrap:wrap}
+.bt{background:#f2ff1f;color:#111;border:0;border-radius:999px;padding:11px 18px;font-weight:800;font-size:12px;text-transform:uppercase}
+.bt.gh{background:#ffffff18;color:#fff;border:1px solid #ffffff3a}
+
+/* header cheio (estado inicial) */
+.hd{position:sticky;top:0;z-index:6;background:linear-gradient(180deg,#07060ce6,#07060c99);backdrop-filter:blur(10px);transition:all .32s ease}
+.hd.over{position:absolute;left:0;right:0;background:transparent;backdrop-filter:none}
+.hd-top{display:flex;align-items:center;justify-content:space-between;padding:12px 14px}
+.ico{width:44px;height:44px;border-radius:14px;border:1px solid #ffffff1f;background:#ffffff0d;display:grid;place-items:center;font-size:17px;color:#e8eef6}
+.logo{font-weight:800;font-size:19px;letter-spacing:.04em}
+.logo b{color:#c65cff}
+.rgt{display:flex;gap:8px;align-items:center}
+.cart{position:relative}
+.cart i{position:absolute;top:-5px;right:-5px;background:#a13cff;color:#fff;font-size:9px;border-radius:999px;padding:1px 5px;font-style:normal}
+.tabs{display:flex;gap:22px;padding:0 14px 10px;overflow:hidden;font-weight:700;font-size:15px;color:#9fa8b4;white-space:nowrap}
+.tabs span.on{color:#fff;border-bottom:2px solid #a13cff;padding-bottom:6px}
+.searchbar{padding:0 14px 10px}
+.sb{display:flex;align-items:center;gap:9px;background:#ffffff0f;border:1px solid #ffffff1c;border-radius:14px;padding:12px 14px;color:#8e97a3;font-size:14px}
+.pill{margin:0 14px 14px;background:#1a1130;border:1px solid #6f3bd4;border-radius:14px;padding:11px;text-align:center;font-weight:700;font-size:13px;color:#e7dcff}
+
+/* estado recolhido */
+.mini{display:none;align-items:center;gap:8px;padding:8px 12px}
+.mini .mlogo{font-weight:800;font-size:15px;margin:0 auto;letter-spacing:.04em}
+.mini .mlogo b{color:#c65cff}
+
+/* 3 pontos laterais flutuantes */
+.dots{position:absolute;z-index:8;display:flex;flex-direction:column;gap:10px;opacity:0;transform:translateY(-8px);transition:all .3s ease;pointer-events:none}
+.dots.on{opacity:1;transform:none;pointer-events:auto}
+.dots.l{left:10px;top:88px}
+.dots.r{right:10px;top:88px}
+.dot{width:42px;height:42px;border-radius:14px;background:#0e1218f2;border:1px solid #ffffff24;display:grid;place-items:center;color:#e8eef6;font-size:16px;box-shadow:0 10px 30px #000a;backdrop-filter:blur(8px)}
+
+.content{padding:16px 14px 90px;background:#07060c}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+.cd{height:104px;border-radius:14px;background:linear-gradient(135deg,#1a1f27,#0e1319);border:1px solid #ffffff12}
+.blk{height:150px;border-radius:16px;background:#0f141a;border:1px solid #ffffff10;margin-top:14px}
+h4{margin:14px 0 2px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#8b95a1}
+
+/* nav inferior fixa (como no site) */
+.bnav{position:absolute;left:12px;right:12px;bottom:12px;z-index:9;background:#12161bf2;border:1px solid #ffffff1c;border-radius:18px;display:flex;justify-content:space-around;padding:10px 0;font-size:17px;backdrop-filter:blur(10px)}
+.bnav span.on{color:#c65cff}
+</style></head><body>
+<h1>Hero fullscreen + header que se transforma</h1>
+<p class="sub">Role dentro de cada celular. Nos 3 casos o hero ocupa a tela inteira e o header muda conforme o scroll.</p>
+<div class="wrap">
+
+<div class="col">
+ <h2>Opção 1 · <span class="rec">recomendada</span> — header some e viram 3 pontos laterais</h2>
+ <div class="frame" id="f1">
+  <div class="hd over" id="h1">
+    <div class="hd-top"><button class="ico">☰</button><div class="logo">GAME <b>STORE</b></div><div class="rgt"><button class="ico">☺</button><button class="ico cart">🛒<i>0</i></button></div></div>
+    <div class="tabs"><span class="on">Início</span><span>Era dos Games</span><span>GTA VI</span><span>Consoles</span></div>
+    <div class="mini" id="m1"><button class="ico">☰</button><div class="mlogo">GAME <b>STORE</b></div><button class="ico cart">🛒<i>0</i></button></div>
+  </div>
+  <div class="dots l" id="dl1"><div class="dot">☰</div></div>
+  <div class="dots r" id="dr1"><div class="dot">🛒</div><div class="dot">☺</div></div>
+  <section class="hero">
+    <picture><source media="(max-width:900px)" srcset="hero-1-m.webp"><img src="hero-1.webp" alt=""></picture><span class="veil"></span>
+    <div class="hinfo"><span class="chip">Game Store · Novidades</span><h3>Mergulhe no<br>próximo nível.</h3>
+    <p>Consoles, jogos e acessórios em destaque. Qualidade de verdade, pronta pra retirada.</p>
+    <div class="btns"><button class="bt">Ver produtos →</button><button class="bt gh">Ver jogos</button></div></div>
+  </section>
+  <div class="content"><h4>Destaques</h4><div class="cards"><div class="cd"></div><div class="cd"></div><div class="cd"></div><div class="cd"></div></div><div class="blk"></div></div>
+  <div class="bnav"><span>☰</span><span class="on">⌂</span><span>🎮</span><span>💬</span></div>
+ </div>
+ <p class="note">No topo: header sobre a imagem (transparente). Ao rolar: some tudo e ficam 3 pontos flutuantes — menu à esquerda, carrinho e conta à direita. Hero = 100% da tela.</p>
+</div>
+
+<div class="col">
+ <h2>Opção 2 — header vira pílula no topo</h2>
+ <div class="frame" id="f2">
+  <div class="hd over" id="h2">
+    <div class="hd-top"><button class="ico">☰</button><div class="logo">GAME <b>STORE</b></div><div class="rgt"><button class="ico">☺</button><button class="ico cart">🛒<i>0</i></button></div></div>
+    <div class="tabs"><span class="on">Início</span><span>Era dos Games</span><span>GTA VI</span><span>Consoles</span></div>
+  </div>
+  <section class="hero">
+    <picture><source media="(max-width:900px)" srcset="hero-1-m.webp"><img src="hero-1.webp" alt=""></picture><span class="veil"></span>
+    <div class="hinfo"><span class="chip">Game Store · Novidades</span><h3>Mergulhe no<br>próximo nível.</h3>
+    <p>Consoles, jogos e acessórios em destaque.</p>
+    <div class="btns"><button class="bt">Ver produtos →</button></div></div>
+  </section>
+  <div class="content"><h4>Destaques</h4><div class="cards"><div class="cd"></div><div class="cd"></div><div class="cd"></div><div class="cd"></div></div><div class="blk"></div></div>
+  <div class="bnav"><span>☰</span><span class="on">⌂</span><span>🎮</span><span>💬</span></div>
+ </div>
+ <p class="note">O header continua no topo, mas encolhe para uma barra fininha de vidro (logo + 3 ícones) e o hero segue dominando a tela.</p>
+</div>
+
+<div class="col">
+ <h2>Opção 3 — dock lateral fixo (3 pontos sempre visíveis)</h2>
+ <div class="frame" id="f3">
+  <div class="hd over" id="h3">
+    <div class="hd-top"><button class="ico">☰</button><div class="logo">GAME <b>STORE</b></div><div class="rgt"><button class="ico">☺</button><button class="ico cart">🛒<i>0</i></button></div></div>
+  </div>
+  <div class="dots l on" style="top:44%"><div class="dot">☰</div><div class="dot">🎮</div></div>
+  <div class="dots r on" style="top:44%"><div class="dot">🛒</div></div>
+  <section class="hero" style="height:780px">
+    <picture><source media="(max-width:900px)" srcset="hero-1-m.webp"><img src="hero-1.webp" alt=""></picture><span class="veil"></span>
+    <div class="hinfo"><span class="chip">Game Store · Novidades</span><h3>Mergulhe no<br>próximo nível.</h3>
+    <p>Consoles, jogos e acessórios em destaque.</p>
+    <div class="btns"><button class="bt">Ver produtos →</button></div></div>
+  </section>
+  <div class="content"><h4>Destaques</h4><div class="cards"><div class="cd"></div><div class="cd"></div><div class="cd"></div><div class="cd"></div></div><div class="blk"></div></div>
+  <div class="bnav"><span>☰</span><span class="on">⌂</span><span>🎮</span><span>💬</span></div>
+ </div>
+ <p class="note">Os 3 pontos já nascem nas laterais, meio da tela, e ficam fixos durante o scroll. Header aparece só sobre o hero.</p>
+</div>
+
+</div>
+<script>
+function bind(frameId, hdId, miniId, dlId, drId, useMini){
+  var f=document.getElementById(frameId), hd=document.getElementById(hdId);
+  var mini=miniId?document.getElementById(miniId):null, dl=dlId?document.getElementById(dlId):null, dr=drId?document.getElementById(drId):null;
+  f.addEventListener('scroll',function(){
+    var y=f.scrollTop, on=y>120;
+    if(dl) dl.classList.toggle('on',on);
+    if(dr) dr.classList.toggle('on',on);
+    if(useMini && mini){
+      var top=hd.querySelector('.hd-top'), tabs=hd.querySelector('.tabs');
+      top.style.display=on?'none':'flex';
+      tabs.style.display=on?'none':'flex';
+      mini.style.display=on?'flex':'none';
+      hd.style.background=on?'#0b0f14e6':'linear-gradient(180deg,#07060ce6,#07060c99)';
+      hd.style.backdropFilter=on?'blur(14px)':'blur(10px)';
+      hd.style.borderBottom=on?'1px solid #ffffff1a':'none';
+    }
+  },{passive:true});
+}
+bind('f1','h1','m1','dl1','dr1',true);
+bind('f2','h2',null,null,null,false);
+</script>
+</body></html>
