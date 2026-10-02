@@ -58,7 +58,7 @@
     }
     function size(){ var m = innerWidth < 900, w = innerWidth, h = innerHeight; if (sk && m === mob && w === lm && h === lh){ return; }
       sk = 1; mob = m; lm = w; lh = h; W = w; H = h; D = mob ? 1 : Math.min(1.5, devicePixelRatio || 1);
-      cv.width = Math.round(W * D); cv.height = Math.round(H * D); GD = mob ? .35 : .5; gcv.width = Math.round(W * GD); gcv.height = Math.round(H * GD); CAP = mob ? 80 : 260; }
+      cv.width = Math.round(W * D); cv.height = Math.round(H * D); GD = mob ? .35 : .5; gcv.width = Math.round(W * GD); gcv.height = Math.round(H * GD); cv.style.width = gcv.style.width = W + 'px'; cv.style.height = gcv.style.height = H + 'px'; CAP = mob ? 80 : 260; }
     /* calor e n\xedvel do mar s\xf3 mexem em transform/opacity de 2 elementos (nada de vari\xe1vel no :root) */
     function onScroll(){ scrRaf = 0; var m = docH - innerHeight; heat = m > 0 ? Math.min(1, Math.max(0, scrollY / m)) : 0;
       if (heatEl) heatEl.style.opacity = 0;
@@ -462,48 +462,49 @@
     return {hold:hold, stop:function(){ until = 0; }, ok:function(){ return init(); }};
   })();
 
-  /* ---------- Fogo se alastrando pelas bordas dos cards (s\xf3 no tema do Fa\xedsca) ---------- */
+  /* ---------- Fogo se alastrando pelas bordas dos cards (s\xf3 no tema do Fa\xedsca) ----------
+     Cada card em chamas ganha o pr\xf3prio <canvas> 2D dentro dele, ent\xe3o o fogo rola junto com o card (sem atraso).
+     Um \xfanico WebGL fora da tela desenha a chama e copia pro canvas de cada card. */
   var BURN = (function(){
-    var SELC = CARDS, cv = null, gl = null, U = null, ok = null, raf = 0, list = [], vis = new Set(), seen = new WeakMap(), lastAuto = 0, t0 = performance.now();
-    var VS = 'attribute vec2 a; uniform vec4 uB; void main(){ gl_Position = vec4(mix(uB.xy, uB.zw, a), 0., 1.); }';
+    var SELC = CARDS, gcv = null, gl = null, U = null, ok = null, raf = 0, list = [], vis = new Set(), seen = new WeakMap(), queue = [], qT = 0, t0 = performance.now(), DUR = 2.5;
+    var VS = 'attribute vec2 a; void main(){ gl_Position = vec4(a * 2. - 1., 0., 1.); }';
     var FS = FIRE_GLSL + '\n' + [
-      'uniform vec4 uRect; uniform float uRad, uT, uAge, uIgn, uDpr;',
+      'uniform vec4 uRect; uniform float uRad, uT, uAge, uIgn, uDpr, uDur, uRoom;',
       'void main(){',
       ' vec2 p = gl_FragCoord.xy, hs = uRect.zw * .5, q = p - (uRect.xy + hs);',
       ' vec2 e = abs(q) - hs + uRad; float d = (length(max(e, 0.)) + min(max(e.x, e.y), 0.) - uRad) / uDpr;',
-      ' if (d < -18. || d > 75.){ gl_FragColor = vec4(0.); return; }',
+      ' if (d < -46. || d > 70.){ gl_FragColor = vec4(0.); return; }',
       ' float s = atan(q.y / hs.y, q.x / hs.x) / 6.28318 + .5; float ds = abs(s - uIgn); ds = min(ds, 1. - ds);',
-      ' float la = uAge - ds * 1.7; if (la < 0.){ gl_FragColor = vec4(0.); return; }',
-      ' float I = smoothstep(0., .2, la) * (1. - smoothstep(.8, 1.9, la));',
-      ' float E = smoothstep(0., .3, la) * (1. - smoothstep(1.5, 3., la));',
+      ' float la = uAge - ds * 1.8; if (la < 0.){ gl_FragColor = vec4(0.); return; }',
+      ' float out_ = 1. - smoothstep(uDur - .7, uDur, uAge);',
+      ' float I = smoothstep(0., .22, la) * out_;',
+      ' float E = smoothstep(0., .3, la) * (1. - smoothstep(uDur - .4, uDur + .5, uAge));',
       ' vec2 g = (e.x > 0. && e.y > 0.) ? normalize(e * sign(q)) : (e.x > e.y ? vec2(sign(q.x), 0.) : vec2(0., sign(q.y)));',
-      ' float L = mix(12., 62., smoothstep(-.8, 1., g.y));',
-      ' vec2 P = p / uDpr / 30., fl = vec2(0., -uT * 2.1);',
+      ' float L = mix(10., max(14., uRoom), smoothstep(-.8, 1., g.y));',
+      ' vec2 P = p / uDpr / 26., fl = vec2(0., -uT * 2.2);',
       ' vec2 wv = vec2(fbm(P * 1.1 + fl * .5), fbm(P * 1.1 + vec2(3.7, 8.1) + fl * .5));',
       ' float n = fbm(P * 1.9 + wv * 1.6 + fl);',
       ' float tb = 1. - abs(fbm(P * 3.2 + wv + fl * 1.3) * 2. - 1.);',
-      ' float hy = (d + 4.) / L, f = ((1. - hy) * 1.45 - n * 1.02 + (tb - .55) * .5 * smoothstep(.0, .6, hy)) * I * smoothstep(-9., -3., d);',
+      ' float din = mix(14., 40., smoothstep(.3, 1., -g.y)); float hy = d > -4. ? (d + 4.) / L : (-d - 4.) / din;',
+      ' float f = ((1. - hy) * 1.4 - n * 1.02 + (tb - .55) * .5 * smoothstep(0., .6, abs(hy))) * I;',
       ' f = clamp(f, 0., 1.35); float a = fa(f); vec3 col = ramp(f) * a;',
       ' float eg = exp(-abs(d + 1.5) / 2.2) * E * (.35 + .9 * fbm(P * 4. + vec2(uT * .4, 0.)));',
       ' col += vec3(1., .42, .08) * eg * (1. - a); a = max(a, min(1., eg));',
-      ' float sc = smoothstep(-9., -1., d) * (1. - smoothstep(-1., 1., d)) * smoothstep(0., .5, la) * (1. - smoothstep(1.8, 3.2, la)) * smoothstep(.45, .75, fbm(P * 3.)) * .38;',
-      ' col += vec3(.22, .09, .03) * sc * (1. - a); a += sc * (1. - a);',
       ' gl_FragColor = vec4(col, a);',
       '}'].join('\n');
     function init(){
       if (ok !== null) return ok; ok = false;
       try {
-        cv = document.createElement('canvas'); cv.className = 'fire-burn'; cv.setAttribute('aria-hidden', 'true');
-        gl = cv.getContext('webgl', {alpha:true, premultipliedAlpha:true, antialias:false}); if (!gl) return false;
+        gcv = document.createElement('canvas');
+        gl = gcv.getContext('webgl', {alpha:true, premultipliedAlpha:true, antialias:false, preserveDrawingBuffer:false}); if (!gl) return false;
         var pr = glprog(gl, VS, FS); gl.useProgram(pr);
         var b = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, b); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([0,0, 1,0, 0,1, 1,1]), gl.STATIC_DRAW);
         var l = gl.getAttribLocation(pr, 'a'); gl.enableVertexAttribArray(l); gl.vertexAttribPointer(l, 2, gl.FLOAT, false, 0, 0);
-        U = {}; ['uB','uRect','uRad','uT','uAge','uIgn','uDpr'].forEach(function(k){ U[k] = gl.getUniformLocation(pr, k); });
-        gl.enable(gl.BLEND); gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA); gl.clearColor(0, 0, 0, 0); document.body.appendChild(cv); ok = true;
+        U = {}; ['uRect','uRad','uT','uAge','uIgn','uDpr','uDur','uRoom'].forEach(function(k){ U[k] = gl.getUniformLocation(pr, k); });
+        gl.clearColor(0, 0, 0, 0); ok = true;
       } catch(e){ ok = false; }
       return ok;
     }
-    function on(){ return !reduce && document.documentElement.classList.contains('th-faisca'); }
     /* recorte realmente visivel: viewport x ancestrais que cortam (carrosseis, listas) */
     function visR(el){
       var r = el.getBoundingClientRect(), L = 0, T = 0, R = innerWidth, B = innerHeight, p = el.parentElement;
@@ -525,52 +526,69 @@
       if (v.w < min || v.h < min) return null;
       return v;
     }
+    function on(){ return !reduce && document.documentElement.classList.contains('th-faisca'); }
+    /* quanto espa\xe7o tem acima/abaixo do card antes de algum cont\xeainer cortar (vitrines com rolagem lateral cortam o que sai do card) */
+    function room(el){
+      var top = 44, bot = 14, side = 16, er = el.getBoundingClientRect();
+      for (var a = el.parentElement; a && a !== document.body; a = a.parentElement){
+        var cs = getComputedStyle(a); if (cs.overflowX === 'visible' && cs.overflowY === 'visible') continue;
+        var ar = a.getBoundingClientRect(); top = Math.max(4, Math.min(top, er.top - ar.top - 1)); bot = Math.max(3, Math.min(bot, ar.bottom - er.bottom - 1)); break;
+      }
+      return {t:Math.round(top), b:Math.round(bot), s:side};
+    }
+    var MAX = function(){ return innerWidth < 900 ? 4 : 6; };
     var io = 'IntersectionObserver' in window ? new IntersectionObserver(function(es){
       var now = performance.now();
-      es.forEach(function(e){
-        if (e.isIntersecting && e.intersectionRatio > .45) vis.add(e.target); else vis.delete(e.target);
-        if (!on() || !e.isIntersecting || now - lastAuto < 1700 || list.length >= 2 || now - (seen.get(e.target) || -1e9) < 25000 || Math.random() > .6) return;
-        lastAuto = now; var el = e.target;
-        setTimeout(function(){ if (!el.isConnected || list.length >= 2) return; var v = inView(el, 120); if (!v) return; var left = Math.random() < .5; ignite(el, left ? v.l + 6 : v.r - 6, v.b - 6); }, 90);
-      });
-    }, {threshold:[.45, .7]}) : null;
+      es.forEach(function(e){ if (e.isIntersecting){ vis.add(e.target); if (on() && now - (seen.get(e.target) || -1e9) > 30000 && queue.indexOf(e.target) < 0) queue.push(e.target); }
+        else vis.delete(e.target); });
+      if (queue.length) pump();
+    }, {threshold:.6}) : null;
+    /* o fogo passa de card em card, da esquerda pra direita, um pouco depois do outro */
+    function pump(){
+      if (qT) return;
+      queue.sort(function(a, b){ var ra = a.getBoundingClientRect(), rb = b.getBoundingClientRect(); return (ra.top - rb.top) * 4 + (ra.left - rb.left); });
+      (function next(){ qT = 0; if (!on()){ queue = []; return; }
+        while (queue.length && !vis.has(queue[0])) queue.shift();
+        if (!queue.length) return;
+        if (list.length >= MAX()){ qT = setTimeout(next, 300); return; }
+        var el = queue.shift(), r = el.getBoundingClientRect(); ignite(el, r.left + 6, r.bottom - 6);
+        qT = setTimeout(next, 320); })();
+    }
     function watch(root){ if (!io || !root) return; root.querySelectorAll(SELC).forEach(function(el){ if (!el.__bw){ el.__bw = 1; io.observe(el); } }); }
     function ignite(el, x, y){
-      if (!on() || !init()) return false;
-      var v = inView(el, 96); if (!v) return false;
+      if (!on() || !el || !el.isConnected || !init()) return false;
       for (var i = 0; i < list.length; i++) if (list[i].el === el) return false;
-      if (list.length >= 2) list.shift();
-      var r = v.R, hw = r.width / 2, hh = r.height / 2;
-      x = Math.max(v.l + 8, Math.min(v.r - 8, x)); y = Math.max(v.t + 8, Math.min(v.b - 8, y));
-      var qx = x - (r.left + hw), qy = -(y - (r.top + hh));
+      if (list.length >= MAX() + 1) kill(list[0]);
+      var r = el.getBoundingClientRect(), hw = r.width / 2, hh = r.height / 2, qx = x - (r.left + hw), qy = -(y - (r.top + hh)), rm = room(el);
+      if (getComputedStyle(el).position === 'static'){ el.style.position = 'relative'; el.__bpos = 1; }
+      var c = document.createElement('canvas'); c.className = 'fire-card'; c.setAttribute('aria-hidden', 'true');
+      c.style.cssText = 'position:absolute;pointer-events:none;z-index:6;left:' + (-rm.s) + 'px;top:' + (-rm.t) + 'px;width:calc(100% + ' + (rm.s * 2) + 'px);height:calc(100% + ' + (rm.t + rm.b) + 'px);';
+      el.appendChild(c);
       var now = performance.now(); seen.set(el, now);
-      list.push({el:el, t0:now, ign:Math.atan2(qy / hh, qx / hw) / (Math.PI * 2) + .5, rad:parseFloat(getComputedStyle(el).borderTopLeftRadius) || 14, spread:false});
+      list.push({el:el, c:c, x:c.getContext('2d'), rm:rm, t0:now, ign:Math.atan2(qy / hh, qx / hw) / (Math.PI * 2) + .5, rad:parseFloat(getComputedStyle(el).borderTopLeftRadius) || 14});
       if (!raf) raf = requestAnimationFrame(frame); return true;
     }
-    function center(r){ return {x:r.left + r.width / 2, y:r.top + r.height / 2}; }
+    function kill(b){ var i = list.indexOf(b); if (i >= 0) list.splice(i, 1); if (b.c.parentNode) b.c.parentNode.removeChild(b.c); if (b.el.__bpos && !b.el.querySelector('.fire-card')){ b.el.style.position = ''; b.el.__bpos = 0; } }
     function frame(now){
-      raf = 0; if (!on()){ list = []; }
-      if (!list.length){ if (cv) cv.style.display = 'none'; return; }
-      var d = Math.min(innerWidth < 900 ? 1 : 1.25, devicePixelRatio || 1), W = innerWidth, H = innerHeight;
-      if (cv.width !== Math.round(W * d) || cv.height !== Math.round(H * d)){ cv.width = Math.round(W * d); cv.height = Math.round(H * d); }
-      cv.style.display = 'block'; gl.viewport(0, 0, cv.width, cv.height); gl.clear(gl.COLOR_BUFFER_BIT);
-      gl.uniform1f(U.uT, (now - t0) / 1000); gl.uniform1f(U.uDpr, d);
+      raf = 0; if (!on()){ list.slice().forEach(kill); return; }
+      if (!list.length) return;
+      var d = Math.min(innerWidth < 900 ? 1.25 : 1.5, devicePixelRatio || 1);
+      gl.uniform1f(U.uT, (now - t0) / 1000); gl.uniform1f(U.uDpr, d); gl.uniform1f(U.uDur, DUR);
       for (var i = list.length - 1; i >= 0; i--){
         var b = list[i], age = (now - b.t0) / 1000;
-        if (age > 3.6 || !b.el.isConnected){ list.splice(i, 1); continue; }
-        var vv = inView(b.el, 70); if (!vv){ list.splice(i, 1); continue; }
-        var r = vv.R;
-        /* o fogo pula pro card vizinho mais perto */
-        if (!b.spread && age > .9){ b.spread = true; if (list.length < 2 && Math.random() < .5){ var c0 = center(r), best = null, bd = Math.max(r.width, r.height) * 1.5;
-          vis.forEach(function(el){ if (el === b.el || now - (seen.get(el) || -1e9) < 12000) return; var v2 = inView(el, 90); if (!v2) return; var rr = v2.R, c = center(rr), dd = Math.hypot(c.x - c0.x, c.y - c0.y); if (dd < bd){ bd = dd; best = [el, rr]; } });
-          if (best){ var rx = best[1]; ignite(best[0], Math.max(rx.left, Math.min(rx.right, c0.x)), Math.max(rx.top, Math.min(rx.bottom, c0.y))); } } }
-        var x0 = r.left - 70, x1 = r.right + 70, y0 = r.top - 80, y1 = r.bottom + 30;
-        gl.uniform4f(U.uB, x0 / W * 2 - 1, 1 - y1 / H * 2, x1 / W * 2 - 1, 1 - y0 / H * 2);
-        gl.uniform4f(U.uRect, r.left * d, (H - r.bottom) * d, r.width * d, r.height * d);
-        gl.uniform1f(U.uRad, b.rad * d); gl.uniform1f(U.uAge, age); gl.uniform1f(U.uIgn, b.ign);
+        if (age > DUR + .6 || !b.el.isConnected){ kill(b); continue; }
+        if (!vis.has(b.el) && age > .2) continue;
+        var w = b.el.offsetWidth, h = b.el.offsetHeight; if (!w || !h) continue;
+        var W = Math.round((w + b.rm.s * 2) * d), H = Math.round((h + b.rm.t + b.rm.b) * d);
+        if (gcv.width < W || gcv.height < H){ gcv.width = Math.max(gcv.width, W); gcv.height = Math.max(gcv.height, H); }
+        if (b.c.width !== W || b.c.height !== H){ b.c.width = W; b.c.height = H; }
+        gl.viewport(0, 0, W, H); gl.clear(gl.COLOR_BUFFER_BIT);
+        gl.uniform4f(U.uRect, b.rm.s * d, b.rm.b * d, w * d, h * d);
+        gl.uniform1f(U.uRad, b.rad * d); gl.uniform1f(U.uAge, age); gl.uniform1f(U.uIgn, b.ign); gl.uniform1f(U.uRoom, Math.max(10, b.rm.t - 2));
         gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+        b.x.clearRect(0, 0, W, H); b.x.drawImage(gcv, 0, gcv.height - H, W, H, 0, 0, W, H);
       }
-      raf = requestAnimationFrame(frame);
+      if (list.length) raf = requestAnimationFrame(frame);
     }
     /* card vis\xedvel mais perto do companheiro (pra mirar a rajada ou ir xeretar) */
     function near(pal, maxD, fresh){
@@ -580,7 +598,7 @@
         if (dd < bd){ bd = dd; best = {el:el, x:px, y:py, r:r}; } });
       return best;
     }
-    function clear(){ list = []; if (cv) cv.style.display = 'none'; }
+    function clear(){ list.slice().forEach(kill); queue = []; clearTimeout(qT); qT = 0; }
     return {watch:watch, ignite:ignite, near:near, clear:clear};
   })();
 
