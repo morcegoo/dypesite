@@ -330,7 +330,7 @@ select option{background:#15131f;}
 .ecard:hover .ec-art::after{transform:translateX(120%);}
 .fx-px .ec-art::before{content:"";position:absolute;inset:0;z-index:2;background:repeating-linear-gradient(0deg,rgba(0,0,0,.35) 0 2px,transparent 2px 8px),repeating-linear-gradient(90deg,rgba(0,0,0,.35) 0 2px,transparent 2px 8px);pointer-events:none;}
 .fx-scan .ec-art::before{content:"";position:absolute;inset:0;z-index:2;background:repeating-linear-gradient(0deg,rgba(0,0,0,.25) 0 1px,transparent 1px 4px);pointer-events:none;}
-.ec-y{position:absolute;left:10px;top:10px;z-index:4;font-family:'Poppins',sans-serif;font-weight:700;font-size:12.5px;padding:4px 11px;border-radius:999px;background:rgba(4,2,10,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border:1px solid var(--ea);box-shadow:0 0 18px -6px var(--ea);}
+.ec-y{position:absolute;left:10px;top:10px;z-index:4;color:#fff;font-family:'Poppins',sans-serif;font-weight:700;font-size:12.5px;padding:4px 11px;border-radius:999px;background:rgba(4,2,10,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border:1px solid var(--ea);box-shadow:0 0 18px -6px var(--ea);}
 .ec-b{padding:14px 15px 17px;background:linear-gradient(180deg,rgba(10,8,20,.2),rgba(10,8,20,.85));}
 .ec-b h3{font-size:16.5px;font-weight:700;line-height:1.22;letter-spacing:-.01em;}
 .ec-b small{display:inline-block;margin-top:7px;font-size:11px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--ea);}
@@ -3189,13 +3189,39 @@ html.light .toast .btn{background:var(--acc);border-color:var(--acc);color:#fff;
 
 html.light :is(.block.alt,.block.alt2) .cal,.block.alt2 .cal{background:#fff;}
 
+/* aba Era dos Games no tema claro */
+html.light .era-bg{display:none;}
+html.light .era-sec .ecard{background:#fff;border-color:var(--line);box-shadow:6px 6px 0 rgba(150,90,255,.10),0 16px 32px -26px rgba(60,30,120,.4);}
+html.light .era-sec .ec-art{background:#f5f1ff;}
+html.light .ec-b{background:linear-gradient(180deg,rgba(255,255,255,.55),#fff);}
+html.light .ec-b h3{color:var(--ink);}
+html.light .ec-b p{color:var(--mut);}
+html.light .gcard{background:#fff;border-color:var(--line);box-shadow:5px 5px 0 rgba(150,90,255,.10);}
+html.light .gc-art{background:#f5f1ff;}
+html.light .goty{background:linear-gradient(160deg,#fff8e8,#fffdff 62%);border-color:rgba(240,185,58,.45);}
+html.light .goty .gt b{color:#b8850a;}
+html.light .gt{color:var(--ink);}
+html.light .gt small{color:var(--mut);}
+html.light .br-n em{color:rgba(26,18,51,.55);}
+html.light .br-v{color:rgba(26,18,51,.8);}
+html.light .br-t{background:rgba(52,32,104,.1);}
+html.light .rank{background:#fff;}
+html.light .era-h{border-bottom-color:var(--line);}
+html.light .door{background:linear-gradient(160deg,#ffffff,#f6f1ff 72%);border-color:var(--pc);box-shadow:6px 6px 0 rgba(150,90,255,.12),0 20px 40px -28px rgba(60,30,120,.5);}
+html.light .door .dl{background:linear-gradient(90deg,#fff,#f4efff);border-right-color:var(--pc);}
+html.light .door .dr{background:linear-gradient(270deg,#fff,#f4efff);border-left-color:var(--pc);}
+html.light .door .gc-art{background:#f7f3ff;}
+html.light .door .gcard{box-shadow:none;}
+html.light .gt-grid .gt{border-radius:14px;}
+html.light .era-sec .ecard.hot{border-color:var(--acc);box-shadow:0 0 0 2px var(--acc),0 18px 34px -24px rgba(139,47,224,.6);}
+
 /* cenas que continuam escuras de proposito */
-html.light :is(#mh,#lib,.sp,.vs-card,.race,.race-v>div,.care,.gta-ban,.trust,.shop,.shelf-b,.era-banner,.loja,.ax-st,.ax-c,.show.hasbg,.perks.hasbg,.ofx-hud,.ofx-toast,.sheet,.modal,.cx,.sc:not(.dark-ink),.wt-title,.view[data-v="gta"],.view[data-v="era"]){
+html.light :is(#mh,#lib,.sp,.vs-card,.race,.race-v>div,.care,.gta-ban,.trust,.shop,.shelf-b,.era-banner,.loja,.ax-st,.ax-c,.show.hasbg,.perks.hasbg,.ofx-hud,.ofx-toast,.sheet,.modal,.cx,.sc:not(.dark-ink),.wt-title,.view[data-v="gta"]){
 --bg:#09080f; --bg2:rgba(21,19,31,.86); --bg3:rgba(29,26,44,.84);
 --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.16);
 --ink:#fff; --mut:rgba(255,255,255,.64); --mut2:rgba(255,255,255,.45);
 color:var(--ink);}
-html.light :is(#mh,#lib,.sp,.vs-card,.race,.care,.gta-ban,.trust,.shop,.shelf-b,.loja,.ax-st,.ax-c,.show.hasbg,.perks.hasbg,.sheet,.modal,.cx,.sc,.wt-title,.view[data-v="gta"],.view[data-v="era"]) :is(.block,.fc,.vt,.strip,.row,.box,.info,.mini,.grade,.cap,.tl,.ev,.cat,.cx,.shots,.brand,.cons,.pc,.gcard){box-shadow:none;}
+html.light :is(#mh,#lib,.sp,.vs-card,.race,.care,.gta-ban,.trust,.shop,.shelf-b,.loja,.ax-st,.ax-c,.show.hasbg,.perks.hasbg,.sheet,.modal,.cx,.sc,.wt-title,.view[data-v="gta"]) :is(.block,.fc,.vt,.strip,.row,.box,.info,.mini,.grade,.cap,.tl,.ev,.cat,.cx,.shots,.brand,.cons,.pc,.gcard){box-shadow:none;}
 </style>
 
 <!-- === OCTO TEMA CLARO END === -->
