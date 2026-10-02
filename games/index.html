@@ -468,13 +468,23 @@ background:radial-gradient(1px 1px at 12% 30%,#fff,transparent),radial-gradient(
 .sc-ph{width:100%;max-width:420px;aspect-ratio:4/5;object-fit:cover;border-radius:18px;box-shadow:0 24px 40px -18px rgba(0,0,0,.7);display:block;margin:0 auto;}
 .sc-chips img{width:100%;height:100%;object-fit:cover;border-radius:8px;}
 .brands{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:18px;}
-.brand{position:relative;height:220px;border-radius:22px;overflow:hidden;border:1px solid var(--line2);padding:0;cursor:pointer;background:#000;text-align:left;color:#fff;transition:border-color .2s,box-shadow .2s;}
-.brand img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
-.brand::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(0,0,0,.85));}
-.brand:hover{border-color:var(--bc);box-shadow:0 0 30px -8px var(--bc);}
-.bt{position:absolute;left:16px;bottom:14px;z-index:1;}
-.bt b{display:block;font-family:'Poppins',sans-serif;font-size:22px;font-weight:700;} .bt small{font-size:12.5px;font-weight:300;color:rgba(255,255,255,.8);}
-.bt b::after{content:"";display:block;width:32px;height:3px;border-radius:3px;background:var(--bc);margin-top:6px;box-shadow:0 0 10px var(--bc);}
+.brand{position:relative;height:240px;border-radius:24px;overflow:hidden;border:1px solid var(--line2);padding:0;cursor:pointer;background:#05060a;text-align:left;color:#fff;isolation:isolate;transition:transform .4s cubic-bezier(.2,.7,.2,1),border-color .25s,box-shadow .4s;}
+.brand .bm{position:absolute;inset:0;display:block;}
+.brand .bm img{width:100%;height:100%;object-fit:cover;object-position:50% 45%;transform:scale(1.03);transition:transform .7s cubic-bezier(.2,.7,.2,1);}
+.brand::before{content:"";position:absolute;left:-18%;right:-18%;bottom:-54%;height:80%;background:var(--bc);opacity:.3;filter:blur(58px);z-index:1;pointer-events:none;transition:opacity .4s;}
+.brand::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(5,6,10,.06) 0%,rgba(5,6,10,.34) 42%,rgba(5,6,10,.9) 100%);}
+.brand:hover{transform:translateY(-4px);border-color:var(--bc);box-shadow:0 26px 52px -24px var(--bc),0 0 40px -14px var(--bc);}
+.brand:hover::before{opacity:.48;}
+.brand:hover .bm img{transform:scale(1.09);}
+.brand:focus-visible{outline:2px solid var(--bc);outline-offset:3px;}
+.btag{position:absolute;left:16px;top:16px;z-index:2;display:inline-flex;align-items:center;gap:8px;height:30px;padding:0 12px;border-radius:999px;background:rgba(8,10,16,.55);border:1px solid rgba(255,255,255,.2);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);font-family:'Poppins',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.btag::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--bc);box-shadow:0 0 12px var(--bc);}
+.bt{position:absolute;left:16px;right:16px;bottom:16px;z-index:2;}
+.bt b{display:block;font-family:'Poppins',sans-serif;font-size:26px;font-weight:700;letter-spacing:-.01em;line-height:1;text-shadow:0 2px 16px rgba(0,0,0,.55);}
+.bt small{display:block;font-size:12.5px;font-weight:300;color:rgba(255,255,255,.82);}
+.bt b::after{content:"";display:block;width:34px;height:3px;border-radius:3px;background:var(--bc);margin:10px 0 8px;box-shadow:0 0 12px var(--bc);transition:width .45s cubic-bezier(.2,.7,.2,1);}
+.brand:hover .bt b::after{width:108px;}
+html.light .brand:hover{box-shadow:8px 10px 0 rgba(150,90,255,.18),0 24px 46px -26px var(--bc);}
 .bd .pz s{display:block;margin:0;}
 @media (max-width:900px){ .pc .keys span:nth-child(2){display:none;} }
 .pi-main{border-radius:18px;overflow:hidden;background:#e9ebef;aspect-ratio:4/5;}
@@ -490,7 +500,9 @@ background:radial-gradient(1px 1px at 12% 30%,#fff,transparent),radial-gradient(
 @media (max-width:900px){
 .brands{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px;margin:0 -14px 14px;padding:0 14px;scrollbar-width:none;}
 .brands::-webkit-scrollbar{display:none;}
-.brand{flex:0 0 70%;height:190px;scroll-snap-align:start;}
+.brand{flex:0 0 78%;height:206px;scroll-snap-align:start;}
+.brand .bt b{font-size:23px;}
+.brand .btag{left:13px;top:13px;height:27px;font-size:9.5px;letter-spacing:.13em;}
 .sc-ph{max-width:260px;}
 .pinfo .gi-art{max-width:320px;}
 }
@@ -1318,7 +1330,7 @@ var JC = ctl('jc', 'Par de Joy-Con', 'joycon', 'Vibração HD · sensor de movim
 ['Amarelo', 499.9, '#c9a312', {body:'#ffe03a', keys:'#141416'}, 'dark'],
 ['Cinza', 469.9, '#5a5d66', {body:'#9aa0a8', keys:'#141416'}]]);
 /* ---------- fotos e ficha técnica dos consoles ---------- */
-var PH = {"ps5pro": "assets/inline/inline-758055a323.webp", "xss": "assets/inline/inline-2722a74415.webp", "swclose": "assets/inline/inline-1d5f67ad84.webp", "xsx": "assets/inline/inline-ffbf14969a.webp", "oled": "assets/inline/inline-b781a71f16.webp", "ps5grey": "assets/inline/inline-505089aad4.webp", "sw2": "assets/inline/inline-da4be37521.webp", "ps5close": "assets/inline/inline-37892fd9ad.webp", "ps5pro2": "assets/inline/inline-b7902a0d88.webp", "ps5slim": "assets/inline/inline-34ab37c08b.webp", "joycon": "assets/inline/inline-158264dce2.webp", "ps5white": "assets/inline/inline-173d9b70f3.webp", "kc3": "assets/inline/inline-ce805971f9.webp", "awblk": "assets/inline/inline-166ffe6727.webp", "ultraor": "assets/inline/inline-c51832ff2f.webp", "kcgta": "assets/inline/inline-49b6130769.webp", "kcps": "assets/inline/inline-fb92775d59.webp", "apw": "assets/inline/inline-7b584e9c14.webp", "xb25": "assets/inline/inline-3d4e0fd652.webp", "aplil": "assets/inline/inline-f5ce569d33.webp", "budsblk": "assets/inline/inline-b74c48a635.webp", "kcgo": "assets/inline/inline-5617d90499.webp", "apdark": "assets/inline/inline-b65117c7cc.webp", "ps4": "assets/inline/inline-475266834d.webp", "hspurple": "assets/inline/inline-baf3927db0.webp", "sonyred": "assets/inline/inline-1cc01945c1.webp", "jblblue": "assets/inline/inline-74e2c8d0fc.webp", "jbllive": "assets/inline/inline-291d920057.webp", "hsneon": "assets/inline/inline-c90338863a.webp", "aw6": "assets/inline/inline-aed25c9fd6.webp", "awred": "assets/inline/inline-5e5329aa5f.webp", "ultrablk": "assets/inline/inline-1c15c841e8.webp", "etbme": "assets/inline/inline-0a30dc40c4.webp", "bstars": "assets/inline/inline-22fb4337d3.webp", "boxcz": "assets/inline/inline-359491368f.webp", "etbpf": "assets/inline/inline-aeb90e2332.webp", "pfpile": "assets/inline/inline-9163a46b97.webp", "etbah": "assets/inline/inline-3f78c6185e.webp", "pfbst": "assets/inline/inline-5638794a79.webp", "blast": "assets/inline/inline-cd9d96523f.webp", "pball": "assets/inline/inline-6d2ebeca2a.webp"};
+var PH = {"mps": "assets/marcas/ps.webp", "mxb": "assets/marcas/xb.webp", "mnt": "assets/marcas/nt.webp", "ps5pro": "assets/inline/inline-758055a323.webp", "xss": "assets/inline/inline-2722a74415.webp", "swclose": "assets/inline/inline-1d5f67ad84.webp", "xsx": "assets/inline/inline-ffbf14969a.webp", "oled": "assets/inline/inline-b781a71f16.webp", "ps5grey": "assets/inline/inline-505089aad4.webp", "sw2": "assets/inline/inline-da4be37521.webp", "ps5close": "assets/inline/inline-37892fd9ad.webp", "ps5pro2": "assets/inline/inline-b7902a0d88.webp", "ps5slim": "assets/inline/inline-34ab37c08b.webp", "joycon": "assets/inline/inline-158264dce2.webp", "ps5white": "assets/inline/inline-173d9b70f3.webp", "kc3": "assets/inline/inline-ce805971f9.webp", "awblk": "assets/inline/inline-166ffe6727.webp", "ultraor": "assets/inline/inline-c51832ff2f.webp", "kcgta": "assets/inline/inline-49b6130769.webp", "kcps": "assets/inline/inline-fb92775d59.webp", "apw": "assets/inline/inline-7b584e9c14.webp", "xb25": "assets/inline/inline-3d4e0fd652.webp", "aplil": "assets/inline/inline-f5ce569d33.webp", "budsblk": "assets/inline/inline-b74c48a635.webp", "kcgo": "assets/inline/inline-5617d90499.webp", "apdark": "assets/inline/inline-b65117c7cc.webp", "ps4": "assets/inline/inline-475266834d.webp", "hspurple": "assets/inline/inline-baf3927db0.webp", "sonyred": "assets/inline/inline-1cc01945c1.webp", "jblblue": "assets/inline/inline-74e2c8d0fc.webp", "jbllive": "assets/inline/inline-291d920057.webp", "hsneon": "assets/inline/inline-c90338863a.webp", "aw6": "assets/inline/inline-aed25c9fd6.webp", "awred": "assets/inline/inline-5e5329aa5f.webp", "ultrablk": "assets/inline/inline-1c15c841e8.webp", "etbme": "assets/inline/inline-0a30dc40c4.webp", "bstars": "assets/inline/inline-22fb4337d3.webp", "boxcz": "assets/inline/inline-359491368f.webp", "etbpf": "assets/inline/inline-aeb90e2332.webp", "pfpile": "assets/inline/inline-9163a46b97.webp", "etbah": "assets/inline/inline-3f78c6185e.webp", "pfbst": "assets/inline/inline-5638794a79.webp", "blast": "assets/inline/inline-cd9d96523f.webp", "pball": "assets/inline/inline-6d2ebeca2a.webp"};
 add([
 {id:'c7', cat:'consoles', t:'PlayStation 5 Standard', g:'Seminovo', p:'825 GB', v:2999, o:3499, type:'tower', bg:'#2a4a9c', a:{body:'#f2f4f7', center:'#1b1c21', glow:'#6fb6ff'}},
 {id:'a3', cat:'acess', t:'Par de Joy-Con', g:'Controle', p:'Azul e vermelho neon', v:499.9, type:'joycon', bg:'#b3201a', a:{body:'#1fa0e8', b2:'#ff4b4b', keys:'#141416'}, f:'Vibração HD · sensor de movimento · Switch'}
@@ -1402,9 +1414,9 @@ return '<div class="gi pinfo"><div class="gi-art">' + art + '</div><div class="g
 '<div class="fbtns"><button type="button" class="btn pri" data-add="' + p.id + '" data-closemodal>' + I.plus + ' Adicionar ao carrinho</button><button type="button" class="btn" data-wa="Tenho interesse no ' + esc(p.t) + '">' + I.wa + ' Perguntar</button></div>' +
 '<p class="credit">Especificações do fabricante. A loja confirma versão e itens da caixa no WhatsApp.</p></div></div>';
 }
-var BRANDS = [['ps5close','PlayStation','PS5 Pro, PS5 e PS4 seminovo','#2b7bff','playstation'],['xsx','Xbox','Series X, S e X25','#1fbf5f','xbox'],['swclose','Nintendo','Switch 2 e Switch OLED','#ff4b4b','nintendo']];
+var BRANDS = [['mps','PlayStation','PS5 Pro, PS5 e PS4 seminovo','#2b7bff','playstation','Sony'],['mxb','Xbox','Series X, S e X25','#1fbf5f','xbox','Microsoft'],['mnt','Nintendo','Switch 2 e Switch OLED','#ff4b4b','nintendo','Nintendo']];
 function brandsHTML(){
-return '<div class="brands">' + BRANDS.map(function(b){ return '<button type="button" class="brand" data-brand="' + b[4] + '" style="--bc:' + b[3] + '"><img src="' + PH[b[0]] + '" alt=""><span class="bt"><b>' + b[1] + '</b><small>' + b[2] + '</small></span></button>'; }).join('') + '</div>';
+return '<div class="brands">' + BRANDS.map(function(b){ return '<button type="button" class="brand" data-brand="' + b[4] + '" style="--bc:' + b[3] + '"><span class="bm"><img loading="lazy" decoding="async" src="' + PH[b[0]] + '" alt="Console ' + b[1] + '"></span><span class="btag">' + b[5] + '</span><span class="bt"><b>' + b[1] + '</b><small>' + b[2] + '</small></span></button>'; }).join('') + '</div>';
 }
 function byCat(c){ return Object.keys(P).map(function(k){ return P[k]; }).filter(function(p){ return p.cat === c; }); }
 function art(p, small){ return p.m ? cover(p) : padArt(p.type, p.a, small); }
