@@ -411,6 +411,38 @@ background:radial-gradient(1px 1px at 12% 30%,#fff,transparent),radial-gradient(
 .race-v > div{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line2);background:#0d0b16;}
 .race-v video{width:100%;height:100%;object-fit:cover;}
 .rv1 video{object-position:50% 40%;}
+/* ---------- clube de cupons ---------- */
+.cup-t .eh-k{color:var(--acc);}
+.cup-t h3{font-size:clamp(24px,2.8vw,36px);font-weight:800;margin:8px 0 6px;}
+.cup-t p{margin:0;font-weight:300;color:var(--mut);max-width:56ch;}
+.cup-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:18px;}
+.cup{position:relative;display:block;width:100%;text-align:left;padding:17px 17px 15px;border-radius:20px;border:1px solid rgba(255,255,255,.1);background:linear-gradient(158deg,#191a24,#0b0c12 62%);color:#fff;cursor:pointer;overflow:hidden;font-family:inherit;transition:transform .3s cubic-bezier(.2,.7,.2,1),border-color .25s,box-shadow .3s;}
+.cup::before{content:"";position:absolute;left:-45%;top:-80%;width:160%;height:180%;background:radial-gradient(circle at 34% 30%,var(--cc),transparent 60%);opacity:.2;pointer-events:none;transition:opacity .3s;}
+.cup>*{position:relative;z-index:1;}
+.cup:hover{transform:translateY(-3px);border-color:var(--cc);box-shadow:0 24px 48px -28px var(--cc);}
+.cup:hover::before{opacity:.3;}
+.cup.on{border-color:var(--cc);box-shadow:0 0 0 1px var(--cc),0 28px 56px -28px var(--cc);}
+.cup.on::before{opacity:.36;}
+.cup:focus-visible{outline:2px solid var(--cc);outline-offset:3px;}
+.cup-h{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.cup-h b{font-family:'Poppins',sans-serif;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.66);}
+.cup-h i{display:inline-flex;align-items:center;height:24px;padding:0 10px;border-radius:999px;background:var(--cc);color:#07070b;font-family:'Poppins',sans-serif;font-size:10.5px;font-style:normal;font-weight:700;letter-spacing:.04em;text-transform:uppercase;}
+.cup-off{display:flex;align-items:baseline;gap:6px;margin:13px 0 4px;font-family:'Poppins',sans-serif;font-size:44px;font-weight:800;line-height:.92;letter-spacing:-.04em;}
+.cup-off small{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);}
+.cup-d{margin:0 0 15px;font-size:12.5px;font-weight:300;color:rgba(255,255,255,.74);max-width:30ch;}
+.cup-cut{display:block;height:0;margin:0 -17px 12px;border-top:1px dashed rgba(255,255,255,.2);}
+.cup-f{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.cup-f em{font-style:normal;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;font-weight:700;letter-spacing:.08em;padding:7px 11px;border-radius:9px;border:1px dashed rgba(255,255,255,.32);background:rgba(0,0,0,.3);}
+.cup-f small{font-size:11.5px;font-weight:300;color:rgba(255,255,255,.58);}
+.cup.on .cup-f small{color:var(--cc);}
+.cup.on .cup-f small::before{content:"\2713  ";}
+.cupbar{position:fixed;left:50%;bottom:18px;z-index:72;display:flex;align-items:center;gap:12px;max-width:calc(100% - 28px);padding:11px 12px 11px 16px;border-radius:999px;border:1px solid var(--cc,#2b7fff);background:rgba(10,10,16,.92);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 22px 46px -24px var(--cc,#2b7fff);color:#fff;font-size:13px;opacity:0;pointer-events:none;transform:translateX(-50%) translateY(210%);transition:transform .5s cubic-bezier(.2,.7,.2,1),opacity .35s;}
+.cupbar.on{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0);}
+.cupbar i{flex:none;width:9px;height:9px;border-radius:50%;background:var(--cc,#2b7fff);box-shadow:0 0 14px var(--cc,#2b7fff);}
+.cupbar b{font-family:ui-monospace,Menlo,monospace;letter-spacing:.06em;}
+.cupbar button{flex:none;height:30px;padding:0 12px;border-radius:999px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.07);color:#fff;font-size:11.5px;cursor:pointer;}
+.sh-f .tot.cup-line b{color:#4ade80;}
+@media (max-width:900px){ .cup-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px;margin:14px -14px 0;padding:0 14px 4px;scrollbar-width:none;} .cup-grid::-webkit-scrollbar{display:none;} .cup{flex:0 0 80%;scroll-snap-align:start;} .cup-off{font-size:38px;} .cupbar{bottom:80px;width:calc(100% - 24px);justify-content:space-between;} }
 @media (max-width:900px){ .race{grid-template-columns:1fr;} .race-v{height:300px;} }
 /* ===== vitrine de discos ===== */
 .shelf-b{position:relative;overflow:hidden;background:linear-gradient(180deg,#171329,#0d0b18);}
@@ -1115,10 +1147,11 @@ background:radial-gradient(120% 90% at 78% 50%,color-mix(in srgb,var(--c) 34%,#0
 <aside class="sheet" id="sheet" aria-label="Carrinho" aria-hidden="true">
 <div class="sh-h"><h3>Seu carrinho</h3><button type="button" class="sq" id="closeSheet" aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
 <div class="sh-l" id="cartList"></div>
-<div class="sh-f"><div class="tot"><span>Total</span><b id="cartTot">R$ 0,00</b></div><p id="cartParc">ou em até 10x no cartão</p><a class="btn pri" id="checkout" target="_blank" rel="noopener">Finalizar pelo WhatsApp</a><p>O pedido chega pronto no WhatsApp da loja. Lá você combina pagamento e retirada.</p></div>
+<div class="sh-f"><div class="tot cup-line" id="cupLine" style="display:none"><span>Cupom <b id="cupLineCode"></b></span><b id="cupLineVal"></b></div><div class="tot"><span>Total</span><b id="cartTot">R$ 0,00</b></div><p id="cartParc">ou em até 10x no cartão</p><a class="btn pri" id="checkout" target="_blank" rel="noopener">Finalizar pelo WhatsApp</a><p>O pedido chega pronto no WhatsApp da loja. Lá você combina pagamento e retirada.</p></div>
 </aside>
 <div class="modal" id="modal" role="dialog" aria-label="Mídia"><div class="box" id="mbox"></div><button type="button" class="sq x" id="mclose" aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="cupbar" id="cupbar" aria-live="polite"><i></i><span>Cupom <b id="cupbarCode"></b> <span id="cupbarTxt"></span></span><button type="button" id="cupClear">Remover</button></div>
 <script>
 (function(){
 var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1417,6 +1450,14 @@ return '<div class="gi pinfo"><div class="gi-art">' + art + '</div><div class="g
 var BRANDS = [['mps','PlayStation','PS5 Pro, PS5 e PS4 seminovo','#2b7bff','playstation','Sony'],['mxb','Xbox','Series X, S e X25','#1fbf5f','xbox','Microsoft'],['mnt','Nintendo','Switch 2 e Switch OLED','#ff4b4b','nintendo','Nintendo']];
 function brandsHTML(){
 return '<div class="brands">' + BRANDS.map(function(b){ return '<button type="button" class="brand" data-brand="' + b[4] + '" style="--bc:' + b[3] + '"><span class="bm"><img loading="lazy" decoding="async" src="' + PH[b[0]] + '" alt="Console ' + b[1] + '"></span><span class="btag">' + b[5] + '</span><span class="bt"><b>' + b[1] + '</b><small>' + b[2] + '</small></span></button>'; }).join('') + '</div>';
+}
+var CUPS = [
+{id:'consoles', n:'Consoles', off:10, code:'DYCONSOLE10', cats:['consoles'], col:'#ff7a3d', go:'consoles', d:'Console novo, seminovo e acessorios de console.'},
+{id:'acess', n:'Acessorios', off:15, code:'DYACESS15', cats:['acess'], col:'#5fd07a', go:'acess', d:'Fones, caixinhas, relogios e chaveiros.'},
+{id:'tcg', n:'TCG', off:20, code:'DYTCG20', cats:['tcg'], col:'#5aa9ff', go:'tcg', d:'Boosters, decks e cartas avulsas.'}
+];
+function cuponsHTML(){
+return '<div class="cup-grid">' + CUPS.map(function(c){ return '<button type="button" class="cup" data-cup="' + c.id + '" aria-pressed="false" style="--cc:' + c.col + '"><span class="cup-h"><b>' + c.n + '</b><i>' + c.off + '% off</i></span><span class="cup-off">' + c.off + '%<small>de desconto</small></span><p class="cup-d">' + c.d + '</p><i class="cup-cut"></i><span class="cup-f"><em>' + c.code + '</em><small>toque pra ativar</small></span></button>'; }).join('') + '</div>';
 }
 function byCat(c){ return Object.keys(P).map(function(k){ return P[k]; }).filter(function(p){ return p.cat === c; }); }
 function art(p, small){ return p.m ? cover(p) : padArt(p.type, p.a, small); }
@@ -2205,7 +2246,7 @@ shotsHTML() +
 '<section class="care"><div class="care-t"><span class="kick">Conserto+</span><h2>Proteção completa pro seu console</h2><p>Limpeza, troca de peças e reparo com garantia. Orçamento rápido pelo WhatsApp.</p><button type="button" class="btn pri" data-go="conserto">Pedir orçamento ' + I.arrow + '</button></div>' +
 '<div class="care-art"><span class="c1">' + padArt('tower', P.c1.a) + '</span><span class="c2"><svg viewBox="0 0 120 140"><defs><linearGradient id="shg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d9b3ff"/><stop offset="1" stop-color="#6a1fd0"/></linearGradient></defs><path d="M60 6l50 18v38c0 34-22 58-50 72C32 120 10 96 10 62V24z" fill="url(#shg)" stroke="#fff" stroke-opacity=".5" stroke-width="2"/><path d="M36 70l16 16 32-34" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="c3">' + padArt('sym', DS[0].a) + '</span></div></section>' +
 vitHTML(3) +
-'<div id="parceiros"></div>' +
+'<section class="block cupons"><div class="cup-t"><span class="eh-k">Clube de cupons</span><h3>Descontos da semana</h3><p>Toque em um cupom pra ativar: o desconto entra sozinho no carrinho e o código vai junto no pedido do WhatsApp.</p></div>' + cuponsHTML() + '</section>' +
 '<section class="block race"><div class="race-t"><span class="eh-k">Semana das corridas</span><h3>Pronto pra largar?</h3><p>Jogos de corrida, volantes e controles com desconto essa semana.</p><div class="fbtns"><button type="button" class="btn pri" data-go="jogos">Ver jogos de corrida</button></div></div>' +
 '<div class="race-v"><div class="rv1"><video muted loop playsinline preload="none" poster="' + VID.plight + '" data-auto data-src="' + VID.light + '"></video></div><div class="rv2"><video muted loop playsinline preload="none" poster="' + VID.pcar + '" data-auto data-src="' + VID.car + '"></video></div></div></section>' +
 '<section class="era-banner"><img class="eb-v" src="media/era-wall.webp" alt="" aria-hidden="true" decoding="async"><h2><span>Entre na era</span><b>dos games</b></h2><button type="button" class="btn pri" data-go="era">Explorar a linha do tempo ' + I.right + '</button></section>' +
@@ -2462,22 +2503,45 @@ if (btn && btn.classList.contains('addc')){ btn.classList.add('ok'); btn.innerHT
 toast.innerHTML = '<span></span><button type="button" class="btn pri" id="tview">Ver carrinho</button>'; toast.querySelector('span').textContent = P[id].t + ' no carrinho';
 document.getElementById('tview').onclick = openCart; toast.classList.add('on'); clearTimeout(tt); tt = setTimeout(function(){ toast.classList.remove('on'); }, 2600);
 }
+function cupDesc(){
+if (!CUPOM) return 0;
+var d = 0;
+Object.keys(cart).forEach(function(id){ var p = P[id]; if (p && CUPOM.cats.indexOf(p.cat) > -1) d += cart[id] * p.v * (CUPOM.off / 100); });
+return d;
+}
 function renderCart(){
 var ids = Object.keys(cart), n = 0, tot = 0;
 ids.forEach(function(id){ n += cart[id]; tot += cart[id] * P[id].v; });
+var desc = cupDesc(); tot -= desc;
 document.getElementById('cartN').textContent = n;
 document.getElementById('cartTot').textContent = brl(tot);
+var cl = document.getElementById('cupLine');
+if (cl){ cl.style.display = desc > 0 ? '' : 'none'; if (desc > 0){ document.getElementById('cupLineCode').textContent = CUPOM.code; document.getElementById('cupLineVal').textContent = '- ' + brl(desc); } }
 document.getElementById('cartParc').textContent = tot ? 'ou 10x de ' + brl(tot/10) + ' no cartão' : 'ou em até 10x no cartão';
 var list = document.getElementById('cartList');
 list.innerHTML = ids.length ? ids.map(function(id){ var p = P[id]; return '<div class="ci">' + thumb(p) + '<div><b>' + esc(p.t) + '</b><small>' + brl(p.v) + '</small></div><div class="qty"><button type="button" data-q="-1" data-id="' + id + '" aria-label="Diminuir">−</button><b>' + cart[id] + '</b><button type="button" data-q="1" data-id="' + id + '" aria-label="Aumentar">+</button></div></div>'; }).join('') : '<p class="empty">Seu carrinho está vazio.</p>';
-var msg = 'Olá! Quero fazer este pedido pelo site:\n' + ids.map(function(id){ return '• ' + cart[id] + 'x ' + P[id].t + ' - ' + brl(cart[id]*P[id].v); }).join('\n') + '\n\nTotal: ' + brl(tot) + '\nComo faço pra pagar e retirar?';
+var msg = 'Olá! Quero fazer este pedido pelo site:\n' + ids.map(function(id){ return '• ' + cart[id] + 'x ' + P[id].t + ' - ' + brl(cart[id]*P[id].v); }).join('\n') + '\n\n' + (cupDesc() > 0 ? 'Cupom ' + CUPOM.code + ' (-' + brl(cupDesc()) + ')\n' : '') + 'Total: ' + brl(tot) + '\nComo faço pra pagar e retirar?';
 var co = document.getElementById('checkout'); co.href = WA + '?text=' + encodeURIComponent(msg); co.setAttribute('aria-disabled', ids.length ? 'false' : 'true');
 }
 document.getElementById('cartList').addEventListener('click', function(e){ var b = e.target.closest('[data-q]'); if (!b) return; var id = b.getAttribute('data-id'); cart[id] += +b.getAttribute('data-q'); if (cart[id] <= 0) delete cart[id]; renderCart(); });
 function openCart(){ toast.classList.remove('on'); sheet.classList.add('on'); sheet.setAttribute('aria-hidden','false'); scrim.classList.add('on'); }
+var CUPOM = null;
+try{ var _ck = localStorage.getItem('dypeCupom'); if (_ck) CUPOM = CUPS.filter(function(c){ return c.id === _ck; })[0] || null; }catch(err){}
+function cupUI(){
+document.querySelectorAll('[data-cup]').forEach(function(b){ var on = !!CUPOM && b.getAttribute('data-cup') === CUPOM.id; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); b.querySelector('.cup-f small').textContent = on ? 'cupom ativo' : 'toque pra ativar'; });
+var bar = document.getElementById('cupbar');
+if (bar){ bar.classList.toggle('on', !!CUPOM); bar.setAttribute('aria-hidden', CUPOM ? 'false' : 'true'); if (CUPOM){ bar.style.setProperty('--cc', CUPOM.col); document.getElementById('cupbarCode').textContent = CUPOM.code; document.getElementById('cupbarTxt').textContent = '\u00b7 ' + CUPOM.off + '% em ' + CUPOM.n.toLowerCase(); } }
+renderCart();
+}
+document.addEventListener('click', function(e){
+var b = e.target.closest('[data-cup]');
+if (b){ var id = b.getAttribute('data-cup'); CUPOM = (CUPOM && CUPOM.id === id) ? null : CUPS.filter(function(c){ return c.id === id; })[0]; try{ if (CUPOM) localStorage.setItem('dypeCupom', CUPOM.id); else localStorage.removeItem('dypeCupom'); }catch(err){} cupUI(); if (CUPOM){ toast.innerHTML = '<span></span><button type="button" class="btn pri" id="tview2">Ver carrinho</button>'; toast.querySelector('span').textContent = 'Cupom ' + CUPOM.code + ' ativo \u00b7 ' + CUPOM.off + '% em ' + CUPOM.n.toLowerCase(); document.getElementById('tview2').onclick = openCart; toast.classList.add('on'); clearTimeout(tt); tt = setTimeout(function(){ toast.classList.remove('on'); }, 2800); } return; }
+if (e.target.closest('#cupClear')){ CUPOM = null; try{ localStorage.removeItem('dypeCupom'); }catch(err){} cupUI(); }
+});
 document.getElementById('cartBtn').addEventListener('click', openCart);
 document.getElementById('closeSheet').addEventListener('click', closeAll);
 renderCart();
+cupUI();
 /* ---------- contagem ---------- */
 var alvo = new Date('2026-11-19T00:00:00-03:00').getTime();
 function tickCd(){
@@ -3124,47 +3188,5 @@ html.light :is(#mh,#lib,.sp,.vs-card,.race,.care,.gta-ban,.trust,.shop,.shelf-b,
 <!-- === OCTO TEMA CLARO END === -->
 
 
-<!-- === OCTO PARCEIROS START === -->
-<script>
-  window.PARCEIROS_CONFIG = {
-    cards: '.fc,.catc,.oft,.ax-c,.pc,.gcard,.product-card,.produto,.card-produto,[data-produto]',
-    addToCart: '[data-add],.add-to-cart,.btn-comprar,[data-add-cart]'
-  };
-  (function(){
-    function restore(el){
-      try{
-        var p = window.Parceiros.get && window.Parceiros.get(); if(!p) return;
-        var sec = el.querySelector('.pcs'); if(!sec) return;
-        var b = sec.querySelector('[data-palpick="' + p.id + '"]');
-        if(b){ var c = b.closest('.pcard'); if(c) c.classList.add('picked'); }
-        sec.classList.add('has');
-        var d = sec.querySelector('.pcs-done'); if(d) d.hidden = false;
-        var dn = sec.querySelector('#pcsDone');
-        if(dn) dn.innerHTML = 'Cupom <b>' + p.cupom + '</b> ativo \u00b7 ' + p.beneficio;
-      }catch(e){}
-    }
-    function pcs(){
-      try{
-        if(!window.Parceiros) return;
-        var el = document.getElementById('parceiros');
-        if(el && !el.__pcs){ window.Parceiros.mount(el); restore(el); }
-        if(window.Parceiros.atualizarCards) window.Parceiros.atualizarCards();
-      }catch(e){}
-    }
-    function watch(){
-      var host = document.getElementById('views');
-      if(host && 'MutationObserver' in window){
-        var t = 0;
-        new MutationObserver(function(){ clearTimeout(t); t = setTimeout(pcs, 150); }).observe(host, {childList:true, subtree:false});
-      }
-      pcs();
-    }
-    document.addEventListener('parceiro:change', function(){ setTimeout(pcs, 80); });
-    window.addEventListener('hashchange', function(){ setTimeout(pcs, 400); });
-    if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function(){ watch(); setTimeout(pcs, 900); });
-    else { watch(); }
-  })();
-</script>
-<script src="/games/assets/parceiros/parceiros.js?v=5" defer></script>
-<!-- === OCTO PARCEIROS END === -->
+
 </html>
