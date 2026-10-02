@@ -1,0 +1,23 @@
+{
+  "mode": "submit_and_wait",
+  "task_id": "01a0fc91-15a9-77e4-84a9-a148b15f4865",
+  "status": "succeeded",
+  "source_url": "https://skillsrc.octask.ai/nano-t/01a0fc91-15a9-77e4-84a9-a148b15f4865_0_ddfaede9.jpg",
+  "query_attempts": 11,
+  "elapsed_seconds": 34.22,
+  "trace_id": "0baef70f-be5c-11f1-a3b1-dadb00c89970",
+  "error": null,
+  "ok": true,
+  "task_type": "generate_image",
+  "status_code": 2,
+  "primary_url": "https://skillsrc.octask.ai/nano-t/01a0fc91-15a9-77e4-84a9-a148b15f4865_0_ddfaede9.jpg",
+  "assets": [
+    {
+      "type": "image",
+      "role": "primary",
+      "url": "https://skillsrc.octask.ai/nano-t/01a0fc91-15a9-77e4-84a9-a148b15f4865_0_ddfaede9.jpg"
+    }
+  ],
+  "primary_image_url": "https://skillsrc.octask.ai/nano-t/01a0fc91-15a9-77e4-84a9-a148b15f4865_0_ddfaede9.jpg",
+  "debug": {}
+}
