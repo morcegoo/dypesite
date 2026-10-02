@@ -14,7 +14,7 @@ Instalar/atualizar na VPS:
 cp deploy/deploy.sh /usr/local/bin/dypesite-deploy && chmod 755 /usr/local/bin/dypesite-deploy
 cp deploy/dypesite-deploy.service deploy/dypesite-deploy.timer /etc/systemd/system/
 cp deploy/dypesite-deploy.env /etc/dypesite-deploy.env
-systemctl daemon-reload && systemctl enable --now dysite-deploy.timer
+systemctl daemon-reload && systemctl enable --now dypesite-deploy.timer
 ```
 
 Forcar publicacao agora: `systemctl start dysite-deploy`
