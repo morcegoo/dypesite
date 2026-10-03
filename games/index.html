@@ -26,7 +26,9 @@ svg{display:block;}
 .demo{text-align:center;font-size:11px;color:var(--mut2);padding:6px 16px;background:#000;}
 .wrap{max-width:1200px;margin:0 auto;padding:0 20px;}
 /* ---------- cabeçalho ---------- */
-.hd{position:sticky;top:0;z-index:40;background:rgba(9,8,15,.94);border-bottom:1px solid var(--line);}
+.hd{position:sticky;top:0;z-index:40;background:rgba(9,8,15,.94);border-bottom:1px solid var(--line);transition:transform .3s cubic-bezier(.2,.8,.25,1);will-change:transform;}
+html.hd-hide .hd{transform:translateY(-103%);}
+@media (prefers-reduced-motion:reduce){.hd{transition:none;}}
 .hd-in{display:flex;align-items:center;gap:14px;height:72px;}
 .sq{position:relative;flex:none;width:46px;height:46px;border-radius:14px;border:1px solid rgba(180,76,255,.45);background:rgba(180,76,255,.08);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;text-decoration:none;transition:background .2s,border-color .2s,box-shadow .2s;}
 .sq:hover{background:rgba(180,76,255,.2);border-color:var(--acc);box-shadow:var(--glow);}
@@ -62,8 +64,8 @@ svg{display:block;}
 .chip{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:500;padding:5px 12px;border-radius:999px;background:rgba(9,8,15,.55);border:1px solid rgba(255,255,255,.28);color:#fff;}
 /* ---------- views (sem animação pesada) ---------- */
 .view{display:none;} .view.on{display:block;}
-.view.in{animation:fade .25s ease both;}
-.view.out{opacity:0;transition:opacity .12s;}
+.view.in{animation:fade .18s ease both;}
+.view.out{opacity:0;transition:opacity .07s;}
 @keyframes fade{from{opacity:0}to{opacity:1}}
 /* ---------- blocos separados ---------- */
 .block{margin-top:18px;padding:20px;border-radius:24px;background:var(--bg2);border:1px solid var(--line);}
@@ -201,6 +203,12 @@ select:focus,input.f:focus,textarea:focus{border-color:var(--acc);box-shadow:var
 select option{background:#15131f;}
 .foot{margin:26px auto 0;padding:22px 20px 110px;border-top:1px solid var(--line);font-size:12.5px;font-weight:300;color:var(--mut);display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;max-width:1200px;}
 .foot b{color:#fff;font-weight:600;}
+.foot{align-items:center;}
+.foot-cta{margin-left:auto;}
+.foot-cta .btn{height:38px;}
+.menu-c{margin-top:10px;line-height:1.7;}
+.menu-c .btn{margin-top:10px;width:100%;justify-content:center;}
+@media (max-width:900px){.foot{flex-wrap:wrap;gap:10px;}.foot-cta{margin-left:0;width:100%;}.foot-cta .btn{width:100%;justify-content:center;}}
 .empty{padding:40px 10px;text-align:center;color:var(--mut);}
 /* ---------- barra inferior (celular) ---------- */
 .bnav{display:none;}
@@ -250,7 +258,7 @@ select option{background:#15131f;}
 .sq{width:44px;height:44px;}
 .hd .tabs{margin:0 -14px;padding:0 6px;border-top:1px solid var(--line);}
 .tabs button{height:48px;padding:0 14px;font-size:14.5px;}
-.srow{margin:16px 0 14px;flex-wrap:wrap;gap:10px;} .srow .pchip{width:100%;justify-content:center;height:40px;}
+.srow{margin:12px 0 12px;flex-wrap:nowrap;gap:8px;} .srow .search{flex:1 1 auto;min-width:0;} .srow .pchip{width:auto;flex:0 0 auto;justify-content:center;height:40px;padding:0 12px;font-size:12px;}
 .search{height:50px;}
 .pchip{height:36px;padding:0 10px;font-size:12px;}
 .feat,.gta-top{height:auto;aspect-ratio:4/5;}
@@ -881,7 +889,7 @@ background:radial-gradient(ellipse 55% 60% at 50% 45%,color-mix(in srgb,var(--g)
 .cx-dots{display:flex;gap:5px;} .cx-dots i{width:6px;height:6px;border-radius:9px;background:rgba(255,255,255,.35);} .cx-dots i.on{width:20px;background:var(--g);}
 .cx-st{display:flex;gap:10px;justify-self:end;}
 .cx-st div{width:112px;padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);}
-.cx-st svg{width:18px;height:18px;color:var(--g);} .cx-st b{display:block;margin-top:6px;font-size:15px;} .cx-st small{font-size:11px;color:rgba(255,255,255,.65);}
+.cx-st svg{width:18px;height:18px;color:var(--g);} .cx-st b{display:block;margin-top:6px;font-size:15px;white-space:nowrap;} .cx-st small{font-size:11px;color:rgba(255,255,255,.65);}
 /* ===== celular com cara de desktop ===== */
 @media (max-width:900px){
 .nv-hero{grid-template-columns:1.1fr 1fr;min-height:0;gap:4px;padding:4px 0 0;}
@@ -907,7 +915,7 @@ background:radial-gradient(ellipse 55% 60% at 50% 45%,color-mix(in srgb,var(--g)
 .cx{grid-template-columns:1fr 1.25fr;grid-template-rows:auto auto auto;min-height:0;padding:16px 14px 14px;gap:8px 8px;border-radius:18px;}
 .cx-k{font-size:9.5px;} .cx-n{font-size:22px;margin:4px 0 6px;} .cx-d{font-size:10.5px;margin-bottom:10px;} .cx-buy{flex-direction:column;align-items:flex-start;gap:4px;} .cx-buy .btn{height:34px;font-size:11.5px;padding:0 12px;} .cx-p{font-size:15px;}
 .cx-r{grid-column:1/-1;flex-direction:row;justify-content:flex-end;gap:6px;} .cx-th{width:58px;aspect-ratio:1.2/1;border-radius:10px 10px 10px 18px;padding:4px;}
-.cx-bot{grid-template-columns:auto 1fr;gap:8px;} .cx-mini{display:none;} .cx-nav{grid-column:1;} .cx-nav button{width:34px;height:28px;} .cx-st{grid-column:2;gap:6px;} .cx-st div{width:auto;flex:1;padding:6px 8px;border-radius:10px;} .cx-st svg{width:14px;height:14px;} .cx-st b{font-size:11.5px;margin-top:2px;} .cx-st small{font-size:9px;}
+.cx-bot{grid-template-columns:auto 1fr;gap:8px;} .cx-mini{display:none;} .cx-nav{grid-column:1;} .cx-nav button{width:34px;height:28px;} .cx-st{grid-column:2;gap:6px;} .cx-st div{width:auto;flex:1;padding:6px 8px;border-radius:10px;} .cx-st svg{width:14px;height:14px;} .cx-st b{font-size:11.5px;margin-top:2px;white-space:nowrap;} .cx-st small{font-size:9px;}
 .cx-ring{height:20px;}
 }
 @media (max-width:900px){ .race{grid-template-columns:1fr 1fr !important;gap:10px;padding:14px;} .race-t h3{font-size:18px;margin:4px 0;} .race-t p{font-size:11px;margin-bottom:8px;} .race-t .btn{height:36px;font-size:11.5px;padding:0 10px;} .race-v{height:170px !important;gap:6px;} .era-banner{padding:22px 14px;} .era-banner h2 b{font-size:36px;} }
@@ -1147,7 +1155,7 @@ background:radial-gradient(120% 90% at 78% 50%,color-mix(in srgb,var(--c) 34%,#0
 </div>
 <div class="views" id="views"></div>
 </main>
-<footer class="foot"><span><b>GAME STORE</b> · Games, eletrônicos e assistência · Endereço da loja · Limeira/SP</span><span>WhatsApp (19) XXXXX-XXXX · @nomedaloja</span><span>Consulte a classificação indicativa. Marcas e imagens pertencem aos seus donos.</span></footer>
+<footer class="foot"><span><b>GAME STORE</b> · Games, eletrônicos e assistência · Limeira/SP</span><span>Consulte a classificação indicativa. Marcas e imagens pertencem aos seus donos.</span><span class="foot-cta"><a class="btn ghost" href="https://wa.me/55XXXXXXXXXXX" target="_blank" rel="noopener">Falar no WhatsApp</a></span></footer>
 <nav class="bnav" aria-label="Atalhos">
 <button type="button" data-menu aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h10M4 17h16"/></svg></button>
 <button type="button" data-go="home" aria-label="Início"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg></button>
@@ -1158,7 +1166,7 @@ background:radial-gradient(120% 90% at 78% 50%,color-mix(in srgb,var(--c) 34%,#0
 <aside class="sheet left" id="menu" aria-label="Menu" aria-hidden="true">
 <div class="sh-h"><h3>Menu</h3><button type="button" class="sq" data-close aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
 <div class="menu-l" id="menuL"></div>
-<div class="menu-c"><b>GAME STORE · Limeira/SP</b>Endereço da loja<br>Horário de atendimento<br>WhatsApp (19) XXXXX-XXXX · @nomedaloja</div>
+<div class="menu-c"><b>GAME STORE · Limeira/SP</b>Atendimento pelo WhatsApp<br>Retirada na loja no mesmo dia<br><a class="btn ghost" href="https://wa.me/55XXXXXXXXXXX" target="_blank" rel="noopener">Falar no WhatsApp</a></div>
 </aside>
 <div class="shop" id="shop" role="dialog" aria-modal="true" aria-label="Detalhes do produto" hidden>
 <div class="shop-bg" aria-hidden="true"><i class="rays"></i><i class="floor"></i></div>
@@ -1808,7 +1816,11 @@ window.addEventListener('pointermove', ERA.onMove, {passive:true});
 // aparece ao rolar + troca o tema de cada era
 var bg = root.querySelector('.era-bg');
 ERA.io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); if (e.target.classList.contains('door')) e.target.classList.add('open'); } }); }, {threshold:.18});
-root.querySelectorAll('.ev').forEach(function(el){ ERA.io.observe(el); });
+root.querySelectorAll('.ev').forEach(function(el){
+var r0 = el.getBoundingClientRect();
+if (r0.top < window.innerHeight * .96 && r0.bottom > -80){ el.classList.add('in'); if (el.classList.contains('door')) el.classList.add('open'); }
+else ERA.io.observe(el);
+});
 ERA.io2 = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting){ bg.style.setProperty('--e1', e.target.getAttribute('data-e1')); bg.style.color = e.target.getAttribute('data-ea'); } }); }, {rootMargin:'-45% 0px -45% 0px'});
 root.querySelectorAll('[data-e1]').forEach(function(el){ ERA.io2.observe(el); });
 new IntersectionObserver(function(es){ visible = es[0].isIntersecting; }).observe(hero);
@@ -2286,30 +2298,17 @@ return '<section class="loja" id="loja">' +
 function renderHome(){
 var cats = [['consoles','Consoles','<img loading="lazy" decoding="async" src="media/cat-consoles.webp" alt="" decoding="async">','PS5, Xbox e Switch','rgba(43,123,255,.55)','#2b7bff'],['jogos','Jogos','<img loading="lazy" decoding="async" src="media/cat-jogos.webp" alt="" decoding="async">','Novos e seminovos','rgba(118,255,90,.45)','#76ff5a'],['controles','Controles','<img loading="lazy" decoding="async" src="media/cat-controles.webp" alt="" decoding="async">','Originais e personalizados','rgba(180,76,255,.55)','#b44cff'],['acess','Acessórios','<img loading="lazy" decoding="async" src="media/cat-acess.webp" alt="" decoding="async">','Headsets e periféricos','rgba(52,227,255,.45)','#34e3ff'],['tcg','Boosters e TCG','<img loading="lazy" decoding="async" src="media/cat-tcg.webp" alt="" decoding="async">','Coleções e torneios','rgba(255,176,32,.45)','#ffb020'],['conserto','Conserto','<img loading="lazy" decoding="async" src="media/cat-conserto.webp" alt="" decoding="async">','Orçamento rápido','rgba(255,79,216,.5)','#ff4fd8']];
 return mhHTML() +
-lojaBandHTML() +
+'<section class="gta-ban"><img loading="lazy" decoding="async" src="' + IMG.pool + '" alt=""><div class="gb-t"><span class="gb-k">Pré-venda aberta · 19.11.2026</span><h2>Grand Theft Auto VI</h2><p>Reserve na loja e retire no dia do lançamento.</p><div class="fbtns"><button type="button" class="btn lime" data-go="gta">Reservar agora ' + I.arrow + '</button><button type="button" class="btn ghost" data-trailer="VQRLujxTm3c">' + I.play + ' Trailer</button></div></div></section>' +
 '<section class="show">' + secT('Compre por categoria', '<button type="button" class="lnk" data-go="consoles">Ver tudo ' + I.arrow + '</button>') +
 '<div class="show-rail" id="showRail">' + cats.map(function(c, i){ return '<button type="button" class="sp" data-go="' + c[0] + '" style="--sc:' + c[4] + ';--sc2:' + c[5] + ';--d:' + (i * 70) + 'ms"><span class="sp-im">' + c[2] + '</span><span class="sp-tx"><b>' + c[1] + '</b><small>' + c[3] + '</small><span class="sp-cta">Explorar ' + c[1] + ' ' + I.arrow + '</span></span></button>'; }).join('') + '</div>' +
 '<div class="show-foot"><div class="show-bar"><i></i></div><div class="show-nav"><button type="button" class="spn" data-spn="-1" aria-label="Anterior">' + I.left + '</button><button type="button" class="spn" data-spn="1" aria-label="Próximo">' + I.right + '</button></div></div>' +
 '</section>' +
 
-'<section class="vspot" id="vspot">' +
-'<div class="vs-card"><video muted loop playsinline preload="none" data-auto poster="media/loop-headphone.webp" data-src="media/loop-headphone.mp4?v=3"></video><span class="vs-tag">Áudio</span></div>' +
-'<div class="vs-copy"><h2>Áudio e acessórios<br>que completam o setup</h2><p>Fones, headsets e acessórios com garantia e retirada na loja. Curadoria da nossa equipe técnica.</p><button type="button" class="btn pri" data-go="acess">Ver acessórios ' + I.right + '</button></div>' +
-'<div class="vs-card r"><video muted loop playsinline preload="none" data-auto poster="media/card-travel.webp" data-src="media/card-travel.mp4"></video><span class="vs-tag">Acessórios</span></div>' +
-'</section>' +
 
-cineBandHTML() +
-'<section class="gta-ban"><img loading="lazy" decoding="async" src="' + IMG.pool + '" alt=""><div class="gb-t"><span class="gb-k">Pré-venda aberta · 19.11.2026</span><h2>Grand Theft Auto VI</h2><p>Reserve na loja e retire no dia do lançamento.</p><div class="fbtns"><button type="button" class="btn lime" data-go="gta">Reservar agora ' + I.arrow + '</button><button type="button" class="btn ghost" data-trailer="VQRLujxTm3c">' + I.play + ' Trailer</button></div></div></section>' +
-vitHTML(0) + vitHTML(1) + vitHTML(2) +
-shotsHTML() +
-'<section class="care"><div class="care-t"><span class="kick">Conserto+</span><h2>Proteção completa pro seu console</h2><p>Limpeza, troca de peças e reparo com garantia. Orçamento rápido pelo WhatsApp.</p><button type="button" class="btn pri" data-go="conserto">Pedir orçamento ' + I.arrow + '</button></div>' +
+vitHTML(0) + vitHTML(1) + '<section class="care"><div class="care-t"><span class="kick">Conserto+</span><h2>Proteção completa pro seu console</h2><p>Limpeza, troca de peças e reparo com garantia. Orçamento rápido pelo WhatsApp.</p><button type="button" class="btn pri" data-go="conserto">Pedir orçamento ' + I.arrow + '</button></div>' +
 '<div class="care-art"><span class="c1">' + padArt('tower', P.c1.a) + '</span><span class="c2"><svg viewBox="0 0 120 140"><defs><linearGradient id="shg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d9b3ff"/><stop offset="1" stop-color="#6a1fd0"/></linearGradient></defs><path d="M60 6l50 18v38c0 34-22 58-50 72C32 120 10 96 10 62V24z" fill="url(#shg)" stroke="#fff" stroke-opacity=".5" stroke-width="2"/><path d="M36 70l16 16 32-34" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="c3">' + padArt('sym', DS[0].a) + '</span></div></section>' +
-vitHTML(3) +
-'<section class="block cupons"><div class="cup-t"><span class="eh-k">Clube de cupons</span><h3>Descontos da semana</h3><p>Toque em um cupom pra ativar: o desconto entra sozinho no carrinho e o código vai junto no pedido do WhatsApp.</p></div>' + cuponsHTML() + '</section>' +
-'<section class="block race"><div class="race-t"><span class="eh-k">Semana das corridas</span><h3>Pronto pra largar?</h3><p>Jogos de corrida, volantes e controles com desconto essa semana.</p><div class="fbtns"><button type="button" class="btn pri" data-go="jogos">Ver jogos de corrida</button></div></div>' +
-'<div class="race-v"><div class="rv1"><video muted loop playsinline preload="none" poster="' + VID.plight + '" data-auto data-src="' + VID.light + '"></video></div><div class="rv2"><video muted loop playsinline preload="none" poster="' + VID.pcar + '" data-auto data-src="' + VID.car + '"></video></div></div></section>' +
-'<section class="era-banner"><img class="eb-v" src="media/era-wall.webp" alt="" aria-hidden="true" decoding="async"><h2><span>Entre na era</span><b>dos games</b></h2><button type="button" class="btn pri" data-go="era">Explorar a linha do tempo ' + I.right + '</button></section>' +
-'<section class="perks">' + [['swap','Troque seu usado','Seu console ou jogo vira desconto'],['card','Parcele em 10x','No cartão, sem complicação'],['gift','Vale-presente','O presente certo pra quem joga'],['bolt','Retira hoje','Pediu no WhatsApp, pegou na loja']].map(function(x){ return '<div>' + ico(x[0]) + '<span><b>' + x[1] + '</b><small>' + x[2] + '</small></span></div>'; }).join('') + '</section>';
+'<section class="block cupons"><div class="cup-t"><span class="eh-k">Clube de cupons</span><h3>Descontos da semana</h3><p>Toque em um cupom pra ativar: o desconto entra sozinho no carrinho e o código vai junto no pedido do WhatsApp.</p></div>' + cuponsHTML() + '</section>'
+lojaBandHTML();
 }
 /* ---------- GTA VI estilo página de lançamento ---------- */
 function renderGTA(){
@@ -2349,7 +2348,7 @@ var CX = [
 {n:'Deep Ocean', v:529.9, g:'#2bb3ff', b:'#051726', d:'Azul profundo com acabamento fosco e grip texturizado.', a:{body:'#1f6fd0', keys:'#061426', stick:'#1a5fb8', trim:'#0e1116'}},
 {n:'Sunset', v:549.9, g:'#ff8a3d', b:'#261005', d:'Degradê de pôr do sol em laranja com detalhes escuros.', a:{body:'#ff7f3a', keys:'#2a0e04', stick:'#ef6a2a', trim:'#2a2d30'}},
 {n:'Stealth', v:499.9, g:'#9aa3b5', b:'#0e1014', d:'Preto total com detalhes grafite. Discreto e resistente.', a:{body:'#2b2e35', keys:'#0b0c0e', stick:'#23252b', trim:'#15171b'}}]},
-{type:'joycon', label:'Joy-Con', model:'Nintendo Switch', key:'jc', stats:[['batt','Cerca de 20 h','Bateria'],['bolt','Vibração HD','Sensor de movimento']], skins:[
+{type:'joycon', label:'Joy-Con', model:'Nintendo Switch', key:'jc', stats:[['batt','20 h','Bateria'],['bolt','Vibração HD','Sensor de movimento']], skins:[
 {n:'Neon clássico', v:499.9, g:'#ff4b4b', b:'#1f0808', d:'O par azul e vermelho neon, o visual mais icônico do Switch.', a:{body:'#1fa0e8', b2:'#ff4b4b', keys:'#141416'}},
 {n:'Roxo e laranja', v:499.9, g:'#9b5bff', b:'#140a26', d:'Par roxo e laranja neon, cheio de personalidade.', a:{body:'#9b5bff', b2:'#ff8a2a', keys:'#141416'}},
 {n:'Pastel', v:499.9, g:'#6fe0b0', b:'#082018', d:'Verde menta e rosa pastel. Suave e divertido.', a:{body:'#6fe0b0', b2:'#ff9fcf', keys:'#141416'}}]}
@@ -2406,7 +2405,7 @@ var el = document.createElement('div'); el.className = 'view on in'; el.setAttri
 el.innerHTML = html || RENDER[key]();
 var old = curEl; curView = key; curEl = el;
 function mount(){ if (old) old.remove(); viewsEl.appendChild(el); afterMount(key, el); try{ if(window.__octoPlace) window.__octoPlace(key); }catch(e){} }
-if (old && !reduce){ old.classList.remove('in'); old.classList.add('out'); setTimeout(mount, 120); } else mount();
+if (old){ if (!reduce){ old.classList.remove('in'); old.classList.add('out'); } old.remove(); } mount(); try { window.scrollTo(0, 0); } catch (e) {}
 document.querySelectorAll('[data-go]').forEach(function(b){ if (b.closest('#tabs') || b.closest('.bnav')) b.classList.toggle('on', b.getAttribute('data-go') === key); });
 moveInd();
 var onb = tabs.querySelector('button.on'); if (onb) tabs.scrollTo({left: onb.offsetLeft - 20, behavior: reduce ? 'auto' : 'smooth'});
@@ -2712,11 +2711,15 @@ html{scroll-padding-top:96px}
 <script>
 (function(){
   var d=document.documentElement;
+  var lastY=0;
   function up(){
     var hero=document.getElementById('mh');
     var y=window.pageYOffset||d.scrollTop||0;
     var zone=hero?Math.max(48,hero.getBoundingClientRect().height*0.72):48;
     d.classList.toggle('scrolled', hero ? y>zone : true);
+    if (y<120 || y < lastY-6) d.classList.remove('hd-hide');
+    else if (y > lastY+8 && y > 160) d.classList.add('hd-hide');
+    lastY=y;
   }
   addEventListener('scroll',up,{passive:true});
   addEventListener('resize',up,{passive:true});
@@ -2873,9 +2876,9 @@ html{scroll-padding-top:96px}
 .ofx-tx::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;border-radius:inherit;box-shadow:inset 0 1px 0 rgba(255,255,255,.05);}
 
 /* ---- reveal suave: fade + subida curta, uma vez so ---- */
-.ofx-r{opacity:0;transform:translate3d(0,12px,0);
- transition:opacity .95s cubic-bezier(.22,.61,.36,1),transform 1.15s cubic-bezier(.16,.84,.28,1);
- transition-delay:calc(var(--ofx-d,0) * 26ms);backface-visibility:hidden;}
+.ofx-r{opacity:0;transform:translate3d(0,10px,0);
+ transition:opacity .38s cubic-bezier(.22,.61,.36,1),transform .44s cubic-bezier(.16,.84,.28,1);
+ transition-delay:calc(var(--ofx-d,0) * 12ms);backface-visibility:hidden;}
 .ofx-r.ofx-in{opacity:1;transform:none;}
 @media (prefers-reduced-motion:reduce){.ofx-r{opacity:1!important;transform:none!important;transition:none!important;}}
 
@@ -2907,6 +2910,13 @@ html{scroll-padding-top:96px}
  background:linear-gradient(150deg,#b44cff,#5b2bd0);box-shadow:0 0 18px -3px rgba(180,76,255,.95);}
 .ofx-toast b{display:block;font-family:'Poppins',sans-serif;font-size:13.5px;font-weight:700;}
 .ofx-toast small{display:block;font-size:11.5px;color:var(--mut);}
+/* no celular o aviso de conquista sai de cima do logo e vai pra base */
+@media (max-width:900px){
+.ofx-toast{top:74px;bottom:auto;transform:translate(-50%,-26px);max-width:calc(100% - 22px);padding:10px 14px 10px 10px;}
+.ofx-toast.on{transform:translate(-50%,0);}
+.ofx-toast i{width:32px;height:32px;font-size:16px;border-radius:10px;}
+.ofx-toast b{font-size:12.5px;} .ofx-toast small{font-size:10.5px;}
+}
 </style>
 <script id="ofxJs">
 (function(){
@@ -2996,9 +3006,15 @@ function reveal(){
     rvAll.push(e); fresh.push(e);
   }
   if (!fresh.length) return;
-  if (!('IntersectionObserver' in window)){ fresh.forEach(function(e){ e.classList.add('ofx-in'); }); return; }
+  var vh0 = window.innerHeight, now = [], later = [];
+  for (var q=0;q<fresh.length;q++){
+    var rq = fresh[q].getBoundingClientRect();
+    if (rq.top < vh0 * .96 && rq.bottom > -80) now.push(fresh[q]); else later.push(fresh[q]);
+  }
+  now.forEach(function(e){ e.classList.add('ofx-in'); });
+  if (!('IntersectionObserver' in window) || !later.length){ later.forEach(function(e){ e.classList.add('ofx-in'); }); return; }
   if (!rvIO) rvIO = new IntersectionObserver(rvCb, {threshold:.06, rootMargin:'0px 0px -4% 0px'});
-  fresh.forEach(function(e){ rvIO.observe(e); });
+  later.forEach(function(e){ rvIO.observe(e); });
   setTimeout(function(){
     var vh = window.innerHeight;
     for (var i=0;i<fresh.length;i++){
