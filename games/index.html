@@ -1112,6 +1112,109 @@ background:radial-gradient(120% 90% at 78% 50%,color-mix(in srgb,var(--c) 34%,#0
 .pk-bn p{font-size:13px;}
 }
 
+/* ===== montador de setup (aba Acessórios) ===== */
+.view[data-v="acess"]{padding-bottom:212px;}
+.su{color:#fff;margin-top:22px;padding:20px;border-radius:26px;border:1px solid rgba(255,255,255,.09);background:linear-gradient(180deg,#1b1530,#131020);overflow:hidden;}
+.su-h h2{color:#fff;font-family:'Poppins',sans-serif;font-weight:800;font-size:clamp(24px,3.4vw,38px);line-height:1.04;margin:12px 0 8px;letter-spacing:-.01em;}
+.su-h p{color:rgba(255,255,255,.66);font-weight:300;margin:0;font-size:14px;max-width:62ch;}
+.su-cap{display:block;margin:18px 0 8px;font-size:10.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.45);}
+.su-pl{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;}
+.su-pb{display:flex;align-items:center;justify-content:center;height:44px;padding:0 6px;border-radius:14px;border:1.5px solid rgba(255,255,255,.16);background:#100e1a;color:rgba(255,255,255,.66);font:700 12.5px 'Poppins',sans-serif;cursor:pointer;white-space:nowrap;transition:border-color .2s,box-shadow .2s,background .2s,color .2s;}
+.su-pb.on{border-color:var(--sc);color:#fff;background:color-mix(in srgb,var(--sc) 24%,#100e1a);box-shadow:0 0 20px -6px var(--sc);}
+.su-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px;}
+.su-need{color:rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;text-align:center;min-height:150px;margin-top:16px;padding:18px;border-radius:20px;border:1.5px dashed rgba(255,255,255,.16);background:#0d0b16;color:rgba(255,255,255,.66);font-size:13px;}
+.su-s{color:inherit;position:relative;min-width:0;display:flex;flex-direction:column;gap:8px;padding:13px;border-radius:20px;border:1.5px dashed rgba(255,255,255,.16);background:#0d0b16;color:#fff;text-align:left;cursor:pointer;transition:border-color .22s,background .22s;min-height:168px;font:inherit;}
+.su-s:hover{border-color:color-mix(in srgb,var(--sc) 62%,rgba(255,255,255,.16));}
+.su-ic{display:grid;place-items:center;width:42px;height:42px;flex:none;border-radius:13px;background:color-mix(in srgb,var(--sc) 20%,#141020);color:var(--sc);border:1px solid color-mix(in srgb,var(--sc) 42%,transparent);}
+.su-ic svg{width:22px;height:22px;}
+.su-eh{color:#fff;font:700 14.5px 'Poppins',sans-serif;}
+.su-es{font-size:11.5px;color:rgba(255,255,255,.66);}
+.su-ea{margin-top:auto;display:inline-flex;align-items:center;gap:6px;font:600 12px 'Poppins',sans-serif;color:var(--sc);}
+.su-ea svg{width:14px;height:14px;}
+.su-s.on{border-style:solid;border-color:var(--sc);background:linear-gradient(180deg,color-mix(in srgb,var(--sc) 15%,#131020),#0f0d19);cursor:pointer;}
+.su-sh{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.su-sh .su-ic{width:34px;height:34px;border-radius:11px;}
+.su-sh .su-ic svg{width:18px;height:18px;}
+.su-x{width:30px;height:30px;flex:none;display:grid;place-items:center;border-radius:50%;border:1px solid rgba(255,255,255,.16);background:#0a0812;color:rgba(255,255,255,.66);cursor:pointer;}
+.su-x svg{width:13px;height:13px;}
+.su-x:hover{color:#fff;border-color:#ff5470;}
+.su-pim{position:relative;width:100%;aspect-ratio:1/1;max-height:200px;border-radius:14px;overflow:hidden;background:radial-gradient(circle,#241f3c,#12101d);}
+.su-pim img,.su-pim svg{width:100%;height:100%;object-fit:cover;display:block;}
+.su-sn{color:#fff;font:600 13.5px/1.2 'Poppins',sans-serif;}
+.su-ss{font-size:11px;color:rgba(255,255,255,.66);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.su-sp{color:#fff;display:flex;align-items:baseline;gap:6px;font:800 16px 'Poppins',sans-serif;}
+.su-sp s{font-size:11px;font-weight:400;color:rgba(255,255,255,.45);}
+.su-prog{margin-top:18px;}
+.su-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;}
+.su-bar i{background:#241f38;height:8px;border-radius:999px;background:#241f38;transition:background .3s,box-shadow .3s;}
+.su-bar i.on{background:var(--acc);box-shadow:0 0 14px -2px var(--acc);}
+.su-prog.win .su-bar i.on{background:#f5c542;box-shadow:0 0 16px -2px #f5c542;}
+.su-prow{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:11px;flex-wrap:wrap;}
+.su-pn{color:rgba(255,255,255,.66);font:600 13px 'Poppins',sans-serif;color:rgba(255,255,255,.66);}
+.su-pn b{color:#fff;font-size:15px;}
+.su-tag{display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border-radius:999px;font:700 11.5px 'Poppins',sans-serif;background:#221a3c;color:#cdb8ff;border:1px solid rgba(180,76,255,.42);}
+.su-prog.win .su-tag{background:rgba(245,197,66,.16);color:#ffd75e;border-color:rgba(245,197,66,.55);}
+.su-tx{margin:10px 0 0;font-size:12.5px;color:rgba(255,255,255,.66);}
+.su-prog.win .su-tx{color:#ffd75e;}
+.su-foot{position:fixed;left:10px;right:10px;bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:44;padding:12px 16px;border-radius:22px;background:rgba(17,15,28,.98);border:1px solid rgba(180,76,255,.42);box-shadow:0 18px 40px -18px rgba(0,0,0,.9);}
+.su-frow{display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.su-fpr{display:flex;flex-direction:column;line-height:1.15;min-width:0;}
+.su-fpr s{font-size:11.5px;color:rgba(255,255,255,.45);}
+.su-fpr b{color:#fff;font:800 24px 'Poppins',sans-serif;}
+.su-fpr.win b{color:#ffd75e;}
+.su-fpr small{font-size:11px;color:rgba(255,255,255,.66);}
+.su-fpr small em{color:#ffd75e;font-style:normal;font-weight:700;}
+.su-fba{flex:none;min-width:152px;height:52px;border-radius:16px;border:0;background:var(--acc);color:#fff;font:700 14px 'Poppins',sans-serif;cursor:pointer;padding:0 18px;display:inline-flex;align-items:center;justify-content:center;gap:8px;}
+.su-fba[disabled]{opacity:.42;cursor:not-allowed;}
+.su-fba.ok{background:#1fbf5f;}
+.su-fba svg{width:18px;height:18px;}
+.su-scrim{position:fixed;inset:0;z-index:74;background:rgba(0,0,0,.62);opacity:0;pointer-events:none;transition:opacity .25s;}
+.su-scrim.on{opacity:1;pointer-events:auto;}
+.su-d{position:fixed;left:0;right:0;bottom:0;z-index:75;max-height:78vh;display:flex;flex-direction:column;background:#110f1c;border-radius:26px 26px 0 0;border-top:1px solid rgba(180,76,255,.42);transform:translate3d(0,110%,0);visibility:hidden;transition:transform .32s cubic-bezier(.2,.7,.3,1),visibility 0s .32s;}
+.su-d.on{transform:none;visibility:visible;transition:transform .32s cubic-bezier(.2,.7,.3,1);}
+.su-dh{display:flex;align-items:center;gap:12px;padding:16px 18px 12px;border-bottom:1px solid rgba(255,255,255,.09);}
+.su-dh b{color:#fff;font:700 15px 'Poppins',sans-serif;}
+.su-dh small{display:block;font-size:11.5px;color:rgba(255,255,255,.66);font-weight:400;}
+.su-dh .su-x{margin-left:auto;width:34px;height:34px;}
+.su-dl{overflow-y:auto;padding:12px 14px calc(104px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:10px;}
+.su-dl .empty{margin:6px;text-align:left;font-size:13px;color:rgba(255,255,255,.6);}
+.su-o{display:grid;grid-template-columns:74px minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px;border-radius:18px;border:1px solid rgba(255,255,255,.09);background:#0d0b16;}
+.su-o.on{border-color:var(--sc);box-shadow:inset 0 0 0 1px var(--sc);}
+.su-oi{width:74px;height:74px;border-radius:14px;overflow:hidden;background:radial-gradient(circle,#241f3c,#12101d);display:grid;place-items:center;}
+.su-oi img,.su-oi svg{width:100%;height:100%;object-fit:cover;display:block;}
+.su-ot{min-width:0;}
+.su-on{color:#fff;display:block;font:600 13.5px/1.25 'Poppins',sans-serif;}
+.su-os{display:block;font-size:11px;color:rgba(255,255,255,.66);margin-top:3px;}
+.su-of{display:block;font-size:10.5px;color:var(--sc);margin-top:5px;font-weight:700;}
+.su-op{display:flex;flex-direction:column;align-items:flex-end;gap:7px;}
+.su-op>b{color:#fff;font:800 14px 'Poppins',sans-serif;white-space:nowrap;text-align:right;}
+.su-op>b s{display:block;font-size:10.5px;font-weight:400;color:rgba(255,255,255,.45);}
+.su-ob{height:34px;padding:0 14px;border-radius:12px;border:1px solid var(--sc);background:transparent;color:var(--sc);font:700 12px 'Poppins',sans-serif;cursor:pointer;white-space:nowrap;}
+.su-ob.on{background:var(--sc);color:#111;}
+.su-cx{height:34px;padding:0 12px;border-radius:12px;border:1px solid rgba(255,255,255,.16);background:#0a0812;color:rgba(255,255,255,.66);font:700 11.5px 'Poppins',sans-serif;cursor:pointer;white-space:nowrap;}
+.su-cx:hover{color:#fff;border-color:#ff5470;}
+@media (min-width:901px){
+.view[data-v="acess"]{padding-bottom:132px;}
+.su-pl{max-width:620px;}
+.su-grid{max-width:900px;margin-left:auto;margin-right:auto;}
+.su-s{min-height:auto;}
+.su-d{left:50%;right:auto;width:min(560px,100%);transform:translate3d(-50%,110%,0);}
+.su-d.on{transform:translate3d(-50%,0,0);}
+.su-foot{left:50%;right:auto;bottom:18px;transform:translateX(-50%);width:min(760px,calc(100% - 40px));}
+}
+body.su-on .toast,body.su-on .ofx-toast{bottom:calc(176px + env(safe-area-inset-bottom,0px));}
+@media (min-width:901px){
+body.su-on .toast,body.su-on .ofx-toast{bottom:112px;}
+.su-dl{padding-bottom:20px;}
+}
+@media (max-width:520px){
+.su{padding:16px;}
+.su-grid{gap:10px;}
+.su-s{min-height:158px;padding:11px;}
+.su-fba{min-width:126px;height:48px;font-size:13px;padding:0 14px;}
+.su-fpr b{font-size:20px;}
+}
+
 /* ===== aba Jogos v2: escolha a plataforma + biblioteca ===== */
 .jgh{position:relative;margin:14px 0 0;padding:26px 24px 24px;border-radius:26px;border:1px solid var(--line);background:radial-gradient(120% 130% at 92% -6%,rgba(180,76,255,.16),transparent 58%),linear-gradient(165deg,#fff,#f7f2ff 72%,#fff);box-shadow:0 30px 66px -56px rgba(60,30,120,.75);}
 .jgh-k{display:inline-flex;align-items:center;gap:8px;font-size:10.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);background:rgba(139,47,224,.10);border:1px solid rgba(139,47,224,.30);border-radius:999px;padding:6px 12px;}
@@ -1287,7 +1390,7 @@ background:radial-gradient(120% 90% at 78% 50%,color-mix(in srgb,var(--c) 34%,#0
 <aside class="sheet" id="sheet" aria-label="Carrinho" aria-hidden="true">
 <div class="sh-h"><h3>Seu carrinho</h3><button type="button" class="sq" id="closeSheet" aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
 <div class="sh-l" id="cartList"></div>
-<div class="sh-f"><div class="tot cup-line" id="cupLine" style="display:none"><span>Cupom <b id="cupLineCode"></b></span><b id="cupLineVal"></b></div><div class="tot"><span>Total</span><b id="cartTot">R$ 0,00</b></div><p id="cartParc">ou em até 10x no cartão</p><a class="btn pri" id="checkout" target="_blank" rel="noopener">Finalizar pelo WhatsApp</a><p>O pedido chega pronto no WhatsApp da loja. Lá você combina pagamento e retirada.</p></div>
+<div class="sh-f"><div class="tot cup-line" id="suLine" style="display:none"><span>Setup <b id="suLinePlat"></b> <em id="suLineOff"></em></span><b id="suLineVal"></b></div><div class="tot cup-line" id="cupLine" style="display:none"><span>Cupom <b id="cupLineCode"></b></span><b id="cupLineVal"></b></div><div class="tot"><span>Total</span><b id="cartTot">R$ 0,00</b></div><p id="cartParc">ou em até 10x no cartão</p><a class="btn pri" id="checkout" target="_blank" rel="noopener">Finalizar pelo WhatsApp</a><p>O pedido chega pronto no WhatsApp da loja. Lá você combina pagamento e retirada.</p></div>
 </aside>
 <div class="modal" id="modal" role="dialog" aria-label="Mídia"><div class="box" id="mbox"></div><button type="button" class="sq x" id="mclose" aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -1739,6 +1842,7 @@ var JGFILT = [['tudo','Tudo'],['lacrado','Lacrados'],['seminovo','Seminovos'],['
 var JGGENS = [['todos','Todos'],['Ação','Ação'],['Aventura','Aventura'],['Corrida','Corrida'],['Esporte','Esporte'],['Luta','Luta'],['Família','Família']];
 var JGORDS = [['vendidos','Mais vendidos'],['menor','Menor preço'],['maior','Maior preço']];
 var JGS = {plat:null, tipo:'tudo', gen:'todos', ord:'vendidos', q:''};
+var JPICK = null;
 var JGCAT = null;
 function jgAll(){
 if (!JGCAT){
@@ -1858,7 +1962,7 @@ function initJogos(root){
 var w = root.querySelector('#jgw'); if (!w) return;
 w.addEventListener('click', function(e){
 var b;
-if ((b = e.target.closest('[data-jgp]'))){ JGS.plat = b.getAttribute('data-jgp'); JGS.tipo = 'tudo'; JGS.gen = 'todos'; JGS.q = ''; JGS.ord = 'vendidos'; jgSwap(); return; }
+if ((b = e.target.closest('[data-jgp]'))){ JGS.plat = b.getAttribute('data-jgp'); JPICK = JGS.plat; JGS.tipo = 'tudo'; JGS.gen = 'todos'; JGS.q = ''; JGS.ord = 'vendidos'; jgSwap(); return; }
 if (e.target.closest('[data-jgback]')){ JGS.plat = null; jgSwap(); return; }
 if ((b = e.target.closest('[data-jgtipo]'))){ JGS.tipo = b.getAttribute('data-jgtipo'); b.parentNode.querySelectorAll('button').forEach(function(x){ x.classList.toggle('on', x === b); }); jgPaint(); return; }
 if ((b = e.target.closest('[data-jggen]'))){ JGS.gen = b.getAttribute('data-jggen'); b.parentNode.querySelectorAll('button').forEach(function(x){ x.classList.toggle('on', x === b); }); jgPaint(); return; }
@@ -1894,16 +1998,210 @@ return '<section class="ax" id="ax-' + o.key + '" style="--c:' + o.c + '">' +
 '<div class="ax-rail">' + o.items.map(axCard).join('') + '</div></section>';
 }
 var AXS = [
-{key:'audio', n:'01', label:'Áudio', c:'#b44cff', id:'e1', h:'Ouça o passo<br>antes de ver.', d:'Headsets pra jogar a noite toda e fones sem fio pro dia a dia.', pos:'center 40%', items:['e1','ap1','hs2','hp3','hp2','hp1','a1','ap3']},
-{key:'relogio', n:'02', label:'Relógios', c:'#ff7a1a', id:'aw1', img:'ultraor', h:'O tempo<br>no seu pulso.', d:'Smartwatch pra treino, saúde e notificação, do básico ao titânio.', pos:'center', items:['aw1','aw2','aw3','a2']},
-{key:'chaveiro', n:'03', label:'Chaveiros', c:'#34e3ff', id:'kc1', h:'Leve o jogo<br>no bolso.', d:'Chaveiros gamer impressos em 3D e miniaturas de capas. Presente certeiro.', pos:'center 45%', items:['kc1','kc4','kc2','kc3']}
+{key:'audio', n:'02', label:'Áudio', c:'#b44cff', id:'e1', h:'Ouça o passo<br>antes de ver.', d:'Headsets pra jogar a noite toda e fones sem fio pro dia a dia.', pos:'center 40%', items:['e1','ap1','hs2','hp3','hp2','hp1','a1','ap3']},
+{key:'relogio', n:'03', label:'Relógios', c:'#ff7a1a', id:'aw1', img:'ultraor', h:'O tempo<br>no seu pulso.', d:'Smartwatch pra treino, saúde e notificação, do básico ao titânio.', pos:'center', items:['aw1','aw2','aw3','a2']},
+{key:'chaveiro', n:'04', label:'Chaveiros', c:'#34e3ff', id:'kc1', h:'Leve o jogo<br>no bolso.', d:'Chaveiros gamer impressos em 3D e miniaturas de capas. Presente certeiro.', pos:'center 45%', items:['kc1','kc4','kc2','kc3']}
 ];
 function axNav(list){ return '<div class="ax-nav">' + list.map(function(s){ return '<button type="button" data-axj="' + s.key + '" style="--c:' + s.c + '"><b>' + s.n + '</b>' + s.label + '</button>'; }).join('') + '</div>'; }
 function renderAcess(){
+if (JPICK && SU_JGMAP[JPICK] && (!SETUP.plat || (!SCART && !suIds().length))) SETUP.plat = SU_JGMAP[JPICK];
 var rest = byCat('acess').filter(function(p){ return !AXS.some(function(s){ return s.items.indexOf(p.id) > -1; }); });
-return '<div class="ax-top"><span class="ax-k"><i></i>Acessórios</span><h1>Monte o seu setup.</h1><p>Áudio, relógio e aquele detalhe no chaveiro. Toque em qualquer item pra abrir no shop.</p>' + axNav(AXS) + '</div>' +
-AXS.map(axStage).join('') + '<section class="block alt">' + secT('Setup e controles', '', 'Teclado, mouse, monitor e controles') + grid(rest) + '</section>';
+return '<div class="ax-top"><span class="ax-k"><i></i>Acessórios</span><h1>Monte o seu setup.</h1><p>Escolha a plataforma, encaixe as peças e leve 3 ou mais com 10% de desconto. Áudio, relógio e chaveiro logo abaixo.</p></div>' +
+suBlock() + axNav(AXS) +
+AXS.map(axStage).join('') + '<section class="block alt">' + secT('Peças avulsas', '', 'Fora do montador · teclado, mouse, monitor e controles') + grid(rest) + '</section>';
 }
+/* ============ montador de setup (aba Acessórios) ============ */
+var SUX = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+var SUIC = {
+headset:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="2.4" y="13.6" width="4.2" height="6.4" rx="1.7"/><rect x="17.4" y="13.6" width="4.2" height="6.4" rx="1.7"/></svg>',
+controle:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 7h10a4 4 0 0 1 4 4l.5 4.4A3 3 0 0 1 16 18l-2-2.4h-4L8 18a3 3 0 0 1-5.5-2.6L3 11a4 4 0 0 1 4-4z"/><path d="M7.5 11.5h3M9 10v3M16 11.6h.01M18 13.4h.01"/></svg>',
+mouse:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="6" y="2.5" width="12" height="19" rx="6"/><path d="M12 7v4"/></svg>',
+teclado:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2.5"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M6 14h.01M18 14h.01M9.5 14h5"/></svg>',
+monitor:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M9 21h6M12 17v4"/></svg>',
+carregador:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2.5v5M15 2.5v5M6 8h12v2.5a6 6 0 0 1-6 6 6 6 0 0 1-6-6z"/><path d="M12 16.5V21"/></svg>'
+};
+var SU_PLUG_IC = '<path d="M9 2v6M15 2v6M6 8h12v3a6 6 0 0 1-12 0zM12 17v5"/>';
+add([
+{id:'cg1', cat:'acess', t:'Estação de carga DualSense', short:'Carregador DualSense', g:'Carregador', p:'PS5', v:199.9, o:249.9, type:'svc', bg:'#2a4a9c', a:{body:'#2a4a9c', ic:SU_PLUG_IC}, f:'Carrega 2 controles DualSense ao mesmo tempo'},
+{id:'cg2', cat:'acess', t:'Bateria Play & Charge Xbox', short:'Play & Charge Xbox', g:'Carregador', p:'Xbox', v:179.9, type:'svc', bg:'#1f6b2c', a:{body:'#1f6b2c', ic:SU_PLUG_IC}, f:'Bateria recarregável e cabo para o controle'},
+{id:'cg3', cat:'acess', t:'Carregador de Joy-Con', short:'Carregador Joy-Con', g:'Carregador', p:'Switch', v:129.9, o:159.9, type:'svc', bg:'#b3201a', a:{body:'#b3201a', ic:SU_PLUG_IC}, f:'Carrega 2 Joy-Con na vertical'}
+]);
+var SUPL = [
+{key:'ps5', n:'PS5', c:'#2b7bff', jg:'ps'},
+{key:'xbox', n:'Xbox', c:'#1fbf5f', jg:'xb'},
+{key:'switch', n:'Switch', c:'#ff4b4b', jg:'nt'},
+{key:'pc', n:'PC', c:'#b44cff', jg:null}
+];
+var SUPLN = {}; SUPL.forEach(function(p){ SUPLN[p.key] = p.n; });
+var SU_JGMAP = {ps:'ps5', xb:'xbox', nt:'switch', ps2:'ps5'};
+var SU_SLOT = {
+headset:{n:'Headset', c:'#b44cff', ask:'Escolher headset'},
+controle:{n:'Controle extra', c:'#2b7bff', ask:'Escolher controle'},
+mouse:{n:'Mouse', c:'#2b7bff', ask:'Escolher mouse'},
+teclado:{n:'Teclado', c:'#ff4f7a', ask:'Escolher teclado'},
+monitor:{n:'Monitor', c:'#f0b93a', ask:'Escolher monitor'},
+carregador:{n:'Carregador', c:'#ff4f7a', ask:'Escolher carregador'}
+};
+var SU_COLS = {
+ps5:['headset','controle','monitor','carregador'],
+xbox:['headset','controle','monitor','carregador'],
+switch:['headset','controle','monitor','carregador'],
+pc:['headset','mouse','teclado','monitor']
+};
+var SU_PROD = {
+headset:['e1','hs2','hp2','hp3','hp1','a1','ap1','ap3'],
+controle:['ds0','ds1','ds2','ds3','ds4','ds5','xc0','xc1','xc2','xc3','xc4','jc0','jc1','jc2','jc3','jc4','a3','e2'],
+mouse:['e4'],
+teclado:['e3'],
+monitor:['c5'],
+carregador:['cg1','cg2','cg3']
+};
+var SU_FIT = {
+e1:['ps5','xbox','pc'], hs2:['ps5','xbox','switch','pc'],
+hp2:['pc','switch'], hp3:['pc','switch'], hp1:['pc','switch'],
+a1:['pc','switch'], ap1:['pc','switch'], ap3:['pc','switch'],
+e2:['pc','switch'], a3:['switch'], e3:['pc'], e4:['pc'],
+c5:['ps5','xbox','switch','pc'],
+cg1:['ps5'], cg2:['xbox'], cg3:['switch']
+};
+var SETUP = {plat:null, sel:{}};
+var SCART = null, SUOPEN = null;
+function suFit(id){
+var f = SU_FIT[id];
+if (!f){ if (/^ds/.test(id)) f = ['ps5']; else if (/^xc/.test(id)) f = ['xbox']; else if (/^jc/.test(id)) f = ['switch']; }
+return f || [];
+}
+function suOpts(slot){ return (SU_PROD[slot] || []).filter(function(id){ return P[id] && SETUP.plat && suFit(id).indexOf(SETUP.plat) > -1; }); }
+function suSlots(){ return SETUP.plat ? SU_COLS[SETUP.plat] : []; }
+function suIds(){ return suSlots().map(function(s){ return SETUP.sel[s]; }).filter(function(id){ return !!P[id]; }); }
+function suSub(){ var t = 0; suIds().forEach(function(id){ t += P[id].v; }); return t; }
+function suPlatName(){ return SETUP.plat ? SUPLN[SETUP.plat] : ''; }
+function suImg(p){
+if (p.photo) return '<img loading="lazy" decoding="async" src="' + p.photo + '" alt="">';
+if (p.img) return '<img loading="lazy" decoding="async" src="' + p.img + '" alt="">';
+return padArt(p.type, p.a);
+}
+function suPlatBtns(){
+return SUPL.map(function(p){ return '<button type="button" class="su-pb' + (SETUP.plat === p.key ? ' on' : '') + '" data-suplat="' + p.key + '" style="--sc:' + p.c + '" aria-pressed="' + (SETUP.plat === p.key) + '">' + p.n + '</button>'; }).join('');
+}
+function suSlotCard(slot){
+var d = SU_SLOT[slot], id = SETUP.sel[slot], p = id ? P[id] : null;
+if (!p){
+var n = suOpts(slot).length;
+return '<button type="button" class="su-s" data-suslot="' + slot + '" style="--sc:' + d.c + '">' +
+'<span class="su-ic">' + SUIC[slot] + '</span><span class="su-eh">' + d.ask + '</span>' +
+'<span class="su-es">' + n + (n === 1 ? ' opção' : ' opções') + ' pro ' + suPlatName() + '</span>' +
+'<span class="su-ea">Ver opções ' + I.arrow + '</span></button>';
+}
+return '<div class="su-s on" data-suslot="' + slot + '" role="button" tabindex="0" style="--sc:' + d.c + '">' +
+'<span class="su-sh"><span class="su-ic">' + SUIC[slot] + '</span><button type="button" class="su-x" data-sux="' + slot + '" aria-label="Remover ' + esc(d.n) + '">' + SUX + '</button></span>' +
+'<span class="su-pim">' + suImg(p) + '</span>' +
+'<span class="su-sn">' + esc(p.short || p.t) + '</span>' +
+'<span class="su-ss">' + esc(p.f || (p.g + ' · ' + p.p)) + '</span>' +
+'<span class="su-sp">' + (p.o ? '<s>' + brl(p.o) + '</s>' : '') + brl(p.v) + '</span>' +
+'<span class="su-ea">Trocar ' + I.arrow + '</span></div>';
+}
+function suProg(){
+var n = suIds().length, win = n >= 3, falta = 3 - n;
+var bars = [0,1,2,3].map(function(i){ return '<i class="' + (i < n ? 'on' : '') + '"></i>'; }).join('');
+return '<div class="su-prog' + (win ? ' win' : '') + '"><div class="su-bar">' + bars + '</div>' +
+'<div class="su-prow"><span class="su-pn"><b>' + n + '</b> de 4 peças</span><span class="su-tag">' + (win ? '10% ativado' : 'Leve 3, ganhe 10%') + '</span></div>' +
+'<p class="su-tx">' + (win ? 'Desconto de 10% aplicado em todas as peças.' : 'Falta ' + falta + (falta === 1 ? ' peça' : ' peças') + ' pra ganhar 10% no setup todo.') + '</p></div>';
+}
+function suBodyHTML(){
+if (!SETUP.plat) return '<div class="su-need">Escolha a plataforma do seu console pra montar o setup.</div>';
+return '<div class="su-grid">' + suSlots().map(suSlotCard).join('') + '</div>' + suProg();
+}
+function suFoot(){
+var ids = suIds(), n = ids.length, sub = suSub(), win = n >= 3, off = win ? sub * 0.10 : 0, tot = sub - off;
+var price;
+if (!n) price = '<b>' + brl(0) + '</b><small>Escolha as peças do seu setup</small>';
+else if (win) price = '<s>' + brl(sub) + '</s><b>' + brl(tot) + '</b><small><em>Você economiza ' + brl(off) + '</em> · ou 10x de ' + brl(tot/10) + '</small>';
+else price = '<b>' + brl(sub) + '</b><small>ou 10x de ' + brl(sub/10) + ' sem juros</small>';
+var btn = SCART
+? '<button type="button" class="su-fba ok" data-sufoot="cart">' + I.check + ' No carrinho</button>'
+: '<button type="button" class="su-fba" data-sufoot="add"' + (n ? '' : ' disabled') + '>Adicionar ' + n + (n === 1 ? ' peça' : ' peças') + '</button>';
+return '<div class="su-foot" id="suFoot"><div class="su-frow"><span class="su-fpr' + (win ? ' win' : '') + '">' + price + '</span>' + btn + '</div></div>';
+}
+function suPaint(){
+var v = document.getElementById('suPl'); if (v) v.innerHTML = suPlatBtns();
+var b = document.getElementById('suBody'); if (b) b.innerHTML = suBodyHTML();
+var f = document.getElementById('suFootBox'); if (f) f.innerHTML = suFoot();
+}
+function suCartInfo(){
+var ids = SCART ? SCART.ids.filter(function(id){ return !!P[id]; }) : [];
+var sub = 0; ids.forEach(function(id){ sub += P[id].v; });
+var off = ids.length >= 3 ? sub * 0.10 : 0;
+return {n:ids.length, plat:SCART ? SUPLN[SCART.plat] : '', ids:ids, sub:sub, off:off, total:sub - off};
+}
+function suSync(){
+if (!SCART) return;
+var ids = suIds();
+if (!ids.length){ SCART = null; SUOPEN = null; }
+else { SCART.plat = SETUP.plat; SCART.ids = ids; }
+renderCart();
+}
+function suPlat(k){
+if (SETUP.plat === k || !SU_COLS[k]) return;
+SETUP.plat = k;
+var keep = {};
+SU_COLS[k].forEach(function(s){ var id = SETUP.sel[s]; if (id && P[id] && suFit(id).indexOf(k) > -1) keep[s] = id; });
+SETUP.sel = keep;
+suSync(); suPaint();
+}
+function suPick(slot, id){
+if (!P[id]) return;
+SETUP.sel[slot] = id;
+suDClose(); suSync(); suPaint();
+}
+function suClear(slot){ delete SETUP.sel[slot]; suSync(); suPaint(); }
+function suDClose(){
+var el = document.getElementById('suD'); if (el){ el.classList.remove('on'); el.setAttribute('aria-hidden','true'); }
+var s = document.getElementById('suScrim'); if (s) s.classList.remove('on');
+SUOPEN = null;
+}
+function suDraw(slot){
+if (!SETUP.plat) return;
+var d = SU_SLOT[slot], opts = suOpts(slot), cur = SETUP.sel[slot];
+var html = '<div class="su-dh"><div><b>' + esc(d.n) + ' pro ' + suPlatName() + '</b><small>Só o que funciona no ' + suPlatName() + '</small></div><button type="button" class="su-x" data-sudclose="1" aria-label="Fechar">' + SUX + '</button></div><div class="su-dl">';
+if (!opts.length) html += '<p class="empty">Nada compatível no estoque agora. Chama no WhatsApp que a gente encomenda.</p>';
+else html += opts.map(function(id){
+var p = P[id], on = id === cur;
+return '<div class="su-o' + (on ? ' on' : '') + '" style="--sc:' + d.c + '"><span class="su-oi">' + suImg(p) + '</span>' +
+'<span class="su-ot"><span class="su-on">' + esc(p.short || p.t) + '</span><span class="su-os">' + esc(p.f || (p.g + ' · ' + p.p)) + '</span>' +
+'<span class="su-of">Funciona no ' + suFit(id).map(function(k){ return SUPLN[k]; }).join(' · ') + '</span></span>' +
+'<span class="su-op"><b>' + (p.o ? '<s>' + brl(p.o) + '</s>' : '') + brl(p.v) + '</b><button type="button" class="su-ob' + (on ? ' on' : '') + '" data-suppick="' + slot + ':' + id + '">' + (on ? 'Escolhido' : 'Escolher') + '</button></span></div>';
+}).join('');
+html += '</div>';
+var el = document.getElementById('suD'); if (!el) return;
+el.innerHTML = html; el.setAttribute('aria-hidden','false'); el.classList.add('on');
+var s = document.getElementById('suScrim'); if (s) s.classList.add('on');
+SUOPEN = slot;
+}
+function suAddCart(){
+var ids = suIds(); if (!ids.length) return;
+SCART = {plat:SETUP.plat, ids:ids.slice()};
+renderCart(); suPaint(); openCart();
+}
+function suBlock(){
+return '<section class="su" id="su"><div class="su-h"><span class="ax-k"><i></i>01 · Setup</span><h2>Comece pela plataforma</h2>' +
+'<p>Escolha a plataforma, encaixe as peças e leve 3 ou mais com 10% de desconto. O desconto vai junto no pedido do WhatsApp.</p></div>' +
+'<span class="su-cap">Funciona no meu console</span><div class="su-pl" id="suPl">' + suPlatBtns() + '</div>' +
+'<div id="suBody">' + suBodyHTML() + '</div></section>' +
+'<div class="su-scrim" id="suScrim"></div><div class="su-d" id="suD" aria-hidden="true"></div>' +
+'<div id="suFootBox">' + suFoot() + '</div>';
+}
+document.addEventListener('click', function(e){
+var t;
+if ((t = e.target.closest('[data-suplat]'))){ suPlat(t.getAttribute('data-suplat')); return; }
+if ((t = e.target.closest('[data-sux]'))){ e.stopPropagation(); suClear(t.getAttribute('data-sux')); return; }
+if ((t = e.target.closest('[data-suppick]'))){ var a = t.getAttribute('data-suppick').split(':'); suPick(a[0], a[1]); return; }
+if ((t = e.target.closest('[data-sudclose]')) || e.target.id === 'suScrim'){ suDClose(); return; }
+if ((t = e.target.closest('[data-sufoot]'))){ if (t.getAttribute('data-sufoot') === 'add') suAddCart(); else openCart(); return; }
+if ((t = e.target.closest('[data-suslot]')) && SETUP.plat){ suDraw(t.getAttribute('data-suslot')); return; }
+});
+document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && SUOPEN){ suDClose(); } });
+
 function renderTCG(){
 var st = {key:'pokemon', n:'TCG', label:'Pokémon', c:'#ffcb05', id:'pk2', bg:'pball', img:'pfpile', pos:'center 30%', h:'Mega Evolução<br>chegou.', d:'Elite Trainer Box, boxes de coleção e boosters lacrados. Abra o pacote aqui na loja.', items:['pk2','pk1','pk3','pk4','pk5','pk6']};
 return axStage(st) +
@@ -2594,6 +2892,7 @@ es.forEach(function(e){ if (!e.isIntersecting) return; SBI.unobserve(e.target); 
 pend.forEach(function(b){ SBI.observe(b); });
 }
 function afterMount(key, el){
+document.body.classList.toggle('su-on', key === 'acess');
 if (key === 'home'){ initMH(el); initShow(el); initCine(el); initVspot(el); initVit(el); initSecBg(el); } else { clearTimeout(MHT); if (SBI){ SBI.disconnect(); SBI = null; } }
 if (key === 'jogos') initJogos(el);
 if (key === 'controles') initCX(el);
@@ -2670,18 +2969,34 @@ return d;
 function renderCart(){
 var ids = Object.keys(cart), n = 0, tot = 0;
 ids.forEach(function(id){ n += cart[id]; tot += cart[id] * P[id].v; });
-var desc = cupDesc(); tot -= desc;
+var su = suCartInfo();
+var desc = cupDesc(); tot -= desc; tot += su.total; n += su.n;
 document.getElementById('cartN').textContent = n;
 document.getElementById('cartTot').textContent = brl(tot);
 var cl = document.getElementById('cupLine');
 if (cl){ cl.style.display = desc > 0 ? '' : 'none'; if (desc > 0){ document.getElementById('cupLineCode').textContent = CUPOM.code; document.getElementById('cupLineVal').textContent = '- ' + brl(desc); } }
+var sl = document.getElementById('suLine');
+if (sl){
+sl.style.display = su.n ? '' : 'none';
+sl.style.setProperty('--cc', su.off > 0 ? '#f5c542' : '#b44cff');
+if (su.n){ document.getElementById('suLinePlat').textContent = su.plat + ' · ' + su.n + (su.n === 1 ? ' peça' : ' peças'); document.getElementById('suLineOff').textContent = su.off > 0 ? '· -10%' : ''; document.getElementById('suLineVal').textContent = (su.off > 0 ? '- ' + brl(su.off) : brl(su.sub)); }
+}
 document.getElementById('cartParc').textContent = tot ? 'ou 10x de ' + brl(tot/10) + ' no cartão' : 'ou em até 10x no cartão';
 var list = document.getElementById('cartList');
-list.innerHTML = ids.length ? ids.map(function(id){ var p = P[id]; return '<div class="ci">' + thumb(p) + '<div><b>' + esc(p.t) + '</b><small>' + brl(p.v) + '</small></div><div class="qty"><button type="button" data-q="-1" data-id="' + id + '" aria-label="Diminuir">−</button><b>' + cart[id] + '</b><button type="button" data-q="1" data-id="' + id + '" aria-label="Aumentar">+</button></div></div>'; }).join('') : '<p class="empty">Seu carrinho está vazio.</p>';
-var msg = 'Olá! Quero fazer este pedido pelo site:\n' + ids.map(function(id){ return '• ' + cart[id] + 'x ' + P[id].t + ' - ' + brl(cart[id]*P[id].v); }).join('\n') + '\n\n' + (cupDesc() > 0 ? 'Cupom ' + CUPOM.code + ' (-' + brl(cupDesc()) + ')\n' : '') + 'Total: ' + brl(tot) + '\nComo faço pra pagar e retirar?';
-var co = document.getElementById('checkout'); co.href = WA + '?text=' + encodeURIComponent(msg); co.setAttribute('aria-disabled', ids.length ? 'false' : 'true');
+var suRow = su.n ? '<div class="ci"><span class="th" style="--c:#b44cff">' + SUIC.headset + '</span><div><b>Setup ' + su.plat + ' · ' + su.n + (su.n === 1 ? ' peça' : ' peças') + (su.off > 0 ? ' · -10%' : '') + '</b><small>' + su.ids.map(function(id){ return esc(P[id].short || P[id].t); }).join(' · ') + '</small>' + (su.off > 0 ? '<small style="color:#ffd75e">Você economiza ' + brl(su.off) + '</small>' : '') + '</div><div class="qty"><button type="button" class="su-cx" data-suq="1">Remover</button></div></div>' : '';
+list.innerHTML = suRow + (ids.length ? ids.map(function(id){ var p = P[id]; return '<div class="ci">' + thumb(p) + '<div><b>' + esc(p.t) + '</b><small>' + brl(p.v) + '</small></div><div class="qty"><button type="button" data-q="-1" data-id="' + id + '" aria-label="Diminuir">−</button><b>' + cart[id] + '</b><button type="button" data-q="1" data-id="' + id + '" aria-label="Aumentar">+</button></div></div>'; }).join('') : (su.n ? '' : '<p class="empty">Seu carrinho está vazio.</p>'));
+var blocos = [];
+if (ids.length) blocos.push(ids.map(function(id){ return '• ' + cart[id] + 'x ' + P[id].t + ' - ' + brl(cart[id]*P[id].v); }).join('\n'));
+if (su.n){
+var sl2 = 'Setup ' + su.plat + ' · ' + su.n + (su.n === 1 ? ' peça' : ' peças') + (su.off > 0 ? ' · -10%' : '');
+sl2 += '\n' + su.ids.map(function(id){ return '• 1x ' + P[id].t + ' - ' + brl(P[id].v); }).join('\n');
+if (su.off > 0) sl2 += '\nDesconto do setup: -' + brl(su.off);
+blocos.push(sl2);
 }
-document.getElementById('cartList').addEventListener('click', function(e){ var b = e.target.closest('[data-q]'); if (!b) return; var id = b.getAttribute('data-id'); cart[id] += +b.getAttribute('data-q'); if (cart[id] <= 0) delete cart[id]; renderCart(); });
+var msg = 'Olá! Quero fazer este pedido pelo site:\n' + blocos.join('\n\n') + '\n\n' + (desc > 0 ? 'Cupom ' + CUPOM.code + ' (-' + brl(desc) + ')\n' : '') + 'Total: ' + brl(tot) + '\nComo faço pra pagar e retirar?';
+var co = document.getElementById('checkout'); co.href = WA + '?text=' + encodeURIComponent(msg); co.setAttribute('aria-disabled', (ids.length || su.n) ? 'false' : 'true');
+}
+document.getElementById('cartList').addEventListener('click', function(e){ var sb = e.target.closest('[data-suq]'); if (sb){ SCART = null; suDClose(); renderCart(); suPaint(); return; } var b = e.target.closest('[data-q]'); if (!b) return; var id = b.getAttribute('data-id'); cart[id] += +b.getAttribute('data-q'); if (cart[id] <= 0) delete cart[id]; renderCart(); });
 function openCart(){ toast.classList.remove('on'); sheet.classList.add('on'); sheet.setAttribute('aria-hidden','false'); scrim.classList.add('on'); }
 var CUPOM = null;
 try{ var _ck = localStorage.getItem('dypeCupom'); if (_ck) CUPOM = CUPS.filter(function(c){ return c.id === _ck; })[0] || null; }catch(err){}
