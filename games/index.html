@@ -2,6 +2,7 @@
 <html lang="pt-BR" class="light">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="robots" content="noindex, nofollow">
 <title>Game Store Demo</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700;800&display=swap">
@@ -1702,6 +1703,7 @@ body.su-on .foot{padding-bottom:120px;}
 
 /* ---------- GTA VI: central de pre-venda (gtv) ---------- */
 .gtv{--gp:#ff3ea5;--gv:#8b5cf6;--gs:#ffb347;--gl:#e4ff5e;position:relative;color:#fff;}
+.view[data-v="gta"]{animation:none!important;background:radial-gradient(ellipse 90% 40% at 50% 0%,rgba(120,40,200,.2),transparent 62%),#08060e;border-radius:26px;padding:2px 14px 18px;}
 .gtv a{color:inherit;}
 .gtv-kick{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--gs);}
 .gtv-tag{position:absolute;z-index:6;top:14px;left:14px;font-size:10.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#ffd9ef;text-shadow:0 2px 10px rgba(0,0,0,.8);}
@@ -1709,7 +1711,7 @@ body.su-on .foot{padding-bottom:120px;}
 .gtv-hero{position:relative;margin-top:12px;border-radius:26px;overflow:hidden;border:1px solid rgba(180,76,255,.4);background:#07040b;padding:16px 14px 20px;box-shadow:0 50px 90px -62px rgba(255,62,165,.85);}
 .gtv-sky{position:absolute;inset:-9%;background:url(media/gta/sky.webp) center 74%/cover no-repeat;animation:gtvDrift 24s ease-in-out infinite alternate;will-change:transform;}
 @keyframes gtvDrift{from{transform:scale(1.07) translateY(0);}to{transform:scale(1) translateY(-1.8%);}}
-.gtv-sky::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,4,11,.78) 0%,rgba(7,4,11,.2) 26%,rgba(7,4,11,.6) 60%,rgba(7,4,11,.97) 100%);}
+.gtv-sky::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,4,11,.76) 0%,rgba(7,4,11,.3) 15%,rgba(7,4,11,.05) 33%,rgba(7,4,11,.03) 56%,rgba(7,4,11,.4) 78%,rgba(7,4,11,.85) 92%,rgba(7,4,11,.96) 100%);}
 .gtv-grain{position:absolute;inset:0;pointer-events:none;opacity:.1;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.14) 0 1px,transparent 1px 3px);}
 .gtv-skip{position:absolute;z-index:7;top:10px;right:10px;height:36px;padding:0 14px;border-radius:999px;border:1px solid rgba(255,255,255,.3);background:rgba(7,4,11,.62);color:#fff;font-size:12px;font-weight:700;cursor:pointer;}
 .gtv-in{position:relative;z-index:3;display:grid;gap:14px;}
@@ -1791,13 +1793,27 @@ body.su-on .foot{padding-bottom:120px;}
 .gtv-tv.seen .gtv-thumb{transform:scale(1);}
 .gtv-shade{position:absolute;inset:0;background:radial-gradient(62% 72% at 50% 45%,rgba(7,4,11,.32),rgba(7,4,11,.88));}
 .gtv-scan{position:absolute;inset:0;pointer-events:none;opacity:.16;background:repeating-linear-gradient(0deg,#000 0 2px,transparent 2px 4px);}
+.gtv-frame{position:absolute;inset:0;z-index:3;opacity:0;background:#000;pointer-events:none;transition:opacity .45s ease;}
+.gtv-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+.gtv-tv.playing .gtv-frame{opacity:1;pointer-events:auto;}
+.gtv-thumb,.gtv-shade,.gtv-tvc{transition:opacity .45s ease;}
+.gtv-tv.playing .gtv-thumb,.gtv-tv.playing .gtv-shade,.gtv-tv.playing .gtv-tvc{opacity:0;pointer-events:none;}
+.gtv-load2{display:none;align-items:center;gap:9px;font-size:12.5px;font-weight:700;color:#fff;background:rgba(7,4,11,.74);border:1px solid rgba(255,255,255,.26);padding:10px 15px;border-radius:999px;}
+.gtv-load2 i{width:14px;height:14px;border-radius:50%;border:2px solid rgba(255,255,255,.3);border-top-color:var(--gp);animation:gtvSp .8s linear infinite;}
+@keyframes gtvSp{to{transform:rotate(1turn);}}
+.gtv-tv.loading .gtv-load2{display:inline-flex;}
+.gtv-tv.loading #gtvPlay{visibility:hidden;}
+.gtv-yt{margin:10px 0 0;}
+.gtv-yt a{display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:13px;font-weight:700;color:#ffd7ee;text-decoration:none;}
+.gtv-yt a svg{width:15px;height:15px;}
+.gtv-yt a span{border-bottom:1px solid rgba(255,215,238,.4);}
 .gtv-lb{position:absolute;left:0;right:0;z-index:4;height:8.5%;background:#000;transition:transform .9s cubic-bezier(.2,.8,.2,1);}
 .gtv-lb.t{top:0;transform:translateY(-100%);}
 .gtv-lb.b{bottom:0;transform:translateY(100%);}
 .gtv-tv.seen .gtv-lb{transform:none;}
 .gtv-tvc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:10%;}
-.gtv-logo{position:relative;width:clamp(84px,20vw,124px);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;text-align:center;border:2px dashed rgba(255,255,255,.5);background:rgba(7,4,11,.6);font-size:9.5px;font-weight:800;letter-spacing:.1em;line-height:1.35;text-transform:uppercase;}
-.gtv-logo img{width:70%;height:70%;object-fit:contain;}
+.gtv-logo{position:relative;width:clamp(96px,22vw,150px);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;}
+.gtv-logo img{width:88%;height:88%;object-fit:contain;filter:drop-shadow(0 8px 20px rgba(0,0,0,.7));}
 .gtv-logo::before,.gtv-logo::after{content:"";position:absolute;inset:-9px;border-radius:50%;border:2px solid rgba(255,62,165,.45);animation:gtvRing 2.6s ease-out infinite;}
 .gtv-logo::after{animation-delay:1.3s;}
 @keyframes gtvRing{from{transform:scale(.85);opacity:1;}to{transform:scale(1.55);opacity:0;}}
@@ -1817,6 +1833,28 @@ body.su-on .foot{padding-bottom:120px;}
 .gtv-faq details[open] summary::after{content:"–";}
 .gtv-faq p{margin:8px 0 0;font-size:13px;color:rgba(255,255,255,.7);}
 .gtv-credit{margin:16px 0 0;padding:12px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.09);background:linear-gradient(180deg,rgba(19,13,30,.9),rgba(9,7,15,.9));font-size:11.5px;color:rgba(255,255,255,.55);}
+@media(max-width:919px){
+.gtv-hero{padding:12px 12px 14px;min-height:calc(100svh - 208px);}
+.gtv-in{display:block;gap:0;}
+.gtv-stage{width:min(100%,25svh);margin:2px auto 0;}
+.gtv-copy{display:flex;flex-direction:column;align-items:flex-start;margin-top:-22px;padding-top:38px;background:linear-gradient(180deg,rgba(7,4,11,0),rgba(7,4,11,.66) 42%,rgba(7,4,11,.9));}
+.gtv-kick{font-size:10.5px;}
+.gtv-h1{font-size:clamp(23px,7vw,32px);margin:4px 0 6px;}
+.gtv-stamp{font-size:clamp(20px,5.8vw,28px);text-shadow:2px 2px 0 var(--gp),4px 4px 0 #43094f;margin:0 0 8px;}
+.gtv-cd{gap:6px;margin-bottom:8px;}
+.gtv-cd div{padding:4px 0;}
+.gtv-cd b{font-size:23px;}
+.gtv-ctas{width:100%;gap:8px;}
+.gtv-ctas .gtv-btn{font-size:12.5px;padding:0 12px;}
+.gtv-ctas .gtv-btn.pri{flex:1 1 auto;}
+.gtv-ctas .gtv-btn.pri svg{width:26px;height:26px;padding:7px;margin:0 -3px 0 -5px;}
+.gtv-lead{order:9;font-size:12.5px;margin:14px 0 0;max-width:none;}
+.gtv-load{margin-top:12px;}
+}
+@media(max-width:919px) and (max-height:720px){
+.gtv-stage{width:min(100%,21svh);}
+.gtv-lead{display:none;}
+}
 @media(min-width:620px){
 .gtv-opts{grid-template-columns:1fr 1fr;}
 .gtv-grid4{grid-template-columns:1fr 1fr;}
@@ -3514,7 +3552,13 @@ function gtvPays(){ return [
 function gtvPlatN(){ return GTVS.plat === 'ps5' ? 'PS5' : GTVS.plat === 'xbox' ? 'Xbox Series X|S' : ''; }
 function gtvEdN(){ var e = GTV.editions.filter(function(x){ return x.k === GTVS.ed; })[0] || GTV.editions[0]; return e ? e.n : 'Edição padrão'; }
 function gtvPayN(){ return GTVS.pay === 'total' ? 'Pagar tudo em até 10x no cartão' : (GTV.deposit ? 'Sinal de ' + brl(GTV.deposit) + ' e o resto na retirada' : 'Sinal pra garantir a reserva'); }
-function gtvNum(){ return String(Math.floor(1000 + Math.random() * 9000)); }
+function gtvNum(){
+if (GTVS.num) return GTVS.num;
+var n = '';
+try{ n = sessionStorage.getItem('dypeGtvRes') || ''; }catch(e){}
+if (!/^[0-9]{4}$/.test(n)){ n = String(Math.floor(1000 + Math.random() * 9000)); try{ sessionStorage.setItem('dypeGtvRes', n); }catch(e){} }
+GTVS.num = n; return n;
+}
 function gtvReady(){ return !!(GTVS.plat && GTVS.ed && GTVS.pay); }
 function gtvMsg(){
 return 'Olá! Quero reservar o GTA VI na pré-venda.\n\nReserva: ' + (GTVS.num || gtvNum()) +
@@ -3560,21 +3604,59 @@ var vid = p.video ? '<video muted loop playsinline preload="none" poster="media/
 return '<div class="gtv-p" data-p="' + p.n + '" style="' + st + '">' + img + vid + '</div>';
 }).join('');
 }
+function gtvTvPick(k){
+var box = document.getElementById('gtvTv'); if (!box) return;
+var tr = GTV.trailers.filter(function(x){ return x.k === k; })[0] || GTV.trailers[0]; if (!tr) return;
+box.setAttribute('data-t', tr.k);
+box.classList.remove('playing', 'loading');
+var fr = document.getElementById('gtvFrame'); if (fr) fr.innerHTML = '';
+var th = document.getElementById('gtvThumb'); if (th) th.src = tr.t;
+var lb = document.getElementById('gtvLabel'); if (lb) lb.textContent = tr.n;
+var yl = document.getElementById('gtvYtLink'); if (yl) yl.href = 'https://www.youtube.com/watch?v=' + tr.id;
+}
+function gtvTvPlay(){
+var box = document.getElementById('gtvTv'); if (!box) return;
+var tr = GTV.trailers.filter(function(x){ return x.k === box.getAttribute('data-t'); })[0] || GTV.trailers[0]; if (!tr) return;
+var fr = document.getElementById('gtvFrame'); if (!fr) return;
+fr.innerHTML = yt(tr.id);
+box.classList.add('loading');
+var done = false;
+function ready(){
+if (done) return; done = true;
+box.classList.remove('loading');
+box.classList.add('playing');
+if (fr.animate && !reduce) fr.animate([{opacity:0,transform:'scaleY(.02)',background:'#fff'},{opacity:1,transform:'scaleY(.02)',background:'#fff',offset:.35},{opacity:1,transform:'scaleY(1)',background:'#000'}],{duration:460,easing:'cubic-bezier(.2,.9,.2,1)'});
+}
+var ifr = fr.querySelector('iframe');
+if (ifr) ifr.addEventListener('load', ready);
+setTimeout(function(){
+if (done) return;
+var d = fr.querySelector('iframe');
+if (d && d.contentWindow && d.contentWindow.length) ready();
+}, 7000);
+setTimeout(function(){ if (!done) box.classList.remove('loading'); }, 12000);
+}
 function gtvTrailersHTML(){
 if (!GTV.trailers.length) return '';
 var t0 = GTV.trailers[0];
 return '<section class="gtv-sec" id="gtvTvSec">' +
 '<span class="gtv-kick">Rockstar Games</span><h2>Trailers oficiais</h2>' +
-'<p class="gtv-sub">Vídeo do canal oficial. O player só carrega quando você tocar.</p>' +
+'<p class="gtv-sub">Vídeo do canal oficial da Rockstar. O player só carrega quando você tocar aqui — e dá pra abrir direto no YouTube.</p>' +
 (GTV.trailers.length > 1 ? '<div class="gtv-tabs" role="group" aria-label="Escolher trailer">' + GTV.trailers.map(function(t, i){ return '<button type="button" data-gtvt="' + t.k + '" aria-pressed="' + (i === 0 ? 'true' : 'false') + '">' + esc(t.n) + '</button>'; }).join('') + '</div>' : '') +
 '<div class="gtv-tv" id="gtvTv" data-t="' + t0.k + '"><div class="gtv-tv-in">' +
 '<img class="gtv-thumb" id="gtvThumb" src="' + t0.t + '" alt="" decoding="async">' +
 '<div class="gtv-shade"></div><div class="gtv-scan"></div>' +
 '<div class="gtv-lb t"></div><div class="gtv-lb b"></div>' +
-'<div class="gtv-tvc"><div class="gtv-logo">' + (GTV.logo ? '<img src="' + GTV.logo + '" alt="">' : '<span>Rockstar<br>Games</span>') + '</div>' +
-'<button type="button" class="gtv-btn pri" id="gtvPlay">' + I.play + 'Assistir trailer</button></div>' +
-'<span class="gtv-tlabel" id="gtvLabel">' + esc(t0.n) + '</span></div></div>' +
-'<p class="gtv-note">Logo da Rockstar: use o arquivo oficial do kit de imprensa. As transições aqui são genéricas.</p></section>';
+'<div class="gtv-tvc">' +
+(GTV.logo ? '<div class="gtv-logo"><img src="' + GTV.logo + '" alt="Rockstar Games"></div>' : '') +
+'<button type="button" class="gtv-btn pri" id="gtvPlay">' + I.play + 'Assistir trailer</button>' +
+'<span class="gtv-load2" id="gtvLoad2"><i></i>Carregando o player...</span>' +
+'</div>' +
+'<span class="gtv-tlabel" id="gtvLabel">' + esc(t0.n) + '</span>' +
+'<div class="gtv-frame" id="gtvFrame"></div>' +
+'</div></div>' +
+'<p class="gtv-yt"><a id="gtvYtLink" href="https://www.youtube.com/watch?v=' + t0.id + '" target="_blank" rel="noopener">' + I.play + '<span>Assistir no YouTube</span></a></p>' +
+'</section>';
 }
 function gtvRailsHTML(){
 var g = [
@@ -3618,7 +3700,7 @@ return '<div class="gtv">' +
 '</div>' +
 '<p class="gtv-lead">Reserve na Game Store e retire na loja no dia do lançamento. Preço garantido, parcelamento em até 10x e o seu número de reserva sai aqui do lado.</p>' +
 '<div class="gtv-ctas">' +
-'<button type="button" class="gtv-btn pri" data-gtv-res>' + I.check + 'Reservar meu GTA VI</button>' +
+'<button type="button" class="gtv-btn pri" data-gtv-res>' + I.arrow + 'Reservar meu GTA VI</button>' +
 '<button type="button" class="gtv-btn gh" data-gtv-tvjump>' + I.play + 'Ver trailer</button>' +
 '</div></div></div>' +
 '<div class="gtv-load" id="gtvLoad"><div class="gtv-tip" id="gtvTip"></div><div class="gtv-bar"><i id="gtvBarFill"></i></div></div>' +
@@ -3776,9 +3858,9 @@ var t;
 if ((t = e.target.closest('#gtvSkip'))){ var h = document.getElementById('gtvHero'); if (h && h.__gtvSkip) h.__gtvSkip(); return; }
 if ((t = e.target.closest('[data-gtv-res]'))){ var r = document.getElementById('gtvRes'); if (r) r.scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block:'start'}); return; }
 if ((t = e.target.closest('[data-gtv-tvjump]'))){ var tv = document.getElementById('gtvTvSec'); if (tv) tv.scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block:'start'}); return; }
-if ((t = e.target.closest('[data-gtv-plat]'))){ GTVS.plat = t.getAttribute('data-gtv-plat'); GTVS.num = null; gtvPaint(); return; }
-if ((t = e.target.closest('[data-gtv-ed]'))){ GTVS.ed = t.getAttribute('data-gtv-ed'); GTVS.num = null; gtvPaint(); return; }
-if ((t = e.target.closest('[data-gtv-pay]'))){ GTVS.pay = t.getAttribute('data-gtv-pay'); GTVS.num = null; gtvPaint(); return; }
+if ((t = e.target.closest('[data-gtv-plat]'))){ GTVS.plat = t.getAttribute('data-gtv-plat'); gtvPaint(); return; }
+if ((t = e.target.closest('[data-gtv-ed]'))){ GTVS.ed = t.getAttribute('data-gtv-ed'); gtvPaint(); return; }
+if ((t = e.target.closest('[data-gtv-pay]'))){ GTVS.pay = t.getAttribute('data-gtv-pay'); gtvPaint(); return; }
 if ((t = e.target.closest('#gtvFinish'))){ if (!gtvReady()) return; GTVS.num = GTVS.num || gtvNum(); gtvPaint(); window.open(WA + '?text=' + encodeURIComponent(gtvMsg()), '_blank', 'noopener'); return; }
 if ((t = e.target.closest('#gtvWarn'))){
 var ph = document.getElementById('gtvPhone'), v = ph ? ph.value.replace(/\D/g,'') : '';
@@ -3787,24 +3869,11 @@ if (ph) ph.style.borderColor = '';
 window.open(WA + '?text=' + encodeURIComponent('Olá! Quero ser avisado quando o preço do GTA VI sair. Meu WhatsApp: ' + v), '_blank', 'noopener'); return;
 }
 if ((t = e.target.closest('[data-gtvt]'))){
-var k = t.getAttribute('data-gtvt'), tr = GTV.trailers.filter(function(x){ return x.k === k; })[0], box = document.getElementById('gtvTv');
-if (!tr || !box) return;
-box.setAttribute('data-t', k);
 t.parentNode.querySelectorAll('button').forEach(function(b){ b.setAttribute('aria-pressed', String(b === t)); });
-var th = document.getElementById('gtvThumb'); if (th) th.src = tr.t;
-var lb = document.getElementById('gtvLabel'); if (lb) lb.textContent = tr.n;
-var inn = box.querySelector('.gtv-tv-in'); if (inn && inn.querySelector('iframe')) inn.innerHTML = box.__rest || '';
+gtvTvPick(t.getAttribute('data-gtvt'));
 return;
 }
-if ((t = e.target.closest('#gtvPlay'))){
-var box = document.getElementById('gtvTv'); if (!box) return;
-var tr = GTV.trailers.filter(function(x){ return x.k === box.getAttribute('data-t'); })[0] || GTV.trailers[0]; if (!tr) return;
-var inn = box.querySelector('.gtv-tv-in'); if (!inn) return;
-if (!box.__rest) box.__rest = inn.innerHTML;
-inn.innerHTML = yt(tr.id);
-if (inn.animate && !reduce) inn.animate([{opacity:1,transform:'scaleY(.02)',background:'#fff'},{opacity:1,transform:'scaleY(.02)',background:'#fff',offset:.35},{opacity:1,transform:'scaleY(1)',background:'#000'}],{duration:460,easing:'cubic-bezier(.2,.9,.2,1)'});
-return;
-}
+if ((t = e.target.closest('#gtvPlay'))){ gtvTvPlay(); return; }
 if ((t = e.target.closest('[data-gtv-rail]'))){
 var rail = document.getElementById('gtvRail'); if (!rail) return;
 rail.scrollBy({left: rail.clientWidth * .8 * (+t.getAttribute('data-gtv-rail')), behavior: reduce ? 'auto' : 'smooth'});
@@ -4001,7 +4070,7 @@ document.getElementById('menuBtn').addEventListener('click', openMenu);
 document.querySelector('[data-menu]').addEventListener('click', openMenu);
 menu.querySelector('[data-close]').addEventListener('click', function(){ closeAll(); });
 function closeAll(){ menu.classList.remove('on'); menu.setAttribute('aria-hidden','true'); modal.classList.remove('on'); sheet.classList.remove('on'); sheet.setAttribute('aria-hidden','true'); scrim.classList.remove('on'); setTimeout(function(){ if (!modal.classList.contains('on')) mbox.innerHTML = ''; }, 400); }
-function yt(id){ return '<iframe src="https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&playsinline=1" title="Trailer oficial Grand Theft Auto VI" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>'; }
+function yt(id){ return '<iframe src="https://www.youtube.com/embed/' + id + '?playsinline=1&rel=0" title="Trailer oficial" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>'; }
 document.addEventListener('click', function(e){
 var t;
 if ((t = e.target.closest('[data-spn]'))){ var sr = t.closest('.show').querySelector('#showRail'); if (sr){ var card = sr.querySelector('.sp'); var step = (card ? card.offsetWidth : sr.clientWidth * .8) + 18; sr.scrollBy({left: step * (+t.getAttribute('data-spn')), behavior: reduce ? 'auto' : 'smooth'}); } return; }
