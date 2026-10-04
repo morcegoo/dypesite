@@ -1112,30 +1112,112 @@ background:radial-gradient(120% 90% at 78% 50%,color-mix(in srgb,var(--c) 34%,#0
 .pk-bn p{font-size:13px;}
 }
 
-/* ===== aba Jogos: hero + catalogo ===== */
-.jg-hero{position:relative;overflow:hidden;margin:16px 0 0;border:1px solid var(--line);border-radius:26px;background:radial-gradient(120% 140% at 88% 6%,rgba(180,76,255,.16),transparent 60%),linear-gradient(150deg,#fff,#f6f1ff 68%,#fff);box-shadow:0 34px 74px -56px rgba(60,30,120,.75);}
-.jgh-in{position:relative;display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,1fr);gap:28px;align-items:center;padding:32px 34px;}
+/* ===== aba Jogos v2: escolha a plataforma + biblioteca ===== */
+.jgh{position:relative;margin:14px 0 0;padding:26px 24px 24px;border-radius:26px;border:1px solid var(--line);background:radial-gradient(120% 130% at 92% -6%,rgba(180,76,255,.16),transparent 58%),linear-gradient(165deg,#fff,#f7f2ff 72%,#fff);box-shadow:0 30px 66px -56px rgba(60,30,120,.75);}
 .jgh-k{display:inline-flex;align-items:center;gap:8px;font-size:10.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);background:rgba(139,47,224,.10);border:1px solid rgba(139,47,224,.30);border-radius:999px;padding:6px 12px;}
-.jgh-h1{margin:14px 0 0;font-family:'Poppins','Inter',sans-serif;font-size:clamp(32px,4.4vw,54px);font-weight:800;line-height:1.02;letter-spacing:-.03em;color:var(--ink);}
-.jgh-h1 em{font-style:normal;background:linear-gradient(92deg,var(--acc),#b44cff 60%,#ff5aa8);-webkit-background-clip:text;background-clip:text;color:transparent;}
-.jgh-p{margin:12px 0 0;max-width:54ch;font-size:15px;line-height:1.55;color:var(--mut);}
-.jgh-pills{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0;}
-.jgh-pills span{display:inline-flex;align-items:baseline;gap:6px;padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:12.5px;color:var(--mut);}
-.jgh-pills b{font-family:'Poppins',sans-serif;font-size:15px;font-weight:800;color:var(--ink);}
-.jgh-btns{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 0;}
-.jgh-mos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;}
-.jgh-t{position:relative;padding:0;border:1px solid var(--line);border-radius:15px;overflow:hidden;background:#f5f1ff;cursor:pointer;aspect-ratio:1/1;box-shadow:0 16px 32px -26px rgba(60,30,120,.7);transition:transform .26s cubic-bezier(.2,.7,.3,1),box-shadow .26s,border-color .26s;}
-.jgh-t img,.jgh-t svg{width:100%;height:100%;display:block;object-fit:cover;}
-.jgh-t:hover{transform:translateY(-4px);border-color:var(--acc);box-shadow:0 24px 42px -24px rgba(139,47,224,.55);}
-.jgh-b{position:absolute;left:8px;top:8px;z-index:2;padding:4px 8px;border-radius:999px;background:rgba(12,8,24,.72);color:#fff;font-family:'Poppins',sans-serif;font-size:9.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;}
-@media (max-width:900px){
-.jg-hero{margin-top:12px;border-radius:20px;}
-.jgh-in{grid-template-columns:1fr;gap:20px;padding:22px 18px;}
-.jgh-p{font-size:13.5px;}
-.jgh-mos{gap:8px;}
-.jgh-btns .btn{flex:1 1 auto;justify-content:center;}
+.jgh-h1{margin:16px 0 0;font-family:'Poppins','Inter',sans-serif;font-size:clamp(28px,4.4vw,48px);font-weight:800;line-height:1.04;letter-spacing:-.03em;color:var(--ink);}
+.jgh-p{margin:12px 0 20px;max-width:58ch;font-size:15px;line-height:1.55;color:var(--mut);}
+.jgw{display:block;}
+.jgp-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
+.jgp{position:relative;overflow:hidden;display:flex;flex-direction:column;gap:4px;min-height:136px;padding:16px;border-radius:20px;border:1.5px solid var(--line2);background:#fff;text-align:left;cursor:pointer;color:var(--ink);transition:transform .24s cubic-bezier(.2,.7,.3,1),border-color .24s,box-shadow .24s;}
+.jgp::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(150deg,color-mix(in srgb,var(--pc) 15%,transparent),transparent 60%);}
+.jgp:hover,.jgp:focus-visible{transform:translateY(-3px);border-color:var(--pc);box-shadow:0 18px 34px -24px var(--pc);outline:none;}
+.jgp-top{position:relative;display:flex;align-items:center;gap:10px;}
+.jgp-ic{display:grid;place-items:center;width:38px;height:38px;flex:none;border-radius:12px;background:var(--pc);color:#fff;box-shadow:0 10px 20px -14px var(--pc);}
+.jgp-ic svg{width:20px;height:20px;}
+.jgp-n{font-family:'Poppins',sans-serif;font-size:16px;font-weight:800;letter-spacing:-.01em;}
+.jgp-s{position:relative;font-size:12.5px;color:var(--mut);}
+.jgp-c{position:relative;margin-top:auto;display:inline-flex;align-items:baseline;gap:5px;font-size:11.5px;color:var(--mut2);}
+.jgp-c b{font-family:'Poppins',sans-serif;font-size:17px;font-weight:800;color:var(--pc);}
+.jgp-go{position:absolute;right:13px;bottom:13px;width:15px;height:15px;color:var(--pc);opacity:.7;}
+.jgp-go svg{width:15px;height:15px;}
+.jgr-rail{display:flex;gap:12px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;padding:4px 2px 10px;scrollbar-width:none;}
+.jgr-rail::-webkit-scrollbar{display:none;}
+.jgr-rail > .jgc{flex:0 0 44%;min-width:150px;scroll-snap-align:start;}
+.jgw-cta{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin:18px 0 0;padding:18px 20px;border-radius:20px;border:1px solid var(--line);background:linear-gradient(120deg,rgba(139,47,224,.10),#fff 72%);}
+.jgw-cta b{display:block;font-family:'Poppins',sans-serif;font-size:16px;}
+.jgw-cta span{font-size:13.5px;color:var(--mut);}
+.jgc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
+.jgc{position:relative;display:flex;flex-direction:column;border-radius:18px;overflow:hidden;background:#fff;border:1px solid var(--line);box-shadow:0 12px 30px -26px rgba(60,30,120,.6);transition:border-color .2s,box-shadow .2s,transform .2s;}
+.jgc:hover{border-color:var(--pc);box-shadow:0 18px 34px -22px var(--pc);transform:translateY(-2px);}
+.jgc-hit{position:absolute;inset:0;z-index:1;border:0;background:none;cursor:pointer;border-radius:inherit;}
+.jgc-im{position:relative;display:flex;align-items:center;justify-content:center;width:100%;aspect-ratio:3/4;overflow:hidden;background:radial-gradient(circle at 50% 42%,#2b2744,#1a1829 72%);}
+.jgc-im img,.jgc-im svg{width:100%;height:100%;object-fit:cover;display:block;}
+.jgc-im svg.cvw{height:100%;width:auto;aspect-ratio:3/4;}
+.jgc-bdg{position:absolute;left:8px;top:8px;z-index:2;padding:4px 9px;border-radius:999px;background:#fff;color:#0f0a1c;font-family:'Poppins',sans-serif;font-size:9.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;font-style:normal;pointer-events:none;}
+.jgc-bdg.is-seminovo{background:#e8e3f6;color:#4a3a72;}
+.jgc-bdg.is-pre{background:var(--acc);color:#fff;}
+.jgc-off{position:absolute;right:8px;top:8px;z-index:2;padding:4px 9px;border-radius:999px;background:#ff2e8a;color:#fff;font-family:'Poppins',sans-serif;font-size:10px;font-weight:800;font-style:normal;pointer-events:none;}
+.jgc-add{position:absolute;right:8px;bottom:8px;z-index:3;width:44px;height:44px;border-radius:14px;border:0;background:var(--acc);color:#fff;display:grid;place-items:center;cursor:pointer;box-shadow:0 10px 22px -10px rgba(139,47,224,.9);transition:background .2s,transform .2s;}
+.jgc-add:hover{background:var(--acc-h);transform:translateY(-2px);}
+.jgc-add svg{width:19px;height:19px;}
+.jgc-bd{display:flex;flex-direction:column;justify-content:space-between;gap:6px;flex:1;padding:11px 12px 13px;}
+.jgc-bd h4{margin:0;font-size:13.5px;font-weight:600;line-height:1.28;color:var(--ink);display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;min-height:2.56em;}
+.jgc-p{font-family:'Poppins',sans-serif;font-size:16px;font-weight:800;color:var(--ink);white-space:nowrap;}
+.jgc-p s{font-family:'Inter',sans-serif;font-size:11.5px;font-weight:400;color:var(--mut2);margin-right:5px;}
+.jgc-p em{font-style:normal;font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--pc);}
+.jgc-empty{display:flex;flex-direction:column;align-items:center;gap:10px;padding:34px 18px;border-radius:20px;border:1.5px dashed var(--line2);text-align:center;}
+.jgc-empty b{font-family:'Poppins',sans-serif;font-size:16px;color:var(--ink);}
+.jgc-empty span{font-size:13.5px;color:var(--mut);}
+.jgl-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:14px 0 16px;}
+.jgl-back{display:inline-flex;align-items:center;gap:6px;height:40px;padding:0 14px;border-radius:12px;border:1.5px solid var(--line2);background:#fff;color:var(--ink);font-family:inherit;font-size:13.5px;font-weight:600;cursor:pointer;}
+.jgl-back svg{width:15px;height:15px;}
+.jgl-back:hover{border-color:var(--pc);color:var(--pc);}
+.jgl-seg{display:flex;gap:6px;flex:1;min-width:0;overflow-x:auto;padding:4px;border-radius:14px;background:rgba(139,47,224,.07);border:1px solid var(--line);scrollbar-width:none;}
+.jgl-seg::-webkit-scrollbar{display:none;}
+.jgl-seg button{flex:none;height:34px;padding:0 14px;border-radius:10px;border:0;background:none;color:var(--mut);font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;transition:background .2s,color .2s;}
+.jgl-seg button:hover{color:var(--ink);}
+.jgl-seg button.on{background:var(--pc);color:#fff;box-shadow:0 8px 18px -12px var(--pc);}
+.jgl-seg button.on:hover{color:#fff;}
+.jgd{display:grid;grid-template-columns:150px minmax(0,1fr);gap:18px;align-items:center;margin:0 0 18px;padding:16px;border-radius:22px;overflow:hidden;border:1px solid color-mix(in srgb,var(--pc) 30%,var(--line));background:linear-gradient(135deg,color-mix(in srgb,var(--pc) 12%,#fff),#fff 62%);}
+.jgd-im{position:relative;display:block;width:100%;aspect-ratio:3/4;border-radius:14px;overflow:hidden;background:#15131f;box-shadow:0 18px 34px -22px rgba(0,0,0,.55);}
+.jgd-im img,.jgd-im svg{width:100%;height:100%;object-fit:cover;display:block;}
+.jgd-k{font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--pc);}
+.jgd-tx h2{margin:8px 0 6px;font-family:'Poppins',sans-serif;font-size:clamp(22px,3vw,34px);font-weight:800;line-height:1.05;letter-spacing:-.02em;color:var(--ink);}
+.jgd-tx p{margin:0 0 12px;font-size:13px;color:var(--mut);}
+.jgd-act{display:flex;flex-wrap:wrap;align-items:center;gap:8px;}
+.jgd-pr{font-family:'Poppins',sans-serif;font-size:19px;font-weight:800;color:var(--ink);}
+.jgd-pr s{font-size:12px;font-weight:400;color:var(--mut2);margin-right:5px;}
+.jgd-note{font-size:12.5px;color:var(--mut2);}
+.jgl-tools{display:flex;flex-direction:column;gap:10px;margin:0 0 12px;}
+.jgl-q{display:flex;align-items:center;gap:10px;height:46px;padding:0 14px;border-radius:14px;border:1.5px solid var(--line2);background:#fff;}
+.jgl-q:focus-within{border-color:var(--pc);box-shadow:0 0 0 3px color-mix(in srgb,var(--pc) 16%,transparent);}
+.jgl-q svg{width:16px;height:16px;flex:none;color:var(--mut);}
+.jgl-q input{flex:1;min-width:0;border:0;background:none;color:var(--ink);font-family:inherit;font-size:14px;outline:none;}
+.jgl-frow{display:flex;align-items:flex-start;gap:10px;}
+.jgl-fl{flex:none;width:54px;padding-top:9px;font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--mut2);}
+.jgl-chips{display:flex;flex:1;gap:7px;overflow-x:auto;padding:2px 2px 6px;scrollbar-width:none;}
+.jgl-chips::-webkit-scrollbar{display:none;}
+.jgl-chips button{flex:none;height:36px;padding:0 14px;border-radius:999px;border:1.5px solid var(--line2);background:#fff;color:var(--mut);font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;transition:border-color .18s,background .18s,color .18s;}
+.jgl-chips button:hover{color:var(--ink);border-color:var(--pc);}
+.jgl-chips button.on{background:var(--pc);border-color:var(--pc);color:#fff;}
+.jgl-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:2px 0 14px;}
+#jgn{font-size:13.5px;color:var(--mut2);}
+#jgn b{font-family:'Poppins',sans-serif;font-size:16px;color:var(--ink);}
+.jgl-ord{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--mut2);}
+.jgl-ord select{height:38px;padding:0 10px;border-radius:11px;border:1.5px solid var(--line2);background:#fff;color:var(--ink);font-family:inherit;font-size:13px;}
+@media (min-width:700px){
+.jgp-grid{gap:14px;}
+.jgp{min-height:150px;padding:18px;}
+.jgp-n{font-size:18px;}
+.jgc-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;}
+.jgr-rail > .jgc{flex:0 0 calc((100% - 48px)/4);min-width:0;}
+.jgd{grid-template-columns:190px minmax(0,1fr);gap:22px;padding:20px;}
 }
-@media (prefers-reduced-motion:reduce){.jgh-t{transition:none;}}
+@media (min-width:1020px){.jgc-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;}}
+@media (max-width:600px){
+.jgh{padding:20px 16px 18px;border-radius:20px;}
+.jgp{min-height:126px;padding:14px;}
+.jgp-n{font-size:15px;}
+.jgp-ic{width:34px;height:34px;} .jgp-ic svg{width:18px;height:18px;}
+.jgw-cta{flex-direction:column;align-items:stretch;} .jgw-cta .btn{justify-content:center;}
+.jgd{grid-template-columns:104px minmax(0,1fr);gap:14px;padding:13px;border-radius:18px;}
+.jgd-tx h2{font-size:20px;}
+.jgl-frow{flex-direction:column;gap:2px;} .jgl-fl{width:auto;padding-top:0;}
+.jgl-bar{flex-direction:column;align-items:flex-start;gap:6px;}
+.jgl-ord{width:100%;justify-content:space-between;} .jgl-ord select{flex:1;}
+.jgl-top{flex-direction:column;align-items:stretch;gap:8px;} .jgl-back{align-self:flex-start;}
+}
 </style>
 <div class="demo">Demonstração · produtos e preços de exemplo · imagens de GTA VI: Rockstar Games</div>
 <header class="hd"><div class="wrap">
@@ -1621,33 +1703,161 @@ return brandsHTML() + showcase([{label:'Consoles', items:['p1','c1','c7','x1','x
 '<section class="block">' + secT('Controles') + grid([P.a3].concat(XB.slice(0,2), DS.slice(0,1))) + '</section>';
 }
 var CAL = [['29','set','Minecraft Dungeons II','Acabou de sair'],['02','out','Ace Combat 8: Wings of Theve','Já disponível'],['06','out','Gears of War: E-Day','Pré-venda'],['29','out','Phantom Blade Zero','Pré-venda'],['19','nov','Grand Theft Auto VI','Pré-venda aberta na loja','hot']];
-function heroJogos(){
-var d = libData(); if (!d.length) return '';
-var picks = [];
-[0,1,2,4,6,8].forEach(function(i){ if (d[i]) picks.push(d[i]); });
-var n = byCat('jogos').length, pre = CAL.filter(function(c){ return /Pr[eé]/.test(c[3]); }).length;
-return '<section class="jg-hero"><div class="jgh-in"><div class="jgh-l">' +
-'<span class="jgh-k">Loja de games \u00b7 novos, usados e pr\u00e9-vendas</span>' +
-'<h1 class="jgh-h1">Cat\u00e1logo de <em>jogos</em></h1>' +
-'<p class="jgh-p">Do cl\u00e1ssico de PS2 ao lan\u00e7amento do ano. Escolha aqui, chame no WhatsApp e retire na loja no mesmo dia.</p>' +
-'<div class="jgh-pills"><span><b>' + n + '</b> t\u00edtulos</span><span><b>' + RETRO.length + '</b> cl\u00e1ssicos PS2</span><span><b>' + pre + '</b> pr\u00e9-vendas</span></div>' +
-'<div class="jgh-btns"><button type="button" class="btn pri" data-lib-go>Ver vitrine ' + I.arrow + '</button><button type="button" class="btn" data-wa="Ol\u00e1! Quero ver os jogos dispon\u00edveis">' + I.wa + ' Chamar no WhatsApp</button></div>' +
-'</div><div class="jgh-mos">' + picks.map(function(a){
-var art = (a.cov || a.art) ? '<img loading="lazy" decoding="async" src="' + (a.cov || a.art) + '" alt="">' : libSvg(a);
-return '<button type="button" class="jgh-t" data-pi="' + a.id + '" title="' + esc(a.t) + '" aria-label="' + esc(a.t) + '">' + art + '<span class="jgh-b">' + esc(a.badge) + '</span></button>';
-}).join('') + '</div></div></section>';
+/* ============ aba Jogos v2: escolha a plataforma -> biblioteca ============ */
+var JGP = [
+{key:'ps', n:'PlayStation', s:'PS5 · PS4', c:'#2b7bff'},
+{key:'xb', n:'Xbox', s:'Series · One', c:'#1fbf5f'},
+{key:'nt', n:'Nintendo', s:'Switch 2 · Switch', c:'#ff4b4b'},
+{key:'ps2', n:'Clássicos', s:'PS2 · retrô', c:'#f0b93a'}
+];
+var JGPLAT = {}; JGP.forEach(function(p){ JGPLAT[p.key] = p; });
+var JGIC = {
+ps:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 4.5h5.2a3.6 3.6 0 0 1 0 7.2H6.5z"/><path d="M6.5 11.7V20"/></svg>',
+xb:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M5.5 5.5l13 13M18.5 5.5l-13 13"/></svg>',
+nt:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="6"/><circle cx="8.6" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="15.4" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg>',
+ps2:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="8.2"/><circle cx="12" cy="12" r="2.3"/></svg>'
+};
+/* seminovo na loja = jogo usado, testado na bancada, com capa e disco. Mídia sem caixa também entra
+   como seminovo e o vendedor confirma o item exato no WhatsApp. */
+var JGTIPO = {gta:'pre', j9:'lacrado', j10:'lacrado', j11:'lacrado', j12:'lacrado', j13:'lacrado', j14:'lacrado', j15:'lacrado', j16:'seminovo'};
+var JGGEN = {j1:'Corrida', j2:'Aventura', j3:'Esporte', j4:'Ação', j5:'Família', j6:'Aventura', j7:'Ação', j8:'Família', j9:'Ação', j10:'Corrida', j11:'Ação', j12:'Esporte', j13:'Esporte', j14:'Esporte', j15:'Aventura', j16:'Ação'};
+var JGRG = {'r-gow2':'Ação','r-gtasa':'Aventura','r-nfsu2':'Corrida','r-nfsmw':'Corrida','r-gt4':'Corrida','r-f106':'Corrida','r-dhd':'Corrida','r-svr11':'Luta'};
+var JGBADGE = {lacrado:'Novo', seminovo:'Seminovo', pre:'Pré-venda'};
+var JGFILT = [['tudo','Tudo'],['lacrado','Lacrados'],['seminovo','Seminovos'],['pre','Pré-venda']];
+var JGGENS = [['todos','Todos'],['Ação','Ação'],['Aventura','Aventura'],['Corrida','Corrida'],['Esporte','Esporte'],['Luta','Luta'],['Família','Família']];
+var JGORDS = [['vendidos','Mais vendidos'],['menor','Menor preço'],['maior','Maior preço']];
+var JGS = {plat:null, tipo:'tudo', gen:'todos', ord:'vendidos', q:''};
+var JGCAT = null;
+function jgAll(){
+if (!JGCAT){
+var out = [{id:'gta', t:'GTA VI', gen:'Aventura', tipo:'pre', pls:['ps','xb'], go:'gta', img:'media/cov-gta.webp?v=1', sub:'Rockstar Games · 2026 · PS5 · Xbox Series'}];
+byCat('jogos').forEach(function(p){ out.push({id:p.id, t:p.t, gen:JGGEN[p.id] || 'Ação', tipo:JGTIPO[p.id] || 'lacrado', pls:(p.pl || []).slice(), v:p.v, o:p.o, p:p, sub:(p.dev ? p.dev + ' · ' : '') + p.p}); });
+RETRO.forEach(function(g){ out.push({id:g.id, t:g.t, gen:JGRG[g.id] || 'Ação', tipo:'seminovo', pls:['ps2'], v:g.v, p:g, retro:1, sub:g.dev + ' · ' + g.ano}); });
+JGCAT = out;
 }
-function catJogos(){
-return '<section class="block alt" id="jg-cat">' + secT('Cat\u00e1logo completo', '<span class="pill" id="jg-count">' + byCat('jogos').length + ' jogos</span>', 'Filtre por plataforma \u00b7 toque no jogo pra ver a ficha') +
-'<div class="fchips" id="jf"><button type="button" class="on" data-pl="all">Todos</button><button type="button" data-pl="ps">PlayStation</button><button type="button" data-pl="xb">Xbox</button><button type="button" data-pl="nt">Nintendo</button></div>' +
-'<div id="jg">' + grid(byCat('jogos')) + '</div></section>';
+return JGCAT;
+}
+function jgOf(key){ return jgAll().filter(function(x){ return x.pls.indexOf(key) > -1; }); }
+function jgImg(x){
+if (x.img) return '<img loading="lazy" decoding="async" src="' + x.img + '" alt="">';
+var p = x.p;
+if (p.photo) return photoImg(p);
+if (p.img) return '<img loading="lazy" decoding="async" src="' + p.img + '" alt="">';
+if (p.m) return coverWrap(p);
+return padArt(p.type, p.a);
+}
+function jgCard(x, c){
+var pre = x.tipo === 'pre';
+var off = (!pre && x.o) ? Math.round((1 - x.v / x.o) * 100) : 0;
+var hit = x.go ? ' data-go="' + x.go + '"' : x.retro ? ' data-gm="' + x.id + '"' : ' data-pi="' + x.id + '"';
+return '<article class="jgc" style="--pc:' + c + '">' +
+'<button type="button" class="jgc-hit"' + hit + ' aria-label="Ver ' + esc(x.t) + '"></button>' +
+'<span class="jgc-im">' + jgImg(x) +
+'<i class="jgc-bdg' + (x.tipo === 'lacrado' ? '' : ' is-' + x.tipo) + '">' + (JGBADGE[x.tipo] || 'Novo') + '</i>' +
+(off ? '<i class="jgc-off">-' + off + '%</i>' : '') +
+(pre ? '' : '<button type="button" class="jgc-add" data-add="' + x.id + '" aria-label="Adicionar ' + esc(x.t) + '">' + I.plus + '</button>') +
+'</span>' +
+'<div class="jgc-bd"><h4>' + esc(x.t) + '</h4><span class="jgc-p">' +
+(pre ? '<em>Pré-venda</em>' : (x.o ? '<s>' + brl(x.o) + '</s>' : '') + brl(x.v)) +
+'</span></div></article>';
+}
+function jgGrid(list, c){
+if (!list.length) return '<div class="jgc-empty"><b>Nenhum jogo nesse filtro.</b><span>Chama no WhatsApp que a gente encomenda.</span><button type="button" class="btn pri" data-wa="Nenhum jogo nesse filtro, quero encomendar">' + I.wa + ' Chamar no WhatsApp</button></div>';
+return '<div class="jgc-grid">' + list.map(function(x){ return jgCard(x, c); }).join('') + '</div>';
+}
+function jgSorted(list){
+var l = list.slice();
+if (JGS.ord === 'menor') l.sort(function(a,b){ return (a.v == null ? 1e9 : a.v) - (b.v == null ? 1e9 : b.v); });
+else if (JGS.ord === 'maior') l.sort(function(a,b){ return (b.v == null ? -1 : b.v) - (a.v == null ? -1 : a.v); });
+else l.sort(function(a,b){ return (b.tipo === 'pre' ? 1 : 0) - (a.tipo === 'pre' ? 1 : 0); });
+return l;
+}
+function jgFiltered(key){
+var q = JGS.q.trim().toLowerCase();
+return jgOf(key).filter(function(x){
+if (JGS.tipo !== 'tudo' && x.tipo !== JGS.tipo) return false;
+if (JGS.gen !== 'todos' && x.gen !== JGS.gen) return false;
+if (q && x.t.toLowerCase().indexOf(q) < 0) return false;
+return true;
+});
+}
+function jgPaint(){
+var g = document.getElementById('jggrid'); if (!g || !JGS.plat) return;
+var key = JGS.plat, l = jgSorted(jgFiltered(key)), tot = jgOf(key).length;
+g.innerHTML = jgGrid(l, JGPLAT[key].c);
+var n = document.getElementById('jgn');
+if (n) n.innerHTML = !tot ? '<b>0</b> jogos' : (l.length === tot ? '<b>' + tot + '</b> ' + (tot === 1 ? 'jogo' : 'jogos') : (l.length ? '<b>' + l.length + '</b> de <b>' + tot + '</b> jogos' : 'Nenhum de <b>' + tot + '</b> jogos'));
+}
+function jgFeatured(key){
+var id = key === 'nt' ? 'j5' : 'gta', x = null;
+jgAll().forEach(function(i){ if (i.id === id) x = i; });
+if (!x) return '';
+var pre = x.tipo === 'pre';
+return '<div class="jgd">' + '<span class="jgd-im">' + jgImg(x) + '</span><div class="jgd-tx">' +
+'<span class="jgd-k">' + (pre ? 'Pré-venda aberta' : 'Lançamento') + '</span><h2>' + esc(x.t) + '</h2><p>' + esc(x.sub) + '</p>' +
+'<div class="jgd-act">' + (pre
+? '<button type="button" class="btn pri" data-go="gta">Reservar agora ' + I.arrow + '</button><span class="jgd-note">Combine o valor e a retirada no WhatsApp.</span>'
+: '<b class="jgd-pr">' + (x.o ? '<s>' + brl(x.o) + '</s>' : '') + brl(x.v) + '</b><button type="button" class="btn pri" data-add="' + x.id + '">' + I.plus + ' Adicionar</button><button type="button" class="btn" data-pi="' + x.id + '">Ver ficha</button>') +
+'</div></div></div>';
+}
+function jgHome(){
+var hot = ['j15','j13','j14','j16'].map(function(id){ var x = null; jgAll().forEach(function(i){ if (i.id === id) x = i; }); return x; }).filter(Boolean);
+return '<section class="jgh">' +
+'<span class="jgh-k">Loja de games · novos, seminovos e pré-vendas</span>' +
+'<h1 class="jgh-h1">Pra qual console é o seu jogo?</h1>' +
+'<p class="jgh-p">Escolha a plataforma e veja o que já chegou na loja. Não achou? A gente encomenda pra você e chama no WhatsApp.</p>' +
+'<div class="jgp-grid">' + JGP.map(function(p){
+var n = jgOf(p.key).length;
+return '<button type="button" class="jgp" data-jgp="' + p.key + '" style="--pc:' + p.c + '"><span class="jgp-top"><i class="jgp-ic">' + (JGIC[p.key] || '') + '</i><b class="jgp-n">' + p.n + '</b></span><span class="jgp-s">' + p.s + '</span><span class="jgp-c"><b>' + n + '</b> ' + (n === 1 ? 'jogo' : 'jogos') + '</span><i class="jgp-go">' + I.arrow + '</i></button>';
+}).join('') + '</div></section>' +
+'<section class="block">' + secT('Mais procurados agora', '', 'De qualquer plataforma · toque pra ver a ficha') + '<div class="jgr-rail">' + hot.map(function(x){ return jgCard(x, '#b44cff'); }).join('') + '</div></section>' +
+'<div class="jgw-cta"><div><b>Não achou o jogo?</b><span>Chama no WhatsApp que a gente encomenda.</span></div><button type="button" class="btn pri" data-wa="Quero encomendar um jogo que não achei no site">' + I.wa + ' Chamar no WhatsApp</button></div>' +
+calJogos();
+}
+function jgChips(list, cur, attr){
+return list.map(function(f){ return '<button type="button" data-' + attr + '="' + f[0] + '"' + (f[0] === cur ? ' class="on"' : '') + '>' + f[1] + '</button>'; }).join('');
+}
+function jgLib(key){
+var p = JGPLAT[key];
+return '<section class="jgl" style="--pc:' + p.c + '">' +
+'<div class="jgl-top"><button type="button" class="jgl-back" data-jgback>' + I.left + ' Voltar</button>' +
+'<div class="jgl-seg">' + JGP.map(function(q){ return '<button type="button" data-jgp="' + q.key + '"' + (q.key === key ? ' class="on"' : '') + '>' + q.n + '</button>'; }).join('') + '</div></div>' +
+(key === 'ps2' ? shelfHTML() : jgFeatured(key)) +
+'<div class="jgl-tools">' +
+'<label class="jgl-q"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="jgq" type="search" value="' + esc(JGS.q) + '" placeholder="Buscar em ' + esc(p.n) + '…" aria-label="Buscar em ' + esc(p.n) + '"></label>' +
+'<div class="jgl-frow"><span class="jgl-fl">Tipo</span><div class="jgl-chips">' + jgChips(JGFILT, JGS.tipo, 'jgtipo') + '</div></div>' +
+'<div class="jgl-frow"><span class="jgl-fl">Gênero</span><div class="jgl-chips">' + jgChips(JGGENS, JGS.gen, 'jggen') + '</div></div>' +
+'</div>' +
+'<div class="jgl-bar"><span id="jgn"></span><label class="jgl-ord">Ordenar<select id="jgo">' + JGORDS.map(function(o){ return '<option value="' + o[0] + '"' + (JGS.ord === o[0] ? ' selected' : '') + '>' + o[1] + '</option>'; }).join('') + '</select></label></div>' +
+'<div id="jggrid"></div>' +
+'<p class="credit">Seminovo aqui é jogo usado e testado na loja, com capa e disco. Mídia sem caixa também entra como seminovo e o vendedor confirma o item exato no WhatsApp.</p>' +
+'</section>';
+}
+function jgSwap(){
+var w = document.getElementById('jgw'); if (!w) return;
+w.innerHTML = JGS.plat ? jgLib(JGS.plat) : jgHome();
+if (JGS.plat){ jgPaint(); if (JGS.plat === 'ps2'){ var v = document.querySelector('.view.on'); if (v) initShelf(v); } }
+try { window.scrollTo(0, 0); } catch (e) {}
+}
+function initJogos(root){
+var w = root.querySelector('#jgw'); if (!w) return;
+w.addEventListener('click', function(e){
+var b;
+if ((b = e.target.closest('[data-jgp]'))){ JGS.plat = b.getAttribute('data-jgp'); JGS.tipo = 'tudo'; JGS.gen = 'todos'; JGS.q = ''; JGS.ord = 'vendidos'; jgSwap(); return; }
+if (e.target.closest('[data-jgback]')){ JGS.plat = null; jgSwap(); return; }
+if ((b = e.target.closest('[data-jgtipo]'))){ JGS.tipo = b.getAttribute('data-jgtipo'); b.parentNode.querySelectorAll('button').forEach(function(x){ x.classList.toggle('on', x === b); }); jgPaint(); return; }
+if ((b = e.target.closest('[data-jggen]'))){ JGS.gen = b.getAttribute('data-jggen'); b.parentNode.querySelectorAll('button').forEach(function(x){ x.classList.toggle('on', x === b); }); jgPaint(); return; }
+});
+w.addEventListener('input', function(e){ if (e.target && e.target.id === 'jgq'){ JGS.q = e.target.value; jgPaint(); } });
+w.addEventListener('change', function(e){ if (e.target && e.target.id === 'jgo'){ JGS.ord = e.target.value; jgPaint(); } });
+if (JGS.plat) jgPaint();
 }
 function calJogos(){
 return '<section class="block">' + secT('Calend\u00e1rio de lan\u00e7amentos', '', 'Datas das publicadoras; podem mudar') + '<div class="cal">' + CAL.map(function(c){ return '<div class="ln' + (c[4] ? ' hot' : '') + '"><span class="d"><b>' + c[0] + '</b><small>' + c[1] + '</small></span><div><b class="t">' + c[2] + '</b><small class="s">' + c[3] + '</small></div>' +
 (c[4] ? '<button type="button" class="btn pri" data-go="gta">Ver</button>' : '<button type="button" class="btn" data-wa="Quero reservar ' + c[2] + '">Reservar</button>') + '</div>'; }).join('') + '</div></section>';
 }
 function renderJogos(){
-return heroJogos() + libHTML() + catJogos() + shelfHTML() + calJogos();
+return '<div class="jgw" id="jgw">' + (JGS.plat ? jgLib(JGS.plat) : jgHome()) + '</div>';
 }
 /* ---------- palco de categoria (acessórios e TCG) ---------- */
 function axCard(id){
@@ -2106,147 +2316,7 @@ upd();
 });
 }
 window.addEventListener('resize', function(){ VITU.forEach(function(f){ f(); }); });
-/* ---------- biblioteca de jogos (Home) ---------- */
-var LIBFIX = {'r-gow2':'Ação','r-gtasa':'Ação','r-nfsu2':'Corrida','r-nfsmw':'Corrida','r-gt4':'Corrida','r-f106':'Corrida','r-dhd':'Corrida','r-svr11':'Esporte'};
-var LIBRC = {'r-gow2':'#c0392b','r-gtasa':'#5ac85a','r-nfsu2':'#2b7bff','r-nfsmw':'#f0b93a','r-gt4':'#e6eaf2','r-f106':'#ff5a3d','r-dhd':'#34e3ff','r-svr11':'#b44cff'};
-var LIBF = [['all','Todos'],['Ação','Ação'],['Corrida','Corrida'],['Tiro','Tiro'],['Esporte','Esporte'],['ps2','Clássicos PS2']];
-var LIBVW = function(){ var de=document.documentElement; de.style.setProperty('--vw', de.clientWidth + 'px'); var h=document.querySelector('.hd'); if(h) de.style.setProperty('--hdh', Math.round(h.getBoundingClientRect().height) + 'px'); };
-window.addEventListener('resize', LIBVW);
-function hexRgb(h){ h = String(h).replace('#',''); if (h.length === 3) h = h.split('').map(function(x){ return x + x; }).join(''); return parseInt(h.slice(0,2),16) + ',' + parseInt(h.slice(2,4),16) + ',' + parseInt(h.slice(4,6),16); }
-function libData(){
-var out = [{id:'gta', t:'GTA VI', tag:'Pré-venda aberta', sub:'Rockstar Games · 2026', gen:'Ação', pl:'PS5 · Xbox Series X|S', ano:2026, badge:'VI', c:'#ff4fd8', art:IMG.pool, cov:'media/cov-gta.webp?v=1', bgart:'media/art-gta.webp?v=1', pre:1, ps2:0}];
-[['j9','NOVO','cyber'],['j10','NOVO','forza'],['j11','NOVO','cod'],['j12','NOVO','fc26']].forEach(function(x){
-var p = P[x[0]]; if (!p) return;
-out.push({id:p.id, t:p.t, tag:'Lançamento recente', sub:(p.dev || '') + ' · ' + (p.ano || ''), gen:p.gen || p.g, pl:p.p, ano:p.ano, badge:x[1], c:(p.c && p.c[0]) || '#b44cff', ps2:0, cov:'media/cov-' + x[2] + '.webp?v=1', bgart:'media/cov-' + x[2] + '.webp?v=1'});
-});
-RETRO.forEach(function(g){
-out.push({id:g.id, t:g.t, tag:'Clássico do PS2 · ' + g.ano, sub:g.dev + ' · ' + g.ano, gen:LIBFIX[g.id] || 'Ação', pl:'PlayStation 2 · Seminovo', ano:g.ano, badge:'PS2', c:LIBRC[g.id] || '#b44cff', art:g.img, ps2:1});
-});
-return out;
-}
-function libSvg(a){ var p = P[a.id]; return p ? cover(p) : ''; }
-function libArt(a){ return a.bgart || a.art || ''; }
-function libHTML(){
-var d = libData(); if (!d.length) return '';
-return '<section class="lib" id="lib" style="--lc:' + d[0].c + ';--lr:' + hexRgb(d[0].c) + '">' +
-'<div class="lib-art">' + (libArt(d[0]) ? '<i class="on" style="background-image:url(' + libArt(d[0]) + ')"></i><i></i>' : '<i class="on">' + libSvg(d[0]) + '</i><i></i>') + '</div>' +
-'<i class="lib-veil"></i><i class="lib-scan"></i>' +
-'<div class="lib-top"><h2>Biblioteca <small class="lib-count">' + d.length + ' jogos</small></h2>' +
-'<div class="lib-fil" data-lib-fil>' + LIBF.map(function(f){ return '<button type="button" data-f="' + f[0] + '"' + (f[0] === 'all' ? ' class="on"' : '') + '>' + f[1] + '</button>'; }).join('') + '</div>' +
-'<div class="lib-clock" data-lib-clock>--:--</div></div>' +
-'<div class="lib-mid"><div class="lib-info" data-lib-info></div><figure class="lib-screen"><video class="lib-vid" muted loop playsinline preload="none" data-auto poster="media/lib-gta.webp" data-src="media/lib-gta.mp4" aria-hidden="true" tabindex="-1" disablepictureinpicture></video><span class="lib-live"><b></b>Trailer</span></figure></div>' +
-'<div class="lib-shelf"><span class="lib-shelf-t" data-lib-shelf-t>Biblioteca recente</span><div class="lib-rail" data-lib-rail>' + d.map(function(a, i){
-var bcls = a.badge === 'PS2' ? ' is-ps2' : (a.badge === 'NOVO' ? ' is-novo' : '');
-return '<button type="button" class="lsp' + bcls + '" data-lb="' + i + '" style="--c:' + a.c + '" aria-label="' + esc(a.t) + '"><span class="lsp-cover">' + (a.cov || a.art ? '<img src="' + (a.cov || a.art) + '" alt="" loading="lazy" decoding="async">' : libSvg(a)) + '<i class="lsp-badge">' + a.badge + '</i></span><span class="lsp-name">' + esc(a.t) + '</span></button>';
-}).join('') + '</div><i class="lib-glow"></i></div>' +
-'<div class="lib-board"></div>' +
-'<div class="lib-foot"><div class="lib-keys"><span>◀ ▶ Navegar</span><button type="button" data-lib-x>✕ Tirar da estante</button></div><button type="button" class="lnk" data-lib-grid>Ver todos os jogos ' + I.arrow + '</button></div>' +
-'</section>';
-}
-function libInfo(a){
-var p = P[a.id];
-var buy = a.pre ? '<button type="button" class="btn lc" data-go="gta">Ver pré-venda ' + I.arrow + '</button>'
-: '<button type="button" class="btn lc" data-pi="' + a.id + '">Ver jogo</button><button type="button" class="li-add" data-add="' + a.id + '" aria-label="Adicionar ' + esc(a.t) + '">' + I.plus + '</button>';
-var price = a.pre ? '' : (p ? '<span class="li-price">' + brl(p.v) + '</span>' : '');
-return '<span class="li-tag li-anim" style="--i:0">' + esc(a.tag) + '</span>' +
-'<h3 class="li-name li-anim" style="--i:1">' + esc(a.t) + '</h3>' +
-'<p class="li-sub li-anim" style="--i:2">' + esc(a.sub) + '</p>' +
-'<div class="li-pills li-anim" style="--i:3"><span>' + esc(a.gen) + '</span><span>' + esc(a.pl) + '</span>' + (a.ano ? '<span>' + a.ano + '</span>' : '') + '</div>' +
-'<div class="li-buy li-anim" style="--i:4">' + price + buy + '</div>';
-}
-var LIBT = 0, LIBK = null, LIBR = null, SBI = null;
-function initLib(root){
-var sec = root.querySelector('#lib'); if (!sec) return;
-LIBVW();
-var rail = sec.querySelector('[data-lib-rail]'), info = sec.querySelector('[data-lib-info]'), fil = sec.querySelector('[data-lib-fil]'), clock = sec.querySelector('[data-lib-clock]'), cnt = sec.querySelector('.lib-count'), layers = sec.querySelectorAll('.lib-art i'), all = [].slice.call(sec.querySelectorAll('.lsp')), d = libData();
-if (LIBT){ clearInterval(LIBT); LIBT = 0; }
-if (LIBK){ document.removeEventListener('keydown', LIBK); LIBK = null; }
-if (LIBR){ window.removeEventListener('resize', LIBR); LIBR = null; }
-all.forEach(function(b){ b._a = d[+b.getAttribute('data-lb')]; });
-var cur = -1, open = true, hold = 0, artSel = 0, gx = 0, gy = 0, gOn = false, tick = 0, armed = 0;
-function vis(){ var r = sec.getBoundingClientRect(), vh = window.innerHeight; return r.top < vh * .55 && r.bottom > vh * .45; }
-sec._vis = vis;
-function list(){ return all.filter(function(b){ return !b.hidden; }); }
-function clock2(){ var n = new Date(); clock.textContent = ('0' + n.getHours()).slice(-2) + ':' + ('0' + n.getMinutes()).slice(-2); }
-function center(b, fast){
-if (!b) return;
-rail.classList.toggle("mid", rail.scrollWidth <= rail.clientWidth + 4);
-if (rail.classList.contains("mid")) return;
-var tw = window.innerWidth <= 900 ? 112 : 132;
-var left = b.offsetLeft - (rail.clientWidth - tw) / 2;
-rail.scrollTo({left: Math.max(0, left), behavior: (fast || reduce) ? 'auto' : 'smooth'});
-}
-function go(i, user){
-var L = list(); if (!L.length) return;
-i = ((i % L.length) + L.length) % L.length;
-var b = L[i], a = b._a;
-if (user) hold = Date.now() + 14000;
-open = true;
-all.forEach(function(x){ x.classList.toggle('on', x === b); });
-sec.style.setProperty('--lc', a.c);
-sec.style.setProperty('--lr', hexRgb(a.c));
-info.innerHTML = libInfo(a);
-var nx = layers[artSel ^ 1];
-var bg = libArt(a);
-nx.style.backgroundImage = bg ? 'url(' + bg + ')' : '';
-nx.innerHTML = bg ? '' : libSvg(a);
-layers[artSel].classList.remove('on');
-nx.classList.add('on');
-artSel ^= 1;
-cur = i;
-center(b, 1);
-setTimeout(function(){ center(b); }, 140);
-setTimeout(function(){ center(b); }, 640);
-}
-function drop(){ open = false; cur = -1; all.forEach(function(x){ x.classList.remove('on'); }); }
-rail.addEventListener('click', function(e){
-var b = e.target.closest ? e.target.closest('.lsp') : null; if (!b) return;
-hold = Date.now() + 14000;
-if (b.classList.contains('on')){ if (!armed){ armed = 1; return; } var a = b._a; if (a.pre) show('gta'); else if (P[a.id]) openShop(a.id); return; }
-armed = 1; go(list().indexOf(b), 1);
-});
-fil.addEventListener('click', function(e){
-var b = e.target.closest ? e.target.closest('button[data-f]') : null; if (!b) return;
-var f = b.getAttribute('data-f');
-[].slice.call(fil.children).forEach(function(x){ x.classList.toggle('on', x === b); });
-all.forEach(function(x){ var a = x._a; x.hidden = f === 'all' ? false : !(f === 'ps2' ? !!a.ps2 : a.gen === f); });
-var L = list();
-cnt.textContent = L.length + (L.length === 1 ? ' jogo' : ' jogos');
-var stEl = sec.querySelector('[data-lib-shelf-t]'); if (stEl) stEl.textContent = f === 'all' ? 'Biblioteca recente' : ('Filtro · ' + (b.textContent || '').trim());
-hold = Date.now() + 14000;
-open = true;
-go(Math.max(0, L.indexOf(rail.querySelector('.lsp.on'))), 1);
-});
-sec.querySelector('[data-lib-x]').addEventListener('click', function(){ hold = Date.now() + 14000; drop(); });
-sec.addEventListener('pointerdown', function(e){
-hold = Date.now() + 14000;
-if (e.target.closest && e.target.closest('.lib-rail')){ gOn = false; return; }
-gx = e.clientX; gy = e.clientY; gOn = true;
-});
-sec.addEventListener('pointerup', function(e){
-if (!gOn) return; gOn = false;
-var dx = e.clientX - gx, dy = e.clientY - gy;
-if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.2) go(cur + (dx < 0 ? 1 : -1), 1);
-});
-sec.addEventListener('pointercancel', function(){ gOn = false; });
-LIBK = function(e){
-if (!vis()) return;
-if (e.key === 'ArrowRight'){ e.preventDefault(); go(cur + 1, 1); }
-else if (e.key === 'ArrowLeft'){ e.preventDefault(); go(cur - 1, 1); }
-else if (e.key === 'Escape'){ drop(); }
-};
-document.addEventListener('keydown', LIBK);
-LIBR = function(){ var L = list(); if (L.length) center(L[Math.max(0, Math.min(cur, L.length - 1))]); };
-window.addEventListener('resize', LIBR);
-clock2();
-go(0, 0);
-LIBT = setInterval(function(){
-clock2();
-if (document.hidden || !vis() || !open || Date.now() < hold) return;
-tick++;
-if (tick >= 6){ tick = 0; go(cur + 1, 0); }
-}, 1000);
-}
+var SBI = null;
 function initShow(el){
 var rail = el.querySelector('#showRail'); if (!rail) return;
 var bar = el.querySelector('.show-bar i');
@@ -2496,8 +2566,8 @@ es.forEach(function(e){ if (!e.isIntersecting) return; SBI.unobserve(e.target); 
 pend.forEach(function(b){ SBI.observe(b); });
 }
 function afterMount(key, el){
-if (key === 'home'){ initMH(el); initShow(el); initCine(el); initVspot(el); initVit(el); initSecBg(el); } else { clearTimeout(MHT); if (LIBT){ clearInterval(LIBT); LIBT = 0; } if (LIBK){ document.removeEventListener('keydown', LIBK); LIBK = null; } if (LIBR){ window.removeEventListener('resize', LIBR); LIBR = null; } if (SBI){ SBI.disconnect(); SBI = null; } }
-if (key === 'jogos') initLib(el);
+if (key === 'home'){ initMH(el); initShow(el); initCine(el); initVspot(el); initVit(el); initSecBg(el); } else { clearTimeout(MHT); if (SBI){ SBI.disconnect(); SBI = null; } }
+if (key === 'jogos') initJogos(el);
 if (key === 'controles') initCX(el);
 initShelf(el);
 watchVideos(el);
