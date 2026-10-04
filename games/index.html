@@ -1186,7 +1186,7 @@ background:radial-gradient(120% 90% at 78% 50%,color-mix(in srgb,var(--c) 34%,#0
 .jgl-q input{flex:1;min-width:0;border:0;background:none;color:var(--ink);font-family:inherit;font-size:14px;outline:none;}
 .jgl-frow{display:flex;align-items:flex-start;gap:10px;}
 .jgl-fl{flex:none;width:54px;padding-top:9px;font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--mut2);}
-.jgl-chips{display:flex;flex:1;gap:7px;overflow-x:auto;padding:2px 2px 6px;scrollbar-width:none;}
+.jgl-chips{display:flex;flex:1;min-width:0;gap:7px;overflow-x:auto;padding:2px 2px 6px;scrollbar-width:none;}
 .jgl-chips::-webkit-scrollbar{display:none;}
 .jgl-chips button{flex:none;height:36px;padding:0 14px;border-radius:999px;border:1.5px solid var(--line2);background:#fff;color:var(--mut);font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;transition:border-color .18s,background .18s,color .18s;}
 .jgl-chips button:hover{color:var(--ink);border-color:var(--pc);}
@@ -1196,6 +1196,7 @@ background:radial-gradient(120% 90% at 78% 50%,color-mix(in srgb,var(--c) 34%,#0
 #jgn b{font-family:'Poppins',sans-serif;font-size:16px;color:var(--ink);}
 .jgl-ord{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--mut2);}
 .jgl-ord select{height:38px;padding:0 10px;border-radius:11px;border:1.5px solid var(--line2);background:#fff;color:var(--ink);font-family:inherit;font-size:13px;}
+.view[data-v="jogos"]{overflow-x:clip;}
 @media (min-width:700px){
 .jgp-grid{gap:14px;}
 .jgp{min-height:150px;padding:18px;}
@@ -1731,7 +1732,7 @@ var JGCAT = null;
 function jgAll(){
 if (!JGCAT){
 var out = [{id:'gta', t:'GTA VI', gen:'Aventura', tipo:'pre', pls:['ps','xb'], go:'gta', img:'media/cov-gta.webp?v=1', sub:'Rockstar Games · 2026 · PS5 · Xbox Series'}];
-byCat('jogos').forEach(function(p){ out.push({id:p.id, t:p.t, gen:JGGEN[p.id] || 'Ação', tipo:JGTIPO[p.id] || 'lacrado', pls:(p.pl || []).slice(), v:p.v, o:p.o, p:p, sub:(p.dev ? p.dev + ' · ' : '') + p.p}); });
+byCat('jogos').forEach(function(p){ out.push({id:p.id, t:p.t, gen:JGGEN[p.id] || 'Ação', tipo:JGTIPO[p.id] || 'lacrado', pls:(p.pl || []).slice(), v:p.v, o:p.o, p:p, sub:p.dev ? (p.dev + ' · ' + p.p) : (p.g + ' · ' + p.p)}); });
 RETRO.forEach(function(g){ out.push({id:g.id, t:g.t, gen:JGRG[g.id] || 'Ação', tipo:'seminovo', pls:['ps2'], v:g.v, p:g, retro:1, sub:g.dev + ' · ' + g.ano}); });
 JGCAT = out;
 }
@@ -1786,15 +1787,17 @@ var g = document.getElementById('jggrid'); if (!g || !JGS.plat) return;
 var key = JGS.plat, l = jgSorted(jgFiltered(key)), tot = jgOf(key).length;
 g.innerHTML = jgGrid(l, JGPLAT[key].c);
 var n = document.getElementById('jgn');
-if (n) n.innerHTML = !tot ? '<b>0</b> jogos' : (l.length === tot ? '<b>' + tot + '</b> ' + (tot === 1 ? 'jogo' : 'jogos') : (l.length ? '<b>' + l.length + '</b> de <b>' + tot + '</b> jogos' : 'Nenhum de <b>' + tot + '</b> jogos'));
+if (n) n.innerHTML = !tot ? '<b>0</b> jogos' : (l.length === tot ? '<b>' + tot + '</b> ' + (tot === 1 ? 'jogo' : 'jogos') : (l.length ? '<b>' + l.length + '</b> de <b>' + tot + '</b> jogos' : '<b>0</b> de <b>' + tot + '</b> jogos'));
 }
+var JGDTQ = {ps:{id:'gta', k:'Pré-venda aberta'}, xb:{id:'j10', k:'Destaque Xbox'}, nt:{id:'j5', k:'Lançamento Nintendo'}};
 function jgFeatured(key){
-var id = key === 'nt' ? 'j5' : 'gta', x = null;
-jgAll().forEach(function(i){ if (i.id === id) x = i; });
+var cfg = JGDTQ[key]; if (!cfg) return '';
+var x = null;
+jgAll().forEach(function(i){ if (i.id === cfg.id) x = i; });
 if (!x) return '';
 var pre = x.tipo === 'pre';
 return '<div class="jgd">' + '<span class="jgd-im">' + jgImg(x) + '</span><div class="jgd-tx">' +
-'<span class="jgd-k">' + (pre ? 'Pré-venda aberta' : 'Lançamento') + '</span><h2>' + esc(x.t) + '</h2><p>' + esc(x.sub) + '</p>' +
+'<span class="jgd-k">' + cfg.k + '</span><h2>' + esc(x.t) + '</h2><p>' + esc(x.sub) + '</p>' +
 '<div class="jgd-act">' + (pre
 ? '<button type="button" class="btn pri" data-go="gta">Reservar agora ' + I.arrow + '</button><span class="jgd-note">Combine o valor e a retirada no WhatsApp.</span>'
 : '<b class="jgd-pr">' + (x.o ? '<s>' + brl(x.o) + '</s>' : '') + brl(x.v) + '</b><button type="button" class="btn pri" data-add="' + x.id + '">' + I.plus + ' Adicionar</button><button type="button" class="btn" data-pi="' + x.id + '">Ver ficha</button>') +
@@ -1857,7 +1860,8 @@ return '<section class="block">' + secT('Calend\u00e1rio de lan\u00e7amentos', '
 (c[4] ? '<button type="button" class="btn pri" data-go="gta">Ver</button>' : '<button type="button" class="btn" data-wa="Quero reservar ' + c[2] + '">Reservar</button>') + '</div>'; }).join('') + '</div></section>';
 }
 function renderJogos(){
-return '<div class="jgw" id="jgw">' + (JGS.plat ? jgLib(JGS.plat) : jgHome()) + '</div>';
+JGS.plat = null; JGS.tipo = 'tudo'; JGS.gen = 'todos'; JGS.q = ''; JGS.ord = 'vendidos';
+return '<div class="jgw" id="jgw">' + jgHome() + '</div>';
 }
 /* ---------- palco de categoria (acessórios e TCG) ---------- */
 function axCard(id){
@@ -2077,6 +2081,10 @@ var RETRO = [
 {id:'r-svr11', k:'svr11', t:'SmackDown vs Raw 2011', v:59.9, ano:2010, gen:'Luta livre', pl:'1–4 jogadores (com multitap)', cls:'PEGI 16', dev:'Yuke’s', midia:'1 DVD', reg:'PAL'}
 ];
 RETRO.forEach(function(g){ g.cat = 'retro'; g.img = COV[g.k]; g.g = 'PS2 · Seminovo'; g.p = 'PlayStation 2'; P[g.id] = g; });
+/* capas dos jogos da casa: mesma arte cinematografica das capas oficiais, 3:4 */
+[['j1','neondrift'],['j2','cinzas'],['j3','goldeplaca'],['j4','eclipsetatico'],['j5','pixelkart'],['j6','sombras'],['j7','fronteira'],['j8','mascotes']].forEach(function(x){
+if (P[x[0]]) P[x[0]].img = 'media/cov-' + x[1] + '.webp?v=1';
+});
 function discHTML(g){ return '<span class="gm-disc"><img loading="lazy" decoding="async" src="' + g.img + '" alt=""><i class="dsh"></i><i class="dhole"></i></span>'; }
 function caseHTML(g){ return '<span class="gm-case"><img loading="lazy" decoding="async" src="' + g.img + '" alt="Capa de ' + esc(g.t) + '"><i class="gm-gloss"></i></span>'; }
 function shelfHTML(){
