@@ -451,6 +451,8 @@ position:relative;overflow:clip;border-radius:26px;background:var(--bg);color:va
 .evxp-hud{position:fixed;left:0;right:0;top:0;z-index:36;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px;background:linear-gradient(180deg,#07040df2,#07040d00);pointer-events:none;opacity:0;transition:opacity .3s ease;}
 .evxp-hud.on{opacity:1}
 .evxp-hud>*{pointer-events:auto}
+.evxp-hud::before{content:"";position:absolute;left:0;right:0;top:0;height:52px;z-index:-1;background:#07040d;pointer-events:none}
+.evxp-hud::after{content:"";position:absolute;left:0;right:0;top:52px;height:26px;z-index:-1;background:linear-gradient(180deg,#07040d,#07040d00);pointer-events:none}
 .evxp-odo{display:flex;align-items:center;gap:10px}
 .evxp-odo small{font-size:10px;font-weight:800;letter-spacing:.16em;color:var(--muted)}
 .evxp-digits{display:flex;height:30px;overflow:hidden;font-family:var(--p80);font-size:22px;line-height:30px;color:var(--c80c);text-shadow:0 0 10px #ffe14f88}
@@ -548,7 +550,7 @@ position:relative;overflow:clip;border-radius:26px;background:var(--bg);color:va
 /* anos 90 */
 .evxp-e90{background:linear-gradient(180deg,#1b2a8a 0 14%,#2f4fd1 14% 28%,#4f7bff 28% 42%,#8a9cff 42% 56%,#f59ad8 56% 70%,#ffb46a 70% 100%);--ek:var(--c90c)}
 .evxp-layer{position:absolute;left:0;right:0;z-index:0;background-repeat:repeat-x;image-rendering:pixelated;will-change:background-position;pointer-events:none}
-.evxp-e90 .evxp-boot{background:#0d1033e6;border:4px solid #fff;box-shadow:6px 6px 0 #0d1033}
+.evxp-e90 .evxp-boot{background:#0d1033;border:4px solid #fff;box-shadow:6px 6px 0 #0d1033}
 .evxp-e90 .evxp-tag{color:var(--c90b);font-family:var(--p90);font-weight:700;letter-spacing:.1em}
 .evxp-e90 h2{font-family:var(--p90);font-weight:700;font-size:clamp(30px,8vw,48px);color:#fff;text-shadow:4px 4px 0 var(--c90a),8px 8px 0 #0d1033}
 .evxp-e90 .evxp-lead{color:#e3e8ff}
@@ -2716,15 +2718,15 @@ parts.forEach(function(e,i){ show(e,[{opacity:0,transform:'translateY(14px)'},{o
 cards.forEach(function(c,i){ show(c,[{opacity:0,filter:'blur(14px)',transform:'translateY(20px)'},{opacity:1,filter:'blur(0)',transform:'none'}],{duration:800,delay:400+i*160,easing:'ease-out'}); });
 } else {
 var ld=document.getElementById('evxpLd'); if(ld) ld.style.opacity=1;
-show(document.getElementById('evxpLb'),[{width:'0%'},{width:'70%',offset:.5},{width:'100%'}],{duration:1300,easing:'ease-in-out'});
+show(document.getElementById('evxpLb'),[{width:'0%'},{width:'70%',offset:.5},{width:'100%'}],{duration:600,easing:'ease-in-out'});
 setTimeout(function(){
 show(ld,[{opacity:1},{opacity:.35}],{duration:300});
-parts.forEach(function(e,i){ if(e!==ld) show(e,[{opacity:0,transform:'perspective(600px) rotateX(-70deg)'},{opacity:1,transform:'none'}],{duration:700,delay:i*140,easing:'cubic-bezier(.2,.9,.2,1)'}); });
+parts.forEach(function(e,i){ if(e!==ld) show(e,[{opacity:0,transform:'perspective(600px) rotateX(-70deg)'},{opacity:1,transform:'none'}],{duration:700,delay:i*120,easing:'cubic-bezier(.2,.9,.2,1)'}); });
 cards.forEach(function(c,i){
-show(c,[{opacity:0,transform:'perspective(700px) rotateY(80deg) translateZ(-120px)'},{opacity:1,transform:'none'}],{duration:900,delay:300+i*220,easing:'cubic-bezier(.2,.9,.2,1)'});
-setTimeout(function(){ var cs=c.querySelector('.evxp-case'); if(cs) cs.classList.add('evxp-wobble'); },1300+i*220);
+show(c,[{opacity:0,transform:'perspective(700px) rotateY(80deg) translateZ(-120px)'},{opacity:1,transform:'none'}],{duration:760,delay:120+i*170,easing:'cubic-bezier(.2,.9,.2,1)'});
+setTimeout(function(){ var cs=c.querySelector('.evxp-case'); if(cs) cs.classList.add('evxp-wobble'); },900+i*170);
 });
-},1300);
+},600);
 }
 }
 function tile(w,h,draw){ var c=document.createElement('canvas'); c.width=w; c.height=h; draw(c.getContext('2d')); return c.toDataURL(); }
@@ -2956,7 +2958,7 @@ box.setAttribute('data-era',key);
 if(key!=='hero') enterEra(key);
 if(EVP.music) EVP.music.setEra(key);
 });
-},{rootMargin:'-45% 0px -45% 0px'});
+},{threshold:.15,rootMargin:'0px 0px -10% 0px'});
 box.querySelectorAll('.evxp-era').forEach(function(s){ io.observe(s); });
 EVP.ios.push(io);
 var yio=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting) setYear(+e.target.getAttribute('data-year')); }); },{rootMargin:'-40% 0px -50% 0px'});
