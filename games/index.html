@@ -444,15 +444,17 @@ background:radial-gradient(1px 1px at 12% 30%,#fff,transparent),radial-gradient(
 .evx-hero{position:relative;padding:clamp(22px,4vw,52px) clamp(18px,3vw,40px);border-radius:20px;overflow:hidden;background:radial-gradient(ellipse at 78% 22%,#2a1060 0%,#100722 52%,#05030c 100%);border:1px solid rgba(180,76,255,.28);}
 .evx-hero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 46% 70% at 88% 16%,rgba(255,79,216,.28),transparent 68%),radial-gradient(ellipse 40% 60% at 6% 96%,rgba(52,168,255,.2),transparent 70%);pointer-events:none;}
 .evx-hero>*{position:relative;z-index:1;}
-.evx-h1{font-family:'Poppins',sans-serif;font-size:clamp(30px,6vw,62px);line-height:1;font-weight:800;margin:12px 0 12px;letter-spacing:-.02em;}
-.evx-h1 span{display:inline-block;}
-.evx-h1 .big{background:linear-gradient(180deg,#fff 18%,#d9b3ff 58%,#b44cff);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 22px rgba(180,76,255,.5));}
-.evx-h1.fall span{animation:evxFall .52s cubic-bezier(.2,1.5,.4,1) both;animation-delay:calc(var(--i)*.085s);}
+.evx-h1{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:.24em;row-gap:.02em;font-family:'Poppins',sans-serif;font-size:clamp(30px,6vw,62px);line-height:1.06;font-weight:800;margin:12px 0 12px;letter-spacing:-.02em;}
+.evx-h1 .wd{display:inline-block;}
+.evx-h1 .wd>span{display:inline-block;}
+.evx-h1 .big{background:linear-gradient(180deg,#fff 18%,#d9b3ff 58%,#b44cff);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 24px rgba(180,76,255,.45);}
+.evx-h1.fall .wd{animation:evxFall .52s cubic-bezier(.2,1.5,.4,1) backwards;animation-delay:calc(var(--i)*.085s);}
 @keyframes evxFall{0%{transform:translate3d(0,-46px,0) rotate(-7deg);opacity:0}55%{transform:translate3d(2px,4px,0) rotate(2deg);opacity:1}72%{transform:translate3d(-2px,-2px,0) rotate(-1.4deg)}86%{transform:translate3d(1px,1px,0) rotate(.6deg)}100%{transform:none;opacity:1}}
 .evx-hero p{margin:0 0 18px;font-weight:300;color:rgba(255,255,255,.82);font-size:clamp(13.5px,1.4vw,16.5px);max-width:52ch;}
 .evx-acts{display:flex;flex-wrap:wrap;gap:10px;}
 /* ---- intro (overlay) ---- */
-.evx-ov{position:fixed;inset:0;z-index:78;display:flex;align-items:center;justify-content:center;background:#04030a;overflow:hidden;opacity:1;transition:opacity .5s ease;}
+.evx-ov{position:fixed;inset:0;z-index:78;display:grid;place-items:center;background:#04030a;overflow:hidden;opacity:1;transition:opacity .5s ease;}
+.evx-stage{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;gap:16px;width:min(560px,88vw);}
 .evx-ov.off{opacity:0;visibility:hidden;pointer-events:none;}
 .evx-ov::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 62% 56% at 50% 50%,rgba(4,3,10,.97) 0%,rgba(4,3,10,.84) 44%,rgba(4,3,10,.45) 72%,rgba(4,3,10,.7) 100%);}
 .evx-wall{position:absolute;inset:-10% -8%;z-index:0;display:flex;flex-direction:column;justify-content:center;gap:9px;transform:rotate(-7deg) scale(1.2);}
@@ -464,7 +466,7 @@ background:radial-gradient(1px 1px at 12% 30%,#fff,transparent),radial-gradient(
 .evx-wr.b1 i{filter:blur(5px) saturate(1.15);}
 .evx-wr.b2{opacity:.92;filter:drop-shadow(0 14px 26px rgba(0,0,0,.6));}
 @keyframes evxSlide{to{transform:translateX(-50%)}}
-.evx-tvw{position:relative;z-index:3;width:min(540px,84vw);}
+.evx-tvw{position:relative;z-index:3;width:100%;padding:14px;border-radius:24px;background:linear-gradient(180deg,#1b1a26,#0e0d16);box-shadow:0 0 0 2px #2c2a3a,0 0 0 6px #09080f,0 30px 70px -30px #000;}
 .evx-tvw.bye{opacity:0;transform:scale(.9);transition:opacity .5s ease,transform .5s ease;}
 .evx-scr{position:relative;aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:#08080e;box-shadow:inset 0 0 70px rgba(0,0,0,.95),0 0 0 5px #16151f,0 0 0 8px #0a0912,0 34px 90px -34px #000;transform:scaleY(.004);}
 .evx-scr.on{animation:evxOn .5s ease-out forwards;}
@@ -483,22 +485,25 @@ background:radial-gradient(1px 1px at 12% 30%,#fff,transparent),radial-gradient(
 .evx-flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;}
 .evx-tvw.shake .evx-scr{animation:evxShake .22s ease;}
 @keyframes evxShake{0%,100%{transform:translate3d(0,0,0)}30%{transform:translate3d(-3px,2px,0)}60%{transform:translate3d(3px,-2px,0)}}
-.evx-ps{position:relative;z-index:3;margin-top:20px;text-align:center;font-family:'Press Start 2P',monospace;font-size:clamp(13px,2.6vw,20px);color:#d7ff4a;opacity:0;text-shadow:0 0 18px rgba(215,255,74,.6);}
+.evx-ps{position:relative;z-index:3;margin:0;text-align:center;white-space:nowrap;font-family:'Press Start 2P',monospace;font-size:clamp(12px,2.4vw,19px);color:#d7ff4a;opacity:0;text-shadow:0 0 18px rgba(215,255,74,.6);}
 .evx-ps.on{opacity:1;animation:evxBlink 1.05s steps(2,end) infinite;}
 @keyframes evxBlink{0%,49%{opacity:1}50%,100%{opacity:.12}}
 .evx-skip{position:absolute;right:16px;top:120px;z-index:4;height:38px;padding:0 16px;border-radius:999px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.08);color:#fff;font:600 12.5px 'Poppins',sans-serif;cursor:pointer;}
 .evx-skip:hover{background:rgba(255,255,255,.16);}
 /* ---- odometro ---- */
-.evx-odo{position:fixed;left:50%;top:10px;z-index:36;display:flex;align-items:center;gap:10px;padding:7px 14px;border-radius:999px;background:rgba(6,4,14,.88);border:1px solid var(--ea,#b44cff);box-shadow:0 12px 30px -14px rgba(0,0,0,.9);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);opacity:0;pointer-events:none;transform:translateX(-50%) translateY(-16px);transition:opacity .3s ease,transform .3s ease,border-color .5s ease;}
+.evx-odo{position:fixed;left:50%;top:8px;z-index:36;display:flex;align-items:center;gap:10px;padding:7px 14px;border-radius:999px;background:#08060f;border:1px solid var(--ea,#b44cff);box-shadow:0 12px 30px -14px rgba(0,0,0,.9);opacity:0;pointer-events:none;transform:translateX(-50%) translateY(-16px);transition:opacity .3s ease,transform .3s ease,border-color .5s ease;}
+.evx-odobar{position:fixed;left:0;right:0;top:0;height:56px;z-index:35;pointer-events:none;opacity:0;transition:opacity .3s ease;background:linear-gradient(180deg,#08060f 0%,#08060f 66%,rgba(8,6,15,0) 100%);}
+.evx-odobar.on{opacity:1;}
 .evx-odo.on{opacity:1;transform:translateX(-50%);}
 .evx-odo b{font-family:var(--fx,'Poppins'),sans-serif;font-size:19px;letter-spacing:.05em;color:#fff;font-variant-numeric:tabular-nums;}
 .evx-odo span{font:700 10px 'Poppins',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--ea,#b44cff);}
 .evx-odo.roll b{animation:evxRoll .44s cubic-bezier(.2,.9,.3,1);}
 @keyframes evxRoll{0%{transform:translateY(70%);opacity:0}100%{transform:none;opacity:1}}
 /* ---- eras ---- */
-.evx-era{position:relative;margin-top:16px;border-radius:24px;overflow:clip;padding:clamp(16px,2.4vw,30px);background:#07040f;background:var(--e1,#07040f);isolation:isolate;}
+.evx-era{position:relative;margin-top:16px;border-radius:24px;overflow:clip;padding:clamp(30px,3.6vw,46px) clamp(16px,2.4vw,30px) clamp(16px,2.4vw,30px);background:#07040f;background:var(--e1,#07040f);isolation:isolate;scroll-margin-top:76px;}
 .evx-bgl{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;}
-.evx-era>*:not(.evx-bgl){position:relative;z-index:1;}
+.evx-era>*:not(.evx-bgl){position:relative;z-index:2;}
+.evx-bgl{z-index:0;pointer-events:none;}
 .evx-eh{max-width:62ch;}
 .evx-tag{display:inline-flex;align-items:center;gap:8px;height:28px;padding:0 12px;border-radius:999px;border:1px solid var(--ea,#b44cff);color:var(--ea,#b44cff);font:700 11px/1 'Poppins',sans-serif;letter-spacing:.18em;text-transform:uppercase;background:rgba(0,0,0,.35);}
 .evx-eh h2{font-family:var(--fx,'Poppins'),sans-serif;font-size:clamp(24px,4.6vw,50px);line-height:1.02;margin:14px 0 8px;color:#fff;letter-spacing:.02em;}
@@ -528,8 +533,11 @@ background:radial-gradient(1px 1px at 12% 30%,#fff,transparent),radial-gradient(
 /* era 1 - ceu em faixas */
 .evx-era[data-era="1"] .evx-bgl{background:linear-gradient(180deg,#0a1c5c 0%,#2a4ec7 42%,#ff7ab0 74%,#ffd77a 100%);}
 .evx-era[data-era="1"] .evx-bgl i{position:absolute;left:-12%;width:124%;background-repeat:repeat-x;will-change:transform;}
-.evx-era[data-era="1"] .evx-bgl .l1{top:16%;height:16px;background-image:linear-gradient(90deg,#fff 0 8%,transparent 8% 22%,#fff 22% 34%,transparent 34% 60%,#fff 60% 74%,transparent 74% 100%);opacity:.85;}
-.evx-era[data-era="1"] .evx-bgl .l2{top:30%;height:18px;background-image:linear-gradient(90deg,transparent 0 12%,#fff 12% 26%,transparent 26% 48%,#fff 48% 58%,transparent 58% 100%);opacity:.7;}
+.evx-era[data-era="1"] .evx-bgl .l1{top:16%;height:16px;background-image:linear-gradient(90deg,#fff 0 8%,transparent 8% 22%,#fff 22% 34%,transparent 34% 60%,#fff 60% 74%,transparent 74% 100%);opacity:.5;}
+.evx-era[data-era="1"] .evx-bgl .l2{top:30%;height:18px;background-image:linear-gradient(90deg,transparent 0 12%,#fff 12% 26%,transparent 26% 48%,#fff 48% 58%,transparent 58% 100%);opacity:.42;}
+.evx-era[data-era="1"] .evx-bgl::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,12,44,.92) 0%,rgba(6,12,44,.62) 26%,rgba(6,12,44,.28) 52%,rgba(6,12,44,.72) 100%);}
+.evx-era[data-era="1"] .evx-eh h2{text-shadow:0 4px 18px rgba(4,8,32,.95);}
+.evx-era[data-era="1"] .evx-eh p{color:rgba(255,255,255,.96);text-shadow:0 2px 12px rgba(4,8,32,.98);}
 .evx-era[data-era="1"] .evx-bgl .l3{bottom:26%;height:76px;background:linear-gradient(90deg,#2c6ad4 0 18%,#1c4fae 18% 26%,#2c6ad4 26% 55%,#1c4fae 55% 62%,#2c6ad4 62% 100%);clip-path:polygon(0 100%,0 46%,12% 8%,26% 52%,40% 18%,54% 62%,70% 22%,86% 58%,100% 30%,100% 100%);}
 .evx-era[data-era="1"] .evx-bgl .l4{background:#0b1030;bottom:0;height:26%;background-image:linear-gradient(90deg,rgba(255,255,255,.13) 1px,transparent 1px),linear-gradient(0deg,rgba(255,255,255,.13) 1px,transparent 1px);background-size:26px 26px;}
 .evx-era[data-era="1"] .evx-eh h2,.evx-era[data-era="1"] .evx-cb h3{text-shadow:0 3px 0 rgba(0,0,0,.5);}
@@ -612,7 +620,7 @@ background:radial-gradient(1px 1px at 12% 30%,#fff,transparent),radial-gradient(
 .evx-odo{top:6px;padding:6px 11px;}
 .evx-skip{top:118px;right:14px;}
 .evx-odo b{font-size:16px;}
-.evx-era{padding:16px 14px;border-radius:18px;}
+.evx-era{padding:34px 14px 16px;border-radius:18px;}
 .evx-eh h2{font-size:clamp(22px,7.4vw,36px);}
 .evx-grid{grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;}
 .evx-era[data-era="4"] .evx-grid{grid-template-columns:1fr;}
@@ -627,7 +635,7 @@ background:radial-gradient(1px 1px at 12% 30%,#fff,transparent),radial-gradient(
 .evx-end{padding:20px 16px;min-height:220px;}
 }
 @media (prefers-reduced-motion:reduce){
-.evx-h1.fall span{animation:none!important;opacity:1;}
+.evx-h1.fall .wd{animation:none!important;opacity:1;}
 .evx-era .evx-c{opacity:1!important;transform:none!important;}
 .evx-era[data-era="2"] .evx-art{transform:none;}
 .evx-era[data-era="5"] .evx-art img,.evx-era[data-era="5"] .evx-art canvas{filter:none!important;}
@@ -2551,7 +2559,7 @@ var EVFL = false, EVINTRO = false;
 var ERAS2 = [
 {dec:'Anos 80', name:'8-BIT', yr:1980, fx:"'Press Start 2P',monospace", ea:'#ffd23f', e1:'#07030f', n:4, px:1, let:'INSIRA UMA FICHA',
  sub:'O fliperama virou fenômeno mundial e o videogame entrou na sala de casa. Tudo em blocos, com música de chip.',
- knew:'Nos anos 80, o Atari 2600 dominou o Brasil e teve clones nacionais famosos, como o Polyvox e o Dactar.',
+ knew:'Nos anos 80 o Atari 2600 foi febre no Brasil: a Polyvox, da Gradiente, fabricava o console oficialmente aqui, e surgiram clones como o Dactar.',
  shopT:'Clássicos na loja', shopS:'Fliperama, 8 e 16 bits e gerações anteriores', go:'jogos', cta:'Ver no retrô',
  games:[{t:'Pac-Man', y:1980, p:'Fliperama', d:'O come-come que virou febre nos fliperamas e depois nos consoles.'},
  {t:'Tetris', y:1984, p:'Game Boy e mais', d:'São mais de 500 milhões de cópias somando todas as versões.'},
@@ -2585,14 +2593,13 @@ var ERAS2 = [
  {t:'Grand Theft Auto V', y:2013, p:'Multiplataforma', d:'Cerca de 230 milhões de cópias e três gerações de consoles.'},
  {t:'Zelda: Breath of the Wild', y:2017, p:'Switch e Wii U', d:'Jogo do Ano no The Game Awards 2017.'},
  {t:'Red Dead Redemption 2', y:2018, p:'Multiplataforma', d:'Cerca de 85 milhões de cópias, também da Rockstar.'}]},
-{dec:'Anos 2020', name:'AGORA', yr:2026, fx:"'Poppins','Inter',sans-serif", ea:'#c98cff', e1:'#150a2c', n:4,
+{dec:'Anos 2020', name:'AGORA', yr:2026, fx:"'Poppins','Inter',sans-serif", ea:'#c98cff', e1:'#150a2c', n:3,
  sub:'Consoles híbridos, assinaturas e jogos que continuam chegando. É aqui que a viagem termina — com a pré-venda do GTA VI.',
  knew:'Hoje os jogos de celular respondem por cerca de metade do faturamento do setor no mundo, e o Brasil é o maior mercado da América Latina.',
- shopT:'Pré-venda do GTA VI', shopS:'Reserve na Game Store e retire no dia do lançamento', go:'gta', cta:'Reservar agora',
+ shopT:'Jogos atuais na loja', shopS:'Lançamentos de PS5 e Xbox que já estão disponíveis pra jogar hoje', go:'jogos', cta:'Ver na loja',
  games:[{t:'Elden Ring', y:2022, p:'Multiplataforma', d:'Jogo do Ano no The Game Awards 2022.'},
  {t:'Zelda: Tears of the Kingdom', y:2023, p:'Switch', d:'Levou a liberdade criativa da série ao limite.'},
- {t:'Baldur’s Gate 3', y:2023, p:'PC e PS5', d:'Jogo do Ano no The Game Awards 2023.'},
- {t:'Grand Theft Auto VI', y:2026, p:'PS5 e Xbox Series', d:'Chega em 19/11/2026. A pré-venda já está aberta na loja.'}]}
+ {t:'Baldur’s Gate 3', y:2023, p:'PC e PS5', d:'Jogo do Ano no The Game Awards 2023.'}]}
 ];
 function evxLayer(i){
 if (i === 1) return '<i class="l1"></i><i class="l2"></i><i class="l3"></i><i class="l4"></i>';
@@ -2624,13 +2631,14 @@ var words = ['Entre','na','era','dos','games'];
 return '<div class="evx" id="evx">' +
 '<div class="evx-ov" id="evxOv" role="presentation">' +
 '<div class="evx-wall" id="evxWall" aria-hidden="true"></div>' +
-'<div class="evx-tvw" id="evxTvw"><div class="evx-scr" id="evxScr"><canvas class="evx-scv" id="evxScv" width="320" height="240" aria-hidden="true"></canvas><i class="evx-stc" aria-hidden="true"></i><div class="evx-chan" id="evxChan"></div></div></div>' +
+'<div class="evx-stage"><div class="evx-tvw" id="evxTvw"><div class="evx-scr" id="evxScr"><canvas class="evx-scv" id="evxScv" width="320" height="240" aria-hidden="true"></canvas><i class="evx-stc" aria-hidden="true"></i><div class="evx-chan" id="evxChan"></div></div></div>' +
 '<span class="evx-ps" id="evxPs">PRESS START</span>' +
-'<button type="button" class="evx-skip" id="evxSkip">Pular intro \u203a</button></div>' +
+'</div><button type="button" class="evx-skip" id="evxSkip">Pular intro \u203a</button></div>' +
 '<section class="evx-hero"><span class="evx-kick">Linha do tempo dos videogames · 1980 \u2192 hoje</span>' +
-'<h1 class="evx-h1" id="evxH1">' + words.map(function(w, i){ return '<span' + (i === 4 ? ' class="big"' : '') + ' style="--i:' + i + '">' + w + '</span>'; }).join(' ') + '</h1>' +
+'<h1 class="evx-h1" id="evxH1">' + words.map(function(w, i){ return '<span class="wd" style="--i:' + i + '"><span' + (i === 4 ? ' class="big"' : '') + '>' + w + '</span></span>'; }).join('') + '</h1>' +
 '<p>Role a página e veja o visual, o som e os cards mudarem a cada década — até a pré-venda do GTA VI.</p>' +
 '<div class="evx-acts"><button type="button" class="btn pri" data-evx-go>Começar a viagem</button><button type="button" class="btn" id="evxAgain">Rever intro</button><button type="button" class="btn" id="sndBtn" aria-pressed="false">🔈 Som retrô</button></div></section>' +
+'<div class="evx-odobar" id="evxOdoBar" aria-hidden="true"></div>' +
 '<div class="evx-odo" id="evxOdo" aria-hidden="true"><b id="evxYr">1980</b><span id="evxEr">8-bit</span></div>' +
 ERAS2.map(evxEraHTML).join('') +
 '<section class="evx-end"><img loading="lazy" decoding="async" src="media/era/gta-vi.webp" alt="Arte oficial de GTA VI"><span class="evx-endk">Pré-venda aberta</span><h2>GTA VI</h2><p>19/11/2026 · PS5 e Xbox Series X|S</p><p class="sm">Reserve na Game Store, garanta o preço de agora e retire na loja no dia do lançamento.</p><button type="button" class="btn lime" data-go="gta">Reservar meu GTA VI ' + I.arrow + '</button></section>' +
@@ -2640,7 +2648,7 @@ ERAS2.map(evxEraHTML).join('') +
 function evxPix(cv){
 var img = new Image(); img.decoding = 'async'; img.src = cv.getAttribute('data-src');
 img.onload = function(){
-var w = cv.width, h = cv.height, tw = Math.max(10, Math.round(w/7)), th = Math.max(10, Math.round(h/7));
+var w = cv.width, h = cv.height, tw = Math.max(10, Math.round(w/3.2)), th = Math.max(10, Math.round(h/3.2));
 var o = document.createElement('canvas'); o.width = tw; o.height = th;
 var oc = o.getContext('2d'), s = Math.max(tw/img.width, th/img.height), dw = img.width*s, dh = img.height*s;
 oc.drawImage(img, (tw-dw)/2, (th-dh)/2, dw, dh);
@@ -2687,7 +2695,7 @@ var E = ERAS2[i]; if (!E) return;
 var odo = document.getElementById('evxOdo');
 if (odo){
 odo.style.setProperty('--ea', E.ea); odo.style.setProperty('--fx', E.fx);
-odo.classList.add('on'); odo.classList.remove('roll');
+odo.classList.add('on'); odo.classList.remove('roll'); var _ob = document.getElementById('evxOdoBar'); if (_ob) _ob.classList.add('on');
 void odo.offsetWidth; odo.classList.add('roll');
 document.getElementById('evxYr').textContent = E.yr;
 document.getElementById('evxEr').textContent = E.name;
@@ -2704,7 +2712,7 @@ cancelAnimationFrame(EVX.raf);
 (EVX.ios || []).forEach(function(o){ o.disconnect(); });
 if (EVX.onScroll) window.removeEventListener('scroll', EVX.onScroll);
 if (EVX.stc) EVX.stc = false;
-var odo = document.getElementById('evxOdo'); if (odo) odo.classList.remove('on');
+var odo = document.getElementById('evxOdo'); if (odo) odo.classList.remove('on'); var obar = document.getElementById('evxOdoBar'); if (obar) obar.classList.remove('on');
 EVX = null;
 }
 function evxStatic(cv){
@@ -2745,15 +2753,15 @@ ps = box.querySelector('#evxPs'), h1 = box.querySelector('#evxH1'), sk = box.que
 if (ov._t) ov._t.forEach(clearTimeout);
 ov._t = [];
 function at(ms, fn){ ov._t.push(setTimeout(fn, ms)); }
-function finish(){ ov.classList.add('off'); h1.classList.add('fall'); EVINTRO = true; if (EVX) EVX.stc = false; }
-function skip(){ ov._t.forEach(clearTimeout); ov._t = []; if (EVX) EVX.stc = false; ov.classList.add('off'); h1.classList.add('fall'); EVINTRO = true; }
+function finish(){ ov.classList.add('off'); h1.classList.add('fall'); EVINTRO = true; if (EVX) EVX.stc = false; ov._t.push(setTimeout(function(){ h1.classList.remove('fall'); }, 1600)); }
+function skip(){ ov._t.forEach(clearTimeout); ov._t = []; if (EVX) EVX.stc = false; ov.classList.add('off'); h1.classList.add('fall'); EVINTRO = true; ov._t.push(setTimeout(function(){ h1.classList.remove('fall'); }, 1600)); }
 ov.classList.remove('off'); h1.classList.remove('fall'); ps.classList.remove('on'); scr.classList.remove('off'); twv.classList.remove('bye');
 chan.innerHTML = ''; evxWall(box.querySelector('#evxWall')); evxStatic(box.querySelector('#evxScv'));
 at(80, function(){ scr.classList.add('on'); });
 ERAS2.forEach(function(E, i){
 at(430 + i*430, function(){
 twv.classList.add('shake'); setTimeout(function(){ twv.classList.remove('shake'); }, 240);
-var src = evxSrc(E.games[0].t);
+var src = evxSrc(i === 5 ? 'Grand Theft Auto VI' : E.games[0].t);
 chan.innerHTML = (src ? '<img loading="lazy" decoding="async" src="' + src + '" alt="">' : '') +
 '<b style="font-family:' + E.fx + ';color:' + E.ea + '">' + E.name + '</b>' +
 '<span class="evx-cyr" style="color:' + E.ea + '">' + E.yr + '</span>' +
@@ -2777,7 +2785,7 @@ EVX.ios.push(io);
 var io2 = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting) evxSetEra(+e.target.getAttribute('data-era'), box); }); }, {rootMargin:'-42% 0px -54% 0px'});
 box.querySelectorAll('.evx-era').forEach(function(el){ io2.observe(el); });
 EVX.ios.push(io2);
-var ioe = new IntersectionObserver(function(es){ es.forEach(function(e){ var odo = document.getElementById('evxOdo'); if (odo && e.isIntersecting) odo.classList.remove('on'); }); }, {threshold:.2});
+var ioe = new IntersectionObserver(function(es){ es.forEach(function(e){ if (!e.isIntersecting) return; var odo = document.getElementById('evxOdo'); if (odo) odo.classList.remove('on'); var ob = document.getElementById('evxOdoBar'); if (ob) ob.classList.remove('on'); }); }, {threshold:.2});
 box.querySelectorAll('.evx-end').forEach(function(el){ ioe.observe(el); });
 EVX.ios.push(ioe);
 var par = [].slice.call(box.querySelectorAll('.evx-era[data-era="1"] .evx-bgl i'));
