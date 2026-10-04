@@ -1876,6 +1876,82 @@ body.su-on .foot{padding-bottom:120px;}
 .gtv-sky,.gtv-tv::before,.gtv-logo::before,.gtv-logo::after{animation:none;}
 .gtv-thumb{transform:none;transition:none;}
 }
+/* ---- GTA VI: movimento cinematografico (guiado pela rolagem) ---- */
+.gtv-replay{position:absolute;z-index:7;right:10px;top:10px;display:none;height:36px;align-items:center;padding:0 12px;border-radius:999px;border:1px solid rgba(255,255,255,.22);background:rgba(7,4,11,.55);color:rgba(255,255,255,.82);font-size:11.5px;font-weight:700;cursor:pointer;}
+.gtv-replay.on{display:inline-flex;}
+.gtv-tv.playing .gtv-tlabel,.gtv-tv.playing .gtv-scan,.gtv-tv.playing .gtv-logo{opacity:0!important;visibility:hidden!important;pointer-events:none;}
+/* quebras de cinema */
+.gtv-cine{position:relative;margin-top:18px;}
+.gtv-cine-in{position:relative;height:min(72svh,520px);overflow:hidden;border-radius:24px;clip-path:inset(22% round 24px);}
+.gtv-cine-in>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.2);}
+.gtv-cine-sh{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,4,11,.5),rgba(7,4,11,.12) 42%,rgba(7,4,11,.82));}
+.gtv-cine-t{position:absolute;left:0;right:0;bottom:8%;margin:0;padding:0 7%;font-family:'Anton','Poppins',Impact,sans-serif;font-weight:400;font-size:clamp(28px,8.6vw,62px);line-height:.98;text-transform:uppercase;letter-spacing:.01em;text-shadow:0 6px 30px rgba(0,0,0,.85),2px 2px 0 rgba(255,62,165,.72);}
+@supports (animation-timeline:view()){
+.gtv-cine-in{animation:gtvCineIn linear both;animation-timeline:view();animation-range:entry 5% cover 42%;}
+.gtv-cine-in>img{animation:gtvCineZoom linear both;animation-timeline:view();animation-range:entry 5% cover 42%;}
+}
+@keyframes gtvCineIn{from{clip-path:inset(22% round 24px);}to{clip-path:inset(0% round 0px);}}
+@keyframes gtvCineZoom{from{transform:scale(1.2);}to{transform:scale(1);}}
+/* garantias fixas */
+.gtv-guar{position:relative;margin-top:18px;}
+.gtv-guar-track{position:relative;height:300vh;}
+.gtv-guar-stage{position:sticky;top:0;height:100svh;border-radius:22px;overflow:hidden;border:1px solid rgba(255,255,255,.1);background:#0a0712;}
+.gtv-guar-bg{position:absolute;inset:0;}
+.gtv-guar-bg img{width:100%;height:100%;object-fit:cover;filter:brightness(.4) saturate(.85);}
+.gtv-guar-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,4,12,.8),rgba(6,4,12,.5) 45%,rgba(6,4,12,.9));}
+.gtv-guar-h{position:absolute;z-index:2;left:8%;top:12%;}
+.gtv-guar-i{position:absolute;inset:0;z-index:2;display:grid;align-content:center;justify-items:start;gap:9px;padding:0 8% 6%;opacity:0;transform:translateY(26px);transition:opacity .45s ease,transform .45s ease;pointer-events:none;}
+.gtv-guar-i.on{opacity:1;transform:none;}
+.gtv-guar-i svg{width:34px;height:34px;color:var(--gp);}
+.gtv-guar-i h3{margin:0;font-family:'Anton','Poppins',Impact,sans-serif;font-weight:400;font-size:clamp(25px,7.6vw,52px);line-height:1.02;text-transform:uppercase;text-shadow:0 4px 24px rgba(0,0,0,.7);}
+.gtv-guar-i p{margin:0;max-width:34ch;font-size:clamp(13px,3.6vw,17px);color:rgba(255,255,255,.84);}
+.gtv-guar-n{position:absolute;z-index:2;right:16px;top:12%;font-family:'Anton','Poppins',Impact,sans-serif;font-size:15px;letter-spacing:.12em;color:var(--gs);}
+/* galeria scrub */
+.gtv-scrub{margin-top:18px;}
+.gtv-scrub-track{position:relative;height:220vh;}
+.gtv-scrub-stage{position:sticky;top:0;height:100svh;display:flex;flex-direction:column;justify-content:center;gap:12px;overflow:hidden;}
+.gtv-scrub-stage>.gtv-kick,.gtv-scrub-stage>h2,.gtv-scrub-stage>.gtv-sub{padding-left:16px;padding-right:16px;}
+.gtv-shot{flex:none;margin:0;display:flex;flex-direction:column;gap:6px;scroll-snap-align:start;}
+.gtv-shot img{height:170px;width:auto;border-radius:14px;border:1px solid rgba(255,255,255,.12);}
+.gtv-cap{font-size:11.5px;color:rgba(255,255,255,.6);}
+.gtv-scrub .gtv-rail{padding-left:16px;padding-right:16px;}
+.gtv-scrub .gtv-rail-nav{padding-right:16px;}
+/* titulos linha a linha */
+.gtv-tl .gtv-line{transform:translateY(115%);}
+.gtv-tl.gtv-tl-on .gtv-line{transform:none;transition:transform .62s cubic-bezier(.2,.85,.25,1);}
+.gtv-tl.gtv-tl-on .gtv-mask:nth-child(2) .gtv-line{transition-delay:.08s;}
+.gtv-tl.gtv-tl-on .gtv-mask:nth-child(3) .gtv-line{transition-delay:.16s;}
+.gtv-tl.gtv-tl-on .gtv-mask:nth-child(4) .gtv-line{transition-delay:.24s;}
+.gtv-mask{display:block;overflow:hidden;padding-bottom:.06em;}
+/* ingresso da reserva */
+.gtv-tick{position:relative;margin-top:16px;border-radius:18px;border:1px solid rgba(255,255,255,.16);background:linear-gradient(150deg,rgba(31,19,48,.97),rgba(10,7,18,.97));padding:16px 18px;display:flex;gap:14px;flex-wrap:wrap;align-items:center;justify-content:space-between;overflow:hidden;}
+.gtv-tick::before,.gtv-tick::after{content:"";position:absolute;top:50%;width:22px;height:22px;border-radius:50%;background:#08060e;transform:translateY(-50%);border:1px solid rgba(255,255,255,.16);}
+.gtv-tick::before{left:-12px;clip-path:inset(0 0 0 50%);}
+.gtv-tick::after{right:-12px;clip-path:inset(0 50% 0 0);}
+.gtv-tick-line{position:absolute;left:14px;right:14px;bottom:0;height:1px;background-image:radial-gradient(circle,rgba(255,255,255,.5) 0 1px,transparent 1.6px);background-size:9px 1px;background-repeat:repeat-x;}
+.gtv-tick-main{min-width:0;flex:1 1 190px;}
+.gtv-tick-main b{display:block;font-size:15px;}
+.gtv-tick-main span{display:block;margin-top:3px;font-size:12.5px;color:rgba(255,255,255,.66);}
+.gtv-tick-n{font-family:'Anton','Poppins',Impact,sans-serif;font-size:26px;letter-spacing:.1em;color:var(--gl);font-variant-numeric:tabular-nums;}
+.gtv-tick-n i{font-style:normal;display:inline-block;}
+/* combos: tilt + parallax interno */
+.gtv-con{perspective:900px;}
+.gtv-c{overflow:hidden;transition:transform .18s ease;}
+.gtv-c>span{min-width:0;}
+.gtv-c img{will-change:transform;}
+@media (prefers-reduced-motion:reduce){
+.gtv-cine-in{clip-path:none!important;animation:none!important;}
+.gtv-cine-in>img{transform:none!important;animation:none!important;}
+.gtv-guar-track{height:auto;}
+.gtv-guar-stage{position:static;height:auto;}
+.gtv-guar-h{position:static;display:inline-flex;margin:0 0 6px;}
+.gtv-guar-i{position:static;opacity:1;transform:none;padding:18px 16px;pointer-events:auto;}
+.gtv-guar-n{display:none;}
+.gtv-scrub-track{height:auto;}
+.gtv-scrub-stage{position:static;height:auto;padding:0 0 8px;}
+.gtv-tl .gtv-line{transform:none!important;}
+.gtv-c{transition:none;}
+}
 </style>
 <div class="demo">Demonstração · produtos e preços de exemplo · imagens de GTA VI: Rockstar Games</div>
 <header class="hd"><div class="wrap">
@@ -3582,19 +3658,142 @@ return '<button type="button" class="gtv-opt' + (on ? ' on' : '') + '" data-' + 
 }
 function gtvPaint(){
 var s = document.getElementById('gtvRes'); if (!s) return;
+var sums = s.querySelectorAll('.gtv-sum, .gtv-tick');
+for (var i = 1; i < sums.length; i++) sums[i].parentNode.removeChild(sums[i]);
 s.querySelectorAll('[data-gtv-plat]').forEach(function(b){ var on = b.getAttribute('data-gtv-plat') === GTVS.plat; b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); });
 s.querySelectorAll('[data-gtv-ed]').forEach(function(b){ var on = b.getAttribute('data-gtv-ed') === GTVS.ed; b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); });
 s.querySelectorAll('[data-gtv-pay]').forEach(function(b){ var on = b.getAttribute('data-gtv-pay') === GTVS.pay; b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); });
 var T = s.querySelector('#gtvSumT'), S = s.querySelector('#gtvSumS'), N = s.querySelector('#gtvSumN'), F = s.querySelector('#gtvFinish');
 if (!T) return;
-if (!GTVS.plat){ T.textContent = 'Escolha a plataforma pra começar'; S.textContent = 'Depois a edição e a forma de pagamento.'; N.textContent = ''; }
+if (!GTVS.plat){ T.textContent = 'Escolha a plataforma pra começar'; S.textContent = 'Depois a edição e a forma de pagamento.'; if (N){ N.innerHTML = ''; N.__num = ''; } }
 else {
 if (gtvReady() && !GTVS.num) GTVS.num = gtvNum();
 T.textContent = gtvEdN() + ' · ' + gtvPlatN();
 S.textContent = gtvPayN() + ' · valor confirmado no WhatsApp antes de pagar.';
-N.textContent = GTVS.num ? '#' + GTVS.num : '';
+if (N && N.__num !== GTVS.num){ N.__num = GTVS.num; gtvRoll(N, GTVS.num); }
 }
 if (F) F.disabled = !gtvReady();
+}
+function gtvPulse(el){
+if (reduce || !el || !el.animate) return;
+el.animate([{boxShadow:'0 0 0 0 rgba(255,62,165,0)',transform:'scale(1)'},{boxShadow:'0 0 0 8px rgba(255,62,165,.45)',transform:'scale(1.015)',offset:.35},{boxShadow:'0 0 0 0 rgba(255,62,165,0)',transform:'scale(1)'}],{duration:520,easing:'ease-out'});
+}
+function gtvRoll(el, num){
+if (!el) return;
+var out = ''; for (var i = 0; i < num.length; i++) out += '<i>' + num[i] + '</i>';
+el.innerHTML = '#' + out;
+if (reduce || !el.animate) return;
+var its = Array.prototype.slice.call(el.querySelectorAll('i')), t0 = Date.now(), D = 720;
+function frame(){
+var e = Date.now() - t0;
+its.forEach(function(it, i){
+if (e < (i + 1) / its.length * D){
+var r = String(Math.floor(Math.random() * 10));
+if (it.textContent !== r){ it.textContent = r; if (it.animate) it.animate([{transform:'translateY(-.55em)',opacity:.4},{transform:'none',opacity:1}],{duration:140,easing:'ease-out'}); }
+} else if (it.textContent !== num[i]){ it.textContent = num[i]; if (it.animate) it.animate([{transform:'translateY(-.35em)',opacity:.6},{transform:'none',opacity:1}],{duration:180,easing:'ease-out'}); }
+});
+if (e < D) requestAnimationFrame(frame); else its.forEach(function(it, i){ it.textContent = num[i]; });
+}
+requestAnimationFrame(frame);
+}
+function gtvCine(img, txt){
+return '<section class="gtv-cine"><div class="gtv-cine-in"><img src="' + img + '" alt="" loading="lazy" decoding="async"><div class="gtv-cine-sh"></div><p class="gtv-cine-t">' + txt + '</p></div></section>';
+}
+function gtvTitles(scope){
+var hs = Array.prototype.slice.call(scope.querySelectorAll('.gtv-sec>h2, .gtv-scrub-stage>h2'));
+hs.forEach(function(h){
+if (h.__tl) return; h.__tl = true;
+var words = (h.textContent || '').trim().split(/\s+/);
+if (words.length < 2){ h.classList.add('gtv-tl','gtv-tl-on'); return; }
+h.textContent = '';
+var probes = words.map(function(w, i){ var sp = document.createElement('span'); sp.textContent = w + (i < words.length - 1 ? ' ' : ''); sp.style.cssText = 'display:inline-block;white-space:pre;'; h.appendChild(sp); return sp; });
+var lines = [], cur = [], last = null;
+probes.forEach(function(sp){
+var t = sp.offsetTop;
+if (last === null || Math.abs(t - last) < 3){ cur.push(sp.textContent); }
+else { lines.push(cur.join('').replace(/\s+$/, '')); cur = [sp.textContent]; }
+last = t;
+});
+if (cur.length) lines.push(cur.join('').replace(/\s+$/, ''));
+h.textContent = '';
+lines.forEach(function(txt){
+var m = document.createElement('span'); m.className = 'gtv-mask';
+var l = document.createElement('span'); l.className = 'gtv-line'; l.textContent = txt;
+m.appendChild(l); h.appendChild(m);
+});
+h.classList.add('gtv-tl');
+if (reduce || !('IntersectionObserver' in window)){ h.classList.add('gtv-tl-on'); return; }
+var io = new IntersectionObserver(function(es){ es.forEach(function(x){ if (x.isIntersecting){ x.target.classList.add('gtv-tl-on'); io.unobserve(x.target); } }); }, {threshold:.2});
+io.observe(h);
+});
+}
+var GTV_HOOKS = [], GTV_RAF = null;
+function gtvHook(fn){ GTV_HOOKS.push(fn); }
+function gtvHooksClear(){ GTV_HOOKS = []; if (GTV_RAF){ cancelAnimationFrame(GTV_RAF); GTV_RAF = null; } }
+function gtvScrollRun(){ if (GTV_RAF || !GTV_HOOKS.length) return; GTV_RAF = requestAnimationFrame(function(){ GTV_RAF = null; GTV_HOOKS.forEach(function(f){ try{ f(); }catch(e){} }); }); }
+window.addEventListener('scroll', gtvScrollRun, {passive:true});
+window.addEventListener('resize', gtvScrollRun);
+function gtvCineScroll(scope){
+if (reduce || (window.CSS && CSS.supports && CSS.supports('animation-timeline','view()'))) return;
+var els = Array.prototype.slice.call(scope.querySelectorAll('.gtv-cine-in')); if (!els.length) return;
+gtvHook(function(){
+if (!scope.isConnected) return;
+var vh = window.innerHeight;
+els.forEach(function(el){
+var r = el.getBoundingClientRect();
+var p = (vh - r.top) / (vh + r.height);
+p = Math.max(0, Math.min(1, (p - .08) / .6));
+el.style.clipPath = 'inset(' + (22 * (1 - p)).toFixed(2) + '% round ' + (24 * (1 - p)).toFixed(1) + 'px)';
+var im = el.querySelector('img'); if (im) im.style.transform = 'scale(' + (1.2 - .2 * p).toFixed(3) + ')';
+});
+});
+}
+function gtvGuarScroll(scope){
+var sec = scope.querySelector('#gtvGuar'); if (!sec) return;
+var items = Array.prototype.slice.call(sec.querySelectorAll('.gtv-guar-i')), cnt = sec.querySelector('#gtvGuarCount'), track = sec.querySelector('.gtv-guar-track');
+if (!items.length || !track) return;
+if (reduce){ items.forEach(function(i){ i.classList.add('on'); }); if (cnt) cnt.textContent = items.length + '/' + items.length; return; }
+gtvHook(function(){
+if (!scope.isConnected) return;
+var r = track.getBoundingClientRect(), total = r.height - window.innerHeight;
+var p = total > 0 ? Math.max(0, Math.min(1, -r.top / total)) : (r.top < window.innerHeight * .6 ? 1 : 0);
+var idx = Math.max(0, Math.min(items.length - 1, Math.floor(p * items.length - 1e-6)));
+items.forEach(function(it, i){ it.classList.toggle('on', i === idx); });
+if (cnt) cnt.textContent = (idx + 1) + '/' + items.length;
+});
+}
+function gtvScrubScroll(scope){
+var sec = scope.querySelector('#gtvGal'); if (!sec || reduce) return;
+var track = sec.querySelector('.gtv-scrub-track'); if (!track) return;
+var rails = Array.prototype.slice.call(sec.querySelectorAll('.gtv-rail'));
+gtvHook(function(){
+if (!scope.isConnected) return;
+var r = track.getBoundingClientRect(), total = r.height - window.innerHeight;
+var p = total > 0 ? Math.max(0, Math.min(1, -r.top / total)) : 0;
+rails.forEach(function(rail, i){
+var max = rail.scrollWidth - rail.clientWidth;
+if (max > 0) rail.scrollLeft = p * max * (i ? .72 : 1);
+});
+});
+}
+function gtvTilt(scope){
+var cards = Array.prototype.slice.call(scope.querySelectorAll('.gtv-con .gtv-c'));
+if (!cards.length || reduce) return;
+cards.forEach(function(c){
+var img = c.querySelector('img');
+function move(e){
+var r = c.getBoundingClientRect();
+var px = Math.max(-.5, Math.min(.5, (e.clientX - r.left) / r.width - .5));
+var py = Math.max(-.5, Math.min(.5, (e.clientY - r.top) / r.height - .5));
+c.style.transform = 'rotateY(' + (px * 6).toFixed(2) + 'deg) rotateX(' + (-py * 6).toFixed(2) + 'deg)';
+if (img) img.style.transform = 'translate(' + (-px * 10).toFixed(1) + 'px,' + (-py * 7).toFixed(1) + 'px) scale(1.08)';
+}
+function reset(){ c.style.transform = ''; if (img) img.style.transform = ''; }
+c.addEventListener('pointermove', move);
+c.addEventListener('pointerleave', reset);
+c.addEventListener('pointercancel', reset);
+c.addEventListener('pointerup', reset);
+});
 }
 function gtvPanelsHTML(){
 return GTV_PANELS.map(function(p){
@@ -3659,20 +3858,16 @@ return '<section class="gtv-sec" id="gtvTvSec">' +
 '</section>';
 }
 function gtvRailsHTML(){
-var g = [
-['assets/inline/inline-51e6604d06.webp','Jason e Lucia na estrada'],
-['assets/inline/inline-419dda49cf.webp','Vice City'],
-['assets/inline/inline-27bfb09b30.webp','Leonida'],
-['assets/inline/inline-19020570ac.webp','Noite em Vice City'],
-['assets/inline/inline-37572b3780.webp','Lucia'],
-['media/gta/keyart.webp','Arte oficial']
+var rows = [
+[['assets/inline/inline-51e6604d06.webp','Jason e Lucia na estrada'],['assets/inline/inline-419dda49cf.webp','Vice City em neon'],['assets/inline/inline-27bfb09b30.webp','Leonida de ponta a ponta']],
+[['assets/inline/inline-19020570ac.webp','Noite em Vice City'],['assets/inline/inline-37572b3780.webp','Lucia'],['media/gta/keyart.webp','Arte oficial']]
 ];
-return '<section class="gtv-sec" id="gtvGal">' +
+return '<section class="gtv-scrub" id="gtvGal"><div class="gtv-scrub-track"><div class="gtv-scrub-stage">' +
 '<span class="gtv-kick">Imagens oficiais</span><h2>Galeria</h2>' +
-'<p class="gtv-sub">Material de divulgação da Rockstar Games.</p>' +
-'<div class="gtv-rail" id="gtvRail">' + g.map(function(x){ return '<img src="' + x[0] + '" alt="' + esc(x[1]) + '" loading="lazy" decoding="async">'; }).join('') + '</div>' +
+'<p class="gtv-sub">Material de divulgação da Rockstar Games. Role a página pra passear pelas imagens — ou use as setas.</p>' +
+rows.map(function(r, ri){ return '<div class="gtv-rail" data-rail="' + ri + '">' + r.map(function(x){ return '<figure class="gtv-shot"><img src="' + x[0] + '" alt="' + esc(x[1]) + '" loading="lazy" decoding="async"><figcaption class="gtv-cap">' + esc(x[1]) + '</figcaption></figure>'; }).join('') + '</div>'; }).join('') +
 '<div class="gtv-rail-nav"><button type="button" data-gtv-rail="-1" aria-label="Anterior">' + I.left + '</button><button type="button" data-gtv-rail="1" aria-label="Próxima">' + I.right + '</button></div>' +
-'</section>';
+'</div></div></section>';
 }
 function renderGTA(){
 if (JPICK === 'ps' || JPICK === 'ps2') GTVS.plat = GTVS.plat || 'ps5';
@@ -3704,6 +3899,7 @@ return '<div class="gtv">' +
 '<button type="button" class="gtv-btn gh" data-gtv-tvjump>' + I.play + 'Ver trailer</button>' +
 '</div></div></div>' +
 '<div class="gtv-load" id="gtvLoad"><div class="gtv-tip" id="gtvTip"></div><div class="gtv-bar"><i id="gtvBarFill"></i></div></div>' +
+'<button type="button" class="gtv-replay" id="gtvReplay">Rever intro</button>' +
 '</section>' +
 /* 2. reserva em 3 passos */
 '<section class="gtv-sec" id="gtvRes">' +
@@ -3714,25 +3910,32 @@ return '<div class="gtv">' +
 '<div class="gtv-step"><b><i>2</i>Edição</b><div class="gtv-opts">' + gtvOpts(GTV.editions, 'gtv-ed', GTVS.ed) + '</div><p class="gtv-note">Só edições anunciadas oficialmente pela Rockstar. Outras edições entram aqui quando forem anunciadas.</p></div>' +
 '<div class="gtv-step"><b><i>3</i>Pagamento</b><div class="gtv-opts">' + gtvOpts(gtvPays(), 'gtv-pay', GTVS.pay) + '</div></div>' +
 '</div>' +
-'<div class="gtv-sum"><div><b id="gtvSumT">Escolha a plataforma pra começar</b><span id="gtvSumS">Depois a edição e a forma de pagamento.</span></div><span class="num" id="gtvSumN"></span></div>' +
+'<div class="gtv-tick" id="gtvTicket"><span class="gtv-tick-line"></span><div class="gtv-tick-main"><b id="gtvSumT">Escolha a plataforma pra começar</b><span id="gtvSumS">Depois a edição e a forma de pagamento.</span></div><span class="gtv-tick-n" id="gtvSumN"></span></div>' +
 '<div class="gtv-ctas" style="margin-top:14px"><button type="button" class="gtv-btn pri" id="gtvFinish" disabled>Finalizar reserva no WhatsApp</button></div>' +
 '<div class="gtv-alert"><div><b>Prefere esperar o preço sair?</b><span>Deixa o seu WhatsApp que a gente avisa assim que a Rockstar confirmar os valores. Sem compromisso.</span></div>' +
 '<div class="gtv-field"><input id="gtvPhone" type="tel" inputmode="numeric" placeholder="(00) 00000-0000" aria-label="Seu WhatsApp"><button type="button" class="gtv-btn ln" id="gtvWarn">Me avise</button></div></div>' +
 '<p class="gtv-note">A Rockstar ainda não divulgou todas as edições e valores. A reserva garante o preço do dia e nada é cobrado sem você confirmar no WhatsApp.</p>' +
 '</section>' +
 /* 3. por que reservar aqui */
-'<section class="gtv-sec"><span class="gtv-kick">Por que reservar aqui</span><h2>O que a loja garante</h2><p class="gtv-sub">Reservar na Game Store é diferente de esperar a prateleira.</p>' +
-'<div class="gtv-grid4">' + why.map(function(w){ return '<div class="gtv-why">' + gtvIco(w[0]) + '<div><b>' + w[1] + '</b><p>' + w[2] + '</p></div></div>'; }).join('') + '</div></section>' +
+gtvCine('assets/inline/inline-419dda49cf.webp','Garanta o seu<br>antes da fila.') +
+'<section class="gtv-guar" id="gtvGuar"><div class="gtv-guar-track"><div class="gtv-guar-stage">' +
+'<div class="gtv-guar-bg"><img src="assets/inline/inline-19020570ac.webp" alt="" loading="lazy" decoding="async"></div>' +
+'<span class="gtv-kick gtv-guar-h">O que a loja garante</span>' +
+why.map(function(w, i){ return '<article class="gtv-guar-i' + (i === 0 ? ' on' : '') + '"><span class="gtv-guar-ic">' + gtvIco(w[0]) + '</span><h3>' + w[1] + '</h3><p>' + w[2] + '</p></article>'; }).join('') +
+'<span class="gtv-guar-n" id="gtvGuarCount">1/' + why.length + '</span>' +
+'</div></div></section>' +
 /* 4. console */
 '<section class="gtv-sec"><span class="gtv-kick">Ainda não tem console?</span><h2>A gente resolve</h2><p class="gtv-sub">Combo com console novo, troca do seu usado e assistência técnica na mesma loja.</p>' +
 '<div class="gtv-con">' +
 '<button type="button" class="gtv-c" data-go="consoles"><img src="assets/inline/inline-419dda49cf.webp" alt="" loading="lazy" decoding="async"><span><b>Combo PS5 + reserva do GTA VI</b><small>Console e jogo juntos, tudo parcelado.</small></span>' + I.arrow + '</button>' +
 '<button type="button" class="gtv-c" data-go="consoles"><img src="assets/inline/inline-51e6604d06.webp" alt="" loading="lazy" decoding="async"><span><b>Troque seu PS4 no PS5</b><small>Avaliamos o seu usado na hora · seminovos e conserto.</small></span>' + I.arrow + '</button>' +
 '</div></section>' +
+gtvCine('assets/inline/inline-27bfb09b30.webp','Leonida<br>te espera.') +
 /* 5. trailers */
 gtvTrailersHTML() +
 /* 6. galeria */
 gtvRailsHTML() +
+gtvCine('assets/inline/inline-51e6604d06.webp','Viva Vice City<br>desde o dia 1.') +
 /* 7. faq */
 '<section class="gtv-sec gtv-faq"><span class="gtv-kick">Dúvidas</span><h2>Perguntas frequentes</h2><div style="margin-top:8px">' +
 '<details open><summary>Quando o GTA VI chega?</summary><p>Lançamento previsto para ' + gtvDateTxt() + '. Reservando aqui você é avisado no WhatsApp se a Rockstar mudar a data.</p></details>' +
@@ -3761,12 +3964,12 @@ scope.querySelector('#gtvS').textContent = String(s%60).padStart(2,'0');
 function stop(){ clearInterval(iv); scope.querySelectorAll('video').forEach(function(v){ try{ v.pause(); }catch(e){} }); }
 var iv = setInterval(paint, 1000); paint();
 }
-function gtvIntro(hero, run){
+function gtvIntro(hero, mode){
 var stage = hero.querySelector('#gtvStage'), sweep = hero.querySelector('#gtvSweep');
 var nodes = Array.prototype.slice.call(hero.querySelectorAll('.gtv-p'));
 var tip = hero.querySelector('#gtvTip'), bar = hero.querySelector('#gtvBarFill'), load = hero.querySelector('#gtvLoad');
 var copy = hero.querySelector('#gtvCopy'), rv = copy ? Array.prototype.slice.call(copy.children) : [];
-var timers = [], ivs = [], done = false, anim = !!(stage && stage.animate);
+var timers = [], ivs = [], done = false, anim = !!(stage && stage.animate), breathed = false;
 nodes.forEach(function(n){ var k = n.getAttribute('data-p'); GTV_PANELS.forEach(function(p){ if (p.n === k) n.__p = p; }); });
 function later(fn, ms){ timers.push(setTimeout(fn, ms)); }
 function stopTimers(){ timers.forEach(clearTimeout); timers = []; ivs.forEach(clearInterval); ivs = []; }
@@ -3783,6 +3986,7 @@ if (st) later(shake, i * 150 + 340);
 });
 }
 function breathe(){
+if (breathed) return; breathed = true;
 nodes.forEach(function(n, i){
 var im = n.querySelector('img'); if (!im || !im.animate) return;
 im.animate([{transform:'translate(0,0) scale(1)'},{transform:'translate(' + (i % 2 ? 3 : -3) + 'px,' + (i % 3 ? -4 : 3) + 'px) scale(1.018)'}],
@@ -3795,6 +3999,7 @@ loop(); ivs.push(setInterval(loop, 6500));
 function finish(instant){
 if (done) return; done = true; stopTimers(); gtvMark();
 var sk = hero.querySelector('#gtvSkip'); if (sk) sk.style.display = 'none';
+var rvp = hero.querySelector('#gtvReplay'); if (rvp && !reduce) rvp.classList.add('on');
 if (load){ load.classList.remove('fix'); load.style.opacity = '0'; later(function(){ load.style.display = 'none'; }, 400); }
 showCopy(instant);
 if (!reduce) later(breathe, instant ? 0 : 700);
@@ -3804,6 +4009,7 @@ if (!reduce && !lite && window.matchMedia('(min-width:760px)').matches) nodes.fo
 }
 function play(){
 if (reduce || !anim){ finish(true); return; }
+done = false;
 var ti = 0; if (tip) tip.innerHTML = GTV_TIPS[0];
 if (load) load.classList.add('fix');
 ivs.push(setInterval(function(){ ti = (ti + 1) % GTV_TIPS.length; if (tip) tip.innerHTML = GTV_TIPS[ti]; }, 1100));
@@ -3824,12 +4030,38 @@ n.animate([{filter:'brightness(2.4) saturate(1.45) drop-shadow(0 0 28px #ff3ea5)
 });
 later(function(){ finish(false); }, 220 + nodes.length * 320 + 720);
 }
+function quick(){
+if (reduce || !anim){ finish(true); return; }
+done = false;
+var sk = hero.querySelector('#gtvSkip'); if (sk) sk.style.display = 'none';
+if (load) load.style.display = 'none';
+nodes.forEach(function(n, i){
+var p = n.__p; if (!p || !n.animate) return;
+n.animate([
+{transform:'translate(' + (p.from[0] * 26) + 'px,' + (p.from[1] * 20) + 'px) rotate(' + (p.r * .5) + 'deg) scale(1.16)', opacity:0},
+{transform:'none', opacity:1}
+],{duration:520,delay:i * 22,easing:'cubic-bezier(.16,1.3,.4,1)',fill:'backwards'});
+});
+shake();
+if (sweep && sweep.animate) sweep.animate([{opacity:0},{opacity:.85},{opacity:0}],{duration:420,easing:'ease-out'});
+later(function(){ finish(false); }, 620);
+}
 hero.__gtvSkip = function(){ stopTimers(); finish(true); };
-if (run){ play(); } else { finish(true); }
+hero.__gtvFull = function(){
+if (reduce) return;
+var rvp2 = hero.querySelector('#gtvReplay'); if (rvp2) rvp2.classList.remove('on');
+var sk2 = hero.querySelector('#gtvSkip'); if (sk2) sk2.style.display = '';
+if (load){ load.classList.remove('fix'); load.style.display = ''; load.style.opacity = ''; }
+stopTimers(); done = false; play();
+};
+if (mode === 'full'){ play(); }
+else if (mode === 'quick'){ quick(); }
+else { finish(true); }
 }
 function gtvMount(el){
+gtvHooksClear();
 var hero = el.querySelector('#gtvHero'); if (!hero) return;
-gtvFont(); gtvTick(el); gtvPaint();
+gtvFont(); gtvTick(el); gtvPaint(); gtvTitles(el); gtvCineScroll(el); gtvGuarScroll(el); gtvScrubScroll(el); gtvTilt(el); gtvScrollRun();
 var tvs = el.querySelector('#gtvTv');
 if (tvs){
 if ('IntersectionObserver' in window){
@@ -3850,17 +4082,18 @@ nodes.forEach(function(n){ n.style.transform = ''; });
 var sky = hero.querySelector('.gtv-sky'); if (sky) sky.style.translate = '';
 });
 }
-gtvIntro(hero, !gtvSeen());
+gtvIntro(hero, gtvSeen() ? 'quick' : 'full');
 }
 /* ---------- açőes da aba ---------- */
 document.addEventListener('click', function(e){
 var t;
 if ((t = e.target.closest('#gtvSkip'))){ var h = document.getElementById('gtvHero'); if (h && h.__gtvSkip) h.__gtvSkip(); return; }
+if ((t = e.target.closest('#gtvReplay'))){ var hr = document.getElementById('gtvHero'); if (hr && hr.__gtvFull) hr.__gtvFull(); return; }
 if ((t = e.target.closest('[data-gtv-res]'))){ var r = document.getElementById('gtvRes'); if (r) r.scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block:'start'}); return; }
 if ((t = e.target.closest('[data-gtv-tvjump]'))){ var tv = document.getElementById('gtvTvSec'); if (tv) tv.scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block:'start'}); return; }
-if ((t = e.target.closest('[data-gtv-plat]'))){ GTVS.plat = t.getAttribute('data-gtv-plat'); gtvPaint(); return; }
-if ((t = e.target.closest('[data-gtv-ed]'))){ GTVS.ed = t.getAttribute('data-gtv-ed'); gtvPaint(); return; }
-if ((t = e.target.closest('[data-gtv-pay]'))){ GTVS.pay = t.getAttribute('data-gtv-pay'); gtvPaint(); return; }
+if ((t = e.target.closest('[data-gtv-plat]'))){ GTVS.plat = t.getAttribute('data-gtv-plat'); gtvPaint(); gtvPulse(t); return; }
+if ((t = e.target.closest('[data-gtv-ed]'))){ GTVS.ed = t.getAttribute('data-gtv-ed'); gtvPaint(); gtvPulse(t); return; }
+if ((t = e.target.closest('[data-gtv-pay]'))){ GTVS.pay = t.getAttribute('data-gtv-pay'); gtvPaint(); gtvPulse(t); return; }
 if ((t = e.target.closest('#gtvFinish'))){ if (!gtvReady()) return; GTVS.num = GTVS.num || gtvNum(); gtvPaint(); window.open(WA + '?text=' + encodeURIComponent(gtvMsg()), '_blank', 'noopener'); return; }
 if ((t = e.target.closest('#gtvWarn'))){
 var ph = document.getElementById('gtvPhone'), v = ph ? ph.value.replace(/\D/g,'') : '';
@@ -3875,8 +4108,9 @@ return;
 }
 if ((t = e.target.closest('#gtvPlay'))){ gtvTvPlay(); return; }
 if ((t = e.target.closest('[data-gtv-rail]'))){
-var rail = document.getElementById('gtvRail'); if (!rail) return;
-rail.scrollBy({left: rail.clientWidth * .8 * (+t.getAttribute('data-gtv-rail')), behavior: reduce ? 'auto' : 'smooth'});
+var gal = document.getElementById('gtvGal'); if (!gal) return;
+var rd = +t.getAttribute('data-gtv-rail');
+gal.querySelectorAll('.gtv-rail').forEach(function(rail){ rail.scrollBy({left: rail.clientWidth * .8 * rd, behavior: reduce ? 'auto' : 'smooth'}); });
 return;
 }
 });
