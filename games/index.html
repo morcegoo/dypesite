@@ -1699,6 +1699,145 @@ body.su-on .foot{padding-bottom:120px;}
 .jgl-ord{width:100%;justify-content:space-between;} .jgl-ord select{flex:1;}
 .jgl-top{flex-direction:column;align-items:stretch;gap:8px;} .jgl-back{align-self:flex-start;}
 }
+
+/* ---------- GTA VI: central de pre-venda (gtv) ---------- */
+.gtv{--gp:#ff3ea5;--gv:#8b5cf6;--gs:#ffb347;--gl:#e4ff5e;position:relative;color:#fff;}
+.gtv a{color:inherit;}
+.gtv-kick{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--gs);}
+.gtv-tag{position:absolute;z-index:6;top:14px;left:14px;font-size:10.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#ffd9ef;text-shadow:0 2px 10px rgba(0,0,0,.8);}
+/* hero + intro */
+.gtv-hero{position:relative;margin-top:12px;border-radius:26px;overflow:hidden;border:1px solid rgba(180,76,255,.4);background:#07040b;padding:16px 14px 20px;box-shadow:0 50px 90px -62px rgba(255,62,165,.85);}
+.gtv-sky{position:absolute;inset:-9%;background:url(media/gta/sky.webp) center 74%/cover no-repeat;animation:gtvDrift 24s ease-in-out infinite alternate;will-change:transform;}
+@keyframes gtvDrift{from{transform:scale(1.07) translateY(0);}to{transform:scale(1) translateY(-1.8%);}}
+.gtv-sky::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,4,11,.78) 0%,rgba(7,4,11,.2) 26%,rgba(7,4,11,.6) 60%,rgba(7,4,11,.97) 100%);}
+.gtv-grain{position:absolute;inset:0;pointer-events:none;opacity:.1;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.14) 0 1px,transparent 1px 3px);}
+.gtv-skip{position:absolute;z-index:7;top:10px;right:10px;height:36px;padding:0 14px;border-radius:999px;border:1px solid rgba(255,255,255,.3);background:rgba(7,4,11,.62);color:#fff;font-size:12px;font-weight:700;cursor:pointer;}
+.gtv-in{position:relative;z-index:3;display:grid;gap:14px;}
+.gtv-stage{position:relative;width:min(100%,330px);margin:34px auto 0;aspect-ratio:1080/1971;}
+.gtv-p{position:absolute;will-change:transform;}
+.gtv-p img,.gtv-p video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:drop-shadow(0 12px 22px rgba(0,0,0,.75));}
+.gtv-p video{opacity:0;transition:opacity .6s ease;}
+.gtv-p video.on{opacity:1;}
+.gtv-sweep{position:absolute;inset:-10%;z-index:4;pointer-events:none;mix-blend-mode:screen;opacity:0;background:linear-gradient(104deg,transparent 36%,rgba(255,214,240,.66) 48%,rgba(255,255,255,.86) 50%,rgba(255,214,240,.66) 52%,transparent 64%);}
+.gtv-copy{position:relative;z-index:5;}
+.gtv-h1{font-family:'Anton','Poppins',Impact,sans-serif;font-size:clamp(30px,9.4vw,56px);line-height:.98;margin:6px 0 12px;letter-spacing:.015em;text-transform:uppercase;}
+.gtv-h1 em{font-style:normal;color:var(--gp);}
+.gtv-stamp{display:inline-block;font-family:'Anton','Poppins',Impact,sans-serif;font-size:clamp(34px,11vw,62px);line-height:.99;text-transform:uppercase;transform:rotate(-4deg);transform-origin:left bottom;text-shadow:3px 3px 0 var(--gp),7px 7px 0 #43094f;margin:2px 0 16px;letter-spacing:.02em;}
+.gtv-cd{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;max-width:420px;margin:0 0 14px;}
+.gtv-cd div{border-radius:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);padding:8px 0;text-align:center;}
+.gtv-cd b{display:block;font-family:'Anton','Poppins',Impact,sans-serif;font-weight:400;font-size:clamp(20px,6vw,30px);line-height:1.04;font-variant-numeric:tabular-nums;}
+.gtv-cd span{font-size:10px;font-weight:700;letter-spacing:.14em;color:rgba(255,255,255,.62);}
+.gtv-lead{margin:0 0 15px;color:rgba(255,255,255,.8);font-size:14px;max-width:46ch;}
+.gtv-ctas{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+.gtv-btn{display:inline-flex;flex:0 0 auto;white-space:nowrap;align-items:center;justify-content:center;gap:9px;min-height:46px;padding:0 20px;border-radius:999px;border:0;font-weight:800;font-size:14.5px;cursor:pointer;text-align:center;}
+.gtv-btn.pri{background:var(--gl);color:#1a1a00;}
+.gtv-btn.pri svg{width:30px;height:30px;border-radius:50%;background:#14101c;color:var(--gl);padding:8px;margin:0 -4px 0 -6px;flex:none;}
+.gtv-btn.gh{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.26);}
+.gtv-btn.ln{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.26);font-weight:700;min-height:44px;padding:0 16px;}
+.gtv-btn[disabled]{opacity:.42;cursor:not-allowed;}
+.gtv-load{position:relative;z-index:6;margin:20px auto 0;max-width:520px;display:flex;flex-direction:column;gap:8px;transition:opacity .4s;}
+.gtv-load.fix{position:fixed;left:0;right:0;bottom:calc(76px + env(safe-area-inset-bottom,0px));margin:0;max-width:none;z-index:30;padding:0 18px;background:linear-gradient(180deg,transparent,rgba(7,4,11,.86) 40%);}
+.gtv-tip{font-size:12.5px;color:rgba(255,255,255,.68);min-height:1.4em;}
+.gtv-tip b{color:#fff;}
+.gtv-bar{height:4px;border-radius:3px;background:rgba(255,255,255,.16);overflow:hidden;}
+.gtv-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gp),var(--gs));}
+/* secoes */
+.gtv-sec{position:relative;margin-top:18px;border-radius:22px;border:1px solid rgba(255,255,255,.1);background:linear-gradient(180deg,rgba(19,13,30,.9),rgba(9,7,15,.9));padding:18px 15px;}
+.gtv-sec>h2{font-size:clamp(19px,5vw,26px);}
+.gtv-sub{margin:6px 0 14px;color:rgba(255,255,255,.66);font-size:13.5px;max-width:56ch;}
+.gtv-steps{display:grid;gap:14px;}
+.gtv-step>b{display:flex;align-items:center;gap:8px;margin-bottom:8px;font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.82);}
+.gtv-step>b i{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:800;font-style:normal;background:rgba(255,62,165,.18);border:1px solid rgba(255,62,165,.55);color:#ffd7ee;}
+.gtv-opts{display:grid;grid-template-columns:1fr;gap:8px;}
+.gtv-opt{display:flex;align-items:center;gap:11px;width:100%;min-height:58px;padding:11px 13px;border-radius:14px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.045);color:#fff;cursor:pointer;text-align:left;}
+.gtv-opt.on{border-color:var(--gp);background:rgba(255,62,165,.13);box-shadow:0 0 0 1px rgba(255,62,165,.45);}
+
+.gtv-opt b{display:block;font-size:14px;}
+.gtv-opt small{display:block;color:rgba(255,255,255,.62);font-size:12px;}
+.gtv-opt .gtv-tx{min-width:0;}
+.gtv-opt .gtv-tk{width:20px;height:20px;margin-left:auto;flex:none;color:var(--gl);opacity:0;box-shadow:none;}
+.gtv-opt.on .gtv-tk{opacity:1;}
+.gtv-sum{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-top:16px;padding:14px;border-radius:16px;border:1px dashed rgba(255,255,255,.2);background:rgba(0,0,0,.3);}
+.gtv-sum b{display:block;font-size:15px;}
+.gtv-sum span{color:rgba(255,255,255,.64);font-size:12.5px;}
+.gtv-sum .num{font-family:'Anton','Poppins',Impact,sans-serif;font-size:22px;color:var(--gl);letter-spacing:.06em;}
+.gtv-note{margin:12px 0 0;font-size:12px;color:rgba(255,255,255,.55);}
+.gtv-alert{display:grid;gap:10px;margin-top:14px;padding:14px;border-radius:16px;border:1px solid rgba(139,92,246,.4);background:rgba(139,92,246,.12);}
+.gtv-alert b{font-size:14px;}
+.gtv-alert span{font-size:12.5px;color:rgba(255,255,255,.7);}
+.gtv-field{display:flex;gap:8px;flex-wrap:wrap;}
+.gtv-field input{flex:1 1 160px;min-height:46px;border-radius:12px;border:1px solid rgba(255,255,255,.22);background:rgba(0,0,0,.4);color:#fff;padding:0 14px;font-size:14px;}
+.gtv-grid4{display:grid;grid-template-columns:1fr;gap:10px;}
+.gtv-why{display:flex;gap:11px;align-items:flex-start;padding:13px;border-radius:16px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);}
+.gtv-why svg{width:22px;height:22px;flex:none;color:var(--gp);}
+.gtv-why b{display:block;font-size:14px;margin-bottom:3px;}
+.gtv-why p{margin:0;font-size:12.5px;color:rgba(255,255,255,.66);}
+.gtv-con{display:grid;grid-template-columns:1fr;gap:10px;}
+.gtv-c{display:flex;align-items:center;gap:12px;text-align:left;padding:12px;border-radius:16px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.045);color:#fff;cursor:pointer;}
+.gtv-c img{width:74px;height:56px;border-radius:10px;object-fit:cover;flex:none;}
+.gtv-c b{display:block;font-size:14px;}
+.gtv-c small{display:block;font-size:12px;color:rgba(255,255,255,.64);}
+.gtv-c svg{width:18px;height:18px;margin-left:auto;flex:none;}
+/* trailers */
+.gtv-tabs{display:inline-flex;gap:6px;padding:4px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);margin-bottom:12px;}
+.gtv-tabs button{border:0;background:transparent;color:rgba(255,255,255,.7);font-size:12.5px;font-weight:700;padding:8px 14px;border-radius:999px;cursor:pointer;min-height:36px;}
+.gtv-tabs button[aria-pressed="true"]{background:#fff;color:#14101c;}
+.gtv-tv{position:relative;border-radius:22px;padding:3px;overflow:hidden;isolation:isolate;background:#000;}
+.gtv-tv::before{content:"";position:absolute;inset:-70%;z-index:0;background:conic-gradient(from 0deg,var(--gp),var(--gv),var(--gs),var(--gp));animation:gtvSpin 7s linear infinite;}
+@keyframes gtvSpin{to{transform:rotate(1turn);}}
+.gtv-tv-in{position:relative;z-index:1;border-radius:19px;overflow:hidden;background:#000;aspect-ratio:16/9;}
+.gtv-tv-in iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+.gtv-thumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.07);transition:transform 7s ease;}
+.gtv-tv.seen .gtv-thumb{transform:scale(1);}
+.gtv-shade{position:absolute;inset:0;background:radial-gradient(62% 72% at 50% 45%,rgba(7,4,11,.32),rgba(7,4,11,.88));}
+.gtv-scan{position:absolute;inset:0;pointer-events:none;opacity:.16;background:repeating-linear-gradient(0deg,#000 0 2px,transparent 2px 4px);}
+.gtv-lb{position:absolute;left:0;right:0;z-index:4;height:8.5%;background:#000;transition:transform .9s cubic-bezier(.2,.8,.2,1);}
+.gtv-lb.t{top:0;transform:translateY(-100%);}
+.gtv-lb.b{bottom:0;transform:translateY(100%);}
+.gtv-tv.seen .gtv-lb{transform:none;}
+.gtv-tvc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:10%;}
+.gtv-logo{position:relative;width:clamp(84px,20vw,124px);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;text-align:center;border:2px dashed rgba(255,255,255,.5);background:rgba(7,4,11,.6);font-size:9.5px;font-weight:800;letter-spacing:.1em;line-height:1.35;text-transform:uppercase;}
+.gtv-logo img{width:70%;height:70%;object-fit:contain;}
+.gtv-logo::before,.gtv-logo::after{content:"";position:absolute;inset:-9px;border-radius:50%;border:2px solid rgba(255,62,165,.45);animation:gtvRing 2.6s ease-out infinite;}
+.gtv-logo::after{animation-delay:1.3s;}
+@keyframes gtvRing{from{transform:scale(.85);opacity:1;}to{transform:scale(1.55);opacity:0;}}
+.gtv-tlabel{position:absolute;left:14px;top:calc(8.5% + 8px);z-index:5;font-family:'Anton','Poppins',Impact,sans-serif;font-size:clamp(16px,4.6vw,26px);text-transform:uppercase;letter-spacing:.03em;text-shadow:2px 2px 0 var(--gp);}
+/* galeria */
+.gtv-rail{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 2px 10px;scrollbar-width:none;}
+.gtv-rail::-webkit-scrollbar{display:none;}
+.gtv-rail img{height:170px;width:auto;flex:none;border-radius:14px;border:1px solid rgba(255,255,255,.12);scroll-snap-align:start;}
+.gtv-rail-nav{display:flex;gap:8px;justify-content:flex-end;}
+.gtv-rail-nav button{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:#fff;cursor:pointer;display:grid;place-items:center;}
+/* faq */
+.gtv-faq details{border-top:1px solid rgba(255,255,255,.1);padding:12px 0;}
+.gtv-faq details:first-of-type{border-top:0;}
+.gtv-faq summary{font-weight:700;font-size:14px;cursor:pointer;list-style:none;display:flex;gap:10px;align-items:center;min-height:34px;}
+.gtv-faq summary::-webkit-details-marker{display:none;}
+.gtv-faq summary::after{content:"+";margin-left:auto;font-size:18px;color:var(--gs);}
+.gtv-faq details[open] summary::after{content:"–";}
+.gtv-faq p{margin:8px 0 0;font-size:13px;color:rgba(255,255,255,.7);}
+.gtv-credit{margin:16px 0 0;padding:12px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.09);background:linear-gradient(180deg,rgba(19,13,30,.9),rgba(9,7,15,.9));font-size:11.5px;color:rgba(255,255,255,.55);}
+@media(min-width:620px){
+.gtv-opts{grid-template-columns:1fr 1fr;}
+.gtv-grid4{grid-template-columns:1fr 1fr;}
+.gtv-con{grid-template-columns:1fr 1fr;}
+.gtv-sec{padding:22px 20px;}
+.gtv-rail img{height:210px;}
+}
+@media(min-width:920px){
+.gtv-in{grid-template-columns:minmax(0,430px) minmax(0,1fr);align-items:center;gap:34px;}
+.gtv-stage{margin:0 auto;width:100%;}
+.gtv-hero{padding:26px 26px 30px;}
+.gtv-copy{margin-top:0;}
+.gtv-h1{font-size:56px;}
+.gtv-stamp{font-size:66px;}
+.gtv-load{max-width:640px;margin-left:0;}
+.gtv-grid4{grid-template-columns:repeat(4,minmax(0,1fr));}
+}
+@media (prefers-reduced-motion:reduce){
+.gtv-sky,.gtv-tv::before,.gtv-logo::before,.gtv-logo::after{animation:none;}
+.gtv-thumb{transform:none;transition:none;}
+}
 </style>
 <div class="demo">Demonstração · produtos e preços de exemplo · imagens de GTA VI: Rockstar Games</div>
 <header class="hd"><div class="wrap">
@@ -3333,111 +3472,343 @@ return mhHTML() +
 vitHTML(0) + '<section class="block cupons"><div class="cup-t"><span class="eh-k">Clube de cupons</span><h3>Descontos da semana</h3><p>Toque em um cupom pra ativar: o desconto entra sozinho no carrinho e o código vai junto no pedido do WhatsApp.</p></div>' + cuponsHTML() + '</section>'
 lojaBandHTML();
 }
-/* ---------- GTA VI: central de pré-venda ---------- */
-var GTRES = {plat:null, ed:'base', pay:'sinal'};
-var GTED = [
-{k:'base', n:'Jogo base', d:'Pré-venda + bônus Vintage Vice City Pack', img:IMG.ult},
-{k:'ult', n:'Ultimate Edition', d:'Edição Ultimate, com conteúdo extra', img:IMG.car},
-{k:'box', n:'The Vice City Collection', d:'Collector\'s Box limitada · lista de espera', img:IMG.group}
+/* ---------- GTA VI: central de pre-venda (gtv) ---------- */
+/* CONFIG da loja: e aqui que o dono mexe. Nada aqui e inventado pelo site. */
+var GTV = {
+date:'2026-11-19T00:00:00-03:00', /* data oficial da Rockstar - trocar so aqui (o contador da home usa a mesma) */
+deposit:null,                     /* valor do sinal, ex.: 150 -> null mostra "valor confirmado no WhatsApp" */
+price:null,                       /* preco total, ex.: 449.9 -> null nao mostra parcela nem valor fechado */
+gift:'',                          /* brinde ativo, ex.: 'Chaveiro GTA VI da loja' -> vazio = card de brinde escondido */
+logo:'',                          /* arquivo do kit de imprensa, ex.: 'media/gta/logo-rockstar.webp' -> vazio = slot com aneis */
+trailers:[
+{k:'2', n:'Trailer 2', id:'VQRLujxTm3c', t:'assets/inline/inline-51e6604d06.webp'},
+{k:'1', n:'Trailer 1', id:'QdBZY2fkU-0', t:'assets/inline/inline-27bfb09b30.webp'}
+],
+editions:[{k:'std', n:'Edição padrão', d:'Jogo base + bônus de pré-venda (a confirmar)'}]
+};
+var GTV_TIPS = ['<b>Dica:</b> reserve agora e garanta o preço do dia.','<b>Dica:</b> retire na loja no dia do lançamento.','<b>Dica:</b> sem PS5? Pergunte pelo combo console + jogo.'];
+var GTV_PANELS = [
+{n:'praia', l:18.10, t:10.90, w:31.50, h:16.80, clip:'polygon(7% 7.7%,89.2% 0,100% 94.6%,0 100%)', from:[-1.2,-.35], r:-14, d:.62},
+{n:'policial', l:48.10, t:8.50, w:42.90, h:18.20, clip:'polygon(0 12.6%,100% 0,100% 95.1%,6.3% 100%)', from:[1.2,-.5], r:12, d:1},
+{n:'carro', l:10.80, t:27.20, w:78.50, h:29.40, clip:'polygon(.5% 5.1%,97.3% 0,100% 100%,0 92.9%)', from:[0,1.3], r:-6, d:.38, video:true},
+{n:'grana', l:10.40, t:55.70, w:42.10, h:17.40, clip:'polygon(.5% 0,100% 6.3%,87.9% 100%,0 92%)', from:[-1.3,.4], r:10, d:.8},
+{n:'cao', l:48.20, t:56.90, w:36.10, h:17.70, clip:'polygon(15.8% 0,98.9% 3.4%,100% 100%,0 91%)', from:[1.3,.3], r:-12, d:1.12},
+{n:'palmeiras', l:17.10, t:73.10, w:73.00, h:18.10, clip:'polygon(.1% 0,97% 14.9%,100% 100%,0 95%)', from:[0,1.4], r:6, d:.55}
 ];
+var GTVS = {plat:null, ed:'std', pay:'sinal', num:null};
+var GTV_FONT = false;
+function gtvFont(){
+if (GTV_FONT || document.getElementById('gtvFont')) return; GTV_FONT = true;
+var l = document.createElement('link'); l.id='gtvFont'; l.rel='stylesheet';
+l.href='https://fonts.googleapis.com/css2?family=Anton&display=swap'; document.head.appendChild(l);
+}
+function gtvDateTxt(){ var d = new Date(GTV.date); return ('0'+d.getDate()).slice(-2) + '/' + ('0'+(d.getMonth()+1)).slice(-2) + '/' + d.getFullYear(); }
+function gtvPlats(){ return [
+{k:'ps5', n:'PlayStation 5', d:'Versão de PS5 · DualSense'},
+{k:'xbox', n:'Xbox Series X|S', d:'Versão de Xbox Series'}
+]; }
+function gtvPays(){ return [
+{k:'sinal', n:'Garantir com sinal', d: GTV.deposit ? 'Sinal de ' + brl(GTV.deposit) + ' agora e o resto na retirada' : 'Valor do sinal confirmado no WhatsApp'},
+{k:'total', n:'Pagar tudo em até 10x', d: GTV.price ? 'Total ' + brl(GTV.price) + ' em até 10x no cartão' : 'Parcelamento combinado com a loja no WhatsApp'}
+]; }
+function gtvPlatN(){ return GTVS.plat === 'ps5' ? 'PS5' : GTVS.plat === 'xbox' ? 'Xbox Series X|S' : ''; }
+function gtvEdN(){ var e = GTV.editions.filter(function(x){ return x.k === GTVS.ed; })[0] || GTV.editions[0]; return e ? e.n : 'Edição padrão'; }
+function gtvPayN(){ return GTVS.pay === 'total' ? 'Pagar tudo em até 10x no cartão' : (GTV.deposit ? 'Sinal de ' + brl(GTV.deposit) + ' e o resto na retirada' : 'Sinal pra garantir a reserva'); }
+function gtvNum(){ return String(Math.floor(1000 + Math.random() * 9000)); }
+function gtvReady(){ return !!(GTVS.plat && GTVS.ed && GTVS.pay); }
+function gtvMsg(){
+return 'Olá! Quero reservar o GTA VI na pré-venda.\n\nReserva: ' + (GTVS.num || gtvNum()) +
+'\nPlataforma: ' + gtvPlatN() + '\nEdição: ' + gtvEdN() + '\nPagamento: ' + gtvPayN() +
+(GTV.gift ? '\nBrinde do reservante: ' + GTV.gift : '') +
+'\nValor: ' + (GTV.price ? brl(GTV.price) : 'confirmar no WhatsApp');
+}
 var GIC = {
 shield:'<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/>',
 store:'<path d="M3.5 10h17v10.5h-17zM3 10l2.2-6h13.6L21 10"/><path d="M9.5 20.5V15h5v5.5"/>',
 card:'<rect x="2.5" y="5" width="19" height="14" rx="2.6"/><path d="M2.5 10h19M6.5 15.5h3.5"/>',
 gift:'<path d="M3.5 11.5h17V20h-17zM2.5 8h19v3.5h-19zM12 8v12"/><path d="M12 8C10.4 4.4 5.6 4 5.6 6.4 5.6 8 8 8 12 8zM12 8c1.6-3.6 6.4-4 6.4-1.6C18.4 8 16 8 12 8z"/>'
 };
-function gtIco(k){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' + GIC[k] + '</svg>'; }
-function gtPlatN(){ return GTRES.plat === 'ps5' ? 'PS5' : GTRES.plat === 'xbox' ? 'Xbox Series X|S' : ''; }
-function gtEdO(){ return GTED.filter(function(e){ return e.k === GTRES.ed; })[0] || GTED[0]; }
-function gtPayN(){ return GTRES.pay === 'total' ? 'Pagar tudo em 10x no cartão' : 'Sinal pra garantir a reserva'; }
-function gtMsg(){
-var r = 'GTA-' + Math.random().toString(36).slice(2,6).toUpperCase();
-return 'Olá! Quero reservar o GTA VI na pré-venda.\n\nReserva: ' + r + '\nPlataforma: ' + gtPlatN() + '\nEdição: ' + gtEdO().n + '\nPagamento: ' + gtPayN() + '\nBrinde do reservante: chaveiro GTA VI da loja\nValor: confirmar no WhatsApp';
-}
-function gtPaint(){
-var sec = document.getElementById('gt'); if (!sec) return;
-sec.querySelectorAll('[data-gt-plat]').forEach(function(b){ var on = b.getAttribute('data-gt-plat') === GTRES.plat; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); });
-sec.querySelectorAll('[data-gt-ed]').forEach(function(b){ var on = b.getAttribute('data-gt-ed') === GTRES.ed; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); });
-sec.querySelectorAll('[data-gt-pay]').forEach(function(b){ var on = b.getAttribute('data-gt-pay') === GTRES.pay; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); });
-var t = document.getElementById('gtSumT'), s = document.getElementById('gtSumS'), r = document.getElementById('gtRes');
-if (!t) return;
-if (!GTRES.plat){ t.textContent = 'Escolha a plataforma pra começar'; s.textContent = 'Depois a edição e a forma de pagamento.'; }
-else { t.textContent = gtEdO().n + ' · ' + gtPlatN(); s.textContent = gtPayN() + ' · valor confirmado no WhatsApp.'; }
-if (r) r.disabled = !GTRES.plat;
-}
-function gtOpts(list, attr, cur){
+function gtvIco(k){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' + GIC[k] + '</svg>'; }
+function gtvOpts(list, attr, cur){
 return list.map(function(o){
 var on = o.k === cur;
-return '<button type="button" class="gt-op' + (on ? ' on' : '') + '" data-' + attr + '="' + o.k + '" aria-pressed="' + on + '">' + (o.img ? '<img loading="lazy" decoding="async" src="' + o.img + '" alt="">' : '') + '<span><b>' + o.n + '</b>' + (o.d ? '<small>' + o.d + '</small>' : '') + '</span><span class="gt-tk">' + I.check + '</span></button>';
+return '<button type="button" class="gtv-opt' + (on ? ' on' : '') + '" data-' + attr + '="' + o.k + '" aria-pressed="' + (on ? 'true' : 'false') + '">' +
+'<span class="gtv-tx"><b>' + esc(o.n) + '</b>' + (o.d ? '<small>' + esc(o.d) + '</small>' : '') + '</span><span class="gtv-tk">' + I.check + '</span></button>';
 }).join('');
 }
-function renderGTA(){
-if (JPICK === 'ps' || JPICK === 'ps2') GTRES.plat = GTRES.plat || 'ps5';
-if (JPICK === 'xb') GTRES.plat = GTRES.plat || 'xbox';
-var plats = [{k:'ps5', n:'PlayStation 5', d:'Versão de PS5 · DualSense'}, {k:'xbox', n:'Xbox Series X|S', d:'Versão de Xbox Series'}];
-var pays = [{k:'sinal', n:'Sinal pra garantir', d:'Paga um sinal agora e o resto na retirada'}, {k:'total', n:'Pagar tudo em 10x', d:'Fecha o valor total em até 10x no cartão'}];
-var gal = [
-{img:IMG.vice, t:'Vice City de volta', k:'vice'},
-{img:IMG.car, t:'Carros e perseguições', k:'car'},
-{img:IMG.pool, t:'Lucia e Jason', k:'pool'},
-{img:IMG.group, t:'Leonida inteira', k:'group'}
-];
-return '<div class="vi">' +
-'<section class="vi-hero"><img loading="lazy" decoding="async" class="vi-bg" src="' + IMG.vice + '" alt=""><img loading="lazy" decoding="async" class="vi-char" src="' + IMG.car + '" alt="Lucia e Jason, imagem oficial de GTA VI">' +
-'<div class="vi-t"><span class="vi-hk">Pré-venda · Game Store</span><h1>Grand Theft Auto <em>VI</em></h1>' +
-'<div class="gt-cd" id="cd"><div><b id="cd-d">--</b><span>dias</span></div><div><b id="cd-h">--</b><span>horas</span></div><div><b id="cd-m">--</b><span>min</span></div><div><b id="cd-s">--</b><span>seg</span></div></div>' +
-'<p>Reserve na Game Store e retire no dia do lançamento. Preço garantido na reserva, sinal pra garantir a sua e brinde pra quem chegar primeiro.</p>' +
-'<div class="vi-trust"><span>' + gtIco('shield') + 'Preço garantido na reserva</span><span>' + gtIco('store') + 'Retirada no dia do lançamento</span><span>' + gtIco('card') + '10x sem juros</span><span>' + gtIco('gift') + 'Brinde exclusivo</span></div>' +
-'<div class="fbtns"><button type="button" class="btn lime" data-gtgo>Reservar meu GTA VI <i class="ar">' + I.arrow + '</i></button><button type="button" class="vi-play" data-trailer="VQRLujxTm3c"><i>' + I.play + '</i>Ver trailer</button></div></div></section>' +
-'<section class="gtp" id="gt"><div class="gt-h"><h2>Reserve em 3 passos</h2><p>Escolha a plataforma, a edição e como quer pagar. No fim o pedido sai pronto no WhatsApp com o seu número de reserva.</p></div>' +
-'<div class="gt-st">' +
-'<div class="gt-step"><span><i>1</i>Plataforma</span><div class="gt-opts">' + gtOpts(plats, 'gt-plat', GTRES.plat) + '</div></div>' +
-'<div class="gt-step"><span><i>2</i>Edição</span><div class="gt-opts">' + gtOpts(GTED, 'gt-ed', GTRES.ed) + '</div></div>' +
-'<div class="gt-step"><span><i>3</i>Pagamento</span><div class="gt-opts">' + gtOpts(pays, 'gt-pay', GTRES.pay) + '</div></div>' +
-'</div>' +
-'<div class="gt-buy"><div class="gt-sum"><b id="gtSumT">Escolha a plataforma pra começar</b><span id="gtSumS">Depois a edição e a forma de pagamento.</span></div>' +
-'<button type="button" class="btn pri" id="gtRes">Reservar pelo WhatsApp <i class="ar">' + I.arrow + '</i></button></div>' +
-'<div class="gt-alert"><div><b>Prefere esperar o preço sair?</b><span>Deixa o seu WhatsApp que a gente avisa assim que a Rockstar confirmar os valores.</span></div><input id="gtPhone" type="tel" inputmode="numeric" placeholder="(00) 00000-0000" aria-label="Seu WhatsApp"><button type="button" class="btn" id="gtAviso">Me avise</button></div>' +
-'</section>' +
-'<section class="vi-card" style="margin-top:12px">' + secT('Por que reservar aqui') + '<div class="gt-why">' +
-'<div class="gt-w">' + gtIco('shield') + '<b>Preço garantido</b><p>O valor trava no dia da reserva. Se subir depois, você paga o combinado.</p></div>' +
-'<div class="gt-w">' + gtIco('store') + '<b>Retirada no dia</b><p>Quem reserva é atendido primeiro e retira na loja sem fila.</p></div>' +
-'<div class="gt-w">' + gtIco('card') + '<b>Parcele em 10x</b><p>Sinal pra garantir ou pagamento total em até 10x no cartão.</p></div>' +
-'<div class="gt-w">' + gtIco('gift') + '<b>Brinde exclusivo</b><p>Quem reserva leva o chaveiro do GTA VI feito pela loja.</p></div>' +
-'</div></section>' +
-'<section class="vi-card" style="margin-top:12px">' + secT('Ainda não tem console?', '<span class="pill">A gente resolve</span>') + '<div class="gt-con">' +
-'<button type="button" class="gt-c" data-go="consoles"><img loading="lazy" decoding="async" src="' + IMG.car + '" alt=""><b>Combo PS5 + GTA VI</b><span>Leve o console e a reserva juntos, tudo parcelado.</span><i>' + I.arrow + '</i></button>' +
-'<button type="button" class="gt-c" data-go="consoles"><img loading="lazy" decoding="async" src="' + IMG.pool + '" alt=""><b>Troque seu PS4 no PS5</b><span>Avaliamos o seu usado na hora. Conserto e seminovos na mesma loja.</span><i>' + I.arrow + '</i></button>' +
-'</div></section>' +
-'<section class="vi-card" style="margin-top:12px">' + secT('Trailers oficiais', '<span class="pill">Rockstar Games</span>') +
-'<div class="fchips" style="margin:0 0 12px"><button type="button" class="on" data-pv="VQRLujxTm3c">Trailer 2</button><button type="button" data-pv="QdBZY2fkU-0">Trailer 1</button></div>' +
-'<button type="button" class="pv" id="pv" data-yt="VQRLujxTm3c" aria-label="Assistir trailer"><img loading="lazy" decoding="async" src="' + IMG.car + '" alt="" style="object-position:60% 35%"><span class="big">' + I.play + '</span></button></section>' +
-'<section class="vi-card" style="margin-top:12px">' + secT('Explore Leonida', '<span class="pill">Imagens oficiais</span>') + '<div class="gtg">' +
-gal.map(function(g){ return '<button type="button" data-img="' + g.k + '"><img loading="lazy" decoding="async" src="' + g.img + '" alt=""><b>' + g.t + '</b></button>'; }).join('') +
-'</div></section>' +
-'<section class="vi-card" style="margin-top:12px">' + secT('Perguntas frequentes') + '<div class="gtf">' +
-'<details><summary>Quando o GTA VI chega?</summary><p>A Rockstar confirmou o lançamento para 19/11/2026. Se a data mudar, a gente avisa todo mundo que reservou.</p></details>' +
-'<details><summary>Preciso pagar tudo agora?</summary><p>Não. Você pode dar só o sinal pra garantir a reserva e pagar o restante na retirada, ou pagar tudo em até 10x no cartão.</p></details>' +
-'<details><summary>E se o jogo for adiado de novo?</summary><p>Você escolhe: recebe o sinal de volta ou mantém a reserva com o preço garantido.</p></details>' +
-'<details><summary>Qual o preço das edições?</summary><p>A Rockstar ainda não divulgou os valores oficiais. Assim que sair, confirmamos no WhatsApp de quem reservou.</p></details>' +
-'<details><summary>Como funciona o brinde?</summary><p>Quem reserva aqui leva o chaveiro do GTA VI feito pela loja.</p></details>' +
-'</div></section>' +
-'<section class="gt-end"><div><b>Garanta a sua antes de esgotar</b><span>Reserva com número de pedido e retirada no dia do lançamento.</span></div><button type="button" class="btn lime" data-gtgo>Reservar meu GTA VI <i class="ar">' + I.arrow + '</i></button></section>' +
-'<div class="vi-plat"><small>Disponível em</small><span>PlayStation 5</span><span>Xbox Series X|S</span><span>Publicado por Rockstar Games</span></div>' +
-'<p class="credit">Imagens e vídeos: divulgação oficial Rockstar Games. Lançamento previsto: 19/11/2026.</p></div>';
+function gtvPaint(){
+var s = document.getElementById('gtvRes'); if (!s) return;
+s.querySelectorAll('[data-gtv-plat]').forEach(function(b){ var on = b.getAttribute('data-gtv-plat') === GTVS.plat; b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); });
+s.querySelectorAll('[data-gtv-ed]').forEach(function(b){ var on = b.getAttribute('data-gtv-ed') === GTVS.ed; b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); });
+s.querySelectorAll('[data-gtv-pay]').forEach(function(b){ var on = b.getAttribute('data-gtv-pay') === GTVS.pay; b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); });
+var T = s.querySelector('#gtvSumT'), S = s.querySelector('#gtvSumS'), N = s.querySelector('#gtvSumN'), F = s.querySelector('#gtvFinish');
+if (!T) return;
+if (!GTVS.plat){ T.textContent = 'Escolha a plataforma pra começar'; S.textContent = 'Depois a edição e a forma de pagamento.'; N.textContent = ''; }
+else {
+if (gtvReady() && !GTVS.num) GTVS.num = gtvNum();
+T.textContent = gtvEdN() + ' · ' + gtvPlatN();
+S.textContent = gtvPayN() + ' · valor confirmado no WhatsApp antes de pagar.';
+N.textContent = GTVS.num ? '#' + GTVS.num : '';
 }
+if (F) F.disabled = !gtvReady();
+}
+function gtvPanelsHTML(){
+return GTV_PANELS.map(function(p){
+var st = 'left:' + p.l + '%;top:' + p.t + '%;width:' + p.w + '%;height:' + p.h + '%';
+var img = '<img src="media/gta/panels/' + p.n + '.webp" alt="" decoding="async" style="clip-path:' + p.clip + '">';
+var vid = p.video ? '<video muted loop playsinline preload="none" poster="media/gta/drive-poster.webp" aria-hidden="true" style="clip-path:' + p.clip + '"><source src="media/gta/drive.webm" type="video/webm"><source src="media/gta/drive.mp4" type="video/mp4"></video>' : '';
+return '<div class="gtv-p" data-p="' + p.n + '" style="' + st + '">' + img + vid + '</div>';
+}).join('');
+}
+function gtvTrailersHTML(){
+if (!GTV.trailers.length) return '';
+var t0 = GTV.trailers[0];
+return '<section class="gtv-sec" id="gtvTvSec">' +
+'<span class="gtv-kick">Rockstar Games</span><h2>Trailers oficiais</h2>' +
+'<p class="gtv-sub">Vídeo do canal oficial. O player só carrega quando você tocar.</p>' +
+(GTV.trailers.length > 1 ? '<div class="gtv-tabs" role="group" aria-label="Escolher trailer">' + GTV.trailers.map(function(t, i){ return '<button type="button" data-gtvt="' + t.k + '" aria-pressed="' + (i === 0 ? 'true' : 'false') + '">' + esc(t.n) + '</button>'; }).join('') + '</div>' : '') +
+'<div class="gtv-tv" id="gtvTv" data-t="' + t0.k + '"><div class="gtv-tv-in">' +
+'<img class="gtv-thumb" id="gtvThumb" src="' + t0.t + '" alt="" decoding="async">' +
+'<div class="gtv-shade"></div><div class="gtv-scan"></div>' +
+'<div class="gtv-lb t"></div><div class="gtv-lb b"></div>' +
+'<div class="gtv-tvc"><div class="gtv-logo">' + (GTV.logo ? '<img src="' + GTV.logo + '" alt="">' : '<span>Rockstar<br>Games</span>') + '</div>' +
+'<button type="button" class="gtv-btn pri" id="gtvPlay">' + I.play + 'Assistir trailer</button></div>' +
+'<span class="gtv-tlabel" id="gtvLabel">' + esc(t0.n) + '</span></div></div>' +
+'<p class="gtv-note">Logo da Rockstar: use o arquivo oficial do kit de imprensa. As transições aqui são genéricas.</p></section>';
+}
+function gtvRailsHTML(){
+var g = [
+['assets/inline/inline-51e6604d06.webp','Jason e Lucia na estrada'],
+['assets/inline/inline-419dda49cf.webp','Vice City'],
+['assets/inline/inline-27bfb09b30.webp','Leonida'],
+['assets/inline/inline-19020570ac.webp','Noite em Vice City'],
+['assets/inline/inline-37572b3780.webp','Lucia'],
+['media/gta/keyart.webp','Arte oficial']
+];
+return '<section class="gtv-sec" id="gtvGal">' +
+'<span class="gtv-kick">Imagens oficiais</span><h2>Galeria</h2>' +
+'<p class="gtv-sub">Material de divulgação da Rockstar Games.</p>' +
+'<div class="gtv-rail" id="gtvRail">' + g.map(function(x){ return '<img src="' + x[0] + '" alt="' + esc(x[1]) + '" loading="lazy" decoding="async">'; }).join('') + '</div>' +
+'<div class="gtv-rail-nav"><button type="button" data-gtv-rail="-1" aria-label="Anterior">' + I.left + '</button><button type="button" data-gtv-rail="1" aria-label="Próxima">' + I.right + '</button></div>' +
+'</section>';
+}
+function renderGTA(){
+if (JPICK === 'ps' || JPICK === 'ps2') GTVS.plat = GTVS.plat || 'ps5';
+if (JPICK === 'xb') GTVS.plat = GTVS.plat || 'xbox';
+var why = [
+['shield','Preço garantido na reserva','O valor trava no dia da reserva. Se subir até o lançamento, você paga o combinado.'],
+['store','Retirada no dia do lançamento','Quem reserva aqui é atendido primeiro e retira na loja, sem fila.'],
+['card','Parcelamento em até 10x','Sinal pra garantir ou o valor total em até 10x no cartão.'],
+['gift', (GTV.gift ? esc(GTV.gift) : 'Brinde pra quem reservar'), (GTV.gift ? 'Brinde confirmado pela loja pra quem reservar aqui.' : 'A loja confirma o brinde no WhatsApp antes de fechar a reserva.')]
+];
+return '<div class="gtv">' +
+/* 1. intro / hero */
+'<section class="gtv-hero" id="gtvHero">' +
+'<div class="gtv-sky" aria-hidden="true"></div><div class="gtv-grain" aria-hidden="true"></div>' +
+'<span class="gtv-tag">Game Store · Pré-venda</span>' +
+'<button type="button" class="gtv-btn gh gtv-skip" id="gtvSkip">Pular intro</button>' +
+'<div class="gtv-in">' +
+'<div class="gtv-stage" id="gtvStage" aria-hidden="true">' + gtvPanelsHTML() + '<div class="gtv-sweep" id="gtvSweep"></div></div>' +
+'<div class="gtv-copy" id="gtvCopy">' +
+'<span class="gtv-kick">Lançamento previsto · ' + gtvDateTxt() + '</span>' +
+'<h1 class="gtv-h1">Grand Theft Auto <em>VI</em></h1>' +
+'<span class="gtv-stamp">Pré-venda<br>aberta</span>' +
+'<div class="gtv-cd" id="gtvCd" aria-label="Tempo até o lançamento">' +
+'<div><b id="gtvD">--</b><span>DIAS</span></div><div><b id="gtvH">--</b><span>HORAS</span></div><div><b id="gtvM">--</b><span>MIN</span></div><div><b id="gtvS">--</b><span>SEG</span></div>' +
+'</div>' +
+'<p class="gtv-lead">Reserve na Game Store e retire na loja no dia do lançamento. Preço garantido, parcelamento em até 10x e o seu número de reserva sai aqui do lado.</p>' +
+'<div class="gtv-ctas">' +
+'<button type="button" class="gtv-btn pri" data-gtv-res>' + I.check + 'Reservar meu GTA VI</button>' +
+'<button type="button" class="gtv-btn gh" data-gtv-tvjump>' + I.play + 'Ver trailer</button>' +
+'</div></div></div>' +
+'<div class="gtv-load" id="gtvLoad"><div class="gtv-tip" id="gtvTip"></div><div class="gtv-bar"><i id="gtvBarFill"></i></div></div>' +
+'</section>' +
+/* 2. reserva em 3 passos */
+'<section class="gtv-sec" id="gtvRes">' +
+'<span class="gtv-kick">Reserva</span><h2>Reserve em 3 passos</h2>' +
+'<p class="gtv-sub">Escolha a plataforma, a edição e como quer pagar. No fim o pedido sai pronto no WhatsApp com o seu número de reserva de 4 dígitos.</p>' +
+'<div class="gtv-steps">' +
+'<div class="gtv-step"><b><i>1</i>Plataforma</b><div class="gtv-opts">' + gtvOpts(gtvPlats(), 'gtv-plat', GTVS.plat) + '</div></div>' +
+'<div class="gtv-step"><b><i>2</i>Edição</b><div class="gtv-opts">' + gtvOpts(GTV.editions, 'gtv-ed', GTVS.ed) + '</div><p class="gtv-note">Só edições anunciadas oficialmente pela Rockstar. Outras edições entram aqui quando forem anunciadas.</p></div>' +
+'<div class="gtv-step"><b><i>3</i>Pagamento</b><div class="gtv-opts">' + gtvOpts(gtvPays(), 'gtv-pay', GTVS.pay) + '</div></div>' +
+'</div>' +
+'<div class="gtv-sum"><div><b id="gtvSumT">Escolha a plataforma pra começar</b><span id="gtvSumS">Depois a edição e a forma de pagamento.</span></div><span class="num" id="gtvSumN"></span></div>' +
+'<div class="gtv-ctas" style="margin-top:14px"><button type="button" class="gtv-btn pri" id="gtvFinish" disabled>Finalizar reserva no WhatsApp</button></div>' +
+'<div class="gtv-alert"><div><b>Prefere esperar o preço sair?</b><span>Deixa o seu WhatsApp que a gente avisa assim que a Rockstar confirmar os valores. Sem compromisso.</span></div>' +
+'<div class="gtv-field"><input id="gtvPhone" type="tel" inputmode="numeric" placeholder="(00) 00000-0000" aria-label="Seu WhatsApp"><button type="button" class="gtv-btn ln" id="gtvWarn">Me avise</button></div></div>' +
+'<p class="gtv-note">A Rockstar ainda não divulgou todas as edições e valores. A reserva garante o preço do dia e nada é cobrado sem você confirmar no WhatsApp.</p>' +
+'</section>' +
+/* 3. por que reservar aqui */
+'<section class="gtv-sec"><span class="gtv-kick">Por que reservar aqui</span><h2>O que a loja garante</h2><p class="gtv-sub">Reservar na Game Store é diferente de esperar a prateleira.</p>' +
+'<div class="gtv-grid4">' + why.map(function(w){ return '<div class="gtv-why">' + gtvIco(w[0]) + '<div><b>' + w[1] + '</b><p>' + w[2] + '</p></div></div>'; }).join('') + '</div></section>' +
+/* 4. console */
+'<section class="gtv-sec"><span class="gtv-kick">Ainda não tem console?</span><h2>A gente resolve</h2><p class="gtv-sub">Combo com console novo, troca do seu usado e assistência técnica na mesma loja.</p>' +
+'<div class="gtv-con">' +
+'<button type="button" class="gtv-c" data-go="consoles"><img src="assets/inline/inline-419dda49cf.webp" alt="" loading="lazy" decoding="async"><span><b>Combo PS5 + reserva do GTA VI</b><small>Console e jogo juntos, tudo parcelado.</small></span>' + I.arrow + '</button>' +
+'<button type="button" class="gtv-c" data-go="consoles"><img src="assets/inline/inline-51e6604d06.webp" alt="" loading="lazy" decoding="async"><span><b>Troque seu PS4 no PS5</b><small>Avaliamos o seu usado na hora · seminovos e conserto.</small></span>' + I.arrow + '</button>' +
+'</div></section>' +
+/* 5. trailers */
+gtvTrailersHTML() +
+/* 6. galeria */
+gtvRailsHTML() +
+/* 7. faq */
+'<section class="gtv-sec gtv-faq"><span class="gtv-kick">Dúvidas</span><h2>Perguntas frequentes</h2><div style="margin-top:8px">' +
+'<details open><summary>Quando o GTA VI chega?</summary><p>Lançamento previsto para ' + gtvDateTxt() + '. Reservando aqui você é avisado no WhatsApp se a Rockstar mudar a data.</p></details>' +
+'<details><summary>Preciso pagar tudo agora?</summary><p>' + (GTV.deposit ? 'Não. Você pode garantir com um sinal de ' + brl(GTV.deposit) + ' e pagar o resto na retirada, ou pagar tudo em até 10x no cartão.' : 'Não. Você pode garantir a sua reserva com um sinal e pagar o resto na retirada, ou fechar o valor total em até 10x no cartão. O valor do sinal é confirmado no WhatsApp.') + '</p></details>' +
+'<details><summary>E se o lançamento for adiado de novo?</summary><p>Você escolhe: recebe o sinal de volta ou mantém a reserva com o preço e a posição garantidos. A decisão é sua, avisando a loja no WhatsApp.</p></details>' +
+'<details><summary>Posso trocar de plataforma depois?</summary><p>Sim. Enquanto o jogo não chegar, dá pra trocar PS5 por Xbox Series X|S (ou o contrário) só avisando a loja. O número de reserva continua o mesmo.</p></details>' +
+'<details><summary>Retiro na loja ou recebo em casa?</summary><p>Quem reserva retira na loja no dia do lançamento, sem fila. Se preferir receber, a loja combina o envio pelo WhatsApp.</p></details>' +
+'</div></section>' +
+'<p class="gtv-credit">Imagens e vídeos: divulgação oficial Rockstar Games. Marcas pertencem aos seus donos. Data e edições conferidos na página oficial da Rockstar antes de publicar.</p>' +
+'</div>';
+}
+/* ---------- intro da aba ---------- */
+var GTV_SES = 'dypeGtvIntro';
+function gtvSeen(){ try{ return sessionStorage.getItem(GTV_SES) === '1'; }catch(e){ return false; } }
+function gtvMark(){ try{ sessionStorage.setItem(GTV_SES,'1'); }catch(e){} }
+function gtvTick(scope){
+function paint(){
+var d = scope.querySelector('#gtvD');
+if (!d || !scope.isConnected){ stop(); return; }
+var s = Math.max(0, Math.floor((new Date(GTV.date).getTime() - Date.now())/1000));
+d.textContent = Math.floor(s/86400);
+scope.querySelector('#gtvH').textContent = String(Math.floor(s%86400/3600)).padStart(2,'0');
+scope.querySelector('#gtvM').textContent = String(Math.floor(s%3600/60)).padStart(2,'0');
+scope.querySelector('#gtvS').textContent = String(s%60).padStart(2,'0');
+}
+function stop(){ clearInterval(iv); scope.querySelectorAll('video').forEach(function(v){ try{ v.pause(); }catch(e){} }); }
+var iv = setInterval(paint, 1000); paint();
+}
+function gtvIntro(hero, run){
+var stage = hero.querySelector('#gtvStage'), sweep = hero.querySelector('#gtvSweep');
+var nodes = Array.prototype.slice.call(hero.querySelectorAll('.gtv-p'));
+var tip = hero.querySelector('#gtvTip'), bar = hero.querySelector('#gtvBarFill'), load = hero.querySelector('#gtvLoad');
+var copy = hero.querySelector('#gtvCopy'), rv = copy ? Array.prototype.slice.call(copy.children) : [];
+var timers = [], ivs = [], done = false, anim = !!(stage && stage.animate);
+nodes.forEach(function(n){ var k = n.getAttribute('data-p'); GTV_PANELS.forEach(function(p){ if (p.n === k) n.__p = p; }); });
+function later(fn, ms){ timers.push(setTimeout(fn, ms)); }
+function stopTimers(){ timers.forEach(clearTimeout); timers = []; ivs.forEach(clearInterval); ivs = []; }
+function shake(){ if (!anim) return; stage.animate([{transform:'translate(0,0)'},{transform:'translate(-6px,4px)'},{transform:'translate(5px,-3px)'},{transform:'translate(-3px,2px)'},{transform:'translate(0,0)'}],{duration:260,easing:'ease-out'}); }
+function showCopy(instant){
+rv.forEach(function(n, i){
+if (instant || reduce || !n.animate){ n.style.opacity = '1'; return; }
+var st = n.classList.contains('gtv-stamp');
+n.animate(st
+? [{opacity:0,transform:'rotate(-14deg) scale(2.6)'},{opacity:1,transform:'rotate(-4deg) scale(.94)',offset:.7},{opacity:1,transform:'rotate(-4deg) scale(1)'}]
+: [{opacity:0,transform:'translateY(16px)'},{opacity:1,transform:'none'}],
+{duration: st ? 520 : 440, delay: i * 150, easing:'cubic-bezier(.2,.9,.3,1)', fill:'both'});
+if (st) later(shake, i * 150 + 340);
+});
+}
+function breathe(){
+nodes.forEach(function(n, i){
+var im = n.querySelector('img'); if (!im || !im.animate) return;
+im.animate([{transform:'translate(0,0) scale(1)'},{transform:'translate(' + (i % 2 ? 3 : -3) + 'px,' + (i % 3 ? -4 : 3) + 'px) scale(1.018)'}],
+{duration: 3800 + i * 520, direction:'alternate', iterations:Infinity, easing:'ease-in-out'});
+});
+if (!sweep || !sweep.animate) return;
+function loop(){ sweep.animate([{opacity:0,transform:'translateX(-70%)'},{opacity:.9,offset:.3},{opacity:.9,offset:.7},{opacity:0,transform:'translateX(70%)'}],{duration:1500,easing:'ease-in-out'}); }
+loop(); ivs.push(setInterval(loop, 6500));
+}
+function finish(instant){
+if (done) return; done = true; stopTimers(); gtvMark();
+var sk = hero.querySelector('#gtvSkip'); if (sk) sk.style.display = 'none';
+if (load){ load.classList.remove('fix'); load.style.opacity = '0'; later(function(){ load.style.display = 'none'; }, 400); }
+showCopy(instant);
+if (!reduce) later(breathe, instant ? 0 : 700);
+var conn = navigator.connection || {};
+var lite = !!(conn.saveData || /(^|-)2g/.test(conn.effectiveType || ''));
+if (!reduce && !lite && window.matchMedia('(min-width:760px)').matches) nodes.forEach(function(n){ var v = n.querySelector('video'); if (!v) return; v.preload = 'auto'; var pr = v.play(); if (pr && pr.then) pr.then(function(){ v.classList.add('on'); }).catch(function(){}); });
+}
+function play(){
+if (reduce || !anim){ finish(true); return; }
+var ti = 0; if (tip) tip.innerHTML = GTV_TIPS[0];
+if (load) load.classList.add('fix');
+ivs.push(setInterval(function(){ ti = (ti + 1) % GTV_TIPS.length; if (tip) tip.innerHTML = GTV_TIPS[ti]; }, 1100));
+if (bar) bar.animate([{width:'0%'},{width:'100%'}],{duration:2600,easing:'cubic-bezier(.4,0,.2,1)',fill:'forwards'});
+var W = stage.clientWidth, H = stage.clientHeight;
+nodes.forEach(function(n, i){
+var p = n.__p; if (!p || !n.animate) return;
+var delay = 220 + i * 320;
+n.animate([
+{transform:'translate(' + (p.from[0] * W) + 'px,' + (p.from[1] * H * .6) + 'px) rotate(' + p.r + 'deg) scale(1.35)', opacity:0},
+{opacity:1, offset:.3},
+{transform:'translate(0,0) rotate(0deg) scale(1)', opacity:1}
+],{duration:620, delay:delay, easing:'cubic-bezier(.16,1.35,.4,1)', fill:'backwards'});
+later(function(){
+shake();
+n.animate([{filter:'brightness(2.4) saturate(1.45) drop-shadow(0 0 28px #ff3ea5)'},{filter:'brightness(1) saturate(1) drop-shadow(0 12px 22px rgba(0,0,0,.75))'}],{duration:360,easing:'ease-out'});
+}, delay + 460);
+});
+later(function(){ finish(false); }, 220 + nodes.length * 320 + 720);
+}
+hero.__gtvSkip = function(){ stopTimers(); finish(true); };
+if (run){ play(); } else { finish(true); }
+}
+function gtvMount(el){
+var hero = el.querySelector('#gtvHero'); if (!hero) return;
+gtvFont(); gtvTick(el); gtvPaint();
+var tvs = el.querySelector('#gtvTv');
+if (tvs){
+if ('IntersectionObserver' in window){
+var o = new IntersectionObserver(function(es){ es.forEach(function(x){ if (x.isIntersecting){ tvs.classList.add('seen'); o.disconnect(); } }); },{threshold:.3});
+o.observe(tvs);
+} else tvs.classList.add('seen');
+}
+var nodes = Array.prototype.slice.call(hero.querySelectorAll('.gtv-p'));
+if (!reduce){
+hero.addEventListener('pointermove', function(e){
+if (e.pointerType === 'touch') return;
+var r = hero.getBoundingClientRect(), cx = (e.clientX - r.left) / r.width - .5, cy = (e.clientY - r.top) / r.height - .5;
+nodes.forEach(function(n){ if (n.__p) n.style.transform = 'translate(' + (cx * 16 * n.__p.d) + 'px,' + (cy * 16 * n.__p.d) + 'px)'; });
+var sky = hero.querySelector('.gtv-sky'); if (sky) sky.style.translate = (cx * -14) + 'px ' + (cy * -9) + 'px';
+});
+hero.addEventListener('pointerleave', function(){
+nodes.forEach(function(n){ n.style.transform = ''; });
+var sky = hero.querySelector('.gtv-sky'); if (sky) sky.style.translate = '';
+});
+}
+gtvIntro(hero, !gtvSeen());
+}
+/* ---------- açőes da aba ---------- */
 document.addEventListener('click', function(e){
 var t;
-if ((t = e.target.closest('[data-gtgo]'))){ var g = document.getElementById('gt'); if (g) g.scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block:'start'}); return; }
-if ((t = e.target.closest('[data-gt-plat]'))){ GTRES.plat = t.getAttribute('data-gt-plat'); gtPaint(); return; }
-if ((t = e.target.closest('[data-gt-ed]'))){ GTRES.ed = t.getAttribute('data-gt-ed'); gtPaint(); return; }
-if ((t = e.target.closest('[data-gt-pay]'))){ GTRES.pay = t.getAttribute('data-gt-pay'); gtPaint(); return; }
-if ((t = e.target.closest('#gtRes'))){ if (!GTRES.plat) return; window.open(WA + '?text=' + encodeURIComponent(gtMsg()), '_blank', 'noopener'); return; }
-if ((t = e.target.closest('#gtAviso'))){
-var ph = document.getElementById('gtPhone'), v = ph ? ph.value.replace(/\D/g,'') : '';
+if ((t = e.target.closest('#gtvSkip'))){ var h = document.getElementById('gtvHero'); if (h && h.__gtvSkip) h.__gtvSkip(); return; }
+if ((t = e.target.closest('[data-gtv-res]'))){ var r = document.getElementById('gtvRes'); if (r) r.scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block:'start'}); return; }
+if ((t = e.target.closest('[data-gtv-tvjump]'))){ var tv = document.getElementById('gtvTvSec'); if (tv) tv.scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block:'start'}); return; }
+if ((t = e.target.closest('[data-gtv-plat]'))){ GTVS.plat = t.getAttribute('data-gtv-plat'); GTVS.num = null; gtvPaint(); return; }
+if ((t = e.target.closest('[data-gtv-ed]'))){ GTVS.ed = t.getAttribute('data-gtv-ed'); GTVS.num = null; gtvPaint(); return; }
+if ((t = e.target.closest('[data-gtv-pay]'))){ GTVS.pay = t.getAttribute('data-gtv-pay'); GTVS.num = null; gtvPaint(); return; }
+if ((t = e.target.closest('#gtvFinish'))){ if (!gtvReady()) return; GTVS.num = GTVS.num || gtvNum(); gtvPaint(); window.open(WA + '?text=' + encodeURIComponent(gtvMsg()), '_blank', 'noopener'); return; }
+if ((t = e.target.closest('#gtvWarn'))){
+var ph = document.getElementById('gtvPhone'), v = ph ? ph.value.replace(/\D/g,'') : '';
 if (v.length < 10){ if (ph){ ph.focus(); ph.style.borderColor = '#e05a7a'; } return; }
 if (ph) ph.style.borderColor = '';
 window.open(WA + '?text=' + encodeURIComponent('Olá! Quero ser avisado quando o preço do GTA VI sair. Meu WhatsApp: ' + v), '_blank', 'noopener'); return;
+}
+if ((t = e.target.closest('[data-gtvt]'))){
+var k = t.getAttribute('data-gtvt'), tr = GTV.trailers.filter(function(x){ return x.k === k; })[0], box = document.getElementById('gtvTv');
+if (!tr || !box) return;
+box.setAttribute('data-t', k);
+t.parentNode.querySelectorAll('button').forEach(function(b){ b.setAttribute('aria-pressed', String(b === t)); });
+var th = document.getElementById('gtvThumb'); if (th) th.src = tr.t;
+var lb = document.getElementById('gtvLabel'); if (lb) lb.textContent = tr.n;
+var inn = box.querySelector('.gtv-tv-in'); if (inn && inn.querySelector('iframe')) inn.innerHTML = box.__rest || '';
+return;
+}
+if ((t = e.target.closest('#gtvPlay'))){
+var box = document.getElementById('gtvTv'); if (!box) return;
+var tr = GTV.trailers.filter(function(x){ return x.k === box.getAttribute('data-t'); })[0] || GTV.trailers[0]; if (!tr) return;
+var inn = box.querySelector('.gtv-tv-in'); if (!inn) return;
+if (!box.__rest) box.__rest = inn.innerHTML;
+inn.innerHTML = yt(tr.id);
+if (inn.animate && !reduce) inn.animate([{opacity:1,transform:'scaleY(.02)',background:'#fff'},{opacity:1,transform:'scaleY(.02)',background:'#fff',offset:.35},{opacity:1,transform:'scaleY(1)',background:'#000'}],{duration:460,easing:'cubic-bezier(.2,.9,.2,1)'});
+return;
+}
+if ((t = e.target.closest('[data-gtv-rail]'))){
+var rail = document.getElementById('gtvRail'); if (!rail) return;
+rail.scrollBy({left: rail.clientWidth * .8 * (+t.getAttribute('data-gtv-rail')), behavior: reduce ? 'auto' : 'smooth'});
+return;
 }
 });
 
@@ -3616,7 +3987,7 @@ watchVideos(el);
 if (key === 'era') initEra(el); else stopEra();
 var pend = PENDING; PENDING = []; pend.forEach(function(f){ f(); });
 if (key === 'home'){ fCur = 0; featAuto(); }
-if (key === 'gta'){ tickCd(); gtPaint(); }
+if (key === 'gta'){ tickCd(); gtvMount(el); }
 if (window.scrollY > 80) window.scrollTo({top: 0, behavior: 'auto'});
 }
 window.addEventListener('resize', moveInd);
@@ -3725,7 +4096,7 @@ document.getElementById('closeSheet').addEventListener('click', closeAll);
 renderCart();
 cupUI();
 /* ---------- contagem ---------- */
-var alvo = new Date('2026-11-19T00:00:00-03:00').getTime();
+var alvo = new Date(GTV.date).getTime();
 function tickCd(){
 var el = document.getElementById('cd-d'); if (!el) return;
 var s = Math.max(0, Math.floor((alvo - Date.now())/1000));
