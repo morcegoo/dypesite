@@ -1198,6 +1198,15 @@ background:radial-gradient(120% 90% at 78% 50%,color-mix(in srgb,var(--c) 34%,#0
 .jgl-ord{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--mut2);}
 .jgl-ord select{height:38px;padding:0 10px;border-radius:11px;border:1.5px solid var(--line2);background:#fff;color:var(--ink);font-family:inherit;font-size:13px;}
 .view[data-v="jogos"]{overflow-x:clip;}
+.fotos{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x proximity;margin:0 -6px;padding:2px 6px 10px;scrollbar-width:none;}
+.fotos::-webkit-scrollbar{display:none;}
+.foto{flex:0 0 160px;scroll-snap-align:start;position:relative;padding:0;border:1px solid var(--line2);border-radius:18px;overflow:hidden;background:var(--bg3);cursor:pointer;text-align:left;color:var(--ink);transition:transform .24s cubic-bezier(.2,.7,.3,1),border-color .24s;}
+.foto:hover,.foto:focus-visible{transform:translateY(-3px);border-color:var(--acc);outline:none;}
+.foto img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;background:#e9ebef;}
+.foto span{display:block;padding:10px 12px 13px;}
+.foto b{display:block;font-size:13px;font-weight:700;line-height:1.25;}
+.foto small{display:block;margin-top:3px;font-size:11px;color:var(--mut);}
+@media (min-width:700px){.foto{flex:0 0 196px;} .foto b{font-size:14px;}}
 @media (min-width:700px){
 .jgp-grid{gap:14px;}
 .jgp{min-height:226px;padding:18px;}
@@ -1459,18 +1468,18 @@ add([
 {id:'e1', cat:'acess', t:'Headset Pro 7.1', g:'Áudio', p:'PC · PS5 · Xbox', v:389.9, type:'headset', bg:'#4a2a9c', a:{body:'#7b52e0', keys:'#1a1030', glow:'#34e3ff'}, f:'Som surround 7.1 · Microfone removível'},
 {id:'a1', cat:'acess', t:'Fone sem fio TWS', g:'Áudio', p:'Bluetooth', v:199.9, type:'buds', bg:'#9aa2ad', a:{body:'#ffffff', keys:'#2a2c32', glow:'#1fbf5f'}, f:'Estojo de carga · 24 h de bateria · baixa latência'},
 {id:'a2', cat:'acess', t:'Smartwatch Fit', g:'Relógio', p:'Android e iOS', v:349.9, type:'watch', bg:'#23262e', a:{body:'#3a3d45', b2:'#23252b', keys:'#101114', glow:'#ff4f7a'}, f:'Batimentos · passos · notificações do celular'},
-{id:'e3', cat:'acess', t:'Teclado mecânico RGB', g:'PC', p:'Switch azul', v:299.9, o:349.9, type:'keyboard', bg:'#9e1c5a', a:{body:'#1c1d22', keys:'#0b0b0e'}, f:'Switch azul · RGB · ABNT2'},
-{id:'e4', cat:'acess', t:'Mouse gamer 12K', g:'PC', p:'RGB', v:159.9, type:'mouse', bg:'#b07a14', a:{body:'#232428', keys:'#0c0c0e', glow:'#f0b93a'}, f:'12.000 DPI · 7 botões'},
-{id:'c5', cat:'acess', t:'Monitor gamer 24"', g:'Monitor', p:'165 Hz', v:1099, type:'monitor', bg:'#1d3f9e', a:{body:'#2a2c32', keys:'#0c0d10', screen:'#5b3cff'}, f:'IPS · 1 ms · Full HD'},
-{id:'e2', cat:'acess', t:'Controle Bluetooth', g:'Controle', p:'PC e celular', v:249.9, type:'offset', bg:'#0f6e80', a:{body:'#23c2d8', keys:'#082a30', stick:'#1fb0c4', trim:'#16181c'}, f:'Funciona no PC, celular e console'},
+{id:'e3', cat:'acess', t:'Teclado mecânico RGB', g:'PC', p:'Switch azul', v:299.9, o:349.9, photo:'media/loja/teclado-rgb.webp', type:'keyboard', bg:'#9e1c5a', a:{body:'#1c1d22', keys:'#0b0b0e'}, f:'Switch azul · RGB · ABNT2'},
+{id:'e4', cat:'acess', t:'Mouse gamer 12K', g:'PC', p:'RGB', v:159.9, photo:'media/loja/mouse-logitech.webp', type:'mouse', bg:'#b07a14', a:{body:'#232428', keys:'#0c0c0e', glow:'#f0b93a'}, f:'12.000 DPI · 7 botões'},
+{id:'c5', cat:'acess', t:'Monitor gamer 24"', g:'Monitor', p:'165 Hz', v:1099, photo:'media/loja/monitor-predator.webp', type:'monitor', bg:'#1d3f9e', a:{body:'#2a2c32', keys:'#0c0d10', screen:'#5b3cff'}, f:'IPS · 1 ms · Full HD'},
+{id:'e2', cat:'acess', t:'Controle Bluetooth', g:'Controle', p:'PC e celular', v:249.9, photo:'media/loja/controle-celular.webp', type:'offset', bg:'#0f6e80', a:{body:'#23c2d8', keys:'#082a30', stick:'#1fb0c4', trim:'#16181c'}, f:'Funciona no PC, celular e console'},
 {id:'t1', cat:'tcg', t:'Booster avulso', g:'Coleção atual', p:'10 cartas', v:29.9, type:'booster', bg:'#b07a14', a:{body:'#f0b93a', b2:'#fff4d0', keys:'#6b3a08'}, f:'10 cartas · chance de carta rara'},
 {id:'t2', cat:'tcg', t:'Booster box', g:'Coleção atual', p:'36 boosters', v:899, type:'bbox', bg:'#8e1650', a:{body:'#ff2e8a', b2:'#ff7ab8', keys:'#7a0f45'}, f:'Melhor custo por pacote · lacrada'},
 {id:'t3', cat:'tcg', t:'Deck inicial', g:'Pra começar', p:'60 cartas', v:119.9, type:'deck', bg:'#1d4f9e', a:{body:'#34a8ff', b2:'#d8ecff', keys:'#0a2a55'}, f:'60 cartas prontas pra jogar'},
 {id:'t6', cat:'tcg', t:'Kit de dados', g:'Acessório', p:'6 dados', v:34.9, type:'dice', bg:'#a84a12', a:{body:'#ff8a3d', keys:'#3d1a08'}, f:'Pra marcar dano e contadores'},
-{id:'r1', cat:'rep', t:'Troca de analógico', g:'Controle com drift', p:'a partir de', v:89, type:'svc', bg:'#0f6e80', a:{body:'#1fd1e0', ic:PAD_IC}, f:'Analógico novo, calibrado e testado'},
-{id:'r2', cat:'rep', t:'Limpeza completa', g:'Console esquentando', p:'a partir de', v:120, type:'svc', bg:'#146b34', a:{body:'#1fbf5f', ic:CONSOLE_IC}, f:'Limpeza interna e pasta térmica nova'},
-{id:'r3', cat:'rep', t:'Troca de HDMI', g:'Sem imagem', p:'a partir de', v:180, type:'svc', bg:'#4a2a9c', a:{body:'#9b5bff', ic:PLUG_IC}, f:'Conector HDMI novo com garantia'},
-{id:'r4', cat:'rep', t:'Tela de celular', g:'Tela quebrada', p:'a partir de', v:250, type:'svc', bg:'#8e1650', a:{body:'#ff2e8a', ic:PHONE_IC}, f:'Troca de tela com peça de qualidade'}
+{id:'r1', cat:'rep', t:'Troca de analógico', g:'Controle com drift', p:'a partir de', v:89, photo:'media/loja/conserto-analogico.webp', type:'svc', bg:'#0f6e80', a:{body:'#1fd1e0', ic:PAD_IC}, f:'Analógico novo, calibrado e testado'},
+{id:'r2', cat:'rep', t:'Limpeza completa', g:'Console esquentando', p:'a partir de', v:120, photo:'media/loja/conserto-limpeza.webp', type:'svc', bg:'#146b34', a:{body:'#1fbf5f', ic:CONSOLE_IC}, f:'Limpeza interna e pasta térmica nova'},
+{id:'r3', cat:'rep', t:'Troca de HDMI', g:'Sem imagem', p:'a partir de', v:180, photo:'media/loja/conserto-hdmi.webp', type:'svc', bg:'#4a2a9c', a:{body:'#9b5bff', ic:PLUG_IC}, f:'Conector HDMI novo com garantia'},
+{id:'r4', cat:'rep', t:'Tela de celular', g:'Tela quebrada', p:'a partir de', v:250, photo:'media/loja/conserto-tela.webp', type:'svc', bg:'#8e1650', a:{body:'#ff2e8a', ic:PHONE_IC}, f:'Troca de tela com peça de qualidade'}
 ]);
 function ctl(prefix, title, type, feat, list){ return list.map(function(x, i){ var id = prefix + i; P[id] = {id:id, cat:'ctl', t:title + ' · ' + x[0], short:x[0], g:'Controle', p:x[0], v:x[1], type:type, bg:x[2], ink:x[4], a:x[3], f:feat}; return P[id]; }); }
 var XB = ctl('xc', 'Controle Xbox', 'offset', 'Gatilhos texturizados · D-pad híbrido · Bluetooth', [
@@ -1910,7 +1919,8 @@ return showcase([{label:'Serviços', items:byCat('rep')}]) +
 '<label>Aparelho<select id="o-ap"><option>Console (PlayStation, Xbox, Nintendo)</option><option>Controle</option><option>Celular</option><option>Notebook / PC</option><option>Outro eletrônico</option></select></label>' +
 '<label>Modelo<input class="f" id="o-mod" placeholder="Ex.: PS5, Switch, iPhone 12"></label>' +
 '<label>O que está acontecendo?<textarea id="o-def" rows="3" placeholder="Ex.: não liga, drift no analógico"></textarea></label>' +
-'<button class="btn pri" type="submit">' + I.wa + ' Enviar pelo WhatsApp</button></form></section></div>';
+'<button class="btn pri" type="submit">' + I.wa + ' Enviar pelo WhatsApp</button></form></section></div>' +
+fotosRail('Na bancada', 'conserto feito aqui, com peça e garantia', [['xbox-desmontado','Controle aberto na bancada','troca de analógico e limpeza'],['notebook-limpeza','Limpeza de cooler e placa','notebook e PC'],['conserto-tela','Troca de tela de celular','peça com garantia'],['conserto-limpeza','Limpeza interna do console','pasta térmica nova']]);
 }
 function renderBusca(q){
 var n = q.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
@@ -2063,10 +2073,10 @@ function fanfare(){ if (!sndOn || !AC) return; var t = AC.currentTime; [523.3, 6
 var COV = {"gow2": "assets/inline/inline-08b192a676.webp", "nfsu2": "assets/inline/inline-69dda0c1aa.webp", "dhd": "assets/inline/inline-ea6f3bcdaa.webp", "nfsmw": "assets/inline/inline-f6acba2de7.webp", "gt4": "assets/inline/inline-445f6c6cb8.webp", "svr11": "assets/inline/inline-24c2b0863f.webp", "f106": "assets/inline/inline-f15e3fc07a.webp", "gtasa": "assets/inline/inline-bec56b9b5d.webp"};
 /* ---------- lançamentos da biblioteca (Home) ---------- */
 add([
-{id:'j9', cat:'jogos', t:'Cyberpunk 2077', g:'Ação', gen:'Ação', dev:'CD Projekt Red', ano:2020, p:'PS5 · Xbox', pl:['ps','xb'], v:199.9, o:249.9, m:'shard', c:['#f5d23f','#1a0f28','#34e3ff'], f:'Mundo aberto futurista com escolhas que mudam a história.'},
+{id:'j9', cat:'jogos', photo:'media/loja/cover-cyberpunk.webp', t:'Cyberpunk 2077', g:'Ação', gen:'Ação', dev:'CD Projekt Red', ano:2020, p:'PS5 · Xbox', pl:['ps','xb'], v:199.9, o:249.9, m:'shard', c:['#f5d23f','#1a0f28','#34e3ff'], f:'Mundo aberto futurista com escolhas que mudam a história.'},
 {id:'j10', cat:'jogos', t:'Forza Horizon 2', g:'Corrida', gen:'Corrida', dev:'Playground Games', ano:2014, p:'Xbox', pl:['xb'], v:229.9, m:'sun', c:['#ff8a3d','#3d1a08','#ffd36b'], f:'Festival de corrida em mundo aberto, com carros pra todo gosto.'},
-{id:'j11', cat:'jogos', t:'Call of Duty: Black Ops Cold War', g:'Tiro', gen:'Tiro', dev:'Treyarch', ano:2020, p:'PS5 · Xbox', pl:['ps','xb'], v:249.9, m:'ring', c:['#8fb6ff','#05070f','#ff5a3d'], f:'Campanha da Guerra Fria e multiplayer completo.'},
-{id:'j12', cat:'jogos', t:'EA Sports FC 26', g:'Futebol', gen:'Esporte', dev:'EA Vancouver', ano:2025, p:'PS5 · Xbox', pl:['ps','xb'], v:279.9, m:'ball', c:['#1fbf5f','#063a22','#ffe07a'], f:'Futebol com clubes, ligas e modos de carreira atualizados.'},
+{id:'j11', cat:'jogos', photo:'media/loja/cover-cod-coldwar.webp', t:'Call of Duty: Black Ops Cold War', g:'Tiro', gen:'Tiro', dev:'Treyarch', ano:2020, p:'PS5 · Xbox', pl:['ps','xb'], v:249.9, m:'ring', c:['#8fb6ff','#05070f','#ff5a3d'], f:'Campanha da Guerra Fria e multiplayer completo.'},
+{id:'j12', cat:'jogos', photo:'media/loja/cover-fc26.webp', t:'EA Sports FC 26', g:'Futebol', gen:'Esporte', dev:'EA Vancouver', ano:2025, p:'PS5 · Xbox', pl:['ps','xb'], v:279.9, m:'ball', c:['#1fbf5f','#063a22','#ffe07a'], f:'Futebol com clubes, ligas e modos de carreira atualizados.'},
 {id:'j13', cat:'jogos', t:'NBA 2K27', g:'Basquete', gen:'Esporte', dev:'Visual Concepts', ano:2026, p:'PS5 · Xbox', pl:['ps','xb'], v:349.9, photo:'media/nov/nba2k27.webp', f:'Basquete com MyCareer, MyTeam e elencos atualizados da temporada.'},
 {id:'j14', cat:'jogos', t:'NBA 2K26', g:'Basquete', gen:'Esporte', dev:'Visual Concepts', ano:2025, p:'PS5 · Xbox', pl:['ps','xb'], v:299.9, photo:'media/nov/nba2k26.webp', f:'O basquete mais completo da serie, com modos online e carreira.'},
 {id:'j15', cat:'jogos', t:'Marvel’s Spider-Man 2', g:'Acao', gen:'Acao', dev:'Insomniac Games', ano:2023, p:'PlayStation 5', pl:['ps'], v:349.9, photo:'media/nov/spiderman2.webp', f:'Dois Homens-Aranha, uma Nova York maior e viagem instantanea pela cidade.'},
@@ -2436,6 +2446,11 @@ var CX = [
 {n:'Pastel', v:499.9, g:'#6fe0b0', b:'#082018', d:'Verde menta e rosa pastel. Suave e divertido.', a:{body:'#6fe0b0', b2:'#ff9fcf', keys:'#141416'}}]}
 ];
 CX.forEach(function(M){ M.skins.forEach(function(s, i){ s.id = 'cx-' + M.key + i; P[s.id] = {id:s.id, cat:'ctl', t:M.label + ' · ' + s.n, short:s.n, g:'Controle personalizado', p:s.n, v:s.v, type:M.type, bg:s.b, a:s.a, f:s.d}; }); });
+function fotosRail(t, sub, list){
+return '<section class="block"><div class="sec-t"><h3>' + t + '<small>' + sub + '</small></h3></div><div class="fotos">' +
+list.map(function(x){ return '<button type="button" class="foto" data-wa="Quero um ' + esc(x[1]) + '"><img loading="lazy" decoding="async" src="media/loja/' + x[0] + '.webp" alt="' + esc(x[1]) + '"><span><b>' + esc(x[1]) + '</b><small>' + esc(x[2]) + '</small></span></button>'; }).join('') +
+'</div></section>';
+}
 function renderControles(){
 return '<div class="cxs">' + CX.map(function(M, mi){
 return '<section class="cx" data-cx="' + mi + '"><span class="cx-word" aria-hidden="true"></span>' +
@@ -2445,7 +2460,9 @@ return '<section class="cx" data-cx="' + mi + '"><span class="cx-word" aria-hidd
 '<div class="cx-bot"><button type="button" class="cx-mini" data-wa="Quero personalizar um ' + M.label + '"><span class="cx-mimg"></span><span><b>Personalize o seu</b><small>Fale com a loja</small></span></button>' +
 '<div class="cx-nav"><button type="button" data-cxn="-1" aria-label="Anterior">' + I.left + '</button><span class="cx-dots"></span><button type="button" data-cxn="1" aria-label="Próximo">' + I.right + '</button></div>' +
 '<div class="cx-st">' + M.stats.map(function(s){ return '<div>' + ico(s[0]) + '<b>' + s[1] + '</b><small>' + s[2] + '</small></div>'; }).join('') + '</div></div></section>';
-}).join('') + '<p class="credit">Controles originais com pintura personalizada pela loja. Cores de exemplo; consulte os modelos disponíveis.</p></div>';
+}).join('') +
+fotosRail('Controles originais na loja', 'fotos do estoque · toque pra falar no WhatsApp', [['dualsense-branco','Controle DualSense · branco','PS5 · original'],['xbox-verde','Controle Xbox Series · verde','Xbox Series · original'],['xbox-pulse','Controle Xbox · Pulse Red','Xbox Series · original'],['gamesir','GameSir · branco e laranja','PC · celular'],['ledjoy','Controle sem fio LEDJOY','PC · Switch']]) +
+'<p class="credit">Controles originais com pintura personalizada pela loja. Cores de exemplo; consulte os modelos disponíveis.</p></div>';
 }
 function cxPaint(sec, i, dir){
 var M = CX[+sec.getAttribute('data-cx')], n = M.skins.length; i = (i + n) % n; var s = M.skins[i], prev = sec._i;
