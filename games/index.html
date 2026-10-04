@@ -865,6 +865,84 @@ html.light .brand:hover{box-shadow:8px 10px 0 rgba(150,90,255,.18),0 24px 46px -
 .vi-big{font-family:'Poppins',sans-serif;font-size:96px;font-weight:800;line-height:1;background:linear-gradient(180deg,#ffd0f2,#ff4fd8 55%,#b44cff);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 20px rgba(255,79,216,.6));}
 .vi-plat{display:flex;justify-content:space-around;flex-wrap:wrap;gap:10px;margin-top:12px;padding:14px;border-radius:18px;background:#fdf4ff;color:#1b1325;font-family:'Poppins',sans-serif;font-weight:700;font-size:15px;}
 .vi .credit{color:rgba(255,255,255,.8);}
+
+/* ===== central de pré-venda (GTA VI) ===== */
+.vi-hero{display:flex;align-items:center;height:auto;min-height:470px;padding:30px;}
+.vi-t{position:relative;left:auto;top:auto;bottom:auto;max-width:560px;padding:0;}
+.vi-t h1{font-size:clamp(36px,4.8vw,62px);}
+.vi-hk{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#0d0a12;background:#d7ff4a;border-radius:999px;padding:6px 12px;}
+.gt-cd{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:14px 0;max-width:470px;}
+.gt-cd div{padding:10px 6px;border-radius:14px;background:rgba(9,6,18,.6);border:1px solid rgba(255,226,106,.4);text-align:center;}
+.gt-cd b{display:block;font-family:'Poppins',sans-serif;font-size:clamp(22px,3.2vw,34px);font-weight:800;line-height:1;color:#fff;font-variant-numeric:tabular-nums;}
+.gt-cd span{font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#ffe26a;}
+.vi-trust{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:14px;font-size:12px;color:rgba(255,255,255,.85);}
+.vi-trust span{display:inline-flex;align-items:center;gap:6px;}
+.vi-trust svg{width:14px;height:14px;flex:none;color:#d7ff4a;}
+.gt-end + .vi-plat{margin-top:12px;}
+.gtp{position:relative;margin-top:12px;padding:20px;border-radius:20px;background:#fdf4ff;color:#1b1325;text-align:left;}
+.gt-h h2{font-family:'Poppins',sans-serif;font-size:clamp(20px,2.6vw,28px);font-weight:800;text-transform:uppercase;margin:0;color:#1b1325;}
+.gt-h p{margin:6px 0 0;font-size:13px;color:#5b4a66;max-width:66ch;}
+.gt-st{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:16px;}
+.gt-step{min-width:0;}
+.gt-step>span{display:flex;align-items:center;gap:8px;font:800 11px 'Poppins',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#8b2fe0;}
+.gt-step>span i{display:grid;place-items:center;width:22px;height:22px;flex:none;border-radius:50%;background:#8b2fe0;color:#fff;font-style:normal;font-size:11px;}
+.gt-opts{display:grid;gap:8px;margin-top:10px;}
+.gt-op{display:flex;align-items:center;gap:10px;min-width:0;padding:10px 12px;border-radius:14px;border:1.5px solid #e2c7f5;background:#fff;cursor:pointer;text-align:left;color:#1b1325;font:inherit;transition:border-color .18s,box-shadow .18s;}
+.gt-op:hover{border-color:#b46ce8;}
+.gt-op.on{border-color:#8b2fe0;box-shadow:0 0 0 2px rgba(139,47,224,.16);}
+.gt-op img{width:42px;height:52px;border-radius:9px;object-fit:cover;flex:none;}
+.gt-op>span{min-width:0;flex:1;}
+.gt-op b{display:block;font:700 13px 'Poppins',sans-serif;}
+.gt-op small{display:block;font-weight:400;font-size:11.5px;color:#6a5a76;}
+.gt-tk{margin-left:auto;width:22px;height:22px;flex:none;border-radius:50%;border:1.5px solid #d9c6ee;display:grid;place-items:center;color:transparent;}
+.gt-op.on .gt-tk{border-color:#8b2fe0;background:#8b2fe0;color:#fff;}
+.gt-tk svg{width:12px;height:12px;}
+.gt-buy{margin-top:18px;padding-top:16px;border-top:1px solid #eadcf8;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.gt-sum{flex:1;min-width:220px;font-size:12.5px;color:#5b4a66;}
+.gt-sum b{display:block;font:700 14px 'Poppins',sans-serif;color:#1b1325;margin-bottom:2px;}
+.gt-buy .btn{height:52px;padding:0 22px;font-size:14px;}
+.gt-buy .btn[disabled]{opacity:.45;cursor:not-allowed;}
+.gt-alert{margin-top:16px;padding:14px;border-radius:16px;background:#f3e8fd;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.gt-alert>div{flex:1;min-width:200px;}
+.gt-alert b{display:block;font:700 13.5px 'Poppins',sans-serif;}
+.gt-alert span{font-size:12px;color:#5b4a66;}
+.gt-alert input{height:46px;width:170px;padding:0 14px;border-radius:12px;border:1.5px solid #dcc8f0;background:#fff;font:500 13.5px 'Inter',sans-serif;color:#1b1325;}
+.gt-alert .btn{height:46px;font-size:13px;padding:0 18px;background:#8b2fe0;border-color:#8b2fe0;color:#fff;} .gt-alert input::placeholder{color:#8a7a96;}
+.gt-why{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:12px;}
+.gt-w{padding:16px;border-radius:18px;background:rgba(20,8,30,.72);color:#fff;}
+.gt-w svg{width:22px;height:22px;color:#d7ff4a;}
+.gt-w b{display:block;font:700 14px 'Poppins',sans-serif;margin:10px 0 6px;}
+.gt-w p{margin:0;font-size:12.5px;font-weight:300;color:rgba(255,255,255,.78);}
+.gt-con{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;}
+.gt-c{position:relative;overflow:hidden;border-radius:18px;border:0;padding:20px;text-align:left;cursor:pointer;color:#fff;min-height:180px;display:flex;flex-direction:column;justify-content:flex-end;background:#2a0a4a;font:inherit;}
+.gt-c img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55;}
+.gt-c::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,6,45,.1),rgba(18,4,30,.92));}
+.gt-c>*{position:relative;z-index:1;}
+.gt-c b{font-family:'Poppins',sans-serif;font-size:clamp(17px,2vw,22px);font-weight:800;text-transform:uppercase;line-height:1.05;max-width:70%;}
+.gt-c span{font-size:12.5px;color:rgba(255,255,255,.85);margin-top:6px;max-width:74%;}
+.gt-c i{position:absolute;right:16px;bottom:16px;z-index:1;width:38px;height:38px;border-radius:50%;background:#d7ff4a;color:#15121c;display:grid;place-items:center;}
+.gt-c i svg{width:15px;height:15px;}
+.vi-card .pv{max-width:820px;}
+.gtg{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(230px,1fr);gap:10px;margin-top:12px;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;padding-bottom:4px;}
+.gtg::-webkit-scrollbar{display:none;}
+.gtg button{position:relative;height:250px;border:0;padding:0;border-radius:18px;overflow:hidden;cursor:pointer;scroll-snap-align:start;background:#2a0a4a;}
+.gtg img{width:100%;height:100%;object-fit:cover;}
+.gtg button::after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(transparent,rgba(18,4,30,.9));}
+.gtg b{position:absolute;left:14px;right:14px;bottom:12px;z-index:1;font:700 13.5px 'Poppins',sans-serif;color:#fff;text-align:left;text-shadow:0 2px 12px rgba(0,0,0,.8);}
+.gtf{display:grid;gap:8px;margin-top:12px;}
+.gtf details{border-radius:16px;background:rgba(20,8,30,.72);border:1px solid rgba(255,255,255,.1);overflow:hidden;}
+.gtf summary{cursor:pointer;padding:15px 18px;font:600 14px 'Poppins',sans-serif;list-style:none;display:flex;justify-content:space-between;gap:12px;align-items:center;}
+.gtf summary::-webkit-details-marker{display:none;}
+.gtf summary::after{content:"+";font-weight:800;font-size:18px;color:#d7ff4a;}
+.gtf details[open] summary::after{content:"\2013";}
+.gtf p{margin:0;padding:0 18px 16px;font-size:13px;font-weight:300;color:rgba(255,255,255,.78);}
+.gt-end{margin-top:12px;padding:20px;border-radius:20px;background:rgba(20,8,30,.72);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;color:#fff;}
+.gt-end b{display:block;font:700 16px 'Poppins',sans-serif;}
+.gt-end span{font-size:13px;color:rgba(255,255,255,.75);}
+.gt-end .fbtns{margin:0;}
+.vi-plat{justify-content:center;gap:10px;}
+.vi-plat span{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:#f0e4fb;font-size:12.5px;}
+.vi-plat small{display:block;width:100%;text-align:center;font:600 10.5px 'Poppins',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#8a6fa0;}
 /* controles personalizados */
 .cxs{display:grid;gap:14px;}
 .cx{--g:#ff4fd8;--b:#26071f;position:relative;display:grid;grid-template-columns:1fr 1.3fr .5fr;grid-template-rows:1fr auto;gap:10px 16px;min-height:430px;padding:26px 26px 20px;border-radius:24px;overflow:hidden;isolation:isolate;
@@ -923,6 +1001,32 @@ background:radial-gradient(ellipse 55% 60% at 50% 45%,color-mix(in srgb,var(--g)
 .cx-r{grid-column:1/-1;flex-direction:row;justify-content:flex-end;gap:6px;} .cx-th{width:58px;aspect-ratio:1.2/1;border-radius:10px 10px 10px 18px;padding:4px;}
 .cx-bot{grid-template-columns:auto 1fr;gap:8px;} .cx-mini{display:none;} .cx-nav{grid-column:1;} .cx-nav button{width:34px;height:28px;} .cx-st{grid-column:2;gap:6px;} .cx-st div{width:auto;flex:1;padding:6px 8px;border-radius:10px;} .cx-st svg{width:14px;height:14px;} .cx-st b{font-size:11.5px;margin-top:2px;white-space:nowrap;} .cx-st small{font-size:9px;}
 .cx-ring{height:20px;}
+}
+
+@media (max-width:900px){
+.vi-hero{display:block;min-height:0;padding:0;border-radius:14px;background:#3a0a50;}
+.vi-bg{position:relative;inset:auto;height:210px;}
+.vi-char{display:none;}
+.vi-hero::after{display:none;}
+.vi-t{max-width:none;padding:16px;background:linear-gradient(180deg,rgba(58,10,80,.96),rgba(28,6,44,.99));}
+.vi-t h1{font-size:34px;} .vi-k{font-size:10px;margin:8px 0 6px;} .vi-t p{font-size:12.5px;}
+.vi-t .fbtns{gap:8px;} .vi-t .btn{height:42px;font-size:12.5px;}
+.gt-cd{gap:6px;margin:12px 0 0;}
+.gt-cd div{padding:8px 4px;border-radius:11px;} .gt-cd b{font-size:22px;} .gt-cd span{font-size:8.5px;}
+.vi-trust{font-size:11px;gap:4px 12px;margin-top:12px;}
+.gtp{padding:14px;border-radius:16px;}
+.gt-h h2{font-size:19px;} .gt-h p{font-size:12px;}
+.gt-st{grid-template-columns:1fr;gap:16px;margin-top:14px;}
+.gt-op{padding:9px 10px;} .gt-op img{width:36px;height:46px;}
+.gt-op b{font-size:12.5px;} .gt-op small{font-size:11px;}
+.gt-buy{gap:10px;} .gt-sum{min-width:0;font-size:12px;} .gt-buy .btn{width:100%;height:48px;}
+.gt-alert{padding:12px;gap:10px;} .gt-alert input{width:100%;} .gt-alert .btn{width:100%;}
+.gt-why{grid-template-columns:1fr 1fr;gap:8px;} .gt-w{padding:12px;border-radius:14px;} .gt-w b{font-size:12.5px;margin:8px 0 4px;} .gt-w p{font-size:11.5px;}
+.gt-con{grid-template-columns:1fr;gap:8px;} .gt-c{min-height:150px;padding:16px;} .gt-c b{font-size:18px;max-width:78%;} .gt-c span{font-size:12px;max-width:80%;}
+.gtg{grid-auto-columns:70vw;} .gtg button{height:220px;border-radius:14px;}
+.gtf summary{padding:13px 14px;font-size:13px;} .gtf p{padding:0 14px 14px;font-size:12.5px;}
+.gt-end{padding:16px;} .gt-end .fbtns{width:100%;} .gt-end .btn{flex:1;}
+.vi-plat{font-size:11.5px;padding:10px;gap:8px;} .vi-plat span{padding:6px 11px;}
 }
 @media (max-width:900px){ .race{grid-template-columns:1fr 1fr !important;gap:10px;padding:14px;} .race-t h3{font-size:18px;margin:4px 0;} .race-t p{font-size:11px;margin-bottom:8px;} .race-t .btn{height:36px;font-size:11.5px;padding:0 10px;} .race-v{height:170px !important;gap:6px;} .era-banner{padding:22px 14px;} .era-banner h2 b{font-size:36px;} }
 @media (prefers-reduced-motion:reduce){ .nv-pad{animation:none;} }
@@ -2716,32 +2820,114 @@ return mhHTML() +
 vitHTML(0) + '<section class="block cupons"><div class="cup-t"><span class="eh-k">Clube de cupons</span><h3>Descontos da semana</h3><p>Toque em um cupom pra ativar: o desconto entra sozinho no carrinho e o código vai junto no pedido do WhatsApp.</p></div>' + cuponsHTML() + '</section>'
 lojaBandHTML();
 }
-/* ---------- GTA VI estilo página de lançamento ---------- */
+/* ---------- GTA VI: central de pré-venda ---------- */
+var GTRES = {plat:null, ed:'base', pay:'sinal'};
+var GTED = [
+{k:'base', n:'Jogo base', d:'Pré-venda + bônus Vintage Vice City Pack', img:IMG.ult},
+{k:'ult', n:'Ultimate Edition', d:'Edição Ultimate, com conteúdo extra', img:IMG.car},
+{k:'box', n:'The Vice City Collection', d:'Collector\'s Box limitada · lista de espera', img:IMG.group}
+];
+var GIC = {
+shield:'<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/>',
+store:'<path d="M3.5 10h17v10.5h-17zM3 10l2.2-6h13.6L21 10"/><path d="M9.5 20.5V15h5v5.5"/>',
+card:'<rect x="2.5" y="5" width="19" height="14" rx="2.6"/><path d="M2.5 10h19M6.5 15.5h3.5"/>',
+gift:'<path d="M3.5 11.5h17V20h-17zM2.5 8h19v3.5h-19zM12 8v12"/><path d="M12 8C10.4 4.4 5.6 4 5.6 6.4 5.6 8 8 8 12 8zM12 8c1.6-3.6 6.4-4 6.4-1.6C18.4 8 16 8 12 8z"/>'
+};
+function gtIco(k){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' + GIC[k] + '</svg>'; }
+function gtPlatN(){ return GTRES.plat === 'ps5' ? 'PS5' : GTRES.plat === 'xbox' ? 'Xbox Series X|S' : ''; }
+function gtEdO(){ return GTED.filter(function(e){ return e.k === GTRES.ed; })[0] || GTED[0]; }
+function gtPayN(){ return GTRES.pay === 'total' ? 'Pagar tudo em 10x no cartão' : 'Sinal pra garantir a reserva'; }
+function gtMsg(){
+var r = 'GTA-' + Math.random().toString(36).slice(2,6).toUpperCase();
+return 'Olá! Quero reservar o GTA VI na pré-venda.\n\nReserva: ' + r + '\nPlataforma: ' + gtPlatN() + '\nEdição: ' + gtEdO().n + '\nPagamento: ' + gtPayN() + '\nBrinde do reservante: chaveiro GTA VI da loja\nValor: confirmar no WhatsApp';
+}
+function gtPaint(){
+var sec = document.getElementById('gt'); if (!sec) return;
+sec.querySelectorAll('[data-gt-plat]').forEach(function(b){ var on = b.getAttribute('data-gt-plat') === GTRES.plat; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+sec.querySelectorAll('[data-gt-ed]').forEach(function(b){ var on = b.getAttribute('data-gt-ed') === GTRES.ed; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+sec.querySelectorAll('[data-gt-pay]').forEach(function(b){ var on = b.getAttribute('data-gt-pay') === GTRES.pay; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+var t = document.getElementById('gtSumT'), s = document.getElementById('gtSumS'), r = document.getElementById('gtRes');
+if (!t) return;
+if (!GTRES.plat){ t.textContent = 'Escolha a plataforma pra começar'; s.textContent = 'Depois a edição e a forma de pagamento.'; }
+else { t.textContent = gtEdO().n + ' · ' + gtPlatN(); s.textContent = gtPayN() + ' · valor confirmado no WhatsApp.'; }
+if (r) r.disabled = !GTRES.plat;
+}
+function gtOpts(list, attr, cur){
+return list.map(function(o){
+var on = o.k === cur;
+return '<button type="button" class="gt-op' + (on ? ' on' : '') + '" data-' + attr + '="' + o.k + '" aria-pressed="' + on + '">' + (o.img ? '<img loading="lazy" decoding="async" src="' + o.img + '" alt="">' : '') + '<span><b>' + o.n + '</b>' + (o.d ? '<small>' + o.d + '</small>' : '') + '</span><span class="gt-tk">' + I.check + '</span></button>';
+}).join('');
+}
 function renderGTA(){
-var why = [['pool','Mundo vibrante','Um estado inteiro cheio de vida, histórias e lugares pra explorar.'],['car','Ação épica','Perseguições, assaltos e liberdade pra jogar do seu jeito.'],['group','Nova geração','Feito pra PS5 e Xbox Series X|S.']];
+if (JPICK === 'ps' || JPICK === 'ps2') GTRES.plat = GTRES.plat || 'ps5';
+if (JPICK === 'xb') GTRES.plat = GTRES.plat || 'xbox';
+var plats = [{k:'ps5', n:'PlayStation 5', d:'Versão de PS5 · DualSense'}, {k:'xbox', n:'Xbox Series X|S', d:'Versão de Xbox Series'}];
+var pays = [{k:'sinal', n:'Sinal pra garantir', d:'Paga um sinal agora e o resto na retirada'}, {k:'total', n:'Pagar tudo em 10x', d:'Fecha o valor total em até 10x no cartão'}];
+var gal = [
+{img:IMG.vice, t:'Vice City de volta', k:'vice'},
+{img:IMG.car, t:'Carros e perseguições', k:'car'},
+{img:IMG.pool, t:'Lucia e Jason', k:'pool'},
+{img:IMG.group, t:'Leonida inteira', k:'group'}
+];
 return '<div class="vi">' +
 '<section class="vi-hero"><img loading="lazy" decoding="async" class="vi-bg" src="' + IMG.vice + '" alt=""><img loading="lazy" decoding="async" class="vi-char" src="' + IMG.car + '" alt="Lucia e Jason, imagem oficial de GTA VI">' +
-'<div class="vi-t"><h1>Grand<br>Theft<br>Auto <em>VI</em></h1><span class="vi-k">Bem-vindo a Leonida</span><p>Um estado inspirado na Flórida, com ruas ensolaradas, noites agitadas e oportunidades sem fim.</p>' +
-'<div class="fbtns"><button type="button" class="btn lime" data-wa="Quero reservar o GTA VI">Reservar agora <i class="ar">' + I.arrow + '</i></button><button type="button" class="vi-play" data-trailer="VQRLujxTm3c"><i>' + I.play + '</i>Ver trailer</button></div></div></section>' +
-'<div class="bento">' +
-'<button type="button" class="bc img" data-img="car"><img loading="lazy" decoding="async" src="' + IMG.car + '" alt=""><b>Explore um<br>mundo gigante</b><i class="go">' + I.arrow + '</i></button>' +
-'<div class="bc txt"><b>Viva o sonho</b><p>Das ruas de Vice City aos pântanos e praias de Leonida.</p><button type="button" class="btn lime sm" data-go="gta-ed">Ver edições <i class="ar">' + I.arrow + '</i></button></div>' +
-'<button type="button" class="bc img" data-img="group"><img loading="lazy" decoding="async" src="' + IMG.group + '" alt=""><b>Possibilidades<br>sem fim</b><i class="go">' + I.arrow + '</i></button></div>' +
-'<section class="vi-about"><div class="va-t"><h2>Sobre o GTA VI</h2><p>A evolução mais imersiva da série Grand Theft Auto até hoje. Nova história, novos personagens e um mundo como nunca antes.</p>' +
-'<div class="cd" id="cd"><div><b id="cd-d">--</b><span>dias</span></div><div><b id="cd-h">--</b><span>horas</span></div><div><b id="cd-m">--</b><span>min</span></div><div><b id="cd-s">--</b><span>seg</span></div></div></div>' +
-'<div class="va-img"><img loading="lazy" decoding="async" src="' + IMG.vice + '" alt=""><span class="va-tab">Bem-vindo a Vice City<i class="go">' + I.arrow + '</i></span></div></section>' +
-'<section class="vi-why"><div class="vw-l"><h2>Por que você vai amar</h2><div class="vw-cards">' + why.map(function(w){ return '<div class="vw"><img loading="lazy" decoding="async" src="' + IMG[w[0]] + '" alt=""><b>' + w[1] + '</b><p>' + w[2] + '</p></div>'; }).join('') + '</div></div>' +
-'<button type="button" class="vw-big" data-img="pool"><img loading="lazy" decoding="async" src="' + IMG.pool + '" alt=""><b>Um novo legado<br>começa</b><i class="go">' + I.arrow + '</i></button></section>' +
-'<section class="vi-row" id="gta-ed"><div class="vi-card">' + secT('Trailers oficiais') + '<button type="button" class="pv" id="pv" data-yt="VQRLujxTm3c" aria-label="Assistir trailer"><img loading="lazy" decoding="async" src="' + IMG.car + '" alt="" style="object-position:60% 35%"><span class="big">' + I.play + '</span></button>' +
-'<div class="fchips" style="margin:12px 0 0"><button type="button" class="on" data-pv="VQRLujxTm3c">Trailer 2</button><button type="button" data-pv="QdBZY2fkU-0">Trailer 1</button></div></div>' +
-'<div class="vi-card">' + secT('Edições', '', 'Valores confirmados no WhatsApp') + '<div class="eds">' +
-'<div class="ed"><span class="th"><img loading="lazy" decoding="async" src="' + IMG.std + '" alt=""></span><div><b>Standard</b><small>Jogo base + bônus</small></div><button type="button" class="btn" data-wa="Quero reservar o GTA VI Standard Edition">Reservar</button></div>' +
-'<div class="ed"><span class="th"><img loading="lazy" decoding="async" src="' + IMG.ult + '" alt=""></span><div><b>Ultimate</b><small>Coleção de itens</small></div><button type="button" class="btn lime" data-wa="Quero reservar o GTA VI Ultimate Edition">Reservar</button></div>' +
-'<div class="ed"><span class="th"></span><div><b>Vice City Collection</b><small>Edição limitada</small></div><button type="button" class="btn" data-wa="Quero entrar na lista da The Vice City Collection">Lista</button></div></div></div></section>' +
-'<section class="vi-cta"><img loading="lazy" decoding="async" src="' + IMG.vice + '" alt=""><span class="vi-big">VI</span><button type="button" class="btn lime" data-wa="Quero reservar o GTA VI">Reservar agora <i class="ar">' + I.arrow + '</i></button></section>' +
-'<div class="vi-plat"><span>PlayStation 5</span><span>Xbox Series X|S</span><span>Rockstar Games</span></div>' +
+'<div class="vi-t"><span class="vi-hk">Pré-venda · Game Store</span><h1>Grand Theft Auto <em>VI</em></h1>' +
+'<div class="gt-cd" id="cd"><div><b id="cd-d">--</b><span>dias</span></div><div><b id="cd-h">--</b><span>horas</span></div><div><b id="cd-m">--</b><span>min</span></div><div><b id="cd-s">--</b><span>seg</span></div></div>' +
+'<p>Reserve na Game Store e retire no dia do lançamento. Preço garantido na reserva, sinal pra garantir a sua e brinde pra quem chegar primeiro.</p>' +
+'<div class="vi-trust"><span>' + gtIco('shield') + 'Preço garantido na reserva</span><span>' + gtIco('store') + 'Retirada no dia do lançamento</span><span>' + gtIco('card') + '10x sem juros</span><span>' + gtIco('gift') + 'Brinde exclusivo</span></div>' +
+'<div class="fbtns"><button type="button" class="btn lime" data-gtgo>Reservar meu GTA VI <i class="ar">' + I.arrow + '</i></button><button type="button" class="vi-play" data-trailer="VQRLujxTm3c"><i>' + I.play + '</i>Ver trailer</button></div></div></section>' +
+'<section class="gtp" id="gt"><div class="gt-h"><h2>Reserve em 3 passos</h2><p>Escolha a plataforma, a edição e como quer pagar. No fim o pedido sai pronto no WhatsApp com o seu número de reserva.</p></div>' +
+'<div class="gt-st">' +
+'<div class="gt-step"><span><i>1</i>Plataforma</span><div class="gt-opts">' + gtOpts(plats, 'gt-plat', GTRES.plat) + '</div></div>' +
+'<div class="gt-step"><span><i>2</i>Edição</span><div class="gt-opts">' + gtOpts(GTED, 'gt-ed', GTRES.ed) + '</div></div>' +
+'<div class="gt-step"><span><i>3</i>Pagamento</span><div class="gt-opts">' + gtOpts(pays, 'gt-pay', GTRES.pay) + '</div></div>' +
+'</div>' +
+'<div class="gt-buy"><div class="gt-sum"><b id="gtSumT">Escolha a plataforma pra começar</b><span id="gtSumS">Depois a edição e a forma de pagamento.</span></div>' +
+'<button type="button" class="btn pri" id="gtRes">Reservar pelo WhatsApp <i class="ar">' + I.arrow + '</i></button></div>' +
+'<div class="gt-alert"><div><b>Prefere esperar o preço sair?</b><span>Deixa o seu WhatsApp que a gente avisa assim que a Rockstar confirmar os valores.</span></div><input id="gtPhone" type="tel" inputmode="numeric" placeholder="(00) 00000-0000" aria-label="Seu WhatsApp"><button type="button" class="btn" id="gtAviso">Me avise</button></div>' +
+'</section>' +
+'<section class="vi-card" style="margin-top:12px">' + secT('Por que reservar aqui') + '<div class="gt-why">' +
+'<div class="gt-w">' + gtIco('shield') + '<b>Preço garantido</b><p>O valor trava no dia da reserva. Se subir depois, você paga o combinado.</p></div>' +
+'<div class="gt-w">' + gtIco('store') + '<b>Retirada no dia</b><p>Quem reserva é atendido primeiro e retira na loja sem fila.</p></div>' +
+'<div class="gt-w">' + gtIco('card') + '<b>Parcele em 10x</b><p>Sinal pra garantir ou pagamento total em até 10x no cartão.</p></div>' +
+'<div class="gt-w">' + gtIco('gift') + '<b>Brinde exclusivo</b><p>Quem reserva leva o chaveiro do GTA VI feito pela loja.</p></div>' +
+'</div></section>' +
+'<section class="vi-card" style="margin-top:12px">' + secT('Ainda não tem console?', '<span class="pill">A gente resolve</span>') + '<div class="gt-con">' +
+'<button type="button" class="gt-c" data-go="consoles"><img loading="lazy" decoding="async" src="' + IMG.car + '" alt=""><b>Combo PS5 + GTA VI</b><span>Leve o console e a reserva juntos, tudo parcelado.</span><i>' + I.arrow + '</i></button>' +
+'<button type="button" class="gt-c" data-go="consoles"><img loading="lazy" decoding="async" src="' + IMG.pool + '" alt=""><b>Troque seu PS4 no PS5</b><span>Avaliamos o seu usado na hora. Conserto e seminovos na mesma loja.</span><i>' + I.arrow + '</i></button>' +
+'</div></section>' +
+'<section class="vi-card" style="margin-top:12px">' + secT('Trailers oficiais', '<span class="pill">Rockstar Games</span>') +
+'<div class="fchips" style="margin:0 0 12px"><button type="button" class="on" data-pv="VQRLujxTm3c">Trailer 2</button><button type="button" data-pv="QdBZY2fkU-0">Trailer 1</button></div>' +
+'<button type="button" class="pv" id="pv" data-yt="VQRLujxTm3c" aria-label="Assistir trailer"><img loading="lazy" decoding="async" src="' + IMG.car + '" alt="" style="object-position:60% 35%"><span class="big">' + I.play + '</span></button></section>' +
+'<section class="vi-card" style="margin-top:12px">' + secT('Explore Leonida', '<span class="pill">Imagens oficiais</span>') + '<div class="gtg">' +
+gal.map(function(g){ return '<button type="button" data-img="' + g.k + '"><img loading="lazy" decoding="async" src="' + g.img + '" alt=""><b>' + g.t + '</b></button>'; }).join('') +
+'</div></section>' +
+'<section class="vi-card" style="margin-top:12px">' + secT('Perguntas frequentes') + '<div class="gtf">' +
+'<details><summary>Quando o GTA VI chega?</summary><p>A Rockstar confirmou o lançamento para 19/11/2026. Se a data mudar, a gente avisa todo mundo que reservou.</p></details>' +
+'<details><summary>Preciso pagar tudo agora?</summary><p>Não. Você pode dar só o sinal pra garantir a reserva e pagar o restante na retirada, ou pagar tudo em até 10x no cartão.</p></details>' +
+'<details><summary>E se o jogo for adiado de novo?</summary><p>Você escolhe: recebe o sinal de volta ou mantém a reserva com o preço garantido.</p></details>' +
+'<details><summary>Qual o preço das edições?</summary><p>A Rockstar ainda não divulgou os valores oficiais. Assim que sair, confirmamos no WhatsApp de quem reservou.</p></details>' +
+'<details><summary>Como funciona o brinde?</summary><p>Quem reserva aqui leva o chaveiro do GTA VI feito pela loja.</p></details>' +
+'</div></section>' +
+'<section class="gt-end"><div><b>Garanta a sua antes de esgotar</b><span>Reserva com número de pedido e retirada no dia do lançamento.</span></div><button type="button" class="btn lime" data-gtgo>Reservar meu GTA VI <i class="ar">' + I.arrow + '</i></button></section>' +
+'<div class="vi-plat"><small>Disponível em</small><span>PlayStation 5</span><span>Xbox Series X|S</span><span>Publicado por Rockstar Games</span></div>' +
 '<p class="credit">Imagens e vídeos: divulgação oficial Rockstar Games. Lançamento previsto: 19/11/2026.</p></div>';
 }
+document.addEventListener('click', function(e){
+var t;
+if ((t = e.target.closest('[data-gtgo]'))){ var g = document.getElementById('gt'); if (g) g.scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block:'start'}); return; }
+if ((t = e.target.closest('[data-gt-plat]'))){ GTRES.plat = t.getAttribute('data-gt-plat'); gtPaint(); return; }
+if ((t = e.target.closest('[data-gt-ed]'))){ GTRES.ed = t.getAttribute('data-gt-ed'); gtPaint(); return; }
+if ((t = e.target.closest('[data-gt-pay]'))){ GTRES.pay = t.getAttribute('data-gt-pay'); gtPaint(); return; }
+if ((t = e.target.closest('#gtRes'))){ if (!GTRES.plat) return; window.open(WA + '?text=' + encodeURIComponent(gtMsg()), '_blank', 'noopener'); return; }
+if ((t = e.target.closest('#gtAviso'))){
+var ph = document.getElementById('gtPhone'), v = ph ? ph.value.replace(/\D/g,'') : '';
+if (v.length < 10){ if (ph){ ph.focus(); ph.style.borderColor = '#e05a7a'; } return; }
+if (ph) ph.style.borderColor = '';
+window.open(WA + '?text=' + encodeURIComponent('Olá! Quero ser avisado quando o preço do GTA VI sair. Meu WhatsApp: ' + v), '_blank', 'noopener'); return;
+}
+});
+
 /* ---------- Controles personalizados (skins) ---------- */
 var CX = [
 {type:'sym', label:'Controle PS5', model:'DualSense', key:'ds', stats:[['batt','Até 12 h','Bateria'],['wifi','Bluetooth','Sem fio · USB-C']], skins:[
@@ -2917,7 +3103,7 @@ watchVideos(el);
 if (key === 'era') initEra(el); else stopEra();
 var pend = PENDING; PENDING = []; pend.forEach(function(f){ f(); });
 if (key === 'home'){ fCur = 0; featAuto(); }
-if (key === 'gta') tickCd();
+if (key === 'gta'){ tickCd(); gtPaint(); }
 if (window.scrollY > 80) window.scrollTo({top: 0, behavior: 'auto'});
 }
 window.addEventListener('resize', moveInd);
