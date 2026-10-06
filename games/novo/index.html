@@ -71,6 +71,9 @@ button{font:inherit;color:inherit;cursor:pointer}
 .feat p{margin:0;color:color-mix(in srgb,var(--a1) 35%,#fff);font-size:15px}
 .cta{justify-self:start;margin-top:8px;border:0;border-radius:999px;padding:13px 30px;font-weight:800;font-size:16px;background:linear-gradient(180deg,#fff3a6,var(--gold));color:#1b0f02;box-shadow:0 0 18px color-mix(in srgb,var(--gold) 70%,transparent),inset 0 -3px 0 rgba(0,0,0,.15)}
 .slide{display:grid;gap:10px}
+.feat .bgimg{position:absolute;inset:0;background-size:cover;background-position:70% 30%;opacity:.5;-webkit-mask-image:linear-gradient(90deg,transparent 30%,#000 80%);mask-image:linear-gradient(90deg,transparent 30%,#000 80%);transition:opacity .5s;pointer-events:none}
+.feat .slide{position:relative;z-index:1}
+.feat h2.long{font-size:clamp(40px,4.4vw,64px)}
 .slide.enter{animation:glitch .5s steps(1) both}
 @keyframes glitch{0%{clip-path:inset(0 0 70% 0);transform:translateX(-8px)}15%{clip-path:inset(40% 0 20% 0);transform:translateX(8px)}30%{clip-path:inset(10% 0 55% 0);transform:translateX(-4px)}45%{clip-path:inset(60% 0 0 0);transform:translateX(5px)}60%,100%{clip-path:inset(0);transform:none}}
 .fdots{display:flex;gap:6px;margin:12px 0 0 34px}
@@ -160,6 +163,11 @@ button{font:inherit;color:inherit;cursor:pointer}
 .it small{color:var(--muted);font-size:11.5px}
 .it .btn{justify-self:start;padding:7px 11px;font-size:11.5px}
 #pop.full .grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
+.it .art img{width:100%;height:100%;object-fit:cover;display:block}
+.it .art.ph{background:#0c0616}
+.it .pr{font-family:var(--f-display);font-size:19px;letter-spacing:.02em;color:var(--gold)}
+.it .acts{display:flex;gap:6px;flex-wrap:wrap}
+.more{margin-top:12px;width:100%;justify-content:center;border-color:color-mix(in srgb,var(--c,var(--a1)) 60%,transparent)}
 .dragtip{color:var(--muted);text-align:center;padding:0 0 10px}
 #pop.full .dragtip{display:none}
 
@@ -351,14 +359,27 @@ function setScene(i){si=i;GL&&GL.set(i);scenes.forEach((s,j)=>s.classList.toggle
 function restart(){clearInterval(stimer);if(!RM)stimer=setInterval(()=>setScene((si+1)%SC.length),16000)}
 setScene(0);restart();vid.play().catch(()=>{});
 
+/* ---------- dados reais (dados.json, gerado a partir do site atual) ---------- */
+let DATA=null;const KEY={jogos:'jogos',cons:'consoles',aces:'acessorios',setup:'setup',era:'era',gta:'gta'};
+const esc=t=>String(t==null?'':t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+fetch('dados.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{if(!d)return;DATA=d;
+  if(Array.isArray(d.destaques)&&d.destaques.length){FEAT.splice(0,FEAT.length,...d.destaques,FEAT[FEAT.length-1]);fd.innerHTML=FEAT.map(()=>'<i></i>').join('');showFeat(0)}
+  if(popI>=0&&pop.classList.contains('show')&&!pop.classList.contains('site'))pb.innerHTML=render(MODES[popI].id)}).catch(()=>{});
+function render(id){
+  const k=KEY[id],list=DATA&&k&&Array.isArray(DATA[k])?DATA[k]:null;
+  if(!list||!list.length)return CONTENT[id]();
+  const m=MODES.find(x=>x.id===id),lead=(DATA.textos&&DATA.textos[k])||'';
+  return (lead?`<p class="lead">${esc(lead)}</p>`:'')+`<div class="grid">${list.slice(0,8).map(x=>`<div class="it"><div class="art${x.img?' ph':''}">${x.img?`<img src="${esc(x.img)}" alt="${esc(x.nome)}" loading="lazy">`:sv(m.k)}</div><div class="t"><b>${esc(x.nome)}</b>${x.sub?`<small>${esc(x.sub)}</small>`:''}${x.preco?`<span class="pr">${esc(x.preco)}</span>`:''}<div class="acts"><button class="btn gold" data-wa>${esc(x.botao||'Quero')}</button></div></div></div>`).join('')}</div>`+(CFG.rota[id]?`<button class="btn more" data-full>Ver tudo em ${esc(m.l)} →</button>`:'');
+}
+
 /* ---------- card de destaque ---------- */
 const FEAT=[
- {tag:'Reserva',h:'GTA VI',s:'Reserva aberta',p:'Retire no dia 19.11',b:'Reservar',act:'mode:gta'},
+ {tag:'Reserva',h:'GTA VI',s:'Reserva aberta',p:'Retire no dia 19.11',b:'Reservar',act:'mode:gta',img:'../media/gta/keyart.webp'},
  {tag:'Oferta da semana',h:'Combo Setup',s:'Monte o seu em 4 passos',p:'Console + controle + headset',b:'Montar agora',act:'mode:setup'},
  {tag:'Rádio da loja',h:'Neon Drift',s:'Trilha ao vivo',p:'A batida mexe as ondas do site',b:'Tocar',act:'radio'}
 ];
 let fi=0;const slide=$('#slide'),fd=$('#fdots');fd.innerHTML=FEAT.map(()=>'<i></i>').join('');
-function showFeat(i){fi=i;const f=FEAT[i];slide.innerHTML=`<span class="tag">${f.tag}</span><h2>${f.h}</h2><h3>${f.s}</h3><p>${f.p}</p><button class="cta" data-act="${f.act}">${f.b}</button>`;
+function showFeat(i){fi=i;const f=FEAT[i];let bi=$('#feat .bgimg');if(!bi){bi=document.createElement('div');bi.className='bgimg';$('#feat .in').prepend(bi)}bi.style.backgroundImage=f.img?`url("${String(f.img).replace(/"/g,'')}")`:'none';slide.innerHTML=`<span class="tag">${esc(f.tag)}</span><h2${String(f.h).length>10?' class="long"':''}>${esc(f.h)}</h2><h3>${esc(f.s)}</h3><p>${esc(f.p)}</p><button class="cta" data-act="${esc(f.act)}">${esc(f.b)}</button>`;
   slide.classList.remove('enter');void slide.offsetWidth;slide.classList.add('enter');[...fd.children].forEach((d,j)=>d.classList.toggle('on',j===i))}
 showFeat(0);
 $('#feat').addEventListener('click',e=>{const b=e.target.closest('.cta');if(b){const a=b.dataset.act;if(a==='radio')Radio.toggle();else if(a.startsWith('mode:'))openModeFull(a.slice(5));else openWA();return}showFeat((fi+1)%FEAT.length);Waves.kick(.8)});
@@ -424,7 +445,7 @@ function openPop(i,pin){
   clearTimeout(hideT);const changed=popI!==i;popI=i;const m=MODES[i];
   tiles.forEach((t,j)=>t.classList.toggle('cur',j===i));
   if(changed||!pop.classList.contains('show')){
-    $('#popt').textContent=m.l;pb.innerHTML=CONTENT[m.id]();pb.scrollTop=0;
+    $('#popt').textContent=m.l;pb.innerHTML=render(m.id);pb.scrollTop=0;
     const col=getComputedStyle(tiles[i]).getPropertyValue('--c');pop.style.setProperty('--c',col||'var(--a1)');
     const was=pop.classList.contains('show');pop.classList.add('show');place(targetRect(i),!was);if(was)pop.animate([{opacity:.4},{opacity:1}],{duration:220});
     Waves.kick(.6);
@@ -449,7 +470,7 @@ ifr.addEventListener('load',()=>{
   try{const d=ifr.contentDocument;if(d&&!d.getElementById('neon-embed')){const st=d.createElement('style');st.id='neon-embed';st.textContent=CFG.esconder;d.head.appendChild(st)}}catch(e){}
   pfl.classList.add('off');
 });
-function syncMode(i){const r=CFG.rota[MODES[i].id];if(full&&r){openSite(r)}else{pop.classList.remove('site');pf.hidden=true;app.classList.remove('site-open');pb.innerHTML=CONTENT[MODES[i].id]()}}
+function syncMode(i){const r=CFG.rota[MODES[i].id];if(full&&r){openSite(r)}else{pop.classList.remove('site');pf.hidden=true;app.classList.remove('site-open');pb.innerHTML=render(MODES[i].id)}}
 function openModeFull(id){const i=MODES.findIndex(m=>m.id===id);if(i<0)return;if(full){popI=i;$('#popt').textContent=MODES[i].l;tiles.forEach((x,j)=>x.classList.toggle('cur',j===i));syncMode(i);place(targetRect(i),false);return}openPop(i,true);goFull()}
 function goFull(){if(popI<0)return;full=true;pinned=true;pop.classList.add('full');const r0=CFG.rota[MODES[popI].id];if(r0)pop.classList.add('site');$('#popX').textContent='◀ Menu';const t=targetRect(popI);
   const from=pop.style.transform,fw=pop.offsetWidth,fh=pop.offsetHeight;place(t,false);
@@ -541,7 +562,7 @@ const Waves=(()=>{
 })();
 
 function openWA(msg){if(/X{4}/.test(CFG.wa)){toast('Coloque o número do WhatsApp em CFG.wa pra este botão funcionar.');return}window.open(CFG.wa+'?text='+encodeURIComponent(msg||CFG.waMsg),'_blank','noopener')}
-document.addEventListener('click',e=>{const w=e.target.closest('[data-wa]');if(w){const n=w.closest('.it');openWA(n?CFG.waMsg+' Tenho interesse em: '+n.querySelector('b').textContent:null)}});
+document.addEventListener('click',e=>{if(e.target.closest('[data-full]')){if(!full)goFull();return}const w=e.target.closest('[data-wa]');if(w){const n=w.closest('.it');openWA(n?CFG.waMsg+' Tenho interesse em: '+n.querySelector('b').textContent:null)}});
 // carrinho: abre o carrinho do site atual e mostra a contagem dele aqui em cima
 $('#cartBtn').onclick=()=>{const cur=popI>=0&&CFG.rota[MODES[popI].id]?MODES[popI].id:'jogos';openModeFull(cur);
   const tryOpen=()=>{try{const d=ifr.contentDocument,n=d&&d.getElementById('cartN'),b=n&&n.closest('button,a,[role=button]');if(b){b.click();return true}}catch(e){}return false};

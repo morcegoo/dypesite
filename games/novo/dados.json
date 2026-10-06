@@ -1,0 +1,317 @@
+{
+  "textos": {
+    "jogos": "Jogos novos, seminovos e pré-vendas com garantia da loja.",
+    "consoles": "PS5, Xbox e Switch novos e seminovos, com troca do seu usado.",
+    "acessorios": "Áudio, relógios, controles e chaveiros pra completar o setup.",
+    "setup": "Monte console, controle e headset em 4 passos e leve com desconto.",
+    "era": "Uma viagem pelos consoles e jogos que marcaram cada geração.",
+    "gta": "Pré-venda aberta: garanta o preço do dia e retire na loja no lançamento."
+  },
+  "destaques": [
+    {
+      "tag": "Reserva",
+      "h": "GTA VI",
+      "s": "Pré-venda aberta",
+      "p": "Retire no dia 19.11",
+      "b": "Reservar",
+      "act": "mode:gta",
+      "img": "../media/gta/drive-poster.webp"
+    },
+    {
+      "tag": "Oferta",
+      "h": "Setup gamer",
+      "s": "Monte em 4 passos",
+      "p": "Console + controle + headset",
+      "b": "Montar agora",
+      "act": "mode:setup",
+      "img": "../media/bg-best.webp"
+    },
+    {
+      "tag": "Lançamento",
+      "h": "Novos jogos",
+      "s": "Chegaram na loja",
+      "p": "NBA 2K27, Spider-Man 2 e mais",
+      "b": "Ver jogos",
+      "act": "mode:jogos",
+      "img": "../media/bg-cat.webp"
+    }
+  ],
+  "jogos": [
+    {
+      "nome": "Neon Drift 2",
+      "sub": "Corrida · PS5",
+      "preco": "R$ 299,90",
+      "img": "../media/cov-neondrift.webp"
+    },
+    {
+      "nome": "Gol de Placa 26",
+      "sub": "Futebol · PS5 · Xbox",
+      "preco": "R$ 279,90",
+      "img": "../media/cov-goldeplaca.webp"
+    },
+    {
+      "nome": "Sombras de Aurora",
+      "sub": "Terror · PS5",
+      "preco": "R$ 199,90",
+      "img": "../media/cov-sombras.webp"
+    },
+    {
+      "nome": "Última Fronteira",
+      "sub": "Ação · PS5 · Xbox",
+      "preco": "R$ 319,90",
+      "img": "../media/cov-fronteira.webp"
+    },
+    {
+      "nome": "Cyberpunk 2077",
+      "sub": "Ação · PS5 · Xbox",
+      "preco": "R$ 199,90",
+      "img": "../media/loja/cover-cyberpunk.webp"
+    },
+    {
+      "nome": "EA Sports FC 26",
+      "sub": "Futebol · PS5 · Xbox",
+      "preco": "R$ 279,90",
+      "img": "../media/loja/cover-fc26.webp"
+    },
+    {
+      "nome": "Marvel’s Spider-Man 2",
+      "sub": "Ação · PlayStation 5",
+      "preco": "R$ 349,90",
+      "img": "../media/nov/spiderman2.webp"
+    },
+    {
+      "nome": "NBA 2K27",
+      "sub": "Basquete · PS5 · Xbox",
+      "preco": "R$ 349,90",
+      "img": "../media/nov/nba2k27.webp"
+    }
+  ],
+  "consoles": [
+    {
+      "nome": "PlayStation 5 Slim",
+      "sub": "Novo · 1 TB",
+      "preco": "R$ 3.899,00",
+      "img": "../assets/inline/inline-34ab37c08b.webp"
+    },
+    {
+      "nome": "PlayStation 5 Pro",
+      "sub": "Novo · 2 TB",
+      "preco": "R$ 5.999,00",
+      "img": "../assets/inline/inline-758055a323.webp"
+    },
+    {
+      "nome": "Xbox Series X",
+      "sub": "Novo · 1 TB",
+      "preco": "R$ 4.299,00",
+      "img": "../assets/inline/inline-ffbf14969a.webp"
+    },
+    {
+      "nome": "Xbox Series S",
+      "sub": "Novo · 512 GB",
+      "preco": "R$ 2.499,00",
+      "img": "../assets/inline/inline-2722a74415.webp"
+    },
+    {
+      "nome": "Nintendo Switch 2",
+      "sub": "Novo · 256 GB",
+      "preco": "R$ 4.499,00",
+      "img": "../assets/inline/inline-da4be37521.webp"
+    },
+    {
+      "nome": "Nintendo Switch OLED",
+      "sub": "Novo · 64 GB",
+      "preco": "R$ 2.299,00",
+      "img": "../assets/inline/inline-b781a71f16.webp"
+    },
+    {
+      "nome": "PlayStation 5 Standard",
+      "sub": "Seminovo · 825 GB",
+      "preco": "R$ 2.999,00",
+      "img": "../assets/inline/inline-173d9b70f3.webp"
+    },
+    {
+      "nome": "PlayStation 4 Slim",
+      "sub": "Seminovo · 1 TB",
+      "preco": "R$ 1.499,00",
+      "img": "../assets/inline/inline-475266834d.webp"
+    }
+  ],
+  "acessorios": [
+    {
+      "nome": "Headset Gamer Purple",
+      "sub": "Áudio · PC · PS5 · Xbox",
+      "preco": "R$ 389,90",
+      "img": "../assets/inline/inline-baf3927db0.webp"
+    },
+    {
+      "nome": "Headset Neon RGB",
+      "sub": "Áudio · Bluetooth e cabo",
+      "preco": "R$ 299,90",
+      "img": "../assets/inline/inline-c90338863a.webp"
+    },
+    {
+      "nome": "JBL Live 770NC",
+      "sub": "Áudio · JBL",
+      "preco": "R$ 999,00",
+      "img": "../assets/inline/inline-291d920057.webp"
+    },
+    {
+      "nome": "Fone sem fio Lilás",
+      "sub": "Áudio · Bluetooth 5.3",
+      "preco": "R$ 199,90",
+      "img": "../assets/inline/inline-f5ce569d33.webp"
+    },
+    {
+      "nome": "Apple Watch Ultra 2",
+      "sub": "Relógio · 49 mm titânio",
+      "preco": "R$ 6.499,00",
+      "img": "../assets/inline/inline-1c15c841e8.webp"
+    },
+    {
+      "nome": "Teclado mecânico RGB",
+      "sub": "PC · Switch azul",
+      "preco": "R$ 299,90",
+      "img": "../media/loja/teclado-rgb.webp"
+    },
+    {
+      "nome": "Mouse gamer 12K",
+      "sub": "PC · RGB",
+      "preco": "R$ 159,90",
+      "img": "../media/loja/mouse-logitech.webp"
+    },
+    {
+      "nome": "Monitor gamer 24\"",
+      "sub": "Monitor · 165 Hz",
+      "preco": "R$ 1.099,00",
+      "img": "../media/loja/monitor-predator.webp"
+    }
+  ],
+  "setup": [
+    {
+      "nome": "PlayStation 5 Slim",
+      "sub": "Console · 1 TB",
+      "preco": "R$ 3.899,00",
+      "img": "../assets/inline/inline-34ab37c08b.webp"
+    },
+    {
+      "nome": "Xbox Series X",
+      "sub": "Console · 1 TB",
+      "preco": "R$ 4.299,00",
+      "img": "../assets/inline/inline-ffbf14969a.webp"
+    },
+    {
+      "nome": "Nintendo Switch 2",
+      "sub": "Console · 256 GB",
+      "preco": "R$ 4.499,00",
+      "img": "../assets/inline/inline-da4be37521.webp"
+    },
+    {
+      "nome": "Controle Bluetooth",
+      "sub": "Controle · PC e celular",
+      "preco": "R$ 249,90",
+      "img": "../media/loja/controle-celular.webp"
+    },
+    {
+      "nome": "Par de Joy-Con",
+      "sub": "Controle · Switch",
+      "preco": "R$ 499,90",
+      "img": "../assets/inline/inline-158264dce2.webp"
+    },
+    {
+      "nome": "Headset Gamer Purple",
+      "sub": "Headset · PC · PS5 · Xbox",
+      "preco": "R$ 389,90",
+      "img": "../assets/inline/inline-baf3927db0.webp"
+    },
+    {
+      "nome": "Headset Neon RGB",
+      "sub": "Headset · Bluetooth",
+      "preco": "R$ 299,90",
+      "img": "../assets/inline/inline-c90338863a.webp"
+    },
+    {
+      "nome": "Monitor gamer 24\"",
+      "sub": "Monitor · 165 Hz",
+      "preco": "R$ 1.099,00",
+      "img": "../media/loja/monitor-predator.webp"
+    }
+  ],
+  "era": [
+    {
+      "nome": "Pac-Man",
+      "sub": "1980 · FLIPERAMA",
+      "img": "../media/era/pac-man.webp"
+    },
+    {
+      "nome": "Sonic the Hedgehog",
+      "sub": "1991 · MEGA DRIVE",
+      "img": "../media/era/sonic-1991.webp"
+    },
+    {
+      "nome": "Super Mario 64",
+      "sub": "1996 · NINTENDO 64",
+      "img": "../media/era/super-mario-64.webp"
+    },
+    {
+      "nome": "Halo: Combat Evolved",
+      "sub": "2001 · XBOX",
+      "img": "../media/era/halo-combat-evolved.webp"
+    },
+    {
+      "nome": "Red Dead Redemption 2",
+      "sub": "2018 · MULTIPLATAFORMA",
+      "img": "../media/era/rdr2.webp"
+    },
+    {
+      "nome": "Grand Theft Auto VI",
+      "sub": "2026 · PS5 E XBOX SERIES",
+      "img": "../media/era/gta-vi.webp"
+    }
+  ],
+  "gta": [
+    {
+      "nome": "GTA VI · Edição padrão",
+      "sub": "Pré-venda · 19.11.2026",
+      "img": "../media/gta/keyart.webp",
+      "botao": "Reservar"
+    },
+    {
+      "nome": "Combo PS5 + GTA VI",
+      "sub": "Console novo + jogo parcelado",
+      "img": "../assets/inline/inline-419dda49cf.webp",
+      "botao": "Montar combo"
+    },
+    {
+      "nome": "Troque seu PS4 no PS5",
+      "sub": "Avaliamos o seu usado na hora",
+      "img": "../assets/inline/inline-51e6604d06.webp",
+      "botao": "Quero trocar"
+    },
+    {
+      "nome": "Trailer 2",
+      "sub": "Assista no YouTube",
+      "img": "../media/gta/drive-poster.webp",
+      "botao": "Ver trailer"
+    },
+    {
+      "nome": "Praia · Leonida",
+      "sub": "Arte oficial",
+      "img": "../media/gta/panels/praia.webp"
+    },
+    {
+      "nome": "Policial",
+      "sub": "Arte oficial",
+      "img": "../media/gta/panels/policial.webp"
+    },
+    {
+      "nome": "Carro",
+      "sub": "Arte oficial",
+      "img": "../media/gta/panels/carro.webp"
+    },
+    {
+      "nome": "Palmeiras",
+      "sub": "Arte oficial",
+      "img": "../media/gta/panels/palmeiras.webp"
+    }
+  ]
+}
