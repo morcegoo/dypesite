@@ -47,30 +47,35 @@ Contato não é aba: está no `footer.foot` + WhatsApp (`var WA`).
 | item | linha | seletor / função |
 |---|---|---|
 | cores/fontes | 15 | `:root` (`--a1 --a2 --gold --cyan --bg --ink --muted --glass --line --f-*`) |
-| **CSS prateleira de vidro** | 175 | `#pop.sheet` · `.shelf` 186 · `.srow` 190 · `.sp` 192 · `.stage` 197 · `.cov` 198 · `.ref` · `.sinfo` 204 · `.seal` 210 · `.snav` 211 |
-| rodapé/dock | 295 | `nav.dock#dock` (tiles `.tile.k-<id>`) |
-| painel | 296 | `section#pop.sheet` (`> .bob > .card > .inner`) |
-| cabeçalho do painel | 297 | `#ph` · `#popt` (título) · `#pcount` (contagem) · `#popOpen` (Abrir/Vitrine) · `#popX` |
-| conteúdo das abas | 298 | `#pb` (fileiras `.shelf`) |
-| site atual embutido | 299 | `#pf` + `iframe#ifr` |
-| **CONFIG** | 311 | `const CFG` → `site`, `wa`, `waMsg`, `rota`, `esconder`, `pele` |
-| cenas de fundo | 338 | `const SC` (hero-poster / miami / cidade) |
-| dados | 415 | `DATA` + `KEY` (lê `dados.json`) |
-| card da vitrine | 424 | `function card(x,k)` |
-| fileira | 429 | `function shelf(titulo,lista,k,dica)` |
-| quais fileiras por aba | 433 | `const ROWS` |
-| render da aba | 435 | `function render(id)` |
-| preencher painel | 442 | `function fillPB(id)` |
-| abas/dock | 457 | `const MODES` |
-| **geometria da folha** | 498 | `function targetRect(i)` — espiada ~44/48% → cheia ~16/18% |
-| abre o site atual dentro | 537 | `function openSite(r)` |
-| Abrir/Vitrine | 566 | `openSiteNow()` / `closeSiteNow()` |
-| rádio (trilha + `--beat`) | 583 | `const Radio` |
-| WhatsApp / toast | 638 / 650 | `openWA(msg)` / `toast(s)` |
-| pele escura aplicada no iframe | 543 | injeta `#neon-embed` + `link[href=embed.css]` e põe `.neon-embed` no `<html>` do site |
+| **CSS prateleira de vidro** | 175 | `#pop.sheet` · `.shelf` 186 · `.srow` 190 (`--covw`/`--covh`) · `.sp` 192 · `.stage` 197 · `.cov` 198 · `.sinfo` 204 · `.seal` 210 · `.snav` 211 |
+| **CSS painel sem armação** | 268 | `#pop .card` 269 (sem moldura/animação) · `#pop .inner` (transparente em cima, escuro embaixo) · `#pop .it` · `#pop.site .inner` opaco · `@media(min-width:900px)` escurece mais cedo · `@media(max-width:899px)` esconde o `.lead` |
+| rodapé/dock | 325 | `nav.dock#dock` (tiles `.tile.k-<id>`) |
+| painel | 326 | `section#pop.sheet` (`> .bob > .card > .inner`) |
+| cabeçalho do painel | 327 | `#ph` (`flex:none`, nunca por cima) · `#popt` · `#pcount` · `#popOpen` (Abrir/Vitrine) · `#popX` |
+| conteúdo das abas | 328 | `#pb` (fileiras `.shelf`) |
+| site atual embutido | 329 | `#pf` + `iframe#ifr` |
+| **CONFIG** | 341 | `const CFG` → `site`, `wa`, `waMsg`, `rota`, `esconder`, `pele` |
+| cenas de fundo | 368 | `const SC` (hero-poster / miami / cidade) |
+| dados | 445 | `DATA` + `KEY` (lê `dados.json`) |
+| card da vitrine | 454 | `function card(x,k)` — capa + selo + preço; **sem reflexo** (era `.ref`, removido) |
+| fileira | 459 | `function shelf(titulo,lista,k,dica)` |
+| quais fileiras por aba | 463 | `const ROWS` |
+| render da aba | 465 | `function render(id)` |
+| **carrossel infinito** | 472 | `function makeInfinite(sc,auto)` — clona os itens 3x (o `.sp` aparece triplicado), desliga o snap e faz a vitrine andar sozinha; pula linha que não rola |
+| preencher painel | 491 | `function fillPB(id)` (chama `makeInfinite` em cada `.srow`) |
+| abas/dock | 506 | `const MODES` |
+| **geometria da folha** | 547 | `function targetRect(i)` — espiada ~34% (celular) / 48% (desktop) → cheia ~16/18% |
+| abre o site atual dentro | 586 | `function openSite(r)` |
+| Abrir/Vitrine | 615 / 616 | `openSiteNow()` / `closeSiteNow()` |
+| rádio (trilha + `--beat`) | 632 | `const Radio` |
+| WhatsApp / toast | 687 / 699 | `openWA(msg)` / `toast(s)` |
+| pele escura aplicada no iframe | 592 | injeta `#neon-embed` + `link[href=embed.css]` e põe `.neon-embed` no `<html>` do site |
 
 ## Avisos
 - `.srow` existe nos **dois** arquivos com sentidos diferentes: em `games/index.html:1970` é a linha da busca; em `games/novo/index.html:190` é a fileira da prateleira. Ao buscar, filtrar por arquivo.
 - `.sheet`: em `games/index.html:2009` é o drawer do carrinho; em `games/novo/index.html:296` é a folha de vidro do painel.
 - `function show` também existe duplicado em `games/index.html` (2932 = animação, 4188 = troca de aba).
+- Carrossel da vitrine: `makeInfinite` clona cada item 2x (antes e depois), então contar `.sp` no DOM dá 3x o número real. O contador `#pcount` é calculado antes de clonar.
+- Botões "Quero" dos itens clonados funcionam por **delegação** no `document` (`closest('.it,.sp')`), não por listener individual — não trocar por listener direto.
+- `.ref` (reflexo espelhado embaixo das capas) foi **removido** de propósito: nada de imagem repetida de ponta-cabeça.
 - Regra de ouro: não alterar `games/index.html` sem pedido explícito.
