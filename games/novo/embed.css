@@ -1,0 +1,93 @@
+/* ===========================================================
+   embed.css — pele escura do site dentro do painel /games/novo/
+   #pelescura do site atual dentro do painel
+   Este arquivo só é carregado quando o site atual abre dentro da tela nova:
+   o <html> do site recebe a classe .neon-embed (e continua com .light).
+   Toda regra começa com html.neon-embed para não afetar o site normal.
+   =========================================================== */
+
+/* ---------- 1. tokens escuros (vencem o html.light do site) ---------- */
+html.neon-embed:root{
+  --bg:#0b0614;
+  --bg2:rgba(20,10,34,.85);
+  --bg3:rgba(20,10,34,.92);
+  --line:rgba(255,255,255,.10);
+  --line2:rgba(255,255,255,.16);
+  --acc:#b44cff;
+  --acc-h:#c878ff;
+  --ink:#f7f1ff;
+  --mut:rgba(247,241,255,.65);
+  --mut2:rgba(247,241,255,.45);
+  --glow:0 0 22px rgba(180,76,255,.45);
+  color-scheme:dark;
+}
+html.neon-embed:root body{background:#0b0614!important;color:#f7f1ff!important;}
+html.neon-embed:root body::before,html.neon-embed:root body::after{display:none!important;}
+html.neon-embed:root #ofxBg{display:none!important;}
+
+/* ---------- 2. some com a faixa de demonstração e a linha da busca ---------- */
+html.neon-embed:root .demo{display:none!important;}
+html.neon-embed:root .srow{display:none!important;}
+
+/* ---------- 3. carrinho, menu, aviso e modal (fora das views) ---------- */
+html.neon-embed:root .sheet,
+html.neon-embed:root .modal .box,
+html.neon-embed:root .toast,
+html.neon-embed:root .cupbar{background:#140a22!important;border-color:rgba(255,255,255,.10)!important;color:#f7f1ff!important;box-shadow:none!important;}
+html.neon-embed:root .sheet{border-left-color:rgba(180,76,255,.45)!important;}
+html.neon-embed:root .sheet.left{border-right-color:rgba(180,76,255,.45)!important;}
+html.neon-embed:root .sh-h,html.neon-embed:root .sh-h h3{color:#f7f1ff!important;}
+html.neon-embed:root .sh-f{border-top-color:rgba(255,255,255,.10)!important;}
+html.neon-embed:root .sh-f p{color:rgba(247,241,255,.65)!important;}
+html.neon-embed:root .tot b{color:#ffe36e!important;}
+html.neon-embed:root .sheet .sq{color:#b44cff!important;border-color:rgba(180,76,255,.45)!important;background:rgba(180,76,255,.14)!important;}
+html.neon-embed:root .toast .btn{background:#ffe36e!important;border-color:#ffe36e!important;color:#1b0f02!important;}
+
+/* ---------- 4. abas com pele escura (era e gta ficam de fora) ---------- */
+html.neon-embed:root .view:is([data-v="jogos"],[data-v="consoles"],[data-v="acess"],[data-v="controles"],[data-v="tcg"],[data-v="conserto"]){color:#f7f1ff;}
+
+/* blocos e cartões */
+html.neon-embed:root .view:is([data-v="jogos"],[data-v="consoles"],[data-v="acess"],[data-v="controles"],[data-v="tcg"],[data-v="conserto"]) :is(.block,.block.alt,.block.alt2){background:rgba(20,10,34,.85)!important;border:1px solid rgba(255,255,255,.10)!important;border-radius:16px;box-shadow:none!important;}
+html.neon-embed:root .view:is([data-v="jogos"],[data-v="consoles"],[data-v="acess"],[data-v="controles"],[data-v="tcg"],[data-v="conserto"]) :is(.pc,.lc,.fc,.gcard,.jgc,.foto,.cup,.gt-op,.jgc-empty,.cons){background:rgba(20,10,34,.85)!important;border:1px solid rgba(255,255,255,.10)!important;border-radius:16px;box-shadow:none!important;color:#f7f1ff!important;}
+html.neon-embed:root .view:is([data-v="jogos"],[data-v="consoles"],[data-v="acess"],[data-v="controles"],[data-v="tcg"],[data-v="conserto"]) .vt{background:#140a22!important;border-color:rgba(255,255,255,.10)!important;}
+html.neon-embed:root  .view:is([data-v="jogos"],[data-v="consoles"],[data-v="acess"],[data-v="controles"],[data-v="tcg"],[data-v="conserto"]) .vt{background-image:linear-gradient(180deg,rgba(var(--vr),.18),rgba(20,10,34,0) 54%)!important;}
+
+/* quadros das fotos sem fundo branco */
+html.neon-embed:root .view:is([data-v="jogos"],[data-v="consoles"],[data-v="acess"],[data-v="controles"],[data-v="tcg"],[data-v="conserto"]) :is(.im,.pc.has-ph .im,.fc-im.ph,.pi-main,.foto img){background:#140a22!important;}
+html.neon-embed:root .view:is([data-v="jogos"],[data-v="consoles"],[data-v="acess"],[data-v="controles"],[data-v="tcg"],[data-v="conserto"]) .jgc-im{background:radial-gradient(circle at 50% 42%,#241a3d,#140a22 72%)!important;}
+
+/* preços em amarelo */
+html.neon-embed:root .view:is([data-v="jogos"],[data-v="consoles"],[data-v="acess"],[data-v="controles"],[data-v="tcg"],[data-v="conserto"]) :is(.bd .pz,.fc-p,.jgc-p,.ax-cp b,.gi-price){color:#ffe36e!important;}
+html.neon-embed:root .view:is([data-v="jogos"],[data-v="consoles"],[data-v="acess"],[data-v="controles"],[data-v="tcg"],[data-v="conserto"]) :is(.bd .pz s,.fc-p s,.jgc-p s,.ax-cp s,.gi-price s){color:rgba(247,241,255,.5)!important;}
+
+/* botões principais em amarelo, texto escuro */
+html.neon-embed:root .view:is([data-v="jogos"],[data-v="consoles"],[data-v="acess"],[data-v="controles"],[data-v="tcg"],[data-v="conserto"]) :is(.btn.pri,.addc,.go,.jgc-add,.fc-cart,.mh-cta){background:#ffe36e!important;border-color:#ffe36e!important;color:#1b0f02!important;box-shadow:none!important;}
+html.neon-embed:root .view:is([data-v="jogos"],[data-v="consoles"],[data-v="acess"],[data-v="controles"],[data-v="tcg"],[data-v="conserto"]) :is(.btn.pri,.addc,.go,.jgc-add,.fc-cart,.mh-cta):hover{background:#fff2b0!important;border-color:#fff2b0!important;color:#1b0f02!important;}
+
+/* botões secundários, selos e links */
+html.neon-embed:root .view:is([data-v="jogos"],[data-v="consoles"],[data-v="acess"],[data-v="controles"],[data-v="tcg"],[data-v="conserto"]) .btn{color:#f7f1ff;border-color:rgba(255,255,255,.16);background:rgba(255,255,255,.04);}
+html.neon-embed:root .view:is([data-v="jogos"],[data-v="consoles"],[data-v="acess"],[data-v="controles"],[data-v="tcg"],[data-v="conserto"]) :is(.vt-ar,.pill,.fc-cart){color:#c878ff;border-color:rgba(180,76,255,.45);}
+html.neon-embed:root .view:is([data-v="jogos"],[data-v="consoles"],[data-v="acess"],[data-v="controles"],[data-v="tcg"],[data-v="conserto"]) .vt .lnk{color:#c878ff!important;}
+html.neon-embed:root .view:is([data-v="jogos"],[data-v="consoles"],[data-v="acess"],[data-v="controles"],[data-v="tcg"],[data-v="conserto"]) .vt .lnk:hover{color:#fff!important;}
+
+/* abas internas e chips de filtro */
+html.neon-embed:root .view:is([data-v="jogos"],[data-v="consoles"],[data-v="acess"],[data-v="controles"],[data-v="tcg"],[data-v="conserto"]) .ax-nav button{background:rgba(20,10,34,.85)!important;border-color:rgba(255,255,255,.16)!important;color:#f7f1ff!important;}
+html.neon-embed:root .view:is([data-v="jogos"],[data-v="consoles"],[data-v="acess"],[data-v="controles"],[data-v="tcg"],[data-v="conserto"]) .fchips button{color:rgba(247,241,255,.65)!important;border-color:rgba(255,255,255,.16)!important;}
+html.neon-embed:root .view:is([data-v="jogos"],[data-v="consoles"],[data-v="acess"],[data-v="controles"],[data-v="tcg"],[data-v="conserto"]) .fchips button:hover{color:#fff!important;border-color:#b44cff!important;}
+html.neon-embed:root .view:is([data-v="jogos"],[data-v="consoles"],[data-v="acess"],[data-v="controles"],[data-v="tcg"],[data-v="conserto"]) .fchips button.on{background:#b44cff!important;border-color:#b44cff!important;color:#fff!important;}
+html.neon-embed:root .view:is([data-v="jogos"],[data-v="consoles"],[data-v="acess"],[data-v="controles"],[data-v="tcg"],[data-v="conserto"]) .sc-seg{background:rgba(0,0,0,.35)!important;}
+html.neon-embed:root .view:is([data-v="jogos"],[data-v="consoles"],[data-v="acess"],[data-v="controles"],[data-v="tcg"],[data-v="conserto"]) .sc-seg button{color:rgba(247,241,255,.8)!important;}
+html.neon-embed:root .view:is([data-v="jogos"],[data-v="consoles"],[data-v="acess"],[data-v="controles"],[data-v="tcg"],[data-v="conserto"]) .sc-seg button.on{background:#ffe36e!important;color:#1b0f02!important;}
+
+/* chaves/etiquetas dos cartões */
+html.neon-embed:root .view:is([data-v="jogos"],[data-v="consoles"],[data-v="acess"],[data-v="controles"],[data-v="tcg"],[data-v="conserto"]) .pc .keys span{background:rgba(255,255,255,.06)!important;border-color:rgba(255,255,255,.12)!important;color:rgba(247,241,255,.65)!important;}
+
+/* campos de formulário */
+html.neon-embed:root .view:is([data-v="jogos"],[data-v="consoles"],[data-v="acess"],[data-v="controles"],[data-v="tcg"],[data-v="conserto"]) :is(select,input.f,textarea,.orc input,.orc select,.orc textarea){background:#140a22!important;border-color:rgba(255,255,255,.16)!important;color:#f7f1ff!important;}
+html.neon-embed:root .view:is([data-v="jogos"],[data-v="consoles"],[data-v="acess"],[data-v="controles"],[data-v="tcg"],[data-v="conserto"]) ::placeholder{color:rgba(247,241,255,.45)!important;opacity:1!important;}
+html.neon-embed:root .view:is([data-v="jogos"],[data-v="consoles"],[data-v="acess"],[data-v="controles"],[data-v="tcg"],[data-v="conserto"]) select option{background:#140a22!important;color:#f7f1ff!important;}
+
+/* passos e caixas de texto longas */
+html.neon-embed:root .view:is([data-v="jogos"],[data-v="consoles"],[data-v="acess"],[data-v="controles"],[data-v="tcg"],[data-v="conserto"]) :is(.step b,.sec-t h3,.gi h3,.su-h h2,.table-h,.popt){color:#f7f1ff!important;}
+html.neon-embed:root .view:is([data-v="jogos"],[data-v="consoles"],[data-v="acess"],[data-v="controles"],[data-v="tcg"],[data-v="conserto"]) :is(.step span,.sec-t h3 small,.credito,.credit,.gi .credit,.orc .credit){color:rgba(247,241,255,.65)!important;}
+

@@ -170,6 +170,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .more{margin-top:12px;width:100%;justify-content:center;border-color:color-mix(in srgb,var(--c,var(--a1)) 60%,transparent)}
 .dragtip{color:var(--muted);text-align:center;padding:0 0 10px}
 #pop.full .dragtip{display:none}
+@media (max-width:899px){.dragtip .dt2{display:none}}
 
 /* site atual aberto dentro do painel */
 .pf{flex:1;position:relative;min-height:0;margin:0 10px 10px;border-radius:12px;overflow:hidden;background:#09080f}
@@ -246,7 +247,7 @@ button{font:inherit;color:inherit;cursor:pointer}
     <div class="ph" id="ph"><div><span class="grip px">⠿ arraste</span><h2 id="popt">Jogos</h2></div><div class="pacts"><button class="btn gold" id="popOpen">Abrir</button><button class="btn" id="popX" aria-label="Fechar">✕</button></div></div>
     <div class="pb" id="pb"></div>
     <div class="pf" id="pf" hidden><iframe id="ifr" title="Seção da loja"></iframe><div class="pfl" id="pfl"><div style="text-align:center"><span class="px">Carregando</span><div class="bar"><i></i></div></div></div></div>
-    <div class="dragtip px">Puxe pra cima pra abrir · solte pra voltar</div>
+    <div class="dragtip px"><span>Puxe pra cima pra abrir</span><span class="dt2"> · solte pra voltar</span></div>
   </div></div></div></section>
   <div id="toast" role="status"></div>
 </div>
@@ -262,7 +263,8 @@ const CFG={
   wa:'https://wa.me/55XXXXXXXXXXX',           // WhatsApp (troque pelo número real)
   waMsg:'Olá! Vim pelo site da Game Store.',
   rota:{jogos:'jogos',cons:'consoles',aces:'acess',setup:'acess',era:'era',gta:'gta'},  // modo → aba do site atual
-  esconder:'.hd,.bnav,.foot,#tabs,#menu{display:none!important}'  // partes do site atual escondidas dentro do painel
+  esconder:'.hd,.bnav,.foot,#tabs,#menu{display:none!important}',  // partes do site atual escondidas dentro do painel
+  pele:'embed.css'                     // estilo escuro aplicado no site atual só quando ele abre aqui dentro
 };
 const I={
  home:'<path d="M3 11 12 4l9 7v9h-6v-6H9v6H3Z"/>',
@@ -467,7 +469,7 @@ function openSite(r){
   try{ifr.contentWindow.location.replace(siteURL(r))}catch(e){ifr.src=siteURL(r)}
 }
 ifr.addEventListener('load',()=>{
-  try{const d=ifr.contentDocument;if(d&&!d.getElementById('neon-embed')){const st=d.createElement('style');st.id='neon-embed';st.textContent=CFG.esconder;d.head.appendChild(st)}}catch(e){}
+  try{const d=ifr.contentDocument;if(d&&!d.getElementById('neon-embed')){const st=d.createElement('style');st.id='neon-embed';st.textContent=CFG.esconder;d.head.appendChild(st);const ln=d.createElement('link');ln.rel='stylesheet';ln.href=new URL(CFG.pele,location.href).href+'?v='+Date.now().toString(36).slice(0,5);d.head.appendChild(ln);d.documentElement.classList.add('neon-embed')}}catch(e){}
   pfl.classList.add('off');
 });
 function syncMode(i){const r=CFG.rota[MODES[i].id];if(full&&r){openSite(r)}else{pop.classList.remove('site');pf.hidden=true;app.classList.remove('site-open');pb.innerHTML=render(MODES[i].id)}}
