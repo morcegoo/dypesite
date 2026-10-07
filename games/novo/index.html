@@ -317,6 +317,58 @@ button{font:inherit;color:inherit;cursor:pointer}
   .sinfo .btn{padding:7px 13px;font-size:11.5px}
   #pop.sheet .dragtip{padding:0 0 8px}
 }
+
+/* ---------- interação nova: HERO ⇄ SEÇÃO (body.sec) ---------- */
+:root{--barh:60px;--docktop:62vh;--dockhh:240px;--wavesy:50vh;--sectop:120px}
+#gtabar{position:fixed;left:0;top:0;width:100%;height:50px;z-index:12;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 calc(var(--pad) + 4px);
+  background:linear-gradient(90deg,rgba(26,8,36,.97),rgba(9,4,16,.97));pointer-events:none;transform:translateY(-104%);transition:transform .42s cubic-bezier(.2,.9,.2,1);
+  box-shadow:0 0 0 1px color-mix(in srgb,var(--a1) 40%,transparent),0 10px 26px rgba(0,0,0,.55)}
+#gtabar::after{content:'';position:absolute;left:0;right:0;bottom:0;height:2px;background:linear-gradient(90deg,var(--a1),var(--a2),#ff8a3d,var(--a1));box-shadow:0 0 14px color-mix(in srgb,var(--a1) 75%,transparent)}
+#gtabar .gtat{font-family:'Chakra Petch',var(--f-body);font-weight:700;font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:#fff;text-shadow:0 0 12px color-mix(in srgb,var(--a1) 85%,transparent);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#gtabar .btn{padding:7px 14px;font-size:11.5px}
+body.sec #gtabar{transform:none;pointer-events:auto;height:calc(50px + env(safe-area-inset-top,0px));padding-top:env(safe-area-inset-top,0px)}
+
+/* HERO: ícones centralizados no espaço livre, 4 colunas x 2 linhas */
+body:not(.sec) .dock{top:var(--docktop);bottom:auto;height:var(--dockhh);padding:0 var(--pad);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:auto auto;gap:16px 10px;align-content:center;background:none;transition:none}
+body:not(.sec) #waves{bottom:auto;top:var(--wavesy)}
+@keyframes tin{from{transform:translateY(26px) scale(.7);opacity:0}to{transform:none;opacity:1}}
+.tile.tin .fx{animation:tin .5s cubic-bezier(.2,.9,.2,1) var(--td,0ms) both,fl var(--fd,3.8s) ease-in-out calc(var(--td,0ms) + 500ms + var(--fdl,0s)) infinite}
+.tile.sink .cap{transform:translateY(4px) scale(.88)}
+.tile.sink .lb{text-shadow:0 0 22px var(--c),0 0 44px var(--c),0 1px 0 var(--ex),0 2px 6px rgba(0,0,0,.6)}
+.tile.sink svg{filter:drop-shadow(0 0 16px var(--c)) drop-shadow(0 2px 0 var(--ex))}
+
+/* SEÇÃO: o card GTA e o arcade saem de cena */
+.hero .feat,.hero .arc,.hero .scenes{transition:transform .4s ease,opacity .35s ease}
+body.sec .hero .feat{transform:translateY(-40px) scale(.94);opacity:0;pointer-events:none}
+body.sec .hero .arc,body.sec .hero .scenes{opacity:0;pointer-events:none}
+body.sec .hero-in{pointer-events:none}
+body.sec #waves{opacity:0;pointer-events:none;transition:opacity .3s}
+body.sec .top{top:50px;padding-top:12px;transition:none}
+body.sec .logo{cursor:pointer}
+
+/* SEÇÃO: barra fixa embaixo (1 linha, rolagem lateral) */
+body.sec .dock{top:auto;bottom:0;height:var(--barh);transition:none;padding:0 var(--pad) calc(2px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:14px;
+  background:linear-gradient(180deg,rgba(7,4,11,.7),rgba(7,4,11,.97) 45%);backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+  overflow-x:auto;overflow-y:hidden;scrollbar-width:none;overscroll-behavior-x:contain}
+body.sec .dock::-webkit-scrollbar{display:none}
+body.sec .tile{flex:0 0 auto;padding:2px;opacity:.7;transition:opacity .2s ease}
+body.sec .tile.cur,body.sec .tile.hot{opacity:1}
+body.sec .tile .fx{animation:none}
+body.sec .tile .cap{gap:3px}
+body.sec .tile svg{width:22px;height:22px}
+body.sec .tile .lb{font-size:11px;letter-spacing:.04em;white-space:nowrap}
+body.sec .tile .bar{height:2.5px}
+body.sec .tile .new{top:-8px;left:calc(50% + 6px);font-size:8px;padding:2px 6px}
+
+/* SEÇÃO: área rolável sem moldura, entre a faixa e a barra */
+#pop{display:block;height:auto;left:50%;width:100%;max-width:var(--wrap);top:var(--sectop);bottom:calc(var(--barh) + 6px);transform:translate(-50%,60px);opacity:0;pointer-events:none;transition:transform .45s cubic-bezier(.2,.9,.2,1),opacity .3s ease;will-change:transform}
+body.sec #pop{transform:translate(-50%,0);opacity:1;pointer-events:auto}
+#pop .bob{animation:none}
+#pop .inner{position:relative;border-radius:0}
+#pop .ph{cursor:default}
+#pop.sheet .pb{padding:0 0 18px}
+#pullhint{position:absolute;left:0;right:0;top:4px;text-align:center;color:var(--muted);opacity:0;transition:opacity .2s;pointer-events:none;z-index:6;text-shadow:0 2px 8px rgba(0,0,0,.9)}
+#pop.site .pf{margin:0;border-radius:0}
 </style>
 </head>
 <body>
@@ -355,12 +407,17 @@ button{font:inherit;color:inherit;cursor:pointer}
     </div>
   </section>
 
+  <div id="gtabar">
+    <span class="gtat">GTA VI · PRÉ-VENDA · RETIRE 19.11</span>
+    <button class="btn gold" id="gtaRes" type="button">Reservar</button>
+  </div>
+
   <nav class="dock" id="dock" aria-label="Modos da loja"></nav>
   <section id="pop" class="sheet" role="dialog" aria-labelledby="popt"><div class="bob"><div class="card"><div class="inner">
-    <div class="ph" id="ph"><h2 id="popt">Jogos</h2><span class="pcount px" id="pcount">arraste pro lado</span><div class="pacts"><button class="btn gold" id="popOpen">Abrir</button><button class="btn" id="popX" aria-label="Fechar">✕</button></div></div>
+    <div id="pullhint" class="px">puxe pra baixo · voltar ao início</div>
+    <div class="ph" id="ph"><h2 id="popt">Jogos</h2><span class="pcount px" id="pcount">arraste pro lado</span><div class="pacts"><button class="btn" id="popOpen">Ver site</button></div></div>
     <div class="pb" id="pb"></div>
     <div class="pf" id="pf" hidden><iframe id="ifr" title="Seção da loja"></iframe><div class="pfl" id="pfl"><div style="text-align:center"><span class="px">Carregando</span><div class="bar"><i></i></div></div></div></div>
-    <div class="dragtip px"><span>Puxe pra cima pra abrir</span><span class="dt2"> · solte pra voltar</span></div>
   </div></div></div></section>
   <div id="toast" role="status"></div>
 </div>
@@ -479,7 +536,7 @@ let DATA=null;const KEY={jogos:'jogos',cons:'consoles',aces:'acessorios',setup:'
 const esc=t=>String(t==null?'':t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 fetch('dados.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{if(!d)return;DATA=d;
   if(Array.isArray(d.destaques)&&d.destaques.length){FEAT.splice(0,FEAT.length,...d.destaques,FEAT[FEAT.length-1]);fd.innerHTML=FEAT.map(()=>'<i></i>').join('');showFeat(0)}
-  if(popI>=0&&pop.classList.contains('show')&&!pop.classList.contains('site'))fillPB(MODES[popI].id)}).catch(()=>{});
+  if(curMode&&document.body.classList.contains('sec')&&!pop.classList.contains('site'))fillPB(curMode)}).catch(()=>{});
 function num(v){const n=Number(String(v==null?'':v).replace(/[^\d,.]/g,'').replace(/\./g,'').replace(',','.'));return isFinite(n)&&n>0?n:0}
 function seal(x){const t=(x.sub||'')+' '+(x.nome||'');if(/reserv|pr[eé]-venda/i.test(t))return 'RESERVA';if(/usad|revis|seminov/i.test(t))return 'REVISADO';if(/\bnovo\b|lan[cç]|chegou/i.test(t))return 'NOVO';return ''}
 function parcela(p){const n=num(p);return n>=99?`<span class="x10">ou 10x de R$ ${(n/10).toFixed(2).replace('.',',')}</span>`:''}
@@ -603,98 +660,123 @@ const CONTENT={
  ct:()=>`<p class="lead">Atendimento no balcão e no WhatsApp.</p><div class="grid">${it('pin','Limeira · SP','Endereço entra aqui','Ver no mapa')}${it('clock','Horário','Horário entra aqui','Ver')}${it('ct','WhatsApp','Resposta rápida','Chamar')}</div>`
 };
 
-/* ---------- card que sai flutuando da barra ---------- */
-const pop=$('#pop'),pb=$('#pb');let popI=-1,pinned=false,full=false,hideT=0,hoverT=0,rest=null;
-const WRAP=1200;
-function targetRect(i){
-  // tudo dentro de 1200px: no desktop a folha nao encosta mais na borda da tela
-  const dh=dock.getBoundingClientRect().top,site=pop.classList.contains('site');
-  const wide=Math.min(innerWidth,WRAP),wx=Math.round((innerWidth-wide)/2);
-  if(full){
-    if(MOB()){const top=site?Math.max(58,$('.top').getBoundingClientRect().bottom+6):Math.max(64,Math.round(innerHeight*.18));
-      return{x:0,y:top,w:innerWidth,h:Math.max(180,dh-top-6)}}
-    const top=site?92:Math.max(56,Math.round(innerHeight*.16));
-    const w=Math.max(320,wide-(site?32:0));
-    return{x:site?Math.round((innerWidth-w)/2):wx,y:top,w,h:Math.max(200,dh-top-10)};
-  }
-  // espiando: fica sempre no minimo 16px abaixo do fim do hero
-  const hb=$('#hero')?$('#hero').getBoundingClientRect().bottom:0;
-  let top=Math.max(Math.round(innerHeight*(MOB()?.34:.48)),Math.round(hb+16));
-  if(dh-top<160)top=Math.max(0,dh-160);
-  return{x:wx,y:top,w:wide,h:Math.max(120,dh-top-8)};
-}
-function place(t,anim){
-  pop.style.width=t.w+'px';pop.style.height=t.h+'px';
-  const to=`translate(${t.x}px,${t.y}px)`;rest=t;
-  if(anim&&!RM){const r=tiles[popI].getBoundingClientRect();const from=`translate(${r.left}px,${r.top}px) scale(${r.width/t.w},${r.height/t.h})`;
-    pop.animate([{transform:from,opacity:.2,transformOrigin:'0 0'},{transform:to,opacity:1,transformOrigin:'0 0'}],{duration:420,easing:'cubic-bezier(.2,.9,.2,1)'})}
-  pop.style.transform=to;pop.style.transformOrigin='0 0';
-}
-function openPop(i,pin){
-  clearTimeout(hideT);const changed=popI!==i;popI=i;const m=MODES[i];
-  tiles.forEach((t,j)=>t.classList.toggle('cur',j===i));
-  if(changed||!pop.classList.contains('show')){
-    $('#popt').textContent=m.l;fillPB(m.id);
-    const col=getComputedStyle(tiles[i]).getPropertyValue('--c');pop.style.setProperty('--c',col||'var(--a1)');
-    const was=pop.classList.contains('show');pop.classList.add('show');place(targetRect(i),!was);if(was)pop.animate([{opacity:.4},{opacity:1}],{duration:220});
-    Waves.kick(.6);
-  }
-  if(pin)pinned=true;
-}
-function closePop(){
-  if(!pop.classList.contains('show'))return;full=false;pinned=false;pop.classList.remove('full','site');pf.hidden=true;app.classList.remove('site-open');$('#popX').textContent='✕';$('#popOpen').textContent='Abrir';$('#popOpen').hidden=false;
-  const r=tiles[popI].getBoundingClientRect(),t=rest;
-  const end=()=>{pop.classList.remove('show');tiles.forEach(t=>t.classList.remove('cur'))};
-  if(RM||!t)return end();
-  pop.animate([{transform:pop.style.transform,opacity:1},{transform:`translate(${r.left}px,${r.top}px) scale(${r.width/t.w},${r.height/t.h})`,opacity:0}],{duration:320,easing:'cubic-bezier(.6,0,.4,1)'});setTimeout(()=>{if(!full)end()},330);
-}
+/* ---------- estados: HERO (body sem classe) ⇄ SEÇÃO (body.sec) ---------- */
+const pop=$('#pop'),pb=$('#pb'),inner=pop.querySelector('.inner'),hintEl=$('#pullhint');
 const ifr=$('#ifr'),pf=$('#pf'),pfl=$('#pfl');
-function siteURL(r){return new URL(CFG.site+'?embed=1',location.href).href+'#/'+r}
-function openSite(r){
-  pop.classList.add('site');pf.hidden=false;app.classList.add('site-open');
-  if(!ifr.getAttribute('src')){pfl.classList.remove('off');ifr.src=siteURL(r);return}
-  try{ifr.contentWindow.location.replace(siteURL(r))}catch(e){ifr.src=siteURL(r)}
+let curMode=null;
+
+let secTopR=0;
+function syncSecTop(){cancelAnimationFrame(secTopR);secTopR=requestAnimationFrame(()=>{const t=$('.top');if(!t)return;root.style.setProperty('--sectop',Math.round(t.getBoundingClientRect().bottom+8)+'px')})}
+function layoutDock(){
+  const hb=$('#hero')?$('#hero').getBoundingClientRect().bottom:0;
+  const gap=Math.max(10,Math.round(innerHeight*.03)),avail=Math.max(170,innerHeight-hb-gap);
+  root.style.setProperty('--docktop',Math.round(hb)+'px');
+  root.style.setProperty('--dockhh',Math.round(avail)+'px');
+  void dock.offsetWidth;
+  // ondas logo acima dos ícones (mede a 1ª linha depois do layout)
+  if(!document.body.classList.contains('sec')){
+    const dr=dock.getBoundingClientRect();
+    const top=tiles.length?dr.top+tiles[0].offsetTop:hb;
+    root.style.setProperty('--wavesy',Math.round(top-(MOB()?84:114))+'px');
+  }else syncSecTop();
 }
+function enterTiles(){
+  tiles.forEach((t,i)=>t.style.setProperty('--td',(i*60)+'ms'));
+  tiles.forEach(t=>t.classList.remove('tin'));
+  void dock.offsetWidth;
+  tiles.forEach(t=>t.classList.add('tin'));
+}
+function flipTiles(fn){ // FLIP: guarda os centros, troca o estado e anima de volta
+  const before=tiles.map(t=>{const r=t.getBoundingClientRect();return{x:r.left+r.width/2,y:r.top+r.height/2}});
+  fn();
+  void dock.offsetWidth;
+  if(RM)return;
+  tiles.forEach((t,i)=>{const r=t.getBoundingClientRect();if(!r.width||!r.height)return;
+    const dx=before[i].x-(r.left+r.width/2),dy=before[i].y-(r.top+r.height/2);
+    t.animate([{transform:`translate(${dx}px,${dy}px)`},{transform:'none'}],{duration:480,easing:'cubic-bezier(.2,.85,.25,1)',delay:i*22,fill:'backwards'})});
+}
+function setCur(i){tiles.forEach((t,j)=>t.classList.toggle('cur',j===i));const col=getComputedStyle(tiles[i]).getPropertyValue('--c');pop.style.setProperty('--c',col||'var(--a1)')}
+function fill(id){const i=MODES.findIndex(m=>m.id===id);if(i<0)return;
+  $('#popt').textContent=MODES[i].l;fillPB(id);setCur(i);
+  if(!RM)pop.animate([{opacity:.25},{opacity:1}],{duration:200,easing:'ease'})}
+function goSec(id,hist){
+  const i=MODES.findIndex(m=>m.id===id);if(i<0)return;
+  const was=document.body.classList.contains('sec');curMode=id;
+  const apply=()=>{document.body.classList.add('sec');fill(id)};
+  was?apply():flipTiles(apply);
+  if(hist==='push')history.pushState({r:id},'','#'+id);
+  else if(hist==='replace')history.replaceState({r:id},'','#'+id);
+  syncSecTop();
+  requestAnimationFrame(()=>{const t=tiles[i];try{t.scrollIntoView({inline:'center',block:'nearest',behavior:RM?'auto':'smooth'})}catch(e){}});
+  Waves.kick(.9);
+  layoutDock();
+}
+function resetPull(){inner.style.transition='transform .3s ease';inner.style.transform='';if(hintEl)hintEl.style.opacity='0'}
+function goHero(){
+  if(!document.body.classList.contains('sec'))return;
+  pop.classList.remove('site');pf.hidden=true;app.classList.remove('site-open');
+  flipTiles(()=>document.body.classList.remove('sec'));
+  curMode=null;tiles.forEach(t=>t.classList.remove('cur'));
+  layoutDock();enterTiles();
+  history.replaceState(null,'',location.pathname+location.search);
+  requestAnimationFrame(()=>{const w=$('#waves').getBoundingClientRect();GL&&GL.ripple(innerWidth/2,w.top+w.height*.55,1.4);Waves.kick(1.2)});
+}
+function backFromSec(){if(pop.classList.contains('site')){goHero();return}
+  if(history.state&&history.state.r)history.back();else goHero()}
+
+function siteURL(r){return new URL(CFG.site+'?embed=1',location.href).href+'#/'+r}
+function openSite(r){pop.classList.add('site');pf.hidden=false;app.classList.add('site-open');
+  if(!ifr.getAttribute('src')){pfl.classList.remove('off');ifr.src=siteURL(r);return}
+  try{ifr.contentWindow.location.replace(siteURL(r))}catch(e){ifr.src=siteURL(r)}}
 ifr.addEventListener('load',()=>{
   try{const d=ifr.contentDocument;if(d&&!d.getElementById('neon-embed')){const st=d.createElement('style');st.id='neon-embed';st.textContent=CFG.esconder;d.head.appendChild(st);const ln=d.createElement('link');ln.rel='stylesheet';ln.href=new URL(CFG.pele,location.href).href+'?v='+Date.now().toString(36).slice(0,5);d.head.appendChild(ln);d.documentElement.classList.add('neon-embed')}}catch(e){}
   pfl.classList.add('off');
 });
-function syncMode(i){const r=CFG.rota[MODES[i].id];if(full&&pop.classList.contains('site')&&r){openSite(r)}else{pop.classList.remove('site');pf.hidden=true;app.classList.remove('site-open');fillPB(MODES[i].id)}}
-function openModeFull(id){const i=MODES.findIndex(m=>m.id===id);if(i<0)return;if(full){popI=i;$('#popt').textContent=MODES[i].l;tiles.forEach((x,j)=>x.classList.toggle('cur',j===i));syncMode(i);place(targetRect(i),false);return}openPop(i,true);goFull()}
-function goFull(){if(popI<0)return;full=true;pinned=true;pop.classList.add('full');$('#popX').textContent='◀ Menu';const t=targetRect(popI);
-  const from=pop.style.transform,fw=pop.offsetWidth,fh=pop.offsetHeight;place(t,false);
-  if(!RM)pop.animate([{transform:from+` scale(${fw/t.w},${fh/t.h})`},{transform:`translate(${t.x}px,${t.y}px)`}],{duration:420,easing:'cubic-bezier(.2,.9,.2,1)'});
-  history.pushState({full:1},'');}
-addEventListener('popstate',()=>{if(full)closePop()});
+function openSiteNow(){const r=CFG.rota[curMode];if(!r)return;openSite(r);const b=$('#popOpen');if(b)b.textContent='Voltar'}
+function closeSiteNow(){pop.classList.remove('site');pf.hidden=true;app.classList.remove('site-open');fillPB(curMode);const b=$('#popOpen');if(b)b.textContent='Ver site'}
+$('#popOpen').onclick=()=>{pop.classList.contains('site')?closeSiteNow():openSiteNow()};
+function openModeFull(id){goSec(id,document.body.classList.contains('sec')?'replace':'push');if(CFG.rota[id])openSiteNow()}
+$('#gtaRes').onclick=()=>openModeFull('gta');
+
 tiles.forEach((t,i)=>{
-  t.addEventListener('pointerenter',e=>{if(e.pointerType!=='mouse')return;t.classList.add('hot');Waves.kick(.3);
-    if(full)return;clearTimeout(hideT);clearTimeout(hoverT);hoverT=setTimeout(()=>{if(MODES[i].id!=='inicio')openPop(i)},pop.classList.contains('show')?60:280)});
-  t.addEventListener('pointerleave',()=>{t.classList.remove('hot');clearTimeout(hoverT);if(!pinned)hideT=setTimeout(closePop,550)});
+  t.addEventListener('pointerenter',()=>{t.classList.add('hot');if(!RM)Waves.kick(.25)});
+  t.addEventListener('pointerleave',()=>t.classList.remove('hot'));
   t.addEventListener('focus',()=>t.classList.add('hot'));t.addEventListener('blur',()=>t.classList.remove('hot'));
-  t.addEventListener('click',()=>{if(MODES[i].id==='inicio'){closePop();return}
-    if(popI===i&&pop.classList.contains('show')&&pinned&&!full){goFull();return}
-    if(full){openModeFull(MODES[i].id);return}
-    openPop(i,true)});
+  t.addEventListener('click',()=>{
+    const id=MODES[i].id,inSec=document.body.classList.contains('sec');
+    t.style.setProperty('--rx','0deg');t.style.setProperty('--ry','0deg');
+    t.classList.remove('hot');t.classList.add('sink');setTimeout(()=>t.classList.remove('sink'),170);
+    Waves.kick(.7);
+    setTimeout(()=>{
+      if(id==='inicio'){if(inSec)backFromSec()}
+      else goSec(id,inSec?'replace':'push');
+    },170);
+  });
 });
-pop.addEventListener('pointerenter',()=>clearTimeout(hideT));
-pop.addEventListener('pointerleave',()=>{if(!pinned&&!drag)hideT=setTimeout(closePop,550)});
-$('#popX').onclick=()=>{if(full)history.back();else closePop()};
-function openSiteNow(){const r0=CFG.rota[MODES[popI].id];if(!r0)return;pop.classList.add('site');openSite(r0);place(targetRect(popI),false);$('#popOpen').textContent='Vitrine'}
-function closeSiteNow(){pop.classList.remove('site');pf.hidden=true;app.classList.remove('site-open');fillPB(MODES[popI].id);place(targetRect(popI),false);$('#popOpen').textContent='Abrir'}
-$('#popOpen').onclick=()=>{if(pop.classList.contains('site')){closeSiteNow();return}if(!full)goFull();openSiteNow()};
-$('#popX').textContent='✕';
-addEventListener('keydown',e=>{if(e.key==='Escape'){if(full)history.back();else closePop()}});
-// arrastar: puxou pra cima → abre; soltou perto → volta flutuando
-const ph=$('#ph');let drag=null;
-ph.addEventListener('pointerdown',e=>{if(full||e.target.closest('button'))return;drag={x:e.clientX,y:e.clientY,dx:0,dy:0};pinned=true;ph.setPointerCapture(e.pointerId);pop.classList.add('drag')});
-ph.addEventListener('pointermove',e=>{if(!drag)return;drag.dx=e.clientX-drag.x;drag.dy=e.clientY-drag.y;pop.style.transform=`translate(${rest.x+drag.dx}px,${rest.y+drag.dy}px) rotate(${drag.dx*.02}deg)`});
-const dEnd=()=>{if(!drag)return;const{dx,dy}=drag;drag=null;pop.classList.remove('drag');
-  if(dy<-110||Math.hypot(dx,dy)>220){goFull();return}
-  const cur=pop.style.transform;pop.style.transform=`translate(${rest.x}px,${rest.y}px)`;
-  if(!RM)pop.animate([{transform:cur},{transform:pop.style.transform}],{duration:520,easing:'cubic-bezier(.34,1.56,.64,1)'})};
-ph.addEventListener('pointerup',dEnd);ph.addEventListener('pointercancel',dEnd);
-addEventListener('resize',()=>{placeArc();if(pop.classList.contains('show'))place(targetRect(popI),false);Waves.size();
-  if(popI>=0&&!pop.classList.contains('site'))pb.querySelectorAll('.srow').forEach(r=>{if(!r.dataset.inf){r.__ro&&r.__ro.disconnect();r.__ro=null;makeInfinite(r)}})});
+addEventListener('popstate',()=>{
+  const m=location.hash.match(/^#\/?([a-z]+)/);
+  const id=m&&MODES.some(x=>x.id===m[1])?m[1]:null;
+  if(id&&id!=='inicio')goSec(id,'none');else goHero();
+});
+addEventListener('keydown',e=>{if(e.key==='Escape')backFromSec()});
+addEventListener('resize',()=>{placeArc();layoutDock();syncSecTop();Waves.size();
+  if(document.body.classList.contains('sec'))pb.querySelectorAll('.srow').forEach(r=>{if(!r.dataset.inf){r.__ro&&r.__ro.disconnect();r.__ro=null;makeInfinite(r)}})});
+
+// puxar pra baixo no topo da lista volta pro hero (celular) e rodinha pra cima no topo (PC)
+let pull=null;
+pb.addEventListener('touchstart',e=>{if(pb.scrollTop>0||pop.classList.contains('site')){pull=null;return}
+  const t0=e.touches[0];pull={x:t0.clientX,y:t0.clientY,dy:0,on:false}},{passive:true});
+pb.addEventListener('touchmove',e=>{
+  if(!pull)return;const t0=e.touches[0],dx=t0.clientX-pull.x,dy=t0.clientY-pull.y;
+  if(!pull.on){if(dy>10&&dy>Math.abs(dx)*1.4)pull.on=true;else{if(Math.abs(dx)>12||dy<-8)pull=null;return}}
+  if(pb.scrollTop>0){pull=null;resetPull();return}
+  pull.dy=dy;inner.style.transition='none';inner.style.transform=`translateY(${Math.min(120,dy*.5)}px)`;
+  if(hintEl){hintEl.textContent=dy>100?'SOLTE PRA VOLTAR AO INÍCIO':'puxe pra baixo · voltar ao início';hintEl.style.opacity=dy>100?'1':'.55'}
+  if(e.cancelable)e.preventDefault();},{passive:false});
+const pEnd=()=>{if(!pull)return;const d=pull.dy;pull=null;resetPull();if(d>100)backFromSec()};
+pb.addEventListener('touchend',pEnd);pb.addEventListener('touchcancel',pEnd);
+pop.addEventListener('wheel',e=>{if(e.deltaY<-24&&pb.scrollTop<=0&&document.body.classList.contains('sec')&&!pop.classList.contains('site'))backFromSec()},{passive:true});
+$('.logo').addEventListener('click',()=>{if(document.body.classList.contains('sec'))backFromSec()});
 
 /* ---------- rádio: trilha sintetizada original (synthwave 100 BPM) ---------- */
 const Radio=(()=>{
@@ -758,26 +840,22 @@ function placeArc(){if(!arcBox)return;const t=MOB()?pb:heroIn;if(arcBox.parentEl
 function syncRec(){try{const w=arcF.contentWindow;if(w&&w.__astroRec!=null)arcRec.textContent=String(w.__astroRec)}catch(e){}}
 arcF.addEventListener('load',syncRec);setInterval(syncRec,2000);syncRec();
 $('#arcFull').onclick=()=>{try{arcF.requestFullscreen&&arcF.requestFullscreen()}catch(e){}};
-(function(){const dt=$('.dragtip');if(!dt)return;
-  if(matchMedia('(pointer:fine)').matches)dt.innerHTML='<span>Clique em Abrir para ver tudo</span>';
-  let seen=false;try{seen=localStorage.getItem('dypeNovoTip')==='1'}catch(e){}
-  if(seen){dt.style.display='none';return}
-  try{localStorage.setItem('dypeNovoTip','1')}catch(e){}
-  setTimeout(()=>{dt.style.transition='opacity .4s';dt.style.opacity='0';setTimeout(()=>dt.style.display='none',450)},4000)})();
 placeArc();   // celular: o arcade ja nasce como secao ARCADE dentro do painel
 
 function openWA(msg){if(/X{4}/.test(CFG.wa)){toast('Coloque o número do WhatsApp em CFG.wa pra este botão funcionar.');return}window.open(CFG.wa+'?text='+encodeURIComponent(msg||CFG.waMsg),'_blank','noopener')}
 document.addEventListener('click',e=>{const nv=e.target.closest('[data-snav]');if(nv){const row=nv.parentElement.querySelector('.srow');if(row)row.scrollBy({left:(nv.dataset.snav==='r'?1:-1)*Math.round(row.clientWidth*.8),behavior:RM?'auto':'smooth'});return}
 const go=e.target.closest('[data-go]');if(go){const a=go.dataset.go;if(a==='radio')Radio.toggle();else if(a&&a.indexOf('mode:')===0)openModeFull(a.slice(5));else openWA();return}
-if(e.target.closest('[data-full]')){if(!full)goFull();return}const w=e.target.closest('[data-wa]');if(w){const n=w.closest('.it,.sp');openWA(n?(CFG.waMsg+' Tenho interesse em: '+(n.querySelector('b')||{textContent:''}).textContent):null)}});
+const w=e.target.closest('[data-wa]');if(w){const n=w.closest('.it,.sp');openWA(n?(CFG.waMsg+' Tenho interesse em: '+(n.querySelector('b')||{textContent:''}).textContent):null)}});
 // carrinho: abre o carrinho do site atual e mostra a contagem dele aqui em cima
-$('#cartBtn').onclick=()=>{const cur=popI>=0&&CFG.rota[MODES[popI].id]?MODES[popI].id:'jogos';openModeFull(cur);
+$('#cartBtn').onclick=()=>{const cur=curMode&&CFG.rota[curMode]?curMode:'jogos';openModeFull(cur);
   const tryOpen=()=>{try{const d=ifr.contentDocument,n=d&&d.getElementById('cartN'),b=n&&n.closest('button,a,[role=button]');if(b){b.click();return true}}catch(e){}return false};
   if(!tryOpen())ifr.addEventListener('load',()=>setTimeout(tryOpen,300),{once:true})};
 setInterval(()=>{try{const d=ifr.contentDocument,n=d&&d.getElementById('cartN');if(!n)return;const v=parseInt(n.textContent)||0,em=$('#cartN');em.textContent=v;em.hidden=!v}catch(e){}},1000);
 // link direto: /games/novo/#/gta abre o modo certo
-function fromHash(delay){const m=location.hash.match(/^#\/([a-z]+)/);if(!m)return;const id=Object.keys(CFG.rota).find(k=>CFG.rota[k]===m[1]);if(id)setTimeout(()=>openModeFull(id),delay)}
-fromHash(700);addEventListener('hashchange',()=>fromHash(0));
+function fromHash(){const m=location.hash.match(/^#\/?([a-z]+)/);if(!m)return;const id=MODES.some(x=>x.id===m[1])?m[1]:null;if(id&&id!=='inicio')goSec(id,'none')}
+fromHash();addEventListener('hashchange',()=>fromHash());
+layoutDock();enterTiles();syncSecTop();
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{layoutDock();syncSecTop()});
 let tt;function toast(s){const t=$('#toast');t.textContent=s;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2600)}
 })();
 </script>

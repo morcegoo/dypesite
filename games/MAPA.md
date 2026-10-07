@@ -50,9 +50,10 @@ Contato não é aba: está no `footer.foot` + WhatsApp (`var WA`).
 | **container 1200px** | 94 | `.top` · `.dock` · `.hero` (todos `max-width:var(--wrap); padding:0 var(--pad)`) |
 | **CSS hero 2 colunas** | 93-107 | `.hero` 94 · `.hero-in` 95 (`minmax(0,1fr) minmax(0,1.1fr)`, `height:min(62vh,560px)`) · `.hero-col` 96 · `.arc` 97 · `.arc-frame` 99 (16/9, cantos chanfrados, borda neon) · `.arc-bar` 103 |
 | **CSS prateleira de vidro** | 192 | `#pop.sheet` · `.shelf` 202 · `.srow` 206 (`--covw`/`--covh`) · `.sp` · `.stage` · `.cov` · `.sinfo` · `.seal` · `.snav` |
-| cabeçalho do painel em 1 linha | 165 / 193-196 | `.ph` (`flex`, `space-between`) · `#pop.sheet .ph` · `#popt` · `.pcount` · `.pacts` |
+| cabeçalho da seção (1 linha) | 416 · CSS 193-196 | `.ph` · `#popt` · `.pcount` (sem botão Abrir/✕; só `#popOpen` = "Ver site") |
 | **CSS painel sem armação** | 280 | `#pop .card` (sem moldura/animação) · `#pop .inner` (transparente em cima, escuro embaixo) · `#pop .it` · `#pop.site .inner` opaco |
-| painel aberto (full) | 306 | `#pop.full .inner` (escurece já no topo + blur) · `#pop.full .ph` (faixa opaca, z-index 5) |
+| **2 estados: hero ⇄ seção** | 321-370 | `body` sem classe = HERO · `body.sec` = SEÇÃO · `#gtabar` (faixa 50px GTA) 323 · `body:not(.sec) .dock` (4×2 centralizado) 332 · `body.sec .dock` (barra fixa 1 linha, `--barh:60px`) 350 · `#pop` área rolável entre faixa e barra 364 · `#pullhint` 370 |
+| ~~painel aberto (full)~~ | 306 | removido: não existe mais espiar/`full`/`Abrir`/`✕` (regras órfãs ficaram no CSS) |
 | conteúdo das abas | 361 | `#pb` (fileiras `.shelf`); `padding-bottom:calc(var(--dockh) + 24px)` em 199 |
 | site atual embutido | 362 | `#pf` + `iframe#ifr` |
 | **CONFIG** | 374 | `const CFG` → `site`, `wa`, `waMsg`, `rota`, `esconder`, `pele` |
@@ -66,16 +67,21 @@ Contato não é aba: está no `footer.foot` + WhatsApp (`var WA`).
 | **carrossel infinito** | 541 | `function makeInfinite(sc,auto)` — clona os itens 3x, desliga o snap e faz a vitrine andar sozinha |
 | preencher painel | 548 | `function fillPB(id)` (contador vem de `DATA[KEY[id]].length`; chama `makeInfinite`) |
 | abas/dock | 567 | `const MODES` |
-| **geometria da folha** | 608 / 609 | `const WRAP=1200` · `function targetRect(i)` — painel de 1200px; espiando fica 16px abaixo do fim do `#hero` |
-| abre o site atual dentro | 653 | `function openSite(r)` |
+| **layout do dock / FLIP** | 664-698 | `const pop/pb/inner` 664 · `syncSecTop()` (mede `.top` e seta `--sectop`) 667 · `layoutDock()` (hero: `--docktop/--dockhh`, ondas logo acima dos ícones) 670 · `enterTiles()` (entrada escalonada 60ms) 679 · `flipTiles(fn)` (FLIP 480ms, atraso 22ms/ícone) 689 |
+| abre/fecha o site dentro | 729-741 | `openSite` · `openSiteNow`/`closeSiteNow` (`#popOpen`) · `openModeFull(id)` |
+| **abre seção / volta pro hero** | 702-726 | `goSec(id,'push'\|'replace'\|'none')` 702 · `goHero()` 715 · `backFromSec()` 724 · `popstate` 755 · logo 775 · pull-to-back + wheel 766-774 |
 | rádio (trilha + `--beat`) | 700 | `const Radio` |
 | mini arcade (recorde + tela cheia) | 756 | `arcBox` / `placeArc()` (celular: vira a seção ARCADE em `#pb`) / `arcF` / `#arcRec` / `#arcFull` |
-| dica da 1ª visita | 763 | `.dragtip` — some após 4s (`localStorage dypeNovoTip`); com `pointer:fine` vira "Clique em Abrir para ver tudo" |
-| WhatsApp / toast | 769 / 781 | `openWA(msg)` / `toast(s)` |
+| ~~dica da 1ª visita~~ | — | removida junto com o `.dragtip` (não existe mais "puxe pra cima pra abrir") |
+| link direto (seção) | 855 | `function fromHash()` — aceita `#jogos`, `#/jogos` etc.; abre já em `body.sec` |
+| WhatsApp / toast | 846 / 861 | `openWA(msg)` / `toast(s)` |
 | pele escura aplicada no iframe | 659 | injeta `#neon-embed` + `link[href=embed.css]` e põe `.neon-embed` no `<html>` do site |
 | pele escura aplicada no iframe | 592 | injeta `#neon-embed` + `link[href=embed.css]` e põe `.neon-embed` no `<html>` do site |
 
 ## Avisos
+- **Dois estados:** `#dock` é a mesma fileira de `.tile` nos dois: no HERO vira grade 4×2 centralizada no espaço livre abaixo do `#hero`; em `body.sec` vira barra fixa embaixo (1 linha, rolagem lateral, ativo com traço). Toda a geometria vem de `--docktop/--dockhh/--wavesy` (JS em `layoutDock`).
+- Link direto agora usa `#jogos` (sem barra) e abre direto no estado seção; `#/jogos` continua valendo.
+- `--sectop` é medido no `requestAnimationFrame` (no modo `prefers-reduced-motion` o `*{transition-duration:.01ms}` prende o `top` do `.top` no primeiro frame — por isso `body.sec .top{transition:none}`).
 - `.srow` existe nos **dois** arquivos com sentidos diferentes: em `games/index.html:1970` é a linha da busca; em `games/novo/index.html:190` é a fileira da prateleira. Ao buscar, filtrar por arquivo.
 - `.sheet`: em `games/index.html:2009` é o drawer do carrinho; em `games/novo/index.html:296` é a folha de vidro do painel.
 - `function show` também existe duplicado em `games/index.html` (2932 = animação, 4188 = troca de aba).
