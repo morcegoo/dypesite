@@ -758,7 +758,7 @@ const clearT=()=>{T.forEach(id=>{clearInterval(id);clearTimeout(id)});T=[]};
 const laterT=(f,ms)=>{const id=setInterval(f,ms);T.push(id);return id};
 const idxN=n=>Array.from({length:n},(_,i)=>i);
 const lettersT=t=>[...t].map((ch,i)=>ch===' '?`<i style="--i:${i}">&nbsp;</i>`:`<i style="--i:${i}">${esc(ch)}</i>`).join('');
-const introT=(eb,tt,rot)=>`<div class="intro"><div class="eyebrow">${esc(eb)}</div><h2 class="tt">${lettersT(tt)}</h2><div class="rot" data-lines="${esc(rot.join('|'))}"><span>${esc(rot[0])}</span></div></div>`;
+const introT=(eb,tt,rot)=>`<div class="intro"><h2 class="tt">${lettersT(tt)}</h2><div class="rot" data-lines="${esc(rot.join('|'))}"><span>${esc(rot[0])}</span></div></div>`;
 const allBtnT=(list,label)=>`<button class="allbtn" data-all="1" data-label="${esc(label)} (${list.length})">${esc(label)} (${list.length}) ↓</button><div class="all"></div>`;
 const spotT=(ids,mode)=>`<div class="spot ${mode||''}" data-ids="${ids.join(',')}" data-i="0"><div class="stage2"></div><button class="nav2 l" data-sp="-1" aria-label="Anterior">‹</button><button class="nav2 r" data-sp="1" aria-label="Próximo">›</button><div class="sdots"></div><div class="sinfo2"></div></div>`;
 /* ---------- TCG: chips, torneio e montador de setup ---------- */
@@ -817,7 +817,8 @@ function spotDraw(sp,first){
   const ids=raw.map(Number),i=Math.max(0,Math.min(+sp.dataset.i,ids.length-1)),slide=sp.classList.contains('slide');
   const st=sp.querySelector('.stage2');
   if(first)st.innerHTML=ids.map((n,k)=>`<div class="pv" data-k="${k}"><div class="pc">${pv(PLIST[n])}</div></div>`).join('');
-  st.querySelectorAll('.pv').forEach(el=>{const k=+el.dataset.k-i,a=Math.abs(k);
+  const n2=ids.length;
+  st.querySelectorAll('.pv').forEach(el=>{const k=((+el.dataset.k-i)+n2+n2/2)%n2-n2/2,a=Math.abs(k);
     el.style.transform=slide?`translateX(${k*105}%) scale(${a?.82:1})`:`translateX(${k*62}%) translateZ(${-a*120}px) rotateY(${k*-32}deg)`;
     el.style.opacity=slide?(a?0:1):(a>2?0:1-a*.25);el.style.zIndex=10-a;el.style.filter=a?'brightness(.55)':'none'});
   const sd=sp.querySelector('.sdots');if(sd)sd.innerHTML=ids.map((_,k)=>`<i class="${k===i?'on':''}"></i>`).join('');
@@ -827,6 +828,10 @@ function spotDraw(sp,first){
   const spc=SPECS[x.nome]?`<div class="specs">${SPECS[x.nome].map((t,n)=>`<i style="--i:${n}">${esc(t)}</i>`).join('')}</div>`:'';
   box.innerHTML=`<b class="nm">${esc(x.nome||'')}</b><div class="sb">${esc(x.sub||'')}</div>${spc}${x.preco?`<div class="pr">${esc(x.preco)}</div><div class="pa">${parcela(x.preco)}</div>`:''}<div class="acts"><button class="btn gold" data-wa>Quero</button>${PH[PBID]&&CFG.rota[PBID]?'<button class="btn" data-site>Detalhes</button>':''}</div>`;
 }
+function spotIds(){return PBID==='jogos'?jogosList(AFC.jogos):PBID==='cons'?consList(AFC.cons):idxN(Math.min(PLIST.length,6))}
+function refreshSpot(){const sp=pb.querySelector('.spot');if(!sp)return;sp.dataset.ids=spotIds().join(',');sp.dataset.i=0;spotDraw(sp,true);spotArm(sp)}
+function refreshBento(){const b=pb.querySelector('.bento');if(b)b.outerHTML=bentoHTML(PLIST,accList(AFC.aces))}
+function pressIn(el,sel){if(!el.parentNode)return;el.parentNode.querySelectorAll(sel).forEach(o=>o.setAttribute('aria-pressed',o===el))}
 function spotGo(sp,d){const n=sp.dataset.ids.split(',').filter(v=>v!=='').length;if(!n)return;sp.dataset.i=((+sp.dataset.i+d)%n+n)%n;spotDraw(sp);spotArm(sp)}
 function spotArm(sp){clearTimeout(sp._t);if(RM)return;const n=sp.dataset.ids.split(',').filter(v=>v!=='').length;if(n<2)return;sp.style.setProperty('--dur',AUTO+'ms');
   sp._t=setTimeout(()=>{if(!sp.isConnected)return;if(document.hidden||sp.classList.contains('hold')||$('#pop').classList.contains('site')){spotArm(sp);return}spotGo(sp,1)},AUTO);T.push(sp._t)}
@@ -905,7 +910,7 @@ const FEAT=[
  {tag:'Reserva',h:'GTA VI',s:'Reserva aberta',p:'Retire no dia 19.11',b:'Reservar',mode:'gta',bar:'GTA VI \u00b7 PR\u00c9-VENDA \u00b7 RETIRE 19.11',barB:'Reservar',img:'../media/gta/drive-poster.webp'},
  {tag:'Novidade',h:'TCG',s:'Cole\u00e7\u00e3o nova chegou',p:'Boosters, decks e torneio toda sexta',b:'Ver cartas',mode:'tcg',bar:'TCG \u00b7 COLE\u00c7\u00c3O NOVA CHEGOU',barB:'Ver cartas',img:'../assets/inline/inline-cd9d96523f.webp'},
  {tag:'Troca',h:'Consoles',s:'Seu usado vale desconto',p:'PS5, Xbox e Switch novos e seminovos',b:'Ver consoles',mode:'cons',bar:'CONSOLES \u00b7 SEU USADO VALE DESCONTO',barB:'Ver consoles',img:'../assets/inline/inline-34ab37c08b.webp'},
- {tag:'Setup',h:'Setup',s:'Monte em 4 passos',p:'Console + controle + headset + upgrade',b:'Montar',mode:'setup',bar:'SETUP \u00b7 MONTE EM 4 PASSOS',barB:'Montar',img:'../assets/inline/inline-baf3927db0.webp'}
+ {tag:'MONTADOR',h:'Setup',s:'Monte em 4 passos',p:'Console + controle + headset + upgrade',b:'Montar',mode:'setup',bar:'SETUP \u00b7 MONTE EM 4 PASSOS',barB:'Montar',img:'../assets/inline/inline-baf3927db0.webp'}
 ];
 let fi=0;const slide=$('#slide'),fd=$('#fdots');fd.innerHTML=FEAT.map(()=>'<i></i>').join('');fd.style.setProperty('--dur','5000ms');
 function showFeat(i){fi=i;const f=FEAT[i];let bi=$('#feat .bgimg');if(!bi){bi=document.createElement('div');bi.className='bgimg';$('#feat .in').prepend(bi)}
@@ -1181,9 +1186,9 @@ placeArc();   // celular: o arcade ja nasce como secao ARCADE dentro do painel
 function openWA(msg){if(/X{4}/.test(CFG.wa)){toast('Coloque o número do WhatsApp em CFG.wa pra este botão funcionar.');return}window.open(CFG.wa+'?text='+encodeURIComponent(msg||CFG.waMsg),'_blank','noopener')}
 document.addEventListener('click',e=>{const nv=e.target.closest('[data-snav]');if(nv){const row=nv.parentElement.querySelector('.srow');if(row)row.scrollBy({left:(nv.dataset.snav==='r'?1:-1)*Math.round(row.clientWidth*.8),behavior:RM?'auto':'smooth'});return}
 const spv=e.target.closest('[data-sp]');if(spv){const s2=spv.closest('.spot');if(s2)spotGo(s2,+spv.dataset.sp);return}
-const br=e.target.closest('[data-brand]');if(br){AFC.cons=br.dataset.brand;fill(curMode);return}
-const ac=e.target.closest('[data-acc]');if(ac){AFC.aces=ac.dataset.acc;fill(curMode);return}
-const cj=e.target.closest('[data-chip]');if(cj){AFC.jogos=cj.dataset.chip;fill(curMode);return}
+const br=e.target.closest('[data-brand]');if(br){AFC.cons=br.dataset.brand;pressIn(br,'.brand');refreshSpot();return}
+const ac=e.target.closest('[data-acc]');if(ac){AFC.aces=ac.dataset.acc;pressIn(ac,'.chip2');refreshBento();return}
+const cj=e.target.closest('[data-chip]');if(cj){AFC.jogos=cj.dataset.chip;pressIn(cj,'.chip2');refreshSpot();return}
 const ab=e.target.closest('[data-all]');if(ab){toggleAll(ab);return}
 const dsb=e.target.closest('[data-site]');if(dsb){if(curMode&&CFG.rota[curMode])openSiteNow();return}
 const go=e.target.closest('[data-go]');if(go){const a=go.dataset.go;if(a==='radio')Radio.toggle();else if(a&&a.indexOf('mode:')===0)openModeFull(a.slice(5));else openWA();return}

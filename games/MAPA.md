@@ -140,3 +140,16 @@ Contato não é aba: está no `footer.foot` + WhatsApp (`var WA`).
 - O standby vale **só no hero** (`body.idle:not(.sec)`); ao entrar numa seção o `idle` é limpo e o timer desligado.
 - O **primeiro toque** só acorda (não abre seção): há um `click` em fase de captura que engole cliques até 450 ms depois do wake.
 - O `NOVO` do badge agora vive dentro do `.ink`, então dorme junto com o ícone.
+
+## games/novo/index.html — parte 5 (vitrine sem re-render, carrossel circular)
+| item | linha | seletor / função |
+|---|---|---|
+| abrir seção: 1 animação só | 761 | `introT(eb,tt,rot)` — o `.eyebrow` foi removido; o rótulo vive só no `.ph` (`● BIBLIOTECA · N ITENS`) |
+| **carrossel circular** | 820-822 | `spotDraw()`: `k = ((i - atual) + n + n/2) % n - n/2` (vizinhos sempre dos dois lados; o último volta pro primeiro sem rebobinar) |
+| troca de chip/marca sem re-render | 831-834 | `spotIds()` · `refreshSpot()` (só `data-ids` + `spotDraw(sp,true)` + `spotArm`) · `refreshBento()` · `pressIn()` |
+| delegação | 1189-1191 | `[data-brand]` → `refreshSpot()` · `[data-acc]` → `refreshBento()` · `[data-chip]` → `refreshSpot()` (antes chamavam `fill(curMode)`, que re-renderizava a seção toda) |
+| banner do Setup | 913 | `FEAT[3].tag = 'MONTADOR'` |
+
+### Avisos da parte 5
+- **Nada fora da vitrine re-renderiza**: auto (5 s), setas, arrasto e chips/marcas mexem só no `.stage2`, `.sdots` e `.sinfo2` (ou no `.bento`, em Acessórios). O `.tt` (letra a letra) e o rótulo animam **uma vez**, ao abrir a seção.
+- `fill(id)`/`fillPB(id)` continuam existindo só para abrir/trocar de seção — não chamar em controle de vitrine.
