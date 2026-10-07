@@ -52,7 +52,9 @@ Contato não é aba: está no `footer.foot` + WhatsApp (`var WA`).
 | **CSS prateleira de vidro** | 192 | `#pop.sheet` · `.shelf` 202 · `.srow` 206 (`--covw`/`--covh`) · `.sp` · `.stage` · `.cov` · `.sinfo` · `.seal` · `.snav` |
 | cabeçalho da seção (1 linha) | 416 · CSS 193-196 | `.ph` · `#popt` · `.pcount` (sem botão Abrir/✕; só `#popOpen` = "Ver site") |
 | **CSS painel sem armação** | 280 | `#pop .card` (sem moldura/animação) · `#pop .inner` (transparente em cima, escuro embaixo) · `#pop .it` · `#pop.site .inner` opaco |
-| **2 estados: hero ⇄ seção** | 321-370 | `body` sem classe = HERO · `body.sec` = SEÇÃO · `#gtabar` (faixa 50px GTA) 323 · `body:not(.sec) .dock` (4×2 centralizado) 332 · `body.sec .dock` (barra fixa 1 linha, `--barh:60px`) 350 · `#pop` área rolável entre faixa e barra 364 · `#pullhint` 370 |
+| **2 estados: hero ⇄ seção** | 321-372 | `body` sem classe = HERO · `body.sec` = SEÇÃO · `#gtabar` (faixa 50px GTA, `top:var(--gtatop)`) 323 · `body:not(.sec) #gtabar` escondida 330 · `body:not(.sec) .dock` (4×2, `height:auto`, bloco centrado) 332 · `body.sec .dock` (barra fixa 1 linha, `--barh:60px`) 350 · `#pop` área rolável entre faixa e barra 364 · `#pullhint` 370 |
+| **fase: CSS** | 374-470 | `#ticker`/`#tkT` (frase de ofertas do hero) 377 · `.tintsec` (tingimento radial `--sa`/`--sb`, .28) 389 · `.intro`+`.tt`+`.rot` 391-399 · `.chips2`/`.chip2` 400 · `.brands`/`.brand` 404 · `.spot`/`.stage2`/`.pv`/`.pcv` 408-418 · `.sinfo2`+`.specs` 421 · `.nav2`/`.sdots` 431 · `.bento`/`.bt` 437 · `.yrs`/`.yr` 445 · `.count` 452 · `.allbtn`/`.all`/`.pc` 456 |
+| **frase de ofertas (hero)** | 671 | `#ticker` + `TKF` + `tkShow()` — troca a cada 3,4 s, palavra por palavra, preço em `--gold` |
 | ~~painel aberto (full)~~ | 306 | removido: não existe mais espiar/`full`/`Abrir`/`✕` (regras órfãs ficaram no CSS) |
 | conteúdo das abas | 361 | `#pb` (fileiras `.shelf`); `padding-bottom:calc(var(--dockh) + 24px)` em 199 |
 | site atual embutido | 362 | `#pf` + `iframe#ifr` |
@@ -62,16 +64,17 @@ Contato não é aba: está no `footer.foot` + WhatsApp (`var WA`).
 | card da vitrine | 487 | `function card(x,k)` — capa + selo + preço; **sem reflexo** |
 | fileira | 492 | `function shelf(titulo,lista,k,dica)` |
 | destaques da categoria | 496 | `function pickHighlights(list)` — até 3 itens da própria categoria (selo primeiro, senão as últimas 3 capas) |
-| render da aba | 500 | `function render(id)` — `Destaques` + a fileira da categoria; sem repetir GTA/Setup em todo painel |
+| **fases (uma por seção)** | 679-777 | `const PH` (cor `--sa/--sb`, cena, eyebrow, título, 3 frases) · `BRANDC`/`brandOf`/`CPF`/`SPECS` 683 · `AFC` (filtro por seção) 688 · `clearT()`/`laterT()` (todos os timers da seção) 690 · `render(id)` 715 (intro + chips/marcas + `.spot` + `.bento`/`.yrs`/`.count` + `.allbtn`) · `spotDraw` 730 · `spotGo`/`spotArm` (auto 5 s; pausa no dedo/ficha/aba) 745 · `afterRender(id)` 749 (`--sa/--sb`, `setScene`, arrasto >40 px, clique no centro = ficha) · `toggleAll` 774 |
+| ~~render antigo (Destaques + fileira)~~ | — | removido: cada seção agora é uma fase; `shelf`/`pickHighlights` continuam no arquivo mas não são mais usados |
 | carrossel: decide se rola | 518 | `function evalRow(sc,auto,final)` — mede quando o painel já tem largura (ResizeObserver) e centraliza/esconde `.snav` se a fileira couber |
 | **carrossel infinito** | 541 | `function makeInfinite(sc,auto)` — clona os itens 3x, desliga o snap e faz a vitrine andar sozinha |
-| preencher painel | 548 | `function fillPB(id)` (contador vem de `DATA[KEY[id]].length`; chama `makeInfinite`) |
+| preencher painel | 812 | `function fillPB(id)` — `clearT()` + contador `DATA[KEY[id]].length` + `makeInfinite` + `afterRender` |
 | abas/dock | 567 | `const MODES` |
-| **layout do dock / FLIP** | 664-698 | `const pop/pb/inner` 664 · `syncSecTop()` (mede `.top` e seta `--sectop`) 667 · `layoutDock()` (hero: `--docktop/--dockhh`, ondas logo acima dos ícones) 670 · `enterTiles()` (entrada escalonada 60ms) 679 · `flipTiles(fn)` (FLIP 480ms, atraso 22ms/ícone) 689 |
+| **layout do dock / FLIP** | 869-895 | `const pop/pb/inner` 869 · `syncSecTop()` (mede `.top`, seta `--gtatop` + `--sectop`, síncrono) 875 · `layoutDock()` (hero: ícones + `#ticker` = **um bloco** centrado; seta `--docktop/--ticktop/--wavesy`) 878 · `enterTiles()` 887 · `flipTiles(fn)` (FLIP 480ms, 22ms/ícone) 894 |
 | abre/fecha o site dentro | 729-741 | `openSite` · `openSiteNow`/`closeSiteNow` (`#popOpen`) · `openModeFull(id)` |
-| **abre seção / volta pro hero** | 702-726 | `goSec(id,'push'\|'replace'\|'none')` 702 · `goHero()` 715 · `backFromSec()` 724 · `popstate` 755 · logo 775 · pull-to-back + wheel 766-774 |
+| **abre seção / volta pro hero** | 907-931 | `goSec(id,'push'\|'replace'\|'none')` 907 (para a troca automática de cena, `syncSecTop`) · `goHero()` 920 (`clearT()` + `restart()` da cena) · `backFromSec()` 929 · `popstate` 960 · logo 980 · pull-to-back + wheel 971-979 |
 | rádio (trilha + `--beat`) | 700 | `const Radio` |
-| mini arcade (recorde + tela cheia) | 756 | `arcBox` / `placeArc()` (celular: vira a seção ARCADE em `#pb`) / `arcF` / `#arcRec` / `#arcFull` |
+| mini arcade (recorde + tela cheia) | 989 | `arcBox` / `placeArc()` (**escondido no hero: `.arc{display:none}`**, não vai mais pro `#pb`) / `arcF` / `#arcRec` / `#arcFull` |
 | ~~dica da 1ª visita~~ | — | removida junto com o `.dragtip` (não existe mais "puxe pra cima pra abrir") |
 | link direto (seção) | 855 | `function fromHash()` — aceita `#jogos`, `#/jogos` etc.; abre já em `body.sec` |
 | WhatsApp / toast | 846 / 861 | `openWA(msg)` / `toast(s)` |
@@ -86,6 +89,11 @@ Contato não é aba: está no `footer.foot` + WhatsApp (`var WA`).
 - `.sheet`: em `games/index.html:2009` é o drawer do carrinho; em `games/novo/index.html:296` é a folha de vidro do painel.
 - `function show` também existe duplicado em `games/index.html` (2932 = animação, 4188 = troca de aba).
 - Carrossel da vitrine: `makeInfinite` clona cada item 2x (antes e depois), então contar `.sp` no DOM dá 3x o número real. O contador `#pcount` é calculado antes de clonar.
+- **Faixa GTA:** fica **abaixo** do cabeçalho (`.top`), em `top:var(--gtatop)`; `--sectop` = fim do `.top` + 50 + 8. No hero ela é `visibility:hidden`.
+- **Hero:** ícones + `#ticker` são um bloco só, centrado no espaço livre abaixo do `#hero` (`layoutDock`); as ondas ficam logo acima (`--wavesy`).
+- **Fase:** cada seção tem `--sa/--sb` próprios (topo do `<style>` parte 2). `--sa` NÃO é `--a1/--a2` (essas vêm da paleta da cena).
+- **Vitrine:** auto 5 s com barra na bolinha ativa; arrasto >40 px, setas ‹ ›, chips (Jogos/Acessórios), marcas (Consoles) e "Ver todos" funcionam por delegação de clique em `document`.
+- Toque no produto do **centro** = abrir a ficha (site real via `#popOpen`/`data-site`); no **vizinho** = trazer pro centro.
 - Botões "Quero" dos itens clonados funcionam por **delegação** no `document` (`closest('.it,.sp')`), não por listener individual — não trocar por listener direto.
 - `.ref` (reflexo espelhado embaixo das capas) foi **removido** de propósito: nada de imagem repetida de ponta-cabeça.
 - `.snav` (setas) é escondido por JS quando a fileira cabe na largura: a fileira fica centralizada e sem loop (`evalRow` decide sempre depois que o painel ganhou largura — nunca confie na 1ª medida).

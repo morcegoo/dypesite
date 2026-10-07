@@ -319,17 +319,18 @@ button{font:inherit;color:inherit;cursor:pointer}
 }
 
 /* ---------- interação nova: HERO ⇄ SEÇÃO (body.sec) ---------- */
-:root{--barh:60px;--docktop:62vh;--dockhh:240px;--wavesy:50vh;--sectop:120px}
-#gtabar{position:fixed;left:0;top:0;width:100%;height:50px;z-index:12;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 calc(var(--pad) + 4px);
+:root{--barh:60px;--docktop:62vh;--wavesy:50vh;--sectop:120px;--gtatop:0px;--ticktop:78%}
+#gtabar{position:fixed;left:0;top:var(--gtatop,0px);width:100%;height:50px;z-index:12;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 calc(var(--pad) + 4px);
   background:linear-gradient(90deg,rgba(26,8,36,.97),rgba(9,4,16,.97));pointer-events:none;transform:translateY(-104%);transition:transform .42s cubic-bezier(.2,.9,.2,1);
   box-shadow:0 0 0 1px color-mix(in srgb,var(--a1) 40%,transparent),0 10px 26px rgba(0,0,0,.55)}
 #gtabar::after{content:'';position:absolute;left:0;right:0;bottom:0;height:2px;background:linear-gradient(90deg,var(--a1),var(--a2),#ff8a3d,var(--a1));box-shadow:0 0 14px color-mix(in srgb,var(--a1) 75%,transparent)}
 #gtabar .gtat{font-family:'Chakra Petch',var(--f-body);font-weight:700;font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:#fff;text-shadow:0 0 12px color-mix(in srgb,var(--a1) 85%,transparent);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #gtabar .btn{padding:7px 14px;font-size:11.5px}
-body.sec #gtabar{transform:none;pointer-events:auto;height:calc(50px + env(safe-area-inset-top,0px));padding-top:env(safe-area-inset-top,0px)}
+body.sec #gtabar{transform:none;pointer-events:auto}
+body:not(.sec) #gtabar{visibility:hidden}
 
 /* HERO: ícones centralizados no espaço livre, 4 colunas x 2 linhas */
-body:not(.sec) .dock{top:var(--docktop);bottom:auto;height:var(--dockhh);padding:0 var(--pad);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:auto auto;gap:16px 10px;align-content:center;background:none;transition:none}
+body:not(.sec) .dock{top:var(--docktop);bottom:auto;height:auto;padding:0 var(--pad);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:auto auto;gap:16px 10px;background:none;transition:none}
 body:not(.sec) #waves{bottom:auto;top:var(--wavesy)}
 @keyframes tin{from{transform:translateY(26px) scale(.7);opacity:0}to{transform:none;opacity:1}}
 .tile.tin .fx{animation:tin .5s cubic-bezier(.2,.9,.2,1) var(--td,0ms) both,fl var(--fd,3.8s) ease-in-out calc(var(--td,0ms) + 500ms + var(--fdl,0s)) infinite}
@@ -343,7 +344,7 @@ body.sec .hero .feat{transform:translateY(-40px) scale(.94);opacity:0;pointer-ev
 body.sec .hero .arc,body.sec .hero .scenes{opacity:0;pointer-events:none}
 body.sec .hero-in{pointer-events:none}
 body.sec #waves{opacity:0;pointer-events:none;transition:opacity .3s}
-body.sec .top{top:50px;padding-top:12px;transition:none}
+/* cabecalho fica no topo nos 2 estados: a faixa GTA entra logo ABAIXO dele (--gtatop) */
 body.sec .logo{cursor:pointer}
 
 /* SEÇÃO: barra fixa embaixo (1 linha, rolagem lateral) */
@@ -369,6 +370,116 @@ body.sec #pop{transform:translate(-50%,0);opacity:1;pointer-events:auto}
 #pop.sheet .pb{padding:0 0 18px}
 #pullhint{position:absolute;left:0;right:0;top:4px;text-align:center;color:var(--muted);opacity:0;transition:opacity .2s;pointer-events:none;z-index:6;text-shadow:0 2px 8px rgba(0,0,0,.9)}
 #pop.site .pf{margin:0;border-radius:0}
+
+/* ================= parte 1: arcade fora, ticker de ofertas no hero ================= */
+.arc{display:none!important}
+@media (min-width:900px){body:not(.sec) .hero-in{grid-template-columns:minmax(0,560px)}}
+#ticker{position:absolute;left:50%;transform:translateX(-50%);top:var(--ticktop,78%);width:100%;max-width:var(--wrap);padding:0 var(--pad);z-index:8;text-align:center;pointer-events:none;transition:opacity .3s ease}
+#ticker small{display:block;font-family:var(--f-pixel);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+#ticker .tk{display:block;font-family:var(--f-display);font-weight:400;font-size:clamp(20px,3.6vw,30px);line-height:1.14;letter-spacing:.02em;min-height:1.16em;text-shadow:0 2px 14px rgba(0,0,0,.75)}
+#ticker .tk span{display:inline-block;animation:tkIn .5s ease-out both}
+#ticker .tk em{font-style:normal;color:var(--gold);text-shadow:0 0 16px color-mix(in srgb,var(--gold) 55%,transparent)}
+@keyframes tkIn{from{opacity:0;transform:translateY(12px);filter:blur(4px)}}
+#ticker .tk.out span{animation:tkOut .35s ease-in both}
+@keyframes tkOut{to{opacity:0;transform:translateY(-10px);filter:blur(4px)}}
+body.sec #ticker{opacity:0}
+@media (max-width:899px){#ticker .tk{font-size:clamp(19px,5.6vw,26px)}}
+
+/* ================= parte 2: cada secao vira uma fase ================= */
+.tintsec{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:0;transition:opacity .6s ease,background .6s ease;
+  background:radial-gradient(90% 55% at 80% 18%,var(--sa,#d04bff),transparent 70%),radial-gradient(70% 45% at 0% 70%,var(--sb,#5ef2ff),transparent 70%)}
+body.sec .tintsec{opacity:.28}
+.intro{padding:2px 18px 4px}
+.intro .eyebrow{font-family:var(--f-pixel);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--sa,#d04bff);text-shadow:0 0 12px color-mix(in srgb,var(--sa) 65%,transparent)}
+.tt{margin:4px 0 0;white-space:nowrap;font-family:var(--f-display);font-weight:400;font-size:clamp(38px,7.2vw,72px);line-height:.92;color:var(--ink);text-transform:uppercase;letter-spacing:.01em;text-shadow:0 0 22px color-mix(in srgb,var(--sa) 60%,transparent)}
+.tt i{font-style:normal;display:inline-block;animation:dropT .5s cubic-bezier(.2,1.3,.4,1) both;animation-delay:calc(var(--i) * 45ms)}
+@keyframes dropT{from{opacity:0;transform:translateY(-22px) rotate(-6deg)}}
+.rot{height:22px;margin-top:6px;font-weight:700;font-size:14.5px;color:#e8dcff;overflow:hidden}
+.rot span{display:block;animation:tkIn .45s ease-out both}
+.rot span.out{animation:tkOut .3s ease-in both}
+.chips2{display:flex;gap:8px;overflow-x:auto;padding:12px 18px 4px;scrollbar-width:none}
+.chips2::-webkit-scrollbar{display:none}
+.chip2{flex:none;height:34px;padding:0 15px;border-radius:999px;border:1px solid var(--line);background:rgba(12,6,24,.7);font-weight:700;font-size:12.5px;letter-spacing:.02em;color:var(--ink)}
+.chip2[aria-pressed="true"]{background:var(--sa);border-color:transparent;color:#170b25;box-shadow:0 0 16px color-mix(in srgb,var(--sa) 65%,transparent)}
+.brands{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:12px 18px 2px}
+.brand{height:36px;padding:0 15px;border-radius:999px;border:1px solid var(--line);background:rgba(10,6,20,.6);font-weight:700;font-size:12px;letter-spacing:.08em;display:flex;align-items:center;gap:7px;color:var(--ink)}
+.brand i{width:8px;height:8px;border-radius:50%;background:var(--bc)}
+.brand[aria-pressed="true"]{border-color:var(--bc);box-shadow:0 0 14px var(--bc);background:color-mix(in srgb,var(--bc) 22%,transparent)}
+.spot{position:relative;margin-top:10px}
+.stage2{position:relative;height:clamp(230px,58vw,320px);perspective:900px;touch-action:pan-y;user-select:none}
+.pv{position:absolute;left:50%;top:0;width:clamp(150px,40vw,210px);margin-left:calc(clamp(150px,40vw,210px) / -2);transition:transform .5s cubic-bezier(.2,.8,.2,1),opacity .4s,filter .4s;cursor:pointer}
+.pc{display:flex;flex-direction:column;gap:6px;min-width:0}
+.pcv{position:relative;aspect-ratio:3/4;border-radius:13px;overflow:hidden;background:#140a22;border:1.5px solid rgba(255,255,255,.6);box-shadow:0 12px 26px rgba(0,0,0,.5),0 0 18px color-mix(in srgb,var(--sa) 45%,transparent)}
+.pv>.pc>.pcv{height:100%;aspect-ratio:3/4}
+.pv{height:clamp(200px,52vw,290px)}
+.pcv img{width:100%;height:100%;object-fit:cover;display:block}
+.pcv.ph{display:grid;place-items:center;background:radial-gradient(70% 70% at 50% 40%,color-mix(in srgb,var(--sa) 45%,transparent),transparent 70%),linear-gradient(160deg,#1d1030,#0c0616)}
+.pcv.ph svg{width:44%;height:auto;color:#fff;opacity:.9}
+.spot.slide .pv{width:clamp(200px,56vw,290px);margin-left:calc(clamp(200px,56vw,290px) / -2)}
+.spot.slide .pv>.pc>.pcv{aspect-ratio:1/1;height:auto}
+.sinfo2{text-align:center;margin-top:8px;padding:0 18px;min-height:132px}
+.sinfo2 .nm{display:block;font-family:var(--f-display);font-weight:400;font-size:clamp(22px,5.6vw,30px);line-height:1;text-transform:uppercase;animation:tkIn .4s ease-out both}
+.sinfo2 .sb{font-size:12.5px;color:var(--muted);margin-top:5px;animation:tkIn .4s .05s ease-out both}
+.specs{display:flex;justify-content:center;flex-wrap:wrap;gap:6px;margin-top:8px}
+.specs i{font-style:normal;font-weight:700;font-size:10.5px;letter-spacing:.06em;padding:4px 9px;border-radius:999px;border:1px solid color-mix(in srgb,var(--sa) 60%,transparent);background:rgba(10,6,20,.55);animation:tkIn .4s ease-out both;animation-delay:calc(.15s + var(--i) * 90ms)}
+.sinfo2 .pr{font-family:var(--f-display);font-size:clamp(24px,5.6vw,32px);color:var(--gold);margin-top:8px;font-variant-numeric:tabular-nums;animation:tkIn .4s .1s ease-out both}
+.sinfo2 .pa{font-size:11px;color:var(--muted)}
+.sinfo2 .acts{display:flex;justify-content:center;gap:8px;margin-top:10px;flex-wrap:wrap}
+.sinfo2 .btn{padding:8px 15px;font-size:12px}
+.nav2{position:absolute;top:calc(clamp(230px,58vw,320px) / 2 - 20px);width:40px;height:40px;border-radius:50%;background:rgba(10,6,20,.7);border:1px solid var(--line);color:var(--ink);font-size:18px;z-index:5}
+.nav2.l{left:8px}.nav2.r{right:8px}
+.sdots{display:flex;justify-content:center;gap:6px;margin-top:8px}
+.sdots i{width:7px;height:7px;border-radius:4px;background:rgba(255,255,255,.28);transition:width .25s,background .25s}
+.sdots i.on{width:28px;background:rgba(255,255,255,.28);position:relative;overflow:hidden}
+.sdots i.on::after{content:"";position:absolute;inset:0;background:var(--sa,#d04bff);transform-origin:left;animation:prog var(--dur,5s) linear both}
+.spot.hold .sdots i.on::after{animation-play-state:paused}
+@keyframes prog{from{transform:scaleX(0)}}
+.bento{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;padding:0 18px}
+.bt{position:relative;border-radius:14px;overflow:hidden;text-align:left;border:1.5px solid rgba(255,255,255,.7);box-shadow:0 0 12px color-mix(in srgb,var(--sa) 45%,transparent);background:#120a20;aspect-ratio:1/1;animation:pop2 .45s cubic-bezier(.2,1.3,.4,1) both;animation-delay:calc(var(--i) * 80ms)}
+.bt.big{grid-row:span 2;aspect-ratio:auto}
+.bt img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.9}
+.bt .lb{position:absolute;left:10px;right:10px;bottom:10px;text-shadow:0 2px 8px rgba(0,0,0,.9);pointer-events:none}
+.bt .lb b{display:block;font-size:13px;line-height:1.2}
+.bt .lb span{font-family:var(--f-display);font-size:18px;color:var(--gold)}
+@keyframes pop2{from{opacity:0;transform:scale(.85)}}
+.yrs{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:12px 0 0;padding:2px 18px 8px;scrollbar-width:none}
+.yrs::-webkit-scrollbar{display:none}
+.yr{flex:0 0 76%;max-width:320px;scroll-snap-align:center;padding:18px;border-radius:16px;background:rgba(14,8,28,.75);border:1px solid color-mix(in srgb,var(--c) 60%,transparent);box-shadow:0 0 18px color-mix(in srgb,var(--c) 30%,transparent)}
+.yr strong{display:block;font-family:var(--f-display);font-weight:400;font-size:58px;line-height:.9;color:var(--c)}
+.yr b{font-family:var(--f-display);font-weight:400;font-size:22px}
+.yr small{display:block;font-family:var(--f-pixel);font-size:9px;color:var(--muted);margin-top:3px}
+.yr img{width:100%;height:150px;object-fit:cover;border-radius:10px;margin-top:12px;border:1px solid color-mix(in srgb,var(--c) 45%,transparent)}
+.count{display:flex;gap:10px;justify-content:center;margin-top:14px;padding:0 18px}
+.count div{min-width:76px;padding:12px 6px;border-radius:14px;background:rgba(14,8,28,.75);border:1px solid color-mix(in srgb,var(--sa) 60%,transparent);text-align:center}
+.count b{display:block;font-family:var(--f-display);font-weight:400;font-size:38px;line-height:1;color:var(--gold);font-variant-numeric:tabular-nums}
+.count small{font-family:var(--f-pixel);font-size:9px;color:var(--muted)}
+.allbtn{display:flex;align-items:center;justify-content:center;gap:8px;width:calc(100% - 36px);margin:18px 18px 0;height:46px;border-radius:14px;border:1px dashed color-mix(in srgb,var(--sa) 70%,transparent);font-weight:700;font-size:13px;letter-spacing:.05em;color:var(--ink);background:rgba(10,6,20,.45)}
+.all{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:14px 10px;margin-top:16px;padding:0 18px}
+.all:empty{display:none}
+.all .pc{animation:tkIn .4s ease-out both;animation-delay:calc(var(--i) * 50ms)}
+.all .pcv{aspect-ratio:3/4}
+.pc b{font-size:13px;line-height:1.25}
+.pc small{color:var(--muted);font-size:11px}
+.pc .pr{font-family:var(--f-display);font-size:18px;color:var(--gold)}
+.pc .x10{font-size:10.5px;color:var(--muted)}
+.pc .btn{justify-self:start;padding:7px 12px;font-size:11.5px}
+.info2{display:grid;gap:10px;padding:0 18px;margin-top:12px}
+.info2 div{padding:14px;border-radius:14px;background:rgba(14,8,28,.75);border:1px solid var(--line)}
+.info2 small{display:block;font-family:var(--f-pixel);font-size:9px;color:var(--muted)}
+.info2 b{font-size:16px}
+.acts2{display:flex;gap:8px;margin:16px 18px 0;flex-wrap:wrap}
+/* no modo fase o titulo grande e do .intro: o h2 do cabecalho fica so pra leitor de tela */
+body.sec #app:not(.site-open) #pop:not(.site) .ph h2{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+@media (max-width:899px){
+  .intro{padding:2px 14px 2px}
+  .chips2,.brands{padding-left:14px;padding-right:14px}
+  .bento,.count,.info2{padding:0 14px}
+  .allbtn{width:calc(100% - 28px);margin-left:14px;margin-right:14px}
+  .all{padding:0 14px}
+  .yrs{padding:2px 14px 8px}
+  .sinfo2{padding:0 14px;min-height:126px}
+  .info2 div{padding:12px}
+}
 </style>
 </head>
 <body>
@@ -377,7 +488,7 @@ body.sec #pop{transform:translate(-50%,0);opacity:1;pointer-events:auto}
   <div class="scene on" data-s="0"><video id="vid" muted playsinline loop autoplay preload="auto" poster="media/hero-poster.jpg"><source src="media/hero.mp4" type="video/mp4"><source src="media/hero.webm" type="video/webm"></video></div>
   <div class="scene" data-s="1"><img src="media/miami.jpg" alt=""></div>
   <div class="scene" data-s="2"><img src="media/cidade.jpg" alt=""></div>
-  <div class="tint"></div><div class="shade"></div>
+  <div class="tint"></div><div class="shade"></div><div class="tintsec" aria-hidden="true"></div>
   <canvas id="waves" aria-hidden="true"></canvas>
 
   <header class="top">
@@ -411,6 +522,8 @@ body.sec #pop{transform:translate(-50%,0);opacity:1;pointer-events:auto}
     <span class="gtat">GTA VI · PRÉ-VENDA · RETIRE 19.11</span>
     <button class="btn gold" id="gtaRes" type="button">Reservar</button>
   </div>
+
+  <div id="ticker" aria-hidden="true"><small>Ofertas da loja</small><div class="tk" id="tkT"></div></div>
 
   <nav class="dock" id="dock" aria-label="Modos da loja"></nav>
   <section id="pop" class="sheet" role="dialog" aria-labelledby="popt"><div class="bob"><div class="card"><div class="inner">
@@ -554,19 +667,118 @@ function pickHighlights(list){
   const s=list.filter(x=>x.img&&seal(x));
   return (s.length>=2?s:list.filter(x=>x.img).slice(-3)).slice(0,3);
 }
+/* ---------- FRASE DE OFERTAS no hero (bloco dos icones + frase) ---------- */
+const tkEl=$('#ticker'),tkT=$('#tkT');
+const TKF=['PS5 Slim por <em>R$ 3.899</em> em 10x','GTA VI: reserve e retire no <em>19.11</em>','Dê seu usado como <em>entrada</em>','Seminovos com <em>3 meses</em> de garantia','Monte seu setup em <em>4 passos</em>'];
+let tki=0;const tkShow=()=>{tkT.innerHTML=TKF[tki].split(' ').map((w,i)=>`<span style="animation-delay:${i*60}ms">${w}&nbsp;</span>`).join('')};
+tkShow();
+setInterval(()=>{if(document.body.classList.contains('sec'))return;tkT.classList.add('out');setTimeout(()=>{tkT.classList.remove('out');tki=(tki+1)%TKF.length;tkShow()},380)},3400);
+
+/* ---------- FASES: cada secao vira uma fase (cor, abertura e vitrine propria) ---------- */
+const AUTO=5000;
+const PH={
+  inicio:{sa:'#d04bff',sb:'#5ef2ff',sc:0,eb:'LOJA · LIMEIRA',tt:'Destaques',rot:['Os mais procurados da semana','Parcele em até 10x sem juros','Troca do seu usado na hora']},
+  jogos:{sa:'#ff3ea5',sb:'#5ef2ff',sc:1,eb:'BIBLIOTECA',tt:'Jogos',rot:['Lançamentos com entrega no dia','Seminovos testados, com garantia','Pré-venda: reserve e retire na loja']},
+  cons:{sa:'#2f6bff',sb:'#5ef2ff',sc:0,eb:'HARDWARE',tt:'Consoles',rot:['Novos e seminovos revisados','Dê seu console usado como entrada','Instalação e teste na retirada']},
+  aces:{sa:'#ff8a3d',sb:'#b44cff',sc:2,eb:'UPGRADE',tt:'Acessórios',rot:['Pra qual console é?','Controles, headsets e armazenamento','Combina com o seu setup']},
+  setup:{sa:'#5ef2ff',sb:'#8b5cf6',sc:0,eb:'MONTADOR',tt:'Seu setup',rot:['Escolha um item de cada passo','O total aparece na hora','Peça tudo de uma vez no WhatsApp']},
+  era:{sa:'#ffd84d',sb:'#ff3ea5',sc:1,eb:'LINHA DO TEMPO',tt:'Era dos Games',rot:['Arraste pelas gerações','Clássicos ainda à venda na loja','Do Pac-Man ao GTA VI']},
+  gta:{sa:'#ff8a3d',sb:'#ff3ea5',sc:2,eb:'PRÉ-VENDA',tt:'GTA VI',rot:['Retire na loja no dia 19.11','Reserve agora e garanta o seu','PS5 e Xbox Series']},
+  ct:{sa:'#25d366',sb:'#5ef2ff',sc:0,eb:'FALE COM A GENTE',tt:'Contato',rot:['Resposta rápida no WhatsApp','Venha testar os consoles na loja']}
+};
+const BRANDC={sony:['#2f6bff','SONY'],ms:['#19c24a','MICROSOFT'],nin:['#ff2d3d','NINTENDO']};
+const brandOf=n=>/playstation|\bps\d/i.test(n)?'sony':/xbox/i.test(n)?'ms':/nintendo|switch/i.test(n)?'nin':'sony';
+const CPF={PlayStation:['playstation','ps5','ps4'],Xbox:['xbox'],Nintendo:['nintendo','switch']};
+const SPECS={'PlayStation 5 Slim':['1 TB','4K · 120 FPS','LEITOR DE DISCO'],'PlayStation 5 Pro':['2 TB','RAY TRACING','8K'],
+ 'Xbox Series X':['1 TB','4K · 120 FPS','GAME PASS'],'Xbox Series S':['512 GB','DIGITAL','1440P'],
+ 'Nintendo Switch 2':['256 GB','TELA 7,9"','PORTÁTIL + TV'],'Nintendo Switch OLED':['64 GB','OLED 7"','PORTÁTIL + TV'],
+ 'PlayStation 5 Standard':['825 GB','REVISADO','3 MESES DE GARANTIA'],'PlayStation 4 Slim':['1 TB','REVISADO','3 MESES DE GARANTIA']};
+const AFC={jogos:'Todos',cons:'sony',aces:'PS5'};
+const ERA_C=['#5ef2ff','#2bd14f','#8b5cf6','#ff3ea5','#ffd84d','#ff8a3d'];
+let PLIST=[],PBID='',T=[];
+const clearT=()=>{T.forEach(id=>{clearInterval(id);clearTimeout(id)});T=[]};
+const laterT=(f,ms)=>{const id=setInterval(f,ms);T.push(id);return id};
+const idxN=n=>Array.from({length:n},(_,i)=>i);
+const lettersT=t=>[...t].map((ch,i)=>ch===' '?`<i style="--i:${i}">&nbsp;</i>`:`<i style="--i:${i}">${esc(ch)}</i>`).join('');
+const introT=(eb,tt,rot)=>`<div class="intro"><div class="eyebrow">${esc(eb)}</div><h2 class="tt">${lettersT(tt)}</h2><div class="rot" data-lines="${esc(rot.join('|'))}"><span>${esc(rot[0])}</span></div></div>`;
+const allBtnT=(list,label)=>`<button class="allbtn" data-all="1" data-label="${esc(label)} (${list.length})">${esc(label)} (${list.length}) ↓</button><div class="all"></div>`;
+const spotT=(ids,mode)=>`<div class="spot ${mode||''}" data-ids="${ids.join(',')}" data-i="0"><div class="stage2"></div><button class="nav2 l" data-sp="-1" aria-label="Anterior">‹</button><button class="nav2 r" data-sp="1" aria-label="Próximo">›</button><div class="sdots"></div><div class="sinfo2"></div></div>`;
+function pv(x){return x.img?`<div class="pcv"><img src="${esc(x.img)}" alt="${esc(x.nome||'')}" loading="lazy" decoding="async">${seal(x)?`<em class="seal">${seal(x)}</em>`:''}</div>`:`<div class="pcv ph">${sv('jogos')}</div>`}
+function pcard(x,k){return `<article class="pc" style="--i:${k}">${pv(x)}<b>${esc(x.nome||'')}</b><small>${esc(x.sub||'')}</small>${x.preco?`<span class="pr">${esc(x.preco)}</span>${parcela(x.preco)}`:''}<button class="btn gold" data-wa>Quero</button></article>`}
+function consList(b){return PLIST.map((x,i)=>({x,i})).filter(o=>brandOf(o.x.nome||'')===b).map(o=>o.i)}
+function jogosList(f){if(f==='Todos')return idxN(Math.min(PLIST.length,6));const m=CPF[f]||[];
+  const r=PLIST.map((x,i)=>({x,i})).filter(o=>m.some(t=>new RegExp(t,'i').test(o.x.sub||''))).slice(0,6).map(o=>o.i);
+  return r.length?r:idxN(Math.min(PLIST.length,6))}
+const hasPlat=(c,list)=>c==='Todos'||(CPF[c]||[]).some(t=>list.some(x=>new RegExp(t,'i').test(x.sub||'')));
+const hasBrand=(b,list)=>list.some(x=>brandOf(x.nome||'')===b);
+function accList(f){const hit=[],rest=[];PLIST.forEach((x,i)=>((new RegExp(f,'i').test((x.sub||'')+' '+(x.nome||'')))?hit:rest).push(i));return hit.concat(rest).slice(0,4)}
+const bentoHTML=(list,ids)=>`<div class="bento">${ids.map((n,k)=>{const x=list[n];return `<button class="bt${k===0?' big':''}" data-wa style="--i:${k}">${x.img?`<img src="${esc(x.img)}" alt="${esc(x.nome||'')}" loading="lazy" decoding="async">`:''}<div class="lb"><b>${esc(x.nome||'')}</b><span>${esc(x.preco||'')}</span></div></button>`}).join('')}</div>`;
+const eraHTML=list=>`<div class="yrs">${list.map((x,k)=>{const y=((x.sub||'').match(/\d{4}/)||[''])[0];
+  return `<article class="yr" style="--c:${ERA_C[k%ERA_C.length]}"><strong>${esc(y)}</strong><b>${esc(x.nome||'')}</b><small>${esc(x.sub||'')}</small>${x.img?`<img src="${esc(x.img)}" alt="${esc(x.nome||'')}" loading="lazy" decoding="async">`:''}</article>`}).join('')}</div>`;
 function render(id){
+  const ph=PH[id];
+  if(!ph)return CONTENT[id]();
+  if(id==='ct')return introT(ph.eb,ph.tt,ph.rot)+`<div class="info2"><div><small>WHATSAPP</small><b>Chama no zap da loja</b></div><div><small>ENDEREÇO</small><b>Limeira · SP</b></div><div><small>HORÁRIO</small><b>Seg a sáb · 9h às 19h</b></div></div><div class="acts2"><button class="btn gold" data-wa>Chamar no WhatsApp</button></div>`;
   const k=KEY[id],list=DATA&&k&&Array.isArray(DATA[k])?DATA[k]:null;
-  if(!list||!list.length)return CONTENT[id]();
-  const m=MODES.find(x=>x.id===id),lead=(DATA.textos&&DATA.textos[k])||'';
-  const dk=id==='setup'||id==='era'||id==='gta'?'arraste pra ver tudo':'arraste pro lado';
-  let out=lead?`<p class="lead">${esc(lead)}</p>`:'';
-  // destaques tirados da propria categoria (nunca repete GTA/Setup/Novos jogos em todo painel)
-  if(list.length>=5){
-    const hl=pickHighlights(list);
-    if(hl.length>=2)return out+shelf('Destaques',hl,m.k,dk)+shelf(m.l,list,m.k,dk);
-  }
-  return out+shelf(m.l,list,m.k,dk);
+  if(!list||!list.length)return introT(ph.eb,ph.tt,ph.rot)+CONTENT[id]();
+  PLIST=list;PBID=id;
+  const out=introT(ph.eb,ph.tt,ph.rot);
+  if(id==='era')return out+eraHTML(list);
+  if(id==='aces')return out+`<div class="chips2">${['PS5','Xbox','Switch'].map(c=>`<button class="chip2" data-acc="${c}" aria-pressed="${AFC.aces===c}">${c}</button>`).join('')}</div>`+bentoHTML(list,accList(AFC.aces))+allBtnT(list,'Ver todos os acessórios');
+  if(id==='cons'){const bs=Object.keys(BRANDC).filter(b=>hasBrand(b,list));if(bs.indexOf(AFC.cons)<0)AFC.cons=bs[0]||'sony';
+    return out+`<div class="brands">${bs.map(b=>`<button class="brand" data-brand="${b}" style="--bc:${BRANDC[b][0]}" aria-pressed="${AFC.cons===b}"><i></i>${BRANDC[b][1]}</button>`).join('')}</div>`+spotT(consList(AFC.cons),'slide')+allBtnT(list,'Ver todos os consoles')}
+  if(id==='jogos'){const cs=['Todos','PlayStation','Xbox','Nintendo'].filter(c=>hasPlat(c,list));if(cs.indexOf(AFC.jogos)<0)AFC.jogos='Todos';
+    return out+`<div class="chips2">${cs.map(c=>`<button class="chip2" data-chip="${c}" aria-pressed="${AFC.jogos===c}">${c}</button>`).join('')}</div>`+spotT(jogosList(AFC.jogos))+allBtnT(list,'Ver todos os jogos')}
+  if(id==='gta')return out+`<div class="count" id="gcount"></div>`+spotT(idxN(Math.min(list.length,6)),'slide')+allBtnT(list,'Ver a pré-venda');
+  return out+spotT(idxN(Math.min(list.length,6)))+allBtnT(list,'Ver tudo');
 }
+function spotDraw(sp,first){
+  const raw=sp.dataset.ids.split(',').filter(v=>v!=='');
+  if(!raw.length){const b=sp.querySelector('.sinfo2');if(b)b.innerHTML='<p class="lead">Nada por aqui ainda.</p>';return}
+  const ids=raw.map(Number),i=Math.max(0,Math.min(+sp.dataset.i,ids.length-1)),slide=sp.classList.contains('slide');
+  const st=sp.querySelector('.stage2');
+  if(first)st.innerHTML=ids.map((n,k)=>`<div class="pv" data-k="${k}"><div class="pc">${pv(PLIST[n])}</div></div>`).join('');
+  st.querySelectorAll('.pv').forEach(el=>{const k=+el.dataset.k-i,a=Math.abs(k);
+    el.style.transform=slide?`translateX(${k*105}%) scale(${a?.82:1})`:`translateX(${k*62}%) translateZ(${-a*120}px) rotateY(${k*-32}deg)`;
+    el.style.opacity=slide?(a?0:1):(a>2?0:1-a*.25);el.style.zIndex=10-a;el.style.filter=a?'brightness(.55)':'none'});
+  const sd=sp.querySelector('.sdots');if(sd)sd.innerHTML=ids.map((_,k)=>`<i class="${k===i?'on':''}"></i>`).join('');
+  sp.querySelectorAll('.nav2').forEach(b=>b.hidden=ids.length<2);
+  const x=PLIST[ids[i]],box=sp.querySelector('.sinfo2');
+  if(!x){box.innerHTML='<p class="lead">Nada por aqui ainda.</p>';return}
+  const spc=SPECS[x.nome]?`<div class="specs">${SPECS[x.nome].map((t,n)=>`<i style="--i:${n}">${esc(t)}</i>`).join('')}</div>`:'';
+  box.innerHTML=`<b class="nm">${esc(x.nome||'')}</b><div class="sb">${esc(x.sub||'')}</div>${spc}${x.preco?`<div class="pr">${esc(x.preco)}</div><div class="pa">${parcela(x.preco)}</div>`:''}<div class="acts"><button class="btn gold" data-wa>Quero</button>${PH[PBID]&&CFG.rota[PBID]?'<button class="btn" data-site>Detalhes</button>':''}</div>`;
+}
+function spotGo(sp,d){const n=sp.dataset.ids.split(',').filter(v=>v!=='').length;if(!n)return;sp.dataset.i=((+sp.dataset.i+d)%n+n)%n;spotDraw(sp);spotArm(sp)}
+function spotArm(sp){clearTimeout(sp._t);if(RM)return;const n=sp.dataset.ids.split(',').filter(v=>v!=='').length;if(n<2)return;sp.style.setProperty('--dur',AUTO+'ms');
+  sp._t=setTimeout(()=>{if(!sp.isConnected)return;if(document.hidden||sp.classList.contains('hold')||$('#pop').classList.contains('site')){spotArm(sp);return}spotGo(sp,1)},AUTO);T.push(sp._t)}
+function afterRender(id){
+  const ph=PH[id];if(!ph)return;
+  PBID=id;root.style.setProperty('--sa',ph.sa);root.style.setProperty('--sb',ph.sb);setScene(ph.sc);
+  pb.querySelectorAll('.spot').forEach(sp=>{
+    spotDraw(sp,true);spotArm(sp);
+    const st=sp.querySelector('.stage2');if(!st)return;let x0=null;
+    st.addEventListener('pointerdown',e=>{x0=e.clientX;sp.classList.add('hold')});
+    ['pointerup','pointercancel','pointerleave'].forEach(ev=>st.addEventListener(ev,()=>sp.classList.remove('hold')));
+    st.addEventListener('pointerup',e=>{if(x0===null)return;const dx=e.clientX-x0;x0=null;
+      if(Math.abs(dx)>40){spotGo(sp,dx<0?1:-1);return}
+      const it=e.target.closest('.pv');if(!it)return;const k=+it.dataset.k-+sp.dataset.i;
+      if(k){spotGo(sp,k);return}
+      const x=PLIST[+sp.dataset.ids.split(',')[+sp.dataset.i]];
+      if(!x)return;
+      if(CFG.rota[PBID])openSiteNow();else openWA(CFG.waMsg+' Tenho interesse em: '+x.nome)});
+  });
+  const rotEl=pb.querySelector('.rot');
+  if(rotEl){const L=rotEl.dataset.lines.split('|');let n=0;
+    if(L.length>1)laterT(()=>{const s0=rotEl.firstElementChild;if(!s0)return;s0.classList.add('out');
+      setTimeout(()=>{n=(n+1)%L.length;rotEl.innerHTML=`<span>${esc(L[n])}</span>`},300)},2800)}
+  const cd=pb.querySelector('#gcount');
+  if(cd){const tick=()=>{const t=new Date(2026,10,19,0,0,0)-Date.now(),d=Math.max(0,t);
+      cd.innerHTML=[[Math.floor(d/864e5),'DIAS'],[Math.floor(d/36e5)%24,'HORAS'],[Math.floor(d/6e4)%60,'MIN']].map(([v,l])=>`<div><b>${String(v).padStart(2,'0')}</b><small>${l}</small></div>`).join('')};
+    tick();laterT(tick,30000)}
+}
+function toggleAll(b){const box=b.nextElementSibling;if(!box)return;
+  if(box.innerHTML){box.innerHTML='';b.textContent=b.dataset.label+' ↓';return}
+  box.innerHTML=PLIST.map((x,i)=>pcard(x,i)).join('');b.textContent=b.dataset.label+' ↑'}
 function shRow(sc,one){const sh=sc.closest('.shelf');if(!sh)return;
   sh.querySelectorAll('.snav').forEach(b=>b.style.display=one?'none':'');
   sc.style.justifyContent=one?'center':''}
@@ -602,11 +814,11 @@ function makeInfinite(sc,auto=true){
   const t0=performance.now();
   const later=()=>{if(sc.__ro!==ro)return;if(performance.now()-t0<520)setTimeout(later,120);else evalRow(sc,auto,true)};
   setTimeout(later,120)}
-function fillPB(id){pb.querySelectorAll('.srow').forEach(r=>{r.__ro&&r.__ro.disconnect();r.__ro=null});pb.innerHTML=render(id);pb.scrollTop=0;const ob=$('#popOpen');if(ob)ob.hidden=!CFG.rota[id];
+function fillPB(id){clearT();pb.querySelectorAll('.srow').forEach(r=>{r.__ro&&r.__ro.disconnect();r.__ro=null});pb.innerHTML=render(id);pb.scrollTop=0;const ob=$('#popOpen');if(ob)ob.hidden=!CFG.rota[id];
   const pc=$('#pcount');
-  if(pc){const k=KEY[id],n=DATA&&k&&Array.isArray(DATA[k])?DATA[k].length:pb.querySelectorAll('.sp,.it').length;
-    pc.textContent=n+' itens'+(pb.querySelector('.srow')&&!MOB()?' · arraste pro lado':'')}
-  placeArc();pb.querySelectorAll('.srow').forEach(r=>makeInfinite(r))}
+  if(pc){const k=KEY[id],n=DATA&&k&&Array.isArray(DATA[k])?DATA[k].length:pb.querySelectorAll('.sp,.it,.pv').length;
+    pc.textContent=n?n+' itens'+(pb.querySelector('.srow')&&!MOB()?' · arraste pro lado':''):''}
+  placeArc();pb.querySelectorAll('.srow').forEach(r=>makeInfinite(r));afterRender(id)}
 
 /* ---------- card de destaque ---------- */
 const FEAT=[
@@ -665,20 +877,18 @@ const pop=$('#pop'),pb=$('#pb'),inner=pop.querySelector('.inner'),hintEl=$('#pul
 const ifr=$('#ifr'),pf=$('#pf'),pfl=$('#pfl');
 let curMode=null;
 
-let secTopR=0;
-function syncSecTop(){cancelAnimationFrame(secTopR);secTopR=requestAnimationFrame(()=>{const t=$('.top');if(!t)return;root.style.setProperty('--sectop',Math.round(t.getBoundingClientRect().bottom+8)+'px')})}
+function syncSecTop(){const t=$('.top');if(!t)return;
+  const tb=Math.round(t.getBoundingClientRect().bottom),gh=$('#gtabar')?$('#gtabar').offsetHeight:50;
+  root.style.setProperty('--gtatop',tb+'px');root.style.setProperty('--sectop',(tb+gh+8)+'px')}
 function layoutDock(){
+  if(document.body.classList.contains('sec')){syncSecTop();return}
   const hb=$('#hero')?$('#hero').getBoundingClientRect().bottom:0;
-  const gap=Math.max(10,Math.round(innerHeight*.03)),avail=Math.max(170,innerHeight-hb-gap);
-  root.style.setProperty('--docktop',Math.round(hb)+'px');
-  root.style.setProperty('--dockhh',Math.round(avail)+'px');
-  void dock.offsetWidth;
-  // ondas logo acima dos ícones (mede a 1ª linha depois do layout)
-  if(!document.body.classList.contains('sec')){
-    const dr=dock.getBoundingClientRect();
-    const top=tiles.length?dr.top+tiles[0].offsetTop:hb;
-    root.style.setProperty('--wavesy',Math.round(top-(MOB()?84:114))+'px');
-  }else syncSecTop();
+  const dh=dock.offsetHeight,th=(tkEl?tkEl.offsetHeight:0)+26,free=innerHeight-hb-10;
+  let top=hb+Math.round((free-dh-th)/2);
+  top=Math.max(hb+8,Math.min(top,innerHeight-dh-th-8));
+  root.style.setProperty('--docktop',Math.round(top)+'px');
+  root.style.setProperty('--ticktop',Math.round(top+dh+26)+'px');
+  root.style.setProperty('--wavesy',Math.round(top-(MOB()?84:114))+'px');
 }
 function enterTiles(){
   tiles.forEach((t,i)=>t.style.setProperty('--td',(i*60)+'ms'));
@@ -701,7 +911,7 @@ function fill(id){const i=MODES.findIndex(m=>m.id===id);if(i<0)return;
   if(!RM)pop.animate([{opacity:.25},{opacity:1}],{duration:200,easing:'ease'})}
 function goSec(id,hist){
   const i=MODES.findIndex(m=>m.id===id);if(i<0)return;
-  const was=document.body.classList.contains('sec');curMode=id;
+  const was=document.body.classList.contains('sec');curMode=id;clearInterval(stimer);syncSecTop();
   const apply=()=>{document.body.classList.add('sec');fill(id)};
   was?apply():flipTiles(apply);
   if(hist==='push')history.pushState({r:id},'','#'+id);
@@ -714,6 +924,7 @@ function goSec(id,hist){
 function resetPull(){inner.style.transition='transform .3s ease';inner.style.transform='';if(hintEl)hintEl.style.opacity='0'}
 function goHero(){
   if(!document.body.classList.contains('sec'))return;
+  clearT();restart();
   pop.classList.remove('site');pf.hidden=true;app.classList.remove('site-open');
   flipTiles(()=>document.body.classList.remove('sec'));
   curMode=null;tiles.forEach(t=>t.classList.remove('cur'));
@@ -836,7 +1047,7 @@ const Waves=(()=>{
 
 /* ---------- mini arcade + dica da primeira visita ---------- */
 const heroIn=$('#heroIn'),arcBox=$('#arcBox'),arcF=$('#arcF'),arcRec=$('#arcRec');
-function placeArc(){if(!arcBox)return;const t=MOB()?pb:heroIn;if(arcBox.parentElement!==t)t.appendChild(arcBox)}
+function placeArc(){if(!arcBox||getComputedStyle(arcBox).display==='none')return;const t=MOB()?pb:heroIn;if(arcBox.parentElement!==t)t.appendChild(arcBox)}
 function syncRec(){try{const w=arcF.contentWindow;if(w&&w.__astroRec!=null)arcRec.textContent=String(w.__astroRec)}catch(e){}}
 arcF.addEventListener('load',syncRec);setInterval(syncRec,2000);syncRec();
 $('#arcFull').onclick=()=>{try{arcF.requestFullscreen&&arcF.requestFullscreen()}catch(e){}};
@@ -844,8 +1055,14 @@ placeArc();   // celular: o arcade ja nasce como secao ARCADE dentro do painel
 
 function openWA(msg){if(/X{4}/.test(CFG.wa)){toast('Coloque o número do WhatsApp em CFG.wa pra este botão funcionar.');return}window.open(CFG.wa+'?text='+encodeURIComponent(msg||CFG.waMsg),'_blank','noopener')}
 document.addEventListener('click',e=>{const nv=e.target.closest('[data-snav]');if(nv){const row=nv.parentElement.querySelector('.srow');if(row)row.scrollBy({left:(nv.dataset.snav==='r'?1:-1)*Math.round(row.clientWidth*.8),behavior:RM?'auto':'smooth'});return}
+const spv=e.target.closest('[data-sp]');if(spv){const s2=spv.closest('.spot');if(s2)spotGo(s2,+spv.dataset.sp);return}
+const br=e.target.closest('[data-brand]');if(br){AFC.cons=br.dataset.brand;fill(curMode);return}
+const ac=e.target.closest('[data-acc]');if(ac){AFC.aces=ac.dataset.acc;fill(curMode);return}
+const cj=e.target.closest('[data-chip]');if(cj){AFC.jogos=cj.dataset.chip;fill(curMode);return}
+const ab=e.target.closest('[data-all]');if(ab){toggleAll(ab);return}
+const dsb=e.target.closest('[data-site]');if(dsb){if(curMode&&CFG.rota[curMode])openSiteNow();return}
 const go=e.target.closest('[data-go]');if(go){const a=go.dataset.go;if(a==='radio')Radio.toggle();else if(a&&a.indexOf('mode:')===0)openModeFull(a.slice(5));else openWA();return}
-const w=e.target.closest('[data-wa]');if(w){const n=w.closest('.it,.sp');openWA(n?(CFG.waMsg+' Tenho interesse em: '+(n.querySelector('b')||{textContent:''}).textContent):null)}});
+const w=e.target.closest('[data-wa]');if(w){const n=w.closest('.it,.sp,.pc,.pv,.bt');openWA(n?(CFG.waMsg+' Tenho interesse em: '+(n.querySelector('b')||{textContent:''}).textContent):null)}});
 // carrinho: abre o carrinho do site atual e mostra a contagem dele aqui em cima
 $('#cartBtn').onclick=()=>{const cur=curMode&&CFG.rota[curMode]?curMode:'jogos';openModeFull(cur);
   const tryOpen=()=>{try{const d=ifr.contentDocument,n=d&&d.getElementById('cartN'),b=n&&n.closest('button,a,[role=button]');if(b){b.click();return true}}catch(e){}return false};
