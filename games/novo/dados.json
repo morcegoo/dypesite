@@ -313,5 +313,18 @@
       "sub": "Arte oficial",
       "img": "../media/gta/panels/palmeiras.webp"
     }
-  ]
+  ],
+  "tcg": [
+    {"nome": "ETB Mega Evolução", "sub": "Pokémon TCG · lacrada", "preco": "R$ 399,90", "img": "../assets/inline/inline-0a30dc40c4.webp"},
+    {"nome": "ETB Phantasmal Flames", "sub": "Pokémon TCG · Mega Charizard X", "preco": "R$ 449,90", "img": "../assets/inline/inline-aeb90e2332.webp"},
+    {"nome": "ETB Ascended Heroes", "sub": "Pokémon TCG · Dragonite", "preco": "R$ 499,90", "img": "../assets/inline/inline-3f78c6185e.webp"},
+    {"nome": "Coleção Mega Charizard X", "sub": "Pokémon TCG · box especial", "preco": "R$ 599,90", "img": "../assets/inline/inline-359491368f.webp"},
+    {"nome": "Kit 3 boosters Phantasmal Flames", "sub": "Pokémon TCG · 3 pacotes", "preco": "R$ 99,90", "img": "../assets/inline/inline-5638794a79.webp"},
+    {"nome": "Booster Brilliant Stars", "sub": "Pokémon TCG · 10 cartas", "preco": "R$ 39,90", "img": "../assets/inline/inline-22fb4337d3.webp"},
+    {"nome": "Booster avulso", "sub": "Coleção atual · 10 cartas", "preco": "R$ 29,90", "img": "../assets/inline/inline-29d8bb0736.webp"},
+    {"nome": "Booster box", "sub": "Coleção atual · 36 boosters", "preco": "R$ 899,00", "img": "../assets/inline/inline-c5ac1ce582.webp"},
+    {"nome": "Deck inicial", "sub": "Pra começar · 60 cartas", "preco": "R$ 119,90", "img": "../assets/inline/inline-ccaeba03bd.webp"},
+    {"nome": "Kit de dados", "sub": "Acessório · 6 dados", "preco": "R$ 34,90", "img": "../assets/inline/inline-9578a30c0b.webp"}
+  ],
+  "tcgTorneio": {"titulo": "Próximo torneio", "quando": "Toda sexta · 19h", "texto": "Noite de torneio de Pokémon TCG. Traga seu deck que a gente ensina.", "img": "../assets/inline/inline-cd9d96523f.webp"}
 }

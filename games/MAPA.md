@@ -100,3 +100,27 @@ Contato não é aba: está no `footer.foot` + WhatsApp (`var WA`).
 - O painel (`#pop`) vive dentro de `max-width:1200px`; no desktop o `targetRect` devolve `w=min(innerWidth,1200)` centrado.
 - `games/novo/arcade/astro.html` é o mini arcade próprio (jogo "Astro", recorde em `localStorage.astroRec`). Se existir um arcade oficial, é só subir por cima desse caminho.
 - Regra de ouro: não alterar `games/index.html` sem pedido explícito.
+
+## games/novo/index.html — parte 3 (TCG, banners do hero, topo, montador, fotos)
+| item | linha | seletor / função |
+|---|---|---|
+| **CSS parte 3** | 483-520 | `.fdots i.on::after` (barra de progresso do banner) · `.tile.cards` (ícone TCG, `--c:#7ff6ff`/`--ex:#8b5cf6`) · `.pcount` (rótulo pixel `#e8dcff` + bolinha `--sa`) · `.tor` (card do torneio) · `.steps/.step/.opts/.opt/.total` (montador) · `.pcv img.bg|img.fg` e `.bt img.bg|img.fg` (foto: fundo desfocado + produto inteiro) |
+| ícone de cartas | 592 | `I.tcg` (dois retângulos sobrepostos) |
+| dados extras | 646 | `KEY.tcg` + `fetch('dados.json')` chama `suBuild()` |
+| **fase TCG** | 721 | `PH.tcg` (`--sa:#2ee6c8` `--sb:#8b5cf6`, eb `CARTAS`, tt `TCG`, 3 frases) |
+| rótulos do topo | 749 | `LAB` (CARTAS/BIBLIOTECA/HARDWARE/ACESSÓRIOS/MONTADOR/LINHA DO TEMPO/PRÉ-VENDA/CONTATO) |
+| chips + torneio TCG | 750-755 | `TCG_CHIPS` · `tcgList(f)` · `torHTML(t)` |
+| **montador de setup** | 756-765 | `SU` (escolhas) · `SUP` (4 passos) · `suBuild()` (junta `setup` + Teclado/Mouse de `acessorios`) · `suTotal()` · `stepsHTML()` · `#suT` · `#suGo` |
+| foto desfocada + contain | 766 / 775 | `pv(x)` → `<img class="bg">` + `<img class="fg">` · `bentoHTML` idem |
+| render: setup/tcg | 778-800 | `if(id==='setup')` → `stepsHTML()` (sem carrossel) · `if(id==='tcg')` → `torHTML(DATA.tcgTorneio)` + chips `data-tcg` + `spotT(tcgList)` + "Ver todas as cartas" |
+| topo da seção | 880 | `fillPB(id)` → `#pcount` = `<i></i>ROTULO · N ITENS` (N do `dados.json`) · `#popOpen` ("Site completo") só quando `id==='ct'` |
+| **banners do hero** | 887-911 | `FEAT` (4: GTA VI / TCG / Consoles / Setup) · `showFeat(i)` (bolinhas + `--dur` + atualiza `#gtabar`) · `fArm()` (auto 5 s) · `openBanner(m)` (toque em qualquer ponto = `goSec`) |
+| dock | 913 | `MODES` — o 1º item virou `{id:'tcg',l:'TCG',k:'tcg',c:'cards'}`; `Início` saiu (o logo volta pro hero) |
+| delegação | 1142-1144 | `[data-su]` (montador) · `#suGo` (WhatsApp com itens + total) · `[data-tcg]` (chips) |
+
+### Avisos da parte 3
+- **TCG** usa `DATA.tcg` (10 itens) e `DATA.tcgTorneio`, ambos reais do site antigo, agora no `dados.json`; não existe chip de Magic/Yu-Gi-Oh/One Piece porque não há dados.
+- O banner do hero **não** abre mais o site antigo por cima: toque = `goSec` (mesma animação FLIP dos ícones). O site real continua no botão "Detalhes" da ficha.
+- `#gtabar` mostra o banner atual (`FEAT[fi].bar`), inclusive o botão (`barB`).
+- `CONTENT.tcg` existe como fallback caso o `dados.json` ainda não tenha carregado (link direto `#tcg`).
+- Fotos: sempre **duas** `<img>` na mesma moldura (`bg` com `blur(18px) brightness(.45) saturate(1.3)` em `cover`, `fg` em `contain`).
