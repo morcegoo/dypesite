@@ -124,3 +124,19 @@ Contato não é aba: está no `footer.foot` + WhatsApp (`var WA`).
 - `#gtabar` mostra o banner atual (`FEAT[fi].bar`), inclusive o botão (`barB`).
 - `CONTENT.tcg` existe como fallback caso o `dados.json` ainda não tenha carregado (link direto `#tcg`).
 - Fotos: sempre **duas** `<img>` na mesma moldura (`bg` com `blur(18px) brightness(.45) saturate(1.3)` em `cover`, `fg` em `contain`).
+
+## games/novo/index.html — parte 4 (standby + ícones grandes + reação ao toque)
+| item | linha | seletor / função |
+|---|---|---|
+| **CSS parte 4** | 523-545 | ícone grande no hero (`body:not(.sec) .tile svg`, `clamp(32px,8.4vw,46px)`) · `.tile .ink` (camada que magnetiza/dorme, com `--mx/--my/--ms/--wd`) · `body.idle:not(.sec)` (some + `pointer-events:none`) · `.tile.near` / `.tile.bump` / `@keyframes wob` · `#wake` (anel + "TOQUE NA TELA") |
+| aviso de standby | 584 | `<div id="wake">` logo depois do `#dock` |
+| **ripple com raio** | 652 / 694 / 686 | uniform `RS[10]` (raio por onda) + `ripple(x,y,str,rad)` — `rad=1` deixa a onda **idêntica** à atual; o standby usa `rad=4` |
+| dock: camada `.ink` | 935 | `dock.innerHTML` → `<span class="ink"><span class="fx">…` (o `em.new` foi pra dentro do `.ink`) |
+| **standby (JS)** | 1034-1063 | `idleT/ICONS/wokeAt` · `measureIcons()` · `magnet(px,py)` (raio 150 px, puxa até 12 px, `--ms` 1.16) · `sleepIcons()` · `armIdle()` (10 s) · `wake(px,py)` (onda grande + `--wd` por distância + `bump`) · trava de clique pós-wake (450 ms) |
+| modo seção | 973/1028 | `goSec()` limpa o standby · `goHero()` + init re-armam (`armIdle()`), e o hero nasce dormindo (`sleepIcons()`) |
+
+### Avisos da parte 4
+- **A água (WebGL) não mudou**: o `ripple` ganhou só um 4º parâmetro opcional de raio, com multiplicador `1` por padrão — a matemática do shader em `rr=1` é idêntica (`*1` e `/1`).
+- O standby vale **só no hero** (`body.idle:not(.sec)`); ao entrar numa seção o `idle` é limpo e o timer desligado.
+- O **primeiro toque** só acorda (não abre seção): há um `click` em fase de captura que engole cliques até 450 ms depois do wake.
+- O `NOVO` do badge agora vive dentro do `.ink`, então dorme junto com o ícone.
