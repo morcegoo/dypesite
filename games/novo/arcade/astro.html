@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Astro · mini arcade</title>
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:#07030f;overflow:hidden;color:#f7f1ff;
+    font-family:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;-webkit-user-select:none;user-select:none;touch-action:none}
+  body.embed{background:transparent}
+  #c{position:absolute;inset:0;width:100%;height:100%;display:block}
+  #hint{position:absolute;top:7px;left:9px;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(247,241,255,.4);pointer-events:none}
+  body.mini #hint{display:none}
+  #hud{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:7px 10px;pointer-events:none;
+    font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(247,241,255,.6)}
+  #hud b{font-size:15px;color:#ffe36e;font-variant-numeric:tabular-nums}
+  #rc{font-variant-numeric:tabular-nums}
+  #ov{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:9px;text-align:center;padding:14px;
+    background:radial-gradient(130% 120% at 50% 0%,rgba(180,76,255,.22),rgba(7,3,15,.88) 64%);transition:opacity .25s}
+  #ov.off{opacity:0;pointer-events:none}
+  #ov h1{margin:0;font-family:Anton,Impact,'Arial Narrow',sans-serif;font-weight:400;font-size:clamp(26px,8vw,46px);letter-spacing:.06em;color:#ffe36e;text-shadow:0 0 20px rgba(255,227,110,.45)}
+  #ov p{margin:0;font-size:clamp(11px,2.8vw,13px);line-height:1.6;color:rgba(247,241,255,.75)}
+  #ov b{color:#ffe36e}
+  #ov button{margin-top:4px;border:0;border-radius:999px;padding:11px 26px;background:#ffe36e;color:#1b0f02;font:inherit;font-weight:800;font-size:14px;letter-spacing:.04em;cursor:pointer}
+  #ov button:active{transform:scale(.96)}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="hint">Astro · desvie e colete</div>
+<div id="hud"><span>Pontos <b id="sc">0</b></span><span id="rc">Recorde 0</span></div>
+<div id="ov"><h1>ASTRO</h1><p>Arraste o dedo (ou use ← →)<br>pra desviar e pegar os núcleos dourados.</p><button id="go">Jogar</button></div>
+<script>
+(()=>{
+const q=new URLSearchParams(location.search);
+if(q.get('embed')==='1')document.body.classList.add('embed');
+if(q.get('mini')==='1')document.body.classList.add('mini');
+const cv=document.getElementById('c'),x=cv.getContext('2d'),ov=document.getElementById('ov');
+const scEl=document.getElementById('sc'),rcEl=document.getElementById('rc'),btn=document.getElementById('go');
+const KEY='astroRec';let rec=0;try{rec=parseInt(localStorage.getItem(KEY))||0}catch(e){}
+window.__astroRec=rec;rcEl.textContent='Recorde '+rec;
+let W=1,H=1,d=1;function size(){d=Math.min(2,devicePixelRatio||1);W=cv.clientWidth||1;H=cv.clientHeight||1;cv.width=W*d;cv.height=H*d}
+addEventListener('resize',size);size();
+let playing=false,score=0,shipX=.5,ptr=null,auto=true,speed=1,tR=.5,tC=1.2
+let rocks=[],cores=[],stars=[];
+for(let i=0;i<64;i++)stars.push([Math.random(),Math.random(),.2+Math.random()*.8]);
+const held={};
+addEventListener('keydown',e=>{const k=e.key;if(k==='ArrowLeft'||k==='a')held.l=1;if(k==='ArrowRight'||k==='d')held.r=1});
+addEventListener('keyup',e=>{const k=e.key;if(k==='ArrowLeft'||k==='a')held.l=0;if(k==='ArrowRight'||k==='d')held.r=0});
+cv.addEventListener('pointermove',e=>{ptr=e.offsetX/W;auto=false});
+cv.addEventListener('pointerdown',e=>{ptr=e.offsetX/W;auto=false});
+function start(){playing=true;score=0;shipX=.5;speed=1;tR=.5;tC=1.2;rocks=[];cores=[];ptr=null;auto=true;scEl.textContent='0';ov.classList.add('off')}
+function end(){playing=false;auto=true;ptr=null;
+  if(score>rec){rec=score;window.__astroRec=rec;rcEl.textContent='Recorde '+rec;try{localStorage.setItem(KEY,rec)}catch(e){}}
+  ov.querySelector('h1').textContent='FIM';
+  ov.querySelector('p').innerHTML='Você fez <b>'+score+'</b> pontos<br>Recorde: '+rec;
+  btn.textContent='Jogar de novo';ov.classList.remove('off')}
+btn.onclick=start;
+function spawnRock(){rocks.push({x:.08+Math.random()*.84,y:-.12,r:.05+Math.random()*.035,v:.36+Math.random()*.4,a:Math.random()*6.28,s:(Math.random()-.5)*2})}
+function spawnCore(){cores.push({x:.08+Math.random()*.84,y:-.12,r:.028,v:.3+Math.random()*.18,p:Math.random()*6.28})}
+let last=performance.now();
+function loop(now){
+  requestAnimationFrame(loop);
+  const dt=Math.min(.05,(now-last)/1000);last=now;speed=Math.min(2.4,speed+dt*.05);
+  // estrelas de fundo (parallax)
+  x.setTransform(d,0,0,d,0,0);x.clearRect(0,0,W,H);
+  stars.forEach(s=>{s[1]+=dt*.05*s[2]*speed;if(s[1]>1){s[1]-=1;s[0]=Math.random()}
+    x.globalAlpha=.16+s[2]*.4;x.fillStyle='#cfb6ff';x.fillRect(s[0]*W,s[1]*H,1.2*s[2]+.4,1.2*s[2]+.4)});
+  x.globalAlpha=1;
+  if(playing){
+    if(ptr!=null)shipX+=(ptr-shipX)*Math.min(1,dt*14);
+    if(held.l)shipX-=dt*1.1;if(held.r)shipX+=dt*1.1;
+    if(auto){let tx=.5,bd=9;const cand=cores.concat([]);
+      if(cand.length){cand.forEach(c=>{if(c.y<.9&&Math.abs(c.x-shipX)<bd){bd=Math.abs(c.x-shipX);tx=c.x}})}else tx=.5+Math.sin(now/900)*.28;
+      shipX+=(tx-shipX)*Math.min(1,dt*4)}
+    shipX=Math.max(.06,Math.min(.94,shipX));
+    tR-=dt;tC-=dt;
+    if(tR<=0){spawnRock();spawnRock();tR=Math.max(.26,.72-speed*.16)}
+    if(tC<=0){spawnCore();tC=Math.max(.5,1.5-speed*.25)}
+    rocks.forEach(o=>o.y+=o.v*dt*speed);
+    cores.forEach(o=>{o.y+=o.v*dt*speed;o.p+=dt*6});
+    const sy=.87,sr=.045;
+    for(let i=rocks.length-1;i>=0;i--){const o=rocks[i];if(o.y>1.15){rocks.splice(i,1);continue}
+      if(Math.hypot((o.x-shipX)*1.35,o.y-sy)<o.r+sr){end();return}}
+    for(let i=cores.length-1;i>=0;i--){const o=cores[i];if(o.y>1.15){cores.splice(i,1);continue}
+      if(Math.hypot((o.x-shipX)*1.35,o.y-sy)<o.r+sr+.02){cores.splice(i,1);score++;scEl.textContent=score}}
+  }
+  // desenha coletáveis
+  cores.forEach(o=>{const px=o.x*W,py=o.y*H,r=Math.max(3,o.r*H),g=.6+Math.sin(o.p)*.4;
+    x.shadowBlur=18;x.shadowColor='rgba(255,227,110,.9)';x.fillStyle='#ffe36e';
+    x.beginPath();x.arc(px,py,r*(1+g*.15),0,6.29);x.fill();
+    x.lineWidth=1.4;x.strokeStyle='rgba(255,255,255,'+(.35+g*.3)+')';x.stroke();x.shadowBlur=0});
+  // desenha pedras
+  rocks.forEach(o=>{const px=o.x*W,py=o.y*H,r=Math.max(6,o.r*H);o.a+=0.01;
+    x.save();x.translate(px,py);x.rotate(o.a);x.beginPath();
+    for(let i=0;i<7;i++){const ang=i/7*6.283,rr=r*(.72+.3*Math.sin(i*2.1+o.s*.7));i?x.lineTo(Math.cos(ang)*rr,Math.sin(ang)*rr):x.moveTo(Math.cos(ang)*rr,Math.sin(ang)*rr)}
+    x.closePath();x.fillStyle='#2a1740';x.fill();x.lineWidth=1.4;x.strokeStyle='rgba(180,76,255,.85)';x.stroke();x.restore()});
+  // nave
+  const px=shipX*W,py=.87*H,s=Math.max(9,H*.05);
+  x.save();x.translate(px,py);x.shadowBlur=16;x.shadowColor='rgba(94,242,255,.9)';
+  x.fillStyle='#e8fbff';x.beginPath();x.moveTo(0,-s);x.lineTo(s*.78,s*.72);x.lineTo(0,s*.34);x.lineTo(-s*.78,s*.72);x.closePath();x.fill();
+  x.shadowBlur=0;x.fillStyle='rgba(180,76,255,.9)';x.beginPath();x.moveTo(0,-s*.4);x.lineTo(s*.3,s*.4);x.lineTo(-s*.3,s*.4);x.closePath();x.fill();
+  x.globalAlpha=.5+Math.random()*.4;x.fillStyle='#5ef2ff';x.beginPath();x.moveTo(-s*.3,s*.6);x.lineTo(s*.3,s*.6);x.lineTo(0,s*(1.1+Math.random()*.5));x.closePath();x.fill();
+  x.globalAlpha=1;x.restore();
+}
+requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>

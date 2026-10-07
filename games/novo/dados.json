@@ -24,7 +24,7 @@
       "p": "Console + controle + headset",
       "b": "Montar agora",
       "act": "mode:setup",
-      "img": "../media/bg-best.webp"
+      "img": "../assets/inline/inline-baf3927db0.webp"
     },
     {
       "tag": "Lançamento",
@@ -33,7 +33,7 @@
       "p": "NBA 2K27, Spider-Man 2 e mais",
       "b": "Ver jogos",
       "act": "mode:jogos",
-      "img": "../media/bg-cat.webp"
+      "img": "../media/novos-jogos.webp"
     }
   ],
   "jogos": [

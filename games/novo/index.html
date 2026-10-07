@@ -18,7 +18,7 @@
   --f-display:Anton,Impact,'Arial Narrow',sans-serif;
   --f-body:'Plus Jakarta Sans',system-ui,sans-serif;
   --f-pixel:'Press Start 2P',ui-monospace,monospace;
-  --dockh:112px;
+  --dockh:112px; --wrap:1200px; --pad:24px;
   color-scheme:dark;
   transition:--a1 1.4s ease,--a2 1.4s ease;
 }
@@ -43,7 +43,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .tint{position:absolute;inset:0;pointer-events:none;mix-blend-mode:soft-light;background:radial-gradient(70% 60% at 80% 100%,var(--a1),transparent 70%),radial-gradient(50% 50% at 0% 0%,var(--a2),transparent 70%);opacity:.5}
 
 /* topo */
-.top{position:absolute;left:0;right:0;top:0;padding:calc(18px + env(safe-area-inset-top,0px)) 28px 0;display:flex;justify-content:space-between;align-items:flex-start;z-index:6}
+.top{position:absolute;left:50%;transform:translateX(-50%);width:100%;max-width:var(--wrap);top:0;padding:calc(18px + env(safe-area-inset-top,0px)) var(--pad) 0;display:flex;justify-content:space-between;align-items:flex-start;z-index:9}
 .logo b{display:block;font-family:var(--f-display);font-weight:400;font-size:44px;line-height:.9;letter-spacing:.02em;text-shadow:0 2px 20px rgba(0,0,0,.5)}
 .logo b span{color:var(--gold)}
 .logo small{color:var(--muted);font-size:11px}
@@ -60,7 +60,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .eq i{width:3px;height:3px;border-radius:1px;background:var(--gold);transition:height .08s}
 
 /* card de destaque */
-.feat{position:absolute;left:28px;top:150px;width:min(420px,34vw);z-index:5;filter:drop-shadow(0 0 10px var(--a1)) drop-shadow(0 0 26px color-mix(in srgb,var(--a2) 70%,transparent));cursor:pointer}
+.feat{position:relative;width:100%;min-width:0;z-index:5;filter:drop-shadow(0 0 10px var(--a1)) drop-shadow(0 0 26px color-mix(in srgb,var(--a2) 70%,transparent));cursor:pointer}
 .feat .frame{position:relative;padding:3px;clip-path:polygon(7% 0,100% 0,84% 100%,6% 100%,0 92%,0 9%);background:conic-gradient(from var(--ang),var(--a1),var(--a2),#ff8a3d,var(--a1));animation:spin 6s linear infinite}
 @keyframes spin{to{--ang:360deg}}
 .feat .in{clip-path:polygon(7% 0,100% 0,84% 100%,6% 100%,0 92%,0 9%);background:linear-gradient(160deg,rgba(26,8,36,.94),rgba(9,4,16,.96));padding:26px 22% 26px 30px;min-height:290px;display:grid;align-content:center;gap:10px;position:relative;overflow:hidden}
@@ -85,13 +85,29 @@ button{font:inherit;color:inherit;cursor:pointer}
 #waves{position:absolute;left:0;right:0;bottom:calc(var(--dockh) + 4px);height:120px;width:100%;pointer-events:none;z-index:3}
 
 /* cenas: seletor */
-.scenes{position:absolute;right:28px;bottom:calc(var(--dockh) + 22px);z-index:5;display:flex;gap:8px;align-items:center}
+.scenes{align-self:flex-start;display:flex;gap:8px;align-items:center;z-index:5}
 .scenes button{width:44px;height:28px;border-radius:8px;border:1.5px solid var(--line);background-size:cover;background-position:center;opacity:.7;transition:opacity .2s,border-color .2s,transform .2s}
 .scenes button.on{opacity:1;border-color:var(--gold);transform:translateY(-2px)}
 .scenes span{color:var(--muted);margin-right:4px}
 
+/* hero em 2 colunas + mini arcade */
+.hero{position:absolute;left:50%;transform:translateX(-50%);top:calc(74px + env(safe-area-inset-top,0px));width:100%;max-width:var(--wrap);padding:0 var(--pad);z-index:4}
+.hero-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:32px;align-items:center;height:min(62vh,560px);max-height:calc(100vh - 390px)}
+.hero-col{display:flex;flex-direction:column;gap:14px;justify-content:center;min-width:0}
+.arc{display:flex;flex-direction:column;gap:10px;min-width:0}
+.arc-h{margin:0;color:var(--muted);letter-spacing:.2em}
+.arc-frame{position:relative;aspect-ratio:16/9;background:#07030f;overflow:hidden;filter:drop-shadow(0 0 16px color-mix(in srgb,var(--a1) 45%,transparent));
+  clip-path:polygon(18px 0,100% 0,100% calc(100% - 18px),calc(100% - 18px) 100%,0 100%,0 18px);
+  box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--a1) 90%,transparent),inset 0 0 26px color-mix(in srgb,var(--a1) 20%,transparent)}
+.arc-frame iframe{width:100%;height:100%;border:0;display:block;background:#07030f}
+.arc-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.arc-bar .px{color:var(--muted)}
+.arc-bar b{color:var(--gold)}
+.arc .btn{padding:8px 14px;font-size:12px}
+#pop .arc{background:rgba(8,4,18,.35);border:1.5px solid rgba(255,255,255,.6);border-radius:14px;padding:12px;box-shadow:0 0 16px color-mix(in srgb,var(--a1) 45%,transparent)}
+
 /* barra de modos */
-.dock{position:absolute;left:0;right:0;bottom:0;height:var(--dockh);padding:12px 22px calc(14px + env(safe-area-inset-bottom,0px));display:grid;grid-template-columns:repeat(8,1fr);gap:12px;z-index:7;background:linear-gradient(0deg,rgba(7,4,11,.94),rgba(7,4,11,.6) 55%,transparent)}
+.dock{position:absolute;left:50%;transform:translateX(-50%);width:100%;max-width:var(--wrap);bottom:0;height:var(--dockh);padding:12px var(--pad) calc(14px + env(safe-area-inset-bottom,0px));display:grid;grid-template-columns:repeat(8,1fr);gap:12px;z-index:7;background:linear-gradient(0deg,rgba(7,4,11,.94),rgba(7,4,11,.6) 55%,transparent)}
 .tile{--c:var(--a2);--ex:color-mix(in srgb,var(--c) 42%,#000);position:relative;border:0;background:none;padding:4px 2px;display:grid;justify-items:center;align-content:center;-webkit-tap-highlight-color:transparent;
   transform:perspective(500px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .2s ease-out}
 .tile:focus-visible{outline:none}
@@ -138,7 +154,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 @keyframes blink{50%{opacity:.35}}
 @keyframes tube{0%{opacity:.2}12%{opacity:1}22%{opacity:.3}34%{opacity:1}48%{opacity:.5}60%,100%{opacity:1}}
 /* card que sai da barra */
-#pop{position:absolute;z-index:9;left:0;top:0;width:360px;height:440px;display:none;will-change:transform}
+#pop{position:absolute;z-index:6;left:0;top:0;width:360px;height:440px;display:none;will-change:transform}
 #pop.show{display:block}
 #pop .bob{position:absolute;inset:0;animation:bob 3.4s ease-in-out infinite}
 #pop.full .bob,#pop.drag .bob{animation:none}
@@ -174,13 +190,13 @@ button{font:inherit;color:inherit;cursor:pointer}
 
 /* ---------- vitrine: prateleira de vidro ---------- */
 #pop.sheet .inner{background:linear-gradient(180deg,rgba(32,16,54,.72) 0,rgba(15,8,28,.9) 34%,rgba(9,5,16,.95) 100%);backdrop-filter:blur(20px) saturate(1.3);-webkit-backdrop-filter:blur(20px) saturate(1.3)}
-#pop.sheet .ph{position:relative;padding:24px 18px 6px;align-items:flex-end}
+#pop.sheet .ph{position:relative;padding:20px 18px 8px;align-items:center;flex-wrap:nowrap}
 #pop.sheet .ph::before{content:'';position:absolute;top:9px;left:50%;transform:translateX(-50%);width:56px;height:5px;border-radius:3px;background:rgba(247,241,255,.38);box-shadow:0 0 12px rgba(180,76,255,.55)}
-#pop.sheet .ph h2{font-size:30px}
-#pop.sheet .ph>div:first-child{min-width:0;flex:1 1 auto}
+#pop.sheet .ph h2{font-size:30px;flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#pop.sheet .ph .pcount{margin-top:0;flex:1 1 auto;min-width:0;text-align:left}
 #pop.sheet .grip{display:none}
 .pcount{display:block;color:var(--muted);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#pop.sheet .pb{padding:0 0 14px;scroll-behavior:smooth}
+#pop.sheet .pb{padding:0 0 calc(var(--dockh) + 24px);scroll-behavior:smooth}
 #pop.sheet .lead{padding:0 18px;margin:0 0 10px}
 
 .shelf{position:relative;margin:0 0 8px}
@@ -214,7 +230,7 @@ button{font:inherit;color:inherit;cursor:pointer}
   .shelf .shead{padding:12px 14px 2px}
   .snav{display:none}
   #pop.sheet .lead{padding:0 14px}
-  #pop.sheet .pb{padding:0 0 calc(10px + env(safe-area-inset-bottom,0px))}
+  #pop.sheet .pb{padding:0 0 calc(var(--dockh) + 24px)}
 }
 @media (prefers-reduced-motion:reduce){.srow{scroll-snap-type:none;scroll-behavior:auto}.sp:hover{transform:none}}
 
@@ -233,7 +249,8 @@ button{font:inherit;color:inherit;cursor:pointer}
 #pop.site .inner{background:#0b0614;backdrop-filter:none;-webkit-backdrop-filter:none}
 #pop.full .bob .card{border-radius:20px}
 @media (max-width:899px){
-  #app.site-open .dock,#app.site-open #waves,#app.site-open .scenes{transform:translateY(120%);opacity:0;pointer-events:none}
+  #app.site-open .dock{transform:translate(-50%,120%);opacity:0;pointer-events:none}
+  #app.site-open #waves,#app.site-open .scenes{transform:translateY(120%);opacity:0;pointer-events:none}
   .dock,#waves,.scenes{transition:transform .4s cubic-bezier(.2,.9,.2,1),opacity .3s}
   #pop.full .bob .card{border-radius:18px 18px 0 0}
   #pop.site .pf{margin:0}
@@ -243,23 +260,24 @@ button{font:inherit;color:inherit;cursor:pointer}
 
 /* ---------- celular ---------- */
 @media (max-width:899px){
-  :root{--dockh:178px}
-  .top{padding:calc(12px + env(safe-area-inset-top,0px)) 16px 0}
+  :root{--dockh:178px;--pad:16px}
+  .top{padding:calc(12px + env(safe-area-inset-top,0px)) var(--pad) 0}
   .logo b{font-size:28px}
   .radio{height:42px;padding:0 6px}.radio .t,.radio .eq{display:none}
   .ib{width:42px;height:42px}
-  .feat{left:16px;right:16px;top:86px;width:auto}
   .feat .in{min-height:0;padding:18px 26% 18px 22px;gap:6px}
   .feat h2{font-size:58px}
   .feat h3{font-size:14px}.feat p{font-size:13px}
   .cta{padding:10px 22px;font-size:14px}
   .fdots,.fhint{margin-left:24px}
   .fhint{display:none}
-  .dock{grid-template-columns:repeat(4,1fr);gap:8px;padding:10px 14px calc(12px + env(safe-area-inset-bottom,0px))}
+  .hero{top:calc(58px + env(safe-area-inset-top,0px))}
+  .hero-in{display:flex;flex-direction:column;gap:12px;height:auto;max-height:none;align-items:stretch}
+  .hero-col{gap:10px;justify-content:flex-start}
+  .dock{grid-template-columns:repeat(4,1fr);gap:8px;padding:10px var(--pad) calc(12px + env(safe-area-inset-bottom,0px))}
   .tile svg{width:22px;height:22px}
   .tile .lb{font-size:12px;letter-spacing:.02em;text-align:center;white-space:normal}
   .tile .new{font-size:8.5px;top:-10px;left:calc(50% + 6px)}
-  .scenes{right:16px}
   .scenes span{display:none}
   #waves{height:90px}
 }
@@ -275,7 +293,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 #pop .it .art{background:transparent!important}
 
 /* cabeçalho NUNCA por cima do conteúdo: fica no fluxo e o conteúdo começa depois dele */
-#pop .ph{flex:none;position:relative;z-index:3;cursor:grab}
+#pop .ph{flex:none;position:relative;z-index:4;cursor:grab}
 #pop .ph::before{display:none!important}
 #pop .pb{scroll-padding-top:12px;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 20px);mask-image:linear-gradient(180deg,transparent 0,#000 20px)}
 /* mesma "armação de vidro" dos cards .it nas capas da prateleira */
@@ -284,6 +302,10 @@ button{font:inherit;color:inherit;cursor:pointer}
 @media (min-width:900px){
   #pop .inner{background:linear-gradient(180deg,transparent 0%,transparent 14%,rgba(8,4,18,.72) 34%,rgba(8,4,18,.92) 100%)!important}
 }
+/* aberto (tela cheia): cabeçalho com fundo opaco e conteúdo começando abaixo dele */
+#pop.full .inner{background:linear-gradient(180deg,rgba(8,4,18,.80) 0,rgba(8,4,18,.90) 28%,rgba(8,4,18,.97) 100%)!important;
+  backdrop-filter:blur(18px) saturate(1.2)!important;-webkit-backdrop-filter:blur(18px) saturate(1.2)!important}
+#pop.full .ph{background:linear-gradient(180deg,#0b0716 0,#0b0716 calc(100% - 12px),transparent 100%);z-index:5}
 /* site atual embutido continua opaco (senão o vídeo vaza por trás) */
 #pop.site .inner{background:#0b0614!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
 @media (max-width:899px){
@@ -315,16 +337,27 @@ button{font:inherit;color:inherit;cursor:pointer}
     </div>
   </header>
 
-  <section class="feat" id="feat" aria-label="Destaque (clique pra trocar)">
-    <div class="frame"><div class="in"><div class="slide" id="slide"></div></div></div>
-    <div class="fdots" id="fdots"></div>
-    <div class="fhint px">Clique no card pra trocar</div>
+  <section class="hero" id="hero" aria-label="Destaques da loja">
+    <div class="hero-in" id="heroIn">
+      <div class="hero-col">
+        <section class="feat" id="feat" aria-label="Destaque (clique pra trocar)">
+          <div class="frame"><div class="in"><div class="slide" id="slide"></div></div></div>
+          <div class="fdots" id="fdots"></div>
+          <div class="fhint px">Clique no card pra trocar</div>
+        </section>
+        <div class="scenes" id="scenes"><span class="px">Cena</span></div>
+      </div>
+      <aside class="arc" id="arcBox" aria-label="Mini arcade">
+        <h3 class="arc-h px">Arcade</h3>
+        <div class="arc-frame"><iframe id="arcF" src="arcade/astro.html?mini=1&amp;embed=1&amp;musica=site" title="Mini arcade Astro" allow="fullscreen" loading="lazy"></iframe></div>
+        <div class="arc-bar"><span class="px">Jogue agora · Recorde: <b id="arcRec">—</b></span><button class="btn gold" id="arcFull" type="button">Tela cheia</button></div>
+      </aside>
+    </div>
   </section>
 
-  <div class="scenes" id="scenes"><span class="px">Cena</span></div>
   <nav class="dock" id="dock" aria-label="Modos da loja"></nav>
   <section id="pop" class="sheet" role="dialog" aria-labelledby="popt"><div class="bob"><div class="card"><div class="inner">
-    <div class="ph" id="ph"><div><span class="grip px">⠿ arraste</span><h2 id="popt">Jogos</h2><span class="pcount px" id="pcount">arraste pro lado</span></div><div class="pacts"><button class="btn gold" id="popOpen">Abrir</button><button class="btn" id="popX" aria-label="Fechar">✕</button></div></div>
+    <div class="ph" id="ph"><h2 id="popt">Jogos</h2><span class="pcount px" id="pcount">arraste pro lado</span><div class="pacts"><button class="btn gold" id="popOpen">Abrir</button><button class="btn" id="popX" aria-label="Fechar">✕</button></div></div>
     <div class="pb" id="pb"></div>
     <div class="pf" id="pf" hidden><iframe id="ifr" title="Seção da loja"></iframe><div class="pfl" id="pfl"><div style="text-align:center"><span class="px">Carregando</span><div class="bar"><i></i></div></div></div></div>
     <div class="dragtip px"><span>Puxe pra cima pra abrir</span><span class="dt2"> · solte pra voltar</span></div>
@@ -460,21 +493,38 @@ function shelf(titulo,lista,k,dica){
   if(!lista||!lista.length)return '';
   return `<section class="shelf"><div class="shead"><h3>${esc(titulo)}</h3><span class="px">${dica||'arraste pro lado'}</span></div><button class="snav l" data-snav="l" aria-label="Anterior">‹</button><button class="snav r" data-snav="r" aria-label="Próximo">›</button><div class="srow" role="list" tabindex="0">${lista.slice(0,8).map(x=>card(norm(x),k)).join('')}</div></section>`;
 }
-const ROWS={jogos:[['Destaques','destaques'],['Jogos','jogos']],cons:[['Destaques','destaques'],['Consoles','consoles']],
-  aces:[['Acessórios','acessorios']],setup:[['Monte o seu setup','setup']],era:[['Linha do tempo','era']],gta:[['GTA VI','gta']]};
+function pickHighlights(list){
+  const s=list.filter(x=>x.img&&seal(x));
+  return (s.length>=2?s:list.filter(x=>x.img).slice(-3)).slice(0,3);
+}
 function render(id){
   const k=KEY[id],list=DATA&&k&&Array.isArray(DATA[k])?DATA[k]:null;
   if(!list||!list.length)return CONTENT[id]();
-  const m=MODES.find(x=>x.id===id),lead=(DATA.textos&&DATA.textos[k])||'',rows=ROWS[id]||[[m.l,k]];
+  const m=MODES.find(x=>x.id===id),lead=(DATA.textos&&DATA.textos[k])||'';
   const dk=id==='setup'||id==='era'||id==='gta'?'arraste pra ver tudo':'arraste pro lado';
-  return (lead?`<p class="lead">${esc(lead)}</p>`:'')+rows.map(r=>shelf(r[0],DATA[r[1]],m.k,dk)).join('');
+  let out=lead?`<p class="lead">${esc(lead)}</p>`:'';
+  // destaques tirados da propria categoria (nunca repete GTA/Setup/Novos jogos em todo painel)
+  if(list.length>=5){
+    const hl=pickHighlights(list);
+    if(hl.length>=2)return out+shelf('Destaques',hl,m.k,dk)+shelf(m.l,list,m.k,dk);
+  }
+  return out+shelf(m.l,list,m.k,dk);
 }
-function makeInfinite(sc,auto=true){
-  if(!sc||sc.dataset.inf)return;
-  if(!sc.offsetWidth){if(!sc.dataset.iw){sc.dataset.iw='1';requestAnimationFrame(()=>{delete sc.dataset.iw;makeInfinite(sc,auto)})}return}
-  const items=[...sc.children];if(items.length<3)return;
-  const a0=items[0],b0=items[items.length-1];
-  if(b0.offsetLeft+b0.offsetWidth-a0.offsetLeft<=sc.clientWidth+8)return; // linha que nao rola: sem loop
+function shRow(sc,one){const sh=sc.closest('.shelf');if(!sh)return;
+  sh.querySelectorAll('.snav').forEach(b=>b.style.display=one?'none':'');
+  sc.style.justifyContent=one?'center':''}
+function rowFits(sc){const it=[...sc.children];if(it.length<2)return true;const a=it[0],b=it[it.length-1];
+  return b.offsetLeft+b.offsetWidth-a.offsetLeft<=sc.clientWidth+8}
+function evalRow(sc,auto,final){ // decide se a fileira rola ou nao
+  const ro=sc.__ro;
+  if(sc.dataset.inf){ro&&ro.disconnect();return}
+  const items=[...sc.children];
+  if(items.length<3){shRow(sc,true);return}
+  if(!sc.clientWidth)return;                        // painel fechado/medindo: tenta de novo depois
+  if(rowFits(sc)){shRow(sc,true);return}            // poucos itens: centraliza e esconde as setas
+  if(!final)return;                                 // primeira medida pode estar velha: espera estabilizar
+  sc.dataset.inf='1';ro&&ro.disconnect();
+  shRow(sc,false);
   sc.dataset.inf='1';
   sc.style.scrollSnapType='none';sc.style.scrollBehavior='auto';
   const pre=document.createDocumentFragment(),pos=document.createDocumentFragment();
@@ -488,7 +538,18 @@ function makeInfinite(sc,auto=true){
     ['pointerdown','wheel','touchstart'].forEach(e=>sc.addEventListener(e,stop,{passive:true}));
     (function drift(){if(performance.now()>hold&&sc.isConnected&&sc.offsetParent)sc.scrollLeft+=0.4;requestAnimationFrame(drift)})()}
 }
-function fillPB(id){pb.innerHTML=render(id);pb.scrollTop=0;const ob=$('#popOpen');if(ob)ob.hidden=!CFG.rota[id];const pc=$('#pcount');if(pc){const n=pb.querySelectorAll('.sp,.it').length;pc.textContent=n+(pb.querySelector('.srow')?(MOB()?' itens':' itens · arraste pro lado'):' itens')}pb.querySelectorAll('.srow').forEach(r=>makeInfinite(r))}
+function makeInfinite(sc,auto=true){
+  if(!sc||sc.dataset.inf||sc.__ro)return;
+  const ro=new ResizeObserver(()=>evalRow(sc,auto,false));
+  sc.__ro=ro;ro.observe(sc);evalRow(sc,auto,false);
+  const t0=performance.now();
+  const later=()=>{if(sc.__ro!==ro)return;if(performance.now()-t0<520)setTimeout(later,120);else evalRow(sc,auto,true)};
+  setTimeout(later,120)}
+function fillPB(id){pb.querySelectorAll('.srow').forEach(r=>{r.__ro&&r.__ro.disconnect();r.__ro=null});pb.innerHTML=render(id);pb.scrollTop=0;const ob=$('#popOpen');if(ob)ob.hidden=!CFG.rota[id];
+  const pc=$('#pcount');
+  if(pc){const k=KEY[id],n=DATA&&k&&Array.isArray(DATA[k])?DATA[k].length:pb.querySelectorAll('.sp,.it').length;
+    pc.textContent=n+' itens'+(pb.querySelector('.srow')&&!MOB()?' · arraste pro lado':'')}
+  placeArc();pb.querySelectorAll('.srow').forEach(r=>makeInfinite(r))}
 
 /* ---------- card de destaque ---------- */
 const FEAT=[
@@ -544,17 +605,23 @@ const CONTENT={
 
 /* ---------- card que sai flutuando da barra ---------- */
 const pop=$('#pop'),pb=$('#pb');let popI=-1,pinned=false,full=false,hideT=0,hoverT=0,rest=null;
+const WRAP=1200;
 function targetRect(i){
-  // folha de vidro: espiada (44%) sobe até quase cheia (>90%) por cima do hero
+  // tudo dentro de 1200px: no desktop a folha nao encosta mais na borda da tela
   const dh=dock.getBoundingClientRect().top,site=pop.classList.contains('site');
+  const wide=Math.min(innerWidth,WRAP),wx=Math.round((innerWidth-wide)/2);
   if(full){
     if(MOB()){const top=site?Math.max(58,$('.top').getBoundingClientRect().bottom+6):Math.max(64,Math.round(innerHeight*.18));
       return{x:0,y:top,w:innerWidth,h:Math.max(180,dh-top-6)}}
     const top=site?92:Math.max(56,Math.round(innerHeight*.16));
-    return{x:site?16:0,y:top,w:innerWidth-(site?32:0),h:Math.max(200,dh-top-10)};
+    const w=Math.max(320,wide-(site?32:0));
+    return{x:site?Math.round((innerWidth-w)/2):wx,y:top,w,h:Math.max(200,dh-top-10)};
   }
-  const top=Math.round(innerHeight*(MOB()?.34:.48));
-  return{x:0,y:top,w:innerWidth,h:Math.max(190,dh-top-8)};
+  // espiando: fica sempre no minimo 16px abaixo do fim do hero
+  const hb=$('#hero')?$('#hero').getBoundingClientRect().bottom:0;
+  let top=Math.max(Math.round(innerHeight*(MOB()?.34:.48)),Math.round(hb+16));
+  if(dh-top<160)top=Math.max(0,dh-160);
+  return{x:wx,y:top,w:wide,h:Math.max(120,dh-top-8)};
 }
 function place(t,anim){
   pop.style.width=t.w+'px';pop.style.height=t.h+'px';
@@ -626,7 +693,8 @@ const dEnd=()=>{if(!drag)return;const{dx,dy}=drag;drag=null;pop.classList.remove
   const cur=pop.style.transform;pop.style.transform=`translate(${rest.x}px,${rest.y}px)`;
   if(!RM)pop.animate([{transform:cur},{transform:pop.style.transform}],{duration:520,easing:'cubic-bezier(.34,1.56,.64,1)'})};
 ph.addEventListener('pointerup',dEnd);ph.addEventListener('pointercancel',dEnd);
-addEventListener('resize',()=>{if(pop.classList.contains('show'))place(targetRect(popI),false);Waves.size()});
+addEventListener('resize',()=>{placeArc();if(pop.classList.contains('show'))place(targetRect(popI),false);Waves.size();
+  if(popI>=0&&!pop.classList.contains('site'))pb.querySelectorAll('.srow').forEach(r=>{if(!r.dataset.inf){r.__ro&&r.__ro.disconnect();r.__ro=null;makeInfinite(r)}})});
 
 /* ---------- rádio: trilha sintetizada original (synthwave 100 BPM) ---------- */
 const Radio=(()=>{
@@ -683,6 +751,20 @@ const Waves=(()=>{
   size();requestAnimationFrame(draw);
   return{size,kick(k){boost=Math.min(1.5,boost+k)}};
 })();
+
+/* ---------- mini arcade + dica da primeira visita ---------- */
+const heroIn=$('#heroIn'),arcBox=$('#arcBox'),arcF=$('#arcF'),arcRec=$('#arcRec');
+function placeArc(){if(!arcBox)return;const t=MOB()?pb:heroIn;if(arcBox.parentElement!==t)t.appendChild(arcBox)}
+function syncRec(){try{const w=arcF.contentWindow;if(w&&w.__astroRec!=null)arcRec.textContent=String(w.__astroRec)}catch(e){}}
+arcF.addEventListener('load',syncRec);setInterval(syncRec,2000);syncRec();
+$('#arcFull').onclick=()=>{try{arcF.requestFullscreen&&arcF.requestFullscreen()}catch(e){}};
+(function(){const dt=$('.dragtip');if(!dt)return;
+  if(matchMedia('(pointer:fine)').matches)dt.innerHTML='<span>Clique em Abrir para ver tudo</span>';
+  let seen=false;try{seen=localStorage.getItem('dypeNovoTip')==='1'}catch(e){}
+  if(seen){dt.style.display='none';return}
+  try{localStorage.setItem('dypeNovoTip','1')}catch(e){}
+  setTimeout(()=>{dt.style.transition='opacity .4s';dt.style.opacity='0';setTimeout(()=>dt.style.display='none',450)},4000)})();
+placeArc();   // celular: o arcade ja nasce como secao ARCADE dentro do painel
 
 function openWA(msg){if(/X{4}/.test(CFG.wa)){toast('Coloque o número do WhatsApp em CFG.wa pra este botão funcionar.');return}window.open(CFG.wa+'?text='+encodeURIComponent(msg||CFG.waMsg),'_blank','noopener')}
 document.addEventListener('click',e=>{const nv=e.target.closest('[data-snav]');if(nv){const row=nv.parentElement.querySelector('.srow');if(row)row.scrollBy({left:(nv.dataset.snav==='r'?1:-1)*Math.round(row.clientWidth*.8),behavior:RM?'auto':'smooth'});return}

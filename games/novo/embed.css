@@ -91,3 +91,16 @@ html.neon-embed:root .view:is([data-v="jogos"],[data-v="consoles"],[data-v="aces
 html.neon-embed:root .view:is([data-v="jogos"],[data-v="consoles"],[data-v="acess"],[data-v="controles"],[data-v="tcg"],[data-v="conserto"]) :is(.step b,.sec-t h3,.gi h3,.su-h h2,.table-h,.popt){color:#f7f1ff!important;}
 html.neon-embed:root .view:is([data-v="jogos"],[data-v="consoles"],[data-v="acess"],[data-v="controles"],[data-v="tcg"],[data-v="conserto"]) :is(.step span,.sec-t h3 small,.credito,.credit,.gi .credit,.orc .credit){color:rgba(247,241,255,.65)!important;}
 
+
+/* ---------- 5. bloco claro do topo (aba jogos) ---------- */
+html.neon-embed:root .jgh{background:radial-gradient(120% 130% at 92% -6%,rgba(180,76,255,.16),transparent 58%),linear-gradient(165deg,#fbf8ff,#f2eaff 72%,#faf6ff)!important;border-color:rgba(180,76,255,.28)!important;box-shadow:none!important;}
+html.neon-embed:root .jgh-h1{color:#1b0f2e!important;}
+html.neon-embed:root .jgh-p{color:#4a3a66!important;}
+
+/* faixa "Não achou o jogo?" sem degradê branco */
+html.neon-embed:root .jgw-cta{background:rgba(20,10,40,.85)!important;background-image:none!important;border:1px solid rgba(180,76,255,.45)!important;box-shadow:none!important;}
+html.neon-embed:root .jgw-cta b{color:#f7f1ff!important;}
+html.neon-embed:root .jgw-cta span{color:rgba(247,241,255,.65)!important;}
+
+/* selo flutuante de nível/conquistas some dentro do embed */
+html.neon-embed:root .ofx-hud,html.neon-embed:root .ofx-toast{display:none!important;}
