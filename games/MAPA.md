@@ -153,3 +153,20 @@ Contato não é aba: está no `footer.foot` + WhatsApp (`var WA`).
 ### Avisos da parte 5
 - **Nada fora da vitrine re-renderiza**: auto (5 s), setas, arrasto e chips/marcas mexem só no `.stage2`, `.sdots` e `.sinfo2` (ou no `.bento`, em Acessórios). O `.tt` (letra a letra) e o rótulo animam **uma vez**, ao abrir a seção.
 - `fill(id)`/`fillPB(id)` continuam existindo só para abrir/trocar de seção — não chamar em controle de vitrine.
+
+## games/novo/index.html — parte 6 (standby legível, contraste do hero, dock 2 colunas, crossfade de cena)
+| item | linha | seletor / função |
+|---|---|---|
+| **crossfade de cena (sem preto)** | 34 · 716-725 | `.scene{transition:opacity 1.2s ease}` · `setScene(i)`: a cena que entra vai pro **topo da pilha** (as outras são movidas pra antes dela — ela nunca se move, senão perde a transição), entra com `opacity 0→1` em 1,2 s e a antiga só é desligada em 1,25 s (`transition:none`). Nunca passa pelo preto |
+| WebGL: fade 1,2 s + textura pronta | 700 · 712 | `k=(n-fadeT)/1.2` · `GL.set(i)` só troca quando a textura da cena está carregada (imagem ainda carregando = espera o `load`), evitando frame escuro |
+| **standby legível** | 535-537 | `#wake i` 72 px, borda 2,5 px · `#wake span` vira pílula (`rgba(10,6,20,.7)`, borda `1px rgba(255,255,255,.25)`, `padding:10px 18px`, raio 999px, texto 13 px) |
+| contraste dos ícones + frase | 538-541 · 118 | `#dock::before` = radial `ellipse 70% 60%` `rgba(8,4,18,.65)`→transparente, **sem blur**, `pointer-events:none`, `z-index:-1` (fica atrás dos ícones e da `#ticker`; escondido em `body.sec`) · `.lb` ganhou `0 2px 6px rgba(0,0,0,.8)` além do neon (também em `.press/.sink/.near`) |
+| **dock celular 2 colunas** | 542-556 | `@media (max-width:600px)`: `grid-template-columns:1fr 1fr`, `row-gap:clamp(14px,2.6vh,24px)`, ícone 42 px **ao lado** do nome 17 px (`.ink/.fx/.cap` em `flex-direction:row`), alinhado à esquerda (`padding-left:6%`), selo NOVO em cima do ícone. `body.sec` volta pra coluna única |
+| hero no PC | 524 | ícones `clamp(44px,4.5vw,60px)` (60 px em 1440) e 4 colunas |
+| **contador por filtro** | 816 · 861-864 | `fltCount(id)` (itens da categoria que casam com o chip ativo; `Todos` = total do `dados.json`) · `setCount(n,id)` monta `● RÓTULO · N ITEM(NS)` · `refreshSpot()`/`refreshBento()` chamam `setCount` |
+| chips sem re-render | 862-864 · 1227 | `spotIds()` ganhou o ramo `tcg` · `[data-tcg]` agora usa `pressIn()` + `refreshSpot()` (antes `fill(curMode)`, que refazia a seção e reanimava o título) |
+
+### Avisos da parte 6
+- `setScene` **reordena** as `.scene` dentro de `#app`: as 3 continuam antes de `.tint`/`#gl`/`#shade`, então o canvas WebGL segue por cima do fundo.
+- O vídeo do hero (`#vid`, cena 0) continua tocando depois de ir e voltar de cena (validado 0→1→2→0).
+- `#dock::before` é só contraste: não captura clique nem aparece em `body.sec`.
